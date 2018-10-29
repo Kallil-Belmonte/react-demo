@@ -1,0 +1,56 @@
+.app-header {
+  background-color: #222;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+@keyframes App-header-logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.app-header .logo {
+  height: 80px;
+  animation: App-header-logo-spin infinite 20s linear;
+}
+
+.app-header .title {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.app-header .main-menu ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.app-header .main-menu li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.app-header .main-menu li:last-child {
+  margin-right: 0;
+}
+
+.app-header .main-menu a {
+  color: #FFF;
+  transition: color 0.3s ease;
+}
+
+.app-header .main-menu a:hover,
+.app-header .main-menu a:focus,
+.app-header .main-menu a:active,
+.app-header .main-menu a.active {
+  color: #61DAFB;
+}
+
+.app-header .main-menu svg {
+  margin-right: 10px;
+}
+
+.app-header .welcome-box {
+  top: 20px;
+  right: 20px;
+}

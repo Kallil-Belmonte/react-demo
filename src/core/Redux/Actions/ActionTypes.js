@@ -1,0 +1,22 @@
+const ACTION_TYPES = {
+  // AUTH
+  LOG_IN:  'LOG_IN',
+  LOG_OUT: 'LOG_OUT',
+
+
+  // NEWS
+
+  // Post
+  GET_CURRENT_POST:  'GET_CURRENT_POST',
+  EDIT_CURRENT_POST: 'EDIT_CURRENT_POST',
+
+  // Blog
+  GET_POSTS:      'GET_POSTS',
+  GET_CATEGORIES: 'GET_CATEGORIES',
+
+
+  // ACCOUNT
+  EDIT_ACCOUNT: 'EDIT_ACCOUNT'
+};
+
+export default ACTION_TYPES;

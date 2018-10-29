@@ -1,0 +1,14 @@
+.register-page {
+
+}
+
+@keyframes App-register-logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.register-page .logo {
+  height: 80px;
+  margin-top: 50px;
+  animation: App-register-logo-spin infinite 20s linear;
+}
