@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Posts.css';
+// import './Posts.css';
 import PostItem from '../../../../shared/Components/PostItem/PostItem';
 
 const Posts = (props) => {

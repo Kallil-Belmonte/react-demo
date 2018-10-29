@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Categories.css';
+// import './Categories.css';
 
 const Categories = (props) => {
   return (

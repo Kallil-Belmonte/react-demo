@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import './ContactForm.css';
+// import './ContactForm.css';
 import { Alert } from 'reactstrap';
 import Validations from '../../../core/Forms/Validations';
 import { renderInput, renderSelect, renderCheckbox, renderRadioButton } from '../../../core/Forms/Fields';

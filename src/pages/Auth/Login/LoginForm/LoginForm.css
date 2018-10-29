@@ -2,11 +2,8 @@
   padding: 40px 40px 15px 40px;
   border-radius: 10px;
   background-color: #FFF;
-  margin-top: 50px;
-}
-
-#login-form .page-title {
-  font-size: 24px;
-  font-weight: 700;
-  text-align: center;
-}
+  margin-top: 50px; }
+  #login-form .page-title {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center; }
