@@ -4,7 +4,7 @@ import './PostsFilter.css';
 
 const PostsFilter = (props) => {
   return (
-    <section id="posts-filter">
+    <section data-component="PostsFilter">
       <form>
         <div className="form-row">
           <div className="col-md-2">

@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = (props) => {
   return (
-    <footer className="app-footer">
+    <footer data-component="Footer">
       <div className="container">
         <div className="d-flex justify-content-center">
           <ul className="social-networks list-inline">

@@ -16,7 +16,7 @@ let EditPostForm = (props) => {
   } = props;
 
   return (
-    <form id="edit-post-form" onSubmit={handleSubmit}>
+    <form data-component="EditPostForm" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="title">Title</label>
         <Field id="title" className="form-control" component={renderInput} type="text" name="title" validate={[Validations.required]} />

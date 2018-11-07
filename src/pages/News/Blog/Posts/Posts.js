@@ -5,7 +5,7 @@ import PostItem from '../../../../shared/Components/PostItem/PostItem';
 
 const Posts = (props) => {
   return (
-    <section id="posts">
+    <section data-component="Posts">
       <div className="row">
         {props.posts.length > 0
           ? props.posts[props.currentPage].map((post, index) =>

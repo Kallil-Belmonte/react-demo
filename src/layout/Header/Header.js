@@ -11,7 +11,7 @@ library.add(faHome, faNewspaper, faEnvelope, faUser);
 
 const Header = (props) => {
   return (
-    <header className="app-header">
+    <header data-component="Header">
       <img src="/assets/img/logo.svg" className="logo" alt="logo" />
       <h1 className="title">Welcome to React</h1>
 

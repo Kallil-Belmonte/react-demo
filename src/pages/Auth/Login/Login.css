@@ -4,7 +4,7 @@
   to {
     transform: rotate(360deg); } }
 
-.login-page .logo {
+[data-component="Login"] .logo {
   height: 80px;
   margin-top: 50px;
   animation: App-login-logo-spin infinite 20s linear; }

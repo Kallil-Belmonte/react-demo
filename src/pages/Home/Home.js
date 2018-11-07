@@ -19,7 +19,7 @@ class Home extends React.Component {
   render() {
     return (
       <Layout>
-        <main className="home-page">
+        <main data-component="Home">
           <Loader loading={this.state.loading} />
 
           <FeaturedPosts posts={this.state.posts} />

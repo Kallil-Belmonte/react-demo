@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './Layout.css';
+// import './Layout.css';
 import * as actionCreators from '../core/Redux/Actions/ActionCreators';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';

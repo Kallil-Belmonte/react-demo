@@ -4,7 +4,7 @@ import React from 'react';
 
 const Categories = (props) => {
   return (
-    <aside id="categories">
+    <aside data-component="categories">
       <div className="list-group">
         {props.categories.map((category, index) =>
           <button key={index} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center" type="button" data-name={category.name} onClick={props.click}>

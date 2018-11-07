@@ -1,8 +1,8 @@
-.page-header .icon {
+[data-component="PageHeader"] .icon {
   font-size: 32px;
   margin-bottom: 15px; }
 
-.page-header .title {
+[data-component="PageHeader"] .title {
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;

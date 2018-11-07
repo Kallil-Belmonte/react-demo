@@ -15,7 +15,7 @@ let LoginForm = (props) => {
   } = props;
 
   return (
-    <form id="login-form" onSubmit={handleSubmit}>
+    <form data-component="LoginForm" onSubmit={handleSubmit}>
       <h1 className="page-title">Login</h1>
 
       <div className="form-group">

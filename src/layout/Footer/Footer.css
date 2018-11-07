@@ -1,9 +1,9 @@
-.app-footer {
+[data-component="Footer"] {
   padding: 30px 0;
   /* SOCIAL NETWORKS */ }
-  .app-footer .social-networks li:not(:last-child) {
+  [data-component="Footer"] .social-networks li:not(:last-child) {
     margin-right: 40px; }
-  .app-footer .social-networks li a {
+  [data-component="Footer"] .social-networks li a {
     font-size: 0px;
     width: 25px;
     height: 25px;
@@ -12,7 +12,7 @@
     /* Twitter */
     /* Instagram */
     /* Linkedin */ }
-    .app-footer .social-networks li a::before {
+    [data-component="Footer"] .social-networks li a::before {
       content: '';
       display: block;
       width: 100%;
@@ -20,11 +20,11 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center; }
-    .app-footer .social-networks li a[href*='facebook.com']::before {
+    [data-component="Footer"] .social-networks li a[href*='facebook.com']::before {
       background-image: url("/assets/img/icons/social-networks/facebook.svg"); }
-    .app-footer .social-networks li a[href*='twitter.com']::before {
+    [data-component="Footer"] .social-networks li a[href*='twitter.com']::before {
       background-image: url("/assets/img/icons/social-networks/twitter.svg"); }
-    .app-footer .social-networks li a[href*='instagram.com']::before {
+    [data-component="Footer"] .social-networks li a[href*='instagram.com']::before {
       background-image: url("/assets/img/icons/social-networks/instagram.svg"); }
-    .app-footer .social-networks li a[href*='linkedin.com']::before {
+    [data-component="Footer"] .social-networks li a[href*='linkedin.com']::before {
       background-image: url("/assets/img/icons/social-networks/linkedin.svg"); }

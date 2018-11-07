@@ -10,7 +10,7 @@ const Pagination = (props) => {
   let fifthItem  = props.firstItem + 4;
 
   return (
-    <nav id="pagination" aria-label="pagination" onClick={props.paginate}>
+    <nav data-component="pagination" aria-label="pagination" onClick={props.paginate}>
       <ul className="pagination mb-0">
         {firstItem > 1 ?
           <li className="page-item">

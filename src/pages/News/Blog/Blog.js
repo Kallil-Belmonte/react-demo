@@ -34,7 +34,7 @@ class Blog extends React.Component {
   render() {
     return (
       <Layout>
-        <main className="blog-page">
+        <main data-component="Blog">
           <Loader loading={this.state.loading} />
 
           <div className="container">

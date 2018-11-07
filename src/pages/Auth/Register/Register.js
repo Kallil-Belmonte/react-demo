@@ -19,7 +19,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <main className="register-page">
+      <main data-component="Register">
         <Loader loading={this.state.loading} />
 
         <div className="container">

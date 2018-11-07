@@ -5,7 +5,7 @@ import './NotFound.css';
 
 const NotFound = (props) => {
   return (
-    <main className="not-found-page">
+    <main data-component="NotFound">
       <div className="atom-wrapper">
         <p className="number">4</p>
         <div className="atom">

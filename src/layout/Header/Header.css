@@ -4,32 +4,32 @@
   to {
     transform: rotate(360deg); } }
 
-.app-header {
+[data-component="Header"] {
   background-color: #222;
   padding: 20px;
   color: white;
   text-align: center; }
-  .app-header .logo {
+  [data-component="Header"] .logo {
     height: 80px;
     animation: App-header-logo-spin infinite 20s linear; }
-  .app-header .title {
+  [data-component="Header"] .title {
     font-size: 1.5em;
     margin-bottom: 30px; }
-  .app-header .main-menu svg {
+  [data-component="Header"] .main-menu svg {
     margin-right: 10px; }
-  .app-header .main-menu ul {
+  [data-component="Header"] .main-menu ul {
     padding-left: 0;
     margin-bottom: 0; }
-    .app-header .main-menu ul li {
+    [data-component="Header"] .main-menu ul li {
       display: inline-block;
       margin-right: 20px; }
-      .app-header .main-menu ul li:last-child {
+      [data-component="Header"] .main-menu ul li:last-child {
         margin-right: 0; }
-      .app-header .main-menu ul li a {
+      [data-component="Header"] .main-menu ul li a {
         color: #FFF;
         transition: color 0.3s ease; }
-        .app-header .main-menu ul li a:hover, .app-header .main-menu ul li a:focus, .app-header .main-menu ul li a:active, .app-header .main-menu ul li a.active {
+        [data-component="Header"] .main-menu ul li a:hover, [data-component="Header"] .main-menu ul li a:focus, [data-component="Header"] .main-menu ul li a:active, [data-component="Header"] .main-menu ul li a.active {
           color: #61DAFB; }
-  .app-header .welcome-box {
+  [data-component="Header"] .welcome-box {
     top: 20px;
     right: 20px; }

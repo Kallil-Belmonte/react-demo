@@ -15,7 +15,7 @@ let RegisterForm = (props) => {
   } = props;
 
   return (
-    <form id="register-form" onSubmit={handleSubmit}>
+    <form data-component="RegisterForm" onSubmit={handleSubmit}>
       <h1 className="page-title">Register</h1>
 
       <div className="form-group">

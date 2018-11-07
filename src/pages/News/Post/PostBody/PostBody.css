@@ -1,6 +1,6 @@
-#post-body {
+[data-component="PostBody"] {
   padding: 50px 0; }
-  #post-body .title {
+  [data-component="PostBody"] .title {
     font-size: 32px;
     font-weight: 700;
     text-transform: capitalize;

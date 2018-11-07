@@ -5,7 +5,7 @@ import './Loader.css';
 const Loader = (props) => {
   return (
     props.loading ?
-      <section className="loader">
+      <section data-component="Loader">
         <div className="atom-spinner">
           <div className="spinner-inner">
             <div className="spinner-line"></div>

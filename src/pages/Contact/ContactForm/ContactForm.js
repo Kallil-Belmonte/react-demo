@@ -16,7 +16,7 @@ const ContactForm = (props) => {
   } = props;
 
   return (
-    <form id="contact-form" onSubmit={handleSubmit}>
+    <form data-component="ContactForm" onSubmit={handleSubmit}>
       {props.feedbackMessages && props.feedbackMessages.success ?
         <Alert color="success">
           {props.feedbackMessages.success}

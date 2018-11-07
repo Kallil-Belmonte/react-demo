@@ -26,7 +26,7 @@ class Login extends React.Component {
   render() {
     console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
     return (
-      <main className="login-page">
+      <main data-component="Login">
         <Loader loading={this.state.loading} />
 
         <div className="container">

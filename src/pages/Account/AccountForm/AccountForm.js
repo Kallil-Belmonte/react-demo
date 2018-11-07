@@ -17,7 +17,7 @@ let AccountForm = (props) => {
   } = props;
 
   return (
-    <div className="row">
+    <div data-component="AccountForm" className="row">
       <div className="offset-md-3 col-md-6">
         {props.feedbackMessages && props.feedbackMessages.success ?
           <Alert color="success">
@@ -33,7 +33,7 @@ let AccountForm = (props) => {
           )
         : null}
 
-        <form id="account-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="first-name">First Name</label>
             <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" placeholder="First name" validate={[Validations.required, Validations.minLength3]} />

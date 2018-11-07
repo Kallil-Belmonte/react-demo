@@ -14,7 +14,7 @@ const PostItem = (props) => {
   }
 
   return (
-    <div className="post-item">
+    <div data-component="PostItem">
       {postImage}
       <article>
         <h3 className="title">{props.title}</h3>

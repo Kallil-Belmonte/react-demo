@@ -6,7 +6,7 @@ import './PageHeader.css';
 
 const PageHeader = (props) => {
   return (
-    <section className="page-header">
+    <section data-component="PageHeader">
       <FontAwesomeIcon className="icon d-block mx-auto" icon={props.icon} />
       <h1 className="title">{props.title}</h1>
     </section>

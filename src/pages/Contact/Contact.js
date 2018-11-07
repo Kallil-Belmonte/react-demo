@@ -33,7 +33,7 @@ class Contact extends React.Component {
   render() {
     return (
       <Layout>
-        <main className="contact-page">
+        <main data-component="Contact">
           <div className="container">
             <PageHeader title="Contact" icon={faEnvelope} />
 

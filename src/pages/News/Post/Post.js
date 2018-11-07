@@ -7,8 +7,8 @@ import axios, { ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
 import Layout from '../../../layout/Layout';
 import Loader from '../../../shared/Components/Loader/Loader';
-import Body from './Body/Body';
-import DeleteConfirmationModal from './DeleteConfirmationModal/DeleteConfirmationModal';
+import PostBody from './PostBody/PostBody';
+import DeletePostModal from './DeletePostModal/DeletePostModal';
 
 class Post extends React.Component {
   state = {
@@ -23,18 +23,18 @@ class Post extends React.Component {
   render() {
     return (
       <Layout>
-        <main className="post-page">
+        <main data-component="Post">
           <Loader loading={this.state.loading} />
 
           <div className="container">
             <div className="row">
               <div className="offset-md-2 col-md-8">
-                <Body post={this.props.currentPost} toggleModal={() => this.handleToggleModal()} />
+                <PostBody post={this.props.currentPost} toggleModal={() => this.handleToggleModal()} />
               </div>
             </div>
           </div>
 
-          <DeleteConfirmationModal
+          <DeletePostModal
             isModalOpen={this.state.isModalOpen}
             toggleModal={() => this.handleToggleModal()}
             delete={() => this.handleDeletePost()}

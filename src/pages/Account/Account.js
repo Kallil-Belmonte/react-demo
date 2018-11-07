@@ -28,7 +28,7 @@ class Account extends React.Component {
   render() {
     return (
       <Layout>
-        <main className="contact-page">
+        <main data-component="Account">
           <div className="container">
             <PageHeader title="Account" icon={faUser} />
 

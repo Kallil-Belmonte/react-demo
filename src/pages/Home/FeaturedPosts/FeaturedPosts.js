@@ -5,7 +5,7 @@ import PostItem from '../../../shared/Components/PostItem/PostItem';
 
 const FeaturedPosts = (props) => {
   return (
-    <section id="featured-posts" className="page-section">
+    <section data-component="FeaturedPosts" className="page-section">
       <div className="container">
         <h2 className="section-title">Featured posts</h2>
 

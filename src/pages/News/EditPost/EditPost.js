@@ -17,7 +17,7 @@ class EditPost extends React.Component {
   render() {
     return (
       <Layout>
-        <main className="edit-post-page">
+        <main data-component="EditPost">
           <Loader loading={this.state.loading} />
 
           <div className="container">
