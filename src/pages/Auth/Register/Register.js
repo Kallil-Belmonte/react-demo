@@ -42,8 +42,8 @@ class Register extends React.Component {
 
   // REDIRECT USER
   redirectUser() {
-    let authToken = sessionStorage.getItem('authTokenProjectName') || localStorage.getItem('authTokenProjectName');
-    let expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDate'));
+    let authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
+    let expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateAngularDemoReactDemo'));
 
     if (authToken && !expiredSession) {
       this.props.history.push('/');
@@ -72,7 +72,7 @@ class Register extends React.Component {
         });
 
         // Store session data
-        sessionStorage.setItem('authTokenProjectName', response.data.idToken);
+        sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
 
         // Redirect
         this.props.history.push('/');

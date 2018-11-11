@@ -26,9 +26,9 @@ class Layout extends React.Component {
   // LOG OUT USER
   logOutUser() {
     // Remove token
-    sessionStorage.removeItem('authTokenProjectName');
-    localStorage.removeItem('authTokenProjectName');
-    localStorage.removeItem('expirationDate');
+    sessionStorage.removeItem('authTokenReactDemo');
+    localStorage.removeItem('authTokenReactDemo');
+    localStorage.removeItem('expirationDateAngularDemoReactDemo');
 
     // Handle log out
     this.props.handleLogOut();
