@@ -10,10 +10,17 @@ import RegisterForm from './RegisterForm/RegisterForm';
 
 class Register extends React.Component {
   state = {
-    loading: false
+    loading: false,
+    registerForm: {
+      fieldsErrors: {
+        email: [],
+        password: []
+      }
+    }
   }
 
   componentDidMount() {
+    console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
     this.redirectUser();
   }
 
@@ -27,7 +34,7 @@ class Register extends React.Component {
 
           <div className="row">
             <div className="offset-md-3 col-md-6">
-              <RegisterForm onSubmit={(values) => this.handleRegister(values)} />
+              <RegisterForm fieldsErrors={this.state.registerForm.fieldsErrors} onSubmit={(values) => this.handleRegister(values)} />
             </div>
           </div>
         </div>
@@ -62,20 +69,39 @@ class Register extends React.Component {
 
     MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values)
       .then((response) => {
-        // Handle set user data
-        this.props.handleSetUserData({
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          email: response.data.email,
-          token: response.data.idToken,
-          expiresIn: response.data.expiresIn
-        });
+        if (values.email === 'demo@demo.com') {
 
-        // Store session data
-        sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
+          // Error simulation
+          this.setState((prevState, props) => {
+            return {
+              loading: false,
+              registerForm: {
+                fieldsErrors: {
+                  email: ['This e-mail already exists.'],
+                  password: ['Your password is too weak.']
+                }
+              }
+            };
+          });
 
-        // Redirect
-        this.props.history.push('/');
+        } else {
+
+          // Handle set user data
+          this.props.handleSetUserData({
+            firstName: response.data.firstName,
+            lastName: response.data.lastName,
+            email: response.data.email,
+            token: response.data.idToken,
+            expiresIn: response.data.expiresIn
+          });
+
+          // Store session data
+          sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
+
+          // Redirect
+          this.props.history.push('/');
+
+        }
       })
       .catch((error) => {
         console.log(error);

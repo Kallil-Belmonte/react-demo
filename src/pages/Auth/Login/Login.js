@@ -20,11 +20,11 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
+    console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
     this.redirectUser();
   }
 
   render() {
-    console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
     return (
       <main data-component="Login">
         <Loader loading={this.state.loading} />
@@ -77,8 +77,8 @@ class Login extends React.Component {
               loading: false,
               loginForm: {
                 fieldsErrors: {
-                  email: ['This e-mail already exists.'],
-                  password: ['Your password is too weak.']
+                  email: ['This e-mail does not exists.'],
+                  password: ['The password is incorrect.']
                 }
               }
             };
