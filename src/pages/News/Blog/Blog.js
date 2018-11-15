@@ -40,7 +40,7 @@ class Blog extends React.Component {
           <div className="container">
             <PageHeader title="Blog" icon={faNewspaper} />
 
-            <PostsFilter postsPerPage={this.state.postsPerPage} change={(event) => this.handleFilterPosts(event)} />
+            <PostsFilter change={(event) => this.handleFilterPosts(event)} />
 
             <div className="row">
               <div className="col-md-9">
