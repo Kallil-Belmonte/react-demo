@@ -44,7 +44,7 @@ class Blog extends React.Component {
 
             <div className="row">
               <div className="col-md-9">
-                <Posts posts={this.state.pagePosts} currentPage={this.state.currentPage} />
+                <Posts data={this.state.pagePosts} currentPage={this.state.currentPage} />
 
                 <Pagination
                   firstItem={this.state.firstPaginationItem}
@@ -53,7 +53,7 @@ class Blog extends React.Component {
                 />
               </div>
               <div className="col-md-3">
-                <Categories categories={this.props.categories} click={(event) => this.handleSelectCategory(event)} />
+                <Categories data={this.props.categories} click={(event) => this.handleSelectCategory(event)} />
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@ class Blog extends React.Component {
       console.log(error);
     })
     .then(() => {
-      // Hide loader
+      // Deactivate loader
       this.setState((prevState, props) => {
         return {
           loading: false
@@ -156,7 +156,7 @@ class Blog extends React.Component {
       // Reset pagination
       this.resetPagination();
 
-      // Hide loader
+      // Deactivate loader
       this.setState((prevState, props) => {
         return {
           loading: !prevState.loading,
@@ -221,7 +221,7 @@ class Blog extends React.Component {
         break;
 
       case 'Next':
-        navigateBackAndForth();
+        navigateBackAndForth(false);
         break;
 
       default:

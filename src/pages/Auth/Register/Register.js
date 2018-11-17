@@ -60,7 +60,7 @@ class Register extends React.Component {
 
   // HANDLE REGISTER
   handleRegister(values) {
-    // Show loader
+    // Activate loader
     this.setState((prevState, props) => {
       return {
         loading: true
@@ -106,7 +106,7 @@ class Register extends React.Component {
       .catch((error) => {
         console.log(error);
 
-        // Hide loader
+        // Deactivate loader
         this.setState((prevState, props) => {
           return {
             loading: false

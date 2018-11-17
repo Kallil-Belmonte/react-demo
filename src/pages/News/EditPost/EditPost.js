@@ -39,7 +39,7 @@ class EditPost extends React.Component {
 
   // HANDLE SUBMIT EDIT POST FORM
   handleSubmitEditPostForm(values) {
-    // Show loader
+    // Activate loader
     this.setState((prevState, props) => {
       return {
         loading: true
@@ -57,7 +57,7 @@ class EditPost extends React.Component {
       .catch((error) => {
         console.log(error);
 
-        // Hide loader
+        // Deactivate loader
         this.setState((prevState, props) => {
           return {
             loading: false

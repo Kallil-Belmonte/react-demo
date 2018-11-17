@@ -60,7 +60,7 @@ class Login extends React.Component {
 
   // HANDLE LOGIN
   handleLogin(values) {
-    // Show loader
+    // Activate loader
     this.setState((prevState, props) => {
       return {
         loading: true
@@ -111,7 +111,7 @@ class Login extends React.Component {
       .catch((error) => {
         console.log(error);
 
-        // Hide loader
+        // Deactivate loader
         this.setState((prevState, props) => {
           return {
             loading: false

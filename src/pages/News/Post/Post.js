@@ -60,7 +60,7 @@ class Post extends React.Component {
         console.log(error);
       })
       .then(() => {
-        // Hide loader
+        // Deactivate loader
         this.setState((prevState, props) => {
           return {
             loading: false
@@ -80,7 +80,7 @@ class Post extends React.Component {
 
   // HANDLE DELETE POST
   handleDeletePost() {
-    // Hide loader
+    // Deactivate loader
     this.setState((prevState, props) => {
       return {
         loading: true
@@ -95,7 +95,7 @@ class Post extends React.Component {
       .catch((error) => {
         console.log(error);
 
-        // Hide loader
+        // Deactivate loader
         this.setState((prevState, props) => {
           return {
             loading: false
