@@ -13,12 +13,7 @@ const FeaturedPosts = (props) => {
           {props.posts.slice(0, 3).map((post, index) =>
             <React.Fragment key={post.id}>
               <div className="col-md-4">
-                <PostItem
-                  id={post.id}
-                  image={post.image}
-                  title={post.title}
-                  body={post.body}
-                />
+                <PostItem data={post} />
               </div>
             </React.Fragment>
           )}

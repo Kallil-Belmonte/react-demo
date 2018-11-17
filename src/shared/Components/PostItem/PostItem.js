@@ -7,9 +7,9 @@ import Utils from '../../Utils/Utils';
 const PostItem = (props) => {
   let postImage = <div className="img-placeholder">Não há imagem para esse post</div>;
 
-  if (props.image) {
+  if (props.data.image) {
     postImage = (
-      <img className="img-fluid" src={props.image} alt="Capa" />
+      <img className="img-fluid" src={props.data.image} alt="Capa" />
     );
   }
 
@@ -17,9 +17,9 @@ const PostItem = (props) => {
     <div data-component="PostItem">
       {postImage}
       <article>
-        <h3 className="title">{props.title}</h3>
-        <p className="mb-0">{props.body ? Utils.limitWords(props.body, 8) + '...' : null}</p>
-        <NavLink className="btn btn-primary mt-3" to={'/post/' + props.id}>Read more</NavLink>
+        <h3 className="title">{props.data.title}</h3>
+        <p className="mb-0">{props.data.body ? Utils.limitWords(props.data.body, 8) + '...' : null}</p>
+        <NavLink className="btn btn-primary mt-3" to={'/post/' + props.data.id}>Read more</NavLink>
       </article>
     </div>
   );

@@ -10,12 +10,7 @@ const Posts = (props) => {
         {props.posts.length > 0
           ? props.posts[props.currentPage].map((post, index) =>
               <div className="col-md-4" key={post.id}>
-                <PostItem
-                  id={post.id}
-                  image={post.image}
-                  title={post.title}
-                  body={post.body}
-                />
+                <PostItem data={post} />
               </div>
             )
           : null}
