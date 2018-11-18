@@ -35,17 +35,20 @@ let AccountForm = (props) => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="first-name">First Name</label>
+            <label htmlFor="first-name">First name</label>
             <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" placeholder="First name" validate={[Validations.required, Validations.minLength3]} />
           </div>
+
           <div className="form-group">
-            <label htmlFor="last-name">Last Name</label>
+            <label htmlFor="last-name">Last name</label>
             <Field id="last-name" className="form-control" component={renderInput} type="text" name="lastName" placeholder="Last name" validate={[Validations.required]} />
           </div>
+
           <div className="form-group">
             <label htmlFor="email">E-mail</label>
             <Field id="email" className="form-control" component={renderInput} type="email" name="email" placeholder="E-mail" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
           </div>
+
           <button className="btn btn-primary mr-2" type="submit" disabled={!valid || pristine || submitting}>Save</button>
           <button className="btn btn-light" type="button" disabled={pristine || submitting} onClick={reset}>Reset form</button>
         </form>

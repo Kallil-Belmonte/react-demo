@@ -34,17 +34,19 @@ const ContactForm = (props) => {
       <div className="form-row">
         <div className="col">
           <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstName">First name</label>
             <Field id="firstName" className="form-control" component={renderInput} type="text" name="firstName" placeholder="First name" validate={[Validations.required, Validations.minLength3]} />
           </div>
         </div>
+
         <div className="col">
           <div className="form-group">
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="lastName">Last name</label>
             <Field id="lastName" className="form-control" component={renderInput} type="text" name="lastName" placeholder="Last name" validate={[Validations.required]} />
           </div>
         </div>
       </div>
+
       <div className="form-row">
         <div className="col">
           <div className="form-group">
@@ -52,6 +54,7 @@ const ContactForm = (props) => {
             <Field id="email" className="form-control" component={renderInput} type="email" name="email" placeholder="E-mail" validate={[Validations.required, Validations.email]} />
           </div>
         </div>
+
         <div className="col">
           <div className="form-group">
             <label htmlFor="telephone">Telephone</label>
@@ -59,21 +62,25 @@ const ContactForm = (props) => {
           </div>
         </div>
       </div>
+
       <div className="form-group">
         <Field className="p-primary" label="Male" component={renderRadioButton} name="sex" radioValue="male" />
         <Field className="p-primary" label="Female" component={renderRadioButton} name="sex" radioValue="female" />
       </div>
+
       <div className="form-row">
-        <div className="col-md-8">
+        <div className="col">
           <div className="form-group">
             <label htmlFor="favoriteColor">Favorite color</label>
             <Field id="favoriteColor" className="form-control" component={renderSelect} name="favoriteColor" options={props.data.favoriteColors} validate={[Validations.required]} />
           </div>
         </div>
+
         <div className="col mt-4">
           <Field className="p-primary" label="Employed" component={renderCheckbox} name="employed" />
         </div>
       </div>
+
       <div className="form-group">
         <label htmlFor="message">Message</label>
         <Field id="message" className="form-control" component="textarea" name="message" rows="3" validate={[Validations.required]} />

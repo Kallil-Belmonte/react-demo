@@ -13,7 +13,7 @@ const Header = (props) => {
   return (
     <header data-component="Header">
       <img src="/assets/img/logo.svg" className="logo" alt="logo" />
-      <h1 className="title">Welcome to React</h1>
+      <h1 className="title">React Demo</h1>
 
       <nav className="main-menu">
         <ul>

@@ -22,10 +22,12 @@ let LoginForm = (props) => {
         <label htmlFor="email">E-mail</label>
         <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
       </div>
+
       <div className="form-group">
         <label htmlFor="password">Password</label>
         <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} errors={props.fieldsErrors.password} />
       </div>
+
       <div className="form-group">
         <Field className="p-primary" label="Keep logged" component={renderCheckbox} name="keepLogged" />
       </div>

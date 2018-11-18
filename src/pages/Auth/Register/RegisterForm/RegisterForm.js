@@ -22,14 +22,17 @@ let RegisterForm = (props) => {
         <label htmlFor="first-name">First name</label>
         <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" validate={[Validations.required]} />
       </div>
+
       <div className="form-group">
         <label htmlFor="last-name">Last name</label>
         <Field id="last-name" className="form-control" component={renderInput} type="text" name="lastName" validate={[Validations.required]} />
       </div>
+
       <div className="form-group">
         <label htmlFor="email">E-mail</label>
         <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
       </div>
+
       <div className="form-group">
         <label htmlFor="password">Password</label>
         <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} errors={props.fieldsErrors.password} />
