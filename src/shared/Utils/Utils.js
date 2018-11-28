@@ -1,5 +1,11 @@
 class Utils {
 
+  // CAPITALIZE FIRST LETTER
+  static capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+
   // LIMIT WORDS
   static limitWords(string, numberOfWords) {
     return string.split(' ').splice(0, numberOfWords).join(' ');

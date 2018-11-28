@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import './NotFound.css';
 
 const NotFound = (props) => {
+  // Set page title
+  document.title = 'React Demo | Error 404';
+
   return (
     <main data-component="NotFound">
       <div className="atom-wrapper">
