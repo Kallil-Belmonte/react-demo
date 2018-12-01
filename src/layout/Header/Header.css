@@ -5,10 +5,11 @@
     transform: rotate(360deg); } }
 
 [data-component="Header"] {
-  background-color: #222;
+  color: #FFF;
+  text-align: center;
   padding: 20px;
-  color: white;
-  text-align: center; }
+  background-color: #222;
+  position: relative; }
   [data-component="Header"] .logo {
     height: 80px;
     animation: App-header-logo-spin infinite 20s linear; }
