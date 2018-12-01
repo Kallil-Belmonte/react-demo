@@ -1,3 +1,9 @@
+[data-component="Loader"] .atom-spinner, [data-component="Loader"] .atom-spinner .spinner-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
 @keyframes atom-spinner-animation-1 {
   100% {
     transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg); } }
@@ -15,30 +21,22 @@
   position: fixed;
   top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
+  bottom: 0;
   z-index: 100; }
   [data-component="Loader"] .atom-spinner {
-    height: 100px;
     width: 100px;
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
+    height: 100px;
+    overflow: hidden; }
     [data-component="Loader"] .atom-spinner .spinner-inner {
       position: relative;
       display: block;
-      height: 100%;
-      width: 100%; }
+      width: 100%;
+      height: 100%; }
     [data-component="Loader"] .atom-spinner .spinner-circle {
       display: block;
-      position: absolute;
       color: #61DAFB;
-      font-size: calc(80px * 0.24);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%); }
+      font-size: calc(80px * 0.24); }
     [data-component="Loader"] .atom-spinner .spinner-line {
       position: absolute;
       width: 100%;

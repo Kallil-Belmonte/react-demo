@@ -229,7 +229,7 @@ class Blog extends React.Component {
         event.target.parentNode.classList.add('active');
         this.setState((prevState, props) => {
           return {
-            currentPage: parseInt(event.target.innerText) - 1
+            currentPage: +event.target.innerText - 1
           }
         });
     }
