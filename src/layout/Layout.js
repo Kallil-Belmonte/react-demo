@@ -52,7 +52,7 @@ class Layout extends React.Component {
     // Remove token
     sessionStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('authTokenReactDemo');
-    localStorage.removeItem('expirationDateAngularDemoReactDemo');
+    localStorage.removeItem('expirationDateReactDemo');
 
     // Handle log out
     this.props.handleLogOut();

@@ -11,10 +11,10 @@ const JSON_PLACEHOLDER_INSTANCE = axios.create({
 
 JSON_PLACEHOLDER_INSTANCE.interceptors.request.use(
   (config) => {
-    let authToken = sessionStorage.getItem('tokenProjectName') || localStorage.getItem('tokenProjectName');
+    let authToken = sessionStorage.getItem('tokenReactDemo') || localStorage.getItem('tokenReactDemo');
 
     config.headers['Authorization'] = authToken;
-    // config.url = config.url + '?authKey=' + localStorage.getItem('tokenKeyProjectName');
+    // config.url = config.url + '?authKey=' + localStorage.getItem('tokenKeyReactDemo');
 
     return config;
   },

@@ -50,7 +50,7 @@ class Login extends React.Component {
   // REDIRECT USER
   redirectUser() {
     let authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
-    let expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateAngularDemoReactDemo'));
+    let expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
 
     if (authToken && !expiredSession) {
       this.props.history.push('/');
@@ -98,7 +98,7 @@ class Login extends React.Component {
           // Store session data
           if (values.keepLogged) {
             localStorage.setItem('authTokenReactDemo', response.data.idToken);
-            localStorage.setItem('expirationDateAngularDemoReactDemo', new Date(new Date().getTime() + response.data.expiresIn * 1000).toISOString());
+            localStorage.setItem('expirationDateReactDemo', new Date(new Date().getTime() + response.data.expiresIn * 1000).toISOString());
           } else {
             sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
           }
