@@ -9,6 +9,10 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 
 class Layout extends React.Component {
+  state = {
+    pageTitle: 'React Demo | '
+  }
+
   componentDidMount() {
     this.setPageTitle();
   }
@@ -32,13 +36,13 @@ class Layout extends React.Component {
   setPageTitle() {
     if (this.props.location.pathname === '/') {
       // Set Home page title
-      document.title = 'React Demo | Home';
+      document.title = this.state.pageTitle + 'Home';
     } else {
       let pageUrl = this.props.location.pathname;
       let urlName = Utils.capitalizeFirstLetter(pageUrl.split('/')[1]);
 
       // Set dynamic page title
-      document.title = 'React Demo | ' + urlName;
+      document.title = this.state.pageTitle + urlName;
     }
   }
 
