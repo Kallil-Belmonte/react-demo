@@ -15,8 +15,8 @@
     background-color: #61DAFB; }
   [data-component="PostItem"] article {
     padding: 20px;
-    border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.1); }
     [data-component="PostItem"] article .title {
       font-size: 18px;

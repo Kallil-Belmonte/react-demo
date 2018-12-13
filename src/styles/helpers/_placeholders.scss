@@ -1,11 +1,12 @@
 //---------- SUMMARY ----------//
 // TEXT CONTINUED
-// CENTER
+// CENTER ALIGNMENT
 // BACKGROUND IMAGE
 //---------- END SUMMARY ----------//
 
 
 // TEXT CONTINUED
+
 %text-continued {
   overflow: hidden;
   white-space: nowrap;
@@ -13,28 +14,57 @@
 }
 
 
-// CENTER
-%center-absolute {
-  position: absolute;
+// CENTER ALIGNMENT
+
+// Relative
+%center-relative,
+%center-relative-y,
+%center-relative-x {
+  position: relative;
+}
+
+%center-relative {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-%center-absolute-x {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-%center-absolute-y {
-  position: absolute;
+%center-relative-y {
   top: 50%;
   transform: translateY(-50%);
 }
 
+%center-relative-x {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Absolute
+%center-absolute,
+%center-absolute-y,
+%center-absolute-x {
+  position: absolute;
+}
+
+%center-absolute {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%center-absolute-y {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+%center-absolute-x {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 
 // BACKGROUND IMAGE
+
 %background-image-contain,
 %background-image-cover {
   background-repeat: no-repeat;

@@ -1,5 +1,7 @@
 [data-component="Loader"] .atom-spinner, [data-component="Loader"] .atom-spinner .spinner-circle {
-  position: absolute;
+  position: absolute; }
+
+[data-component="Loader"] .atom-spinner, [data-component="Loader"] .atom-spinner .spinner-circle {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); }
