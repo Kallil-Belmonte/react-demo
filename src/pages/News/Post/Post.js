@@ -57,7 +57,7 @@ class Post extends React.Component {
         this.props.handleGetPost(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       })
       .then(() => {
         // Deactivate loader
@@ -93,7 +93,7 @@ class Post extends React.Component {
         this.props.history.push('/blog');
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
 
         // Deactivate loader
         this.setState((prevState, props) => {

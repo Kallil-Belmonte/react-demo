@@ -55,7 +55,7 @@ class EditPost extends React.Component {
         this.props.history.push('/post/' + this.props.match.params.id);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
 
         // Deactivate loader
         this.setState((prevState, props) => {
