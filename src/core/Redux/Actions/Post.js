@@ -1,9 +1,9 @@
 import ACTION_TYPES from './ActionTypes';
 
-// GET POST
-export const getPost = (post) => {
+// SET POST
+export const setPost = (post) => {
   return {
-    type: ACTION_TYPES.GET_CURRENT_POST,
+    type: ACTION_TYPES.SET_CURRENT_POST,
     payload: post
   };
 };

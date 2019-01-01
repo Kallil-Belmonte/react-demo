@@ -100,9 +100,9 @@ class Blog extends React.Component {
       this.getPosts()
     ])
     .then(([categories, posts]) => {
-      // Handle get data
-      this.props.handleGetPosts(posts);
-      this.props.handleGetCategories(categories);
+      // Handle set data
+      this.props.handleSetPosts(posts);
+      this.props.handleSetCategories(categories);
 
       // Set page posts
       this.setState((prevState, props) => {
@@ -150,8 +150,8 @@ class Blog extends React.Component {
     // Get posts from the selected category
     // let category = document.querySelector('.list-group-item.active').getAttribute('data-name');
     axios.get(ENDPOINTS.blog.posts).then(response => {
-      // Handle get posts
-      this.props.handleGetPosts(response.data);
+      // Handle set posts
+      this.props.handleSetPosts(response.data);
 
       // Reset pagination
       this.resetPagination();
@@ -252,8 +252,8 @@ const mapStateToProps = (state) => {
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleGetPosts: (posts) => dispatch(actionCreators.getPosts(posts)),
-    handleGetCategories: (categories) => dispatch(actionCreators.getCategories(categories))
+    handleSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
+    handleSetCategories: (categories) => dispatch(actionCreators.setCategories(categories))
   };
 };
 

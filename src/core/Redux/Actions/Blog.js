@@ -1,18 +1,18 @@
 import ACTION_TYPES from './ActionTypes';
 
-// GET POSTS
-export const getPosts = (posts) => {
+// SET POSTS
+export const setPosts = (posts) => {
   return {
-    type: ACTION_TYPES.GET_POSTS,
+    type: ACTION_TYPES.SET_POSTS,
     payload: posts
   };
 };
 
 
-// GET CATEGORIES
-export const getCategories = (categories) => {
+// SET CATEGORIES
+export const setCategories = (categories) => {
   return {
-    type: ACTION_TYPES.GET_CATEGORIES,
+    type: ACTION_TYPES.SET_CATEGORIES,
     payload: categories
   };
 };

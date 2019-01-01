@@ -53,8 +53,8 @@ class Post extends React.Component {
   getCurrentPost() {
     axios.get(ENDPOINTS.blog.posts + this.props.match.params.id)
       .then((response) => {
-        // Handle get post
-        this.props.handleGetPost(response.data);
+        // Handle set post
+        this.props.handleSetPost(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -120,7 +120,7 @@ const mapStateToProps = (state) => {
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleGetPost: (post) => dispatch(actionCreators.getPost(post))
+    handleSetPost: (post) => dispatch(actionCreators.setPost(post))
   };
 };
 
