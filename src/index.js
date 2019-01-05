@@ -2,16 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 //====================
-// CSS
-//====================
-// FRAMEWORK: BOOTSTRAP
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-// PLUGIN: PRETTY CHECKBOX
-import 'pretty-checkbox/dist/pretty-checkbox.min.css';
-
-
-//====================
 // JAVASCRIPT
 //====================
 // PLUGIN: JQUERY MASK
