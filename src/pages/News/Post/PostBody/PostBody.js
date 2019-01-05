@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './PostBody.css';
+import './PostBody.scss';
 
 const PostBody = (props) => {
   return (

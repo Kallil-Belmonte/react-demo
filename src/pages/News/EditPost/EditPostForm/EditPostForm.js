@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 
-import './EditPostForm.css';
+import './EditPostForm.scss';
 import Validations from '../../../../core/Forms/Validations';
 import { renderInput, renderTextarea } from '../../../../core/Forms/Fields';
 

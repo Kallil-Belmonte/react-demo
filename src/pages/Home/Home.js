@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import './Home.css';
+// import './Home.scss';
 import axios, { ENDPOINTS } from '../../core/API/API';
 import Layout from '../../layout/Layout';
 import Loader from '../../shared/Components/Loader/Loader';

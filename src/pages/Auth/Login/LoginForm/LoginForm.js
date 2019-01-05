@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
-import './LoginForm.css';
+import './LoginForm.scss';
 import Validations from '../../../../core/Forms/Validations';
 import { renderInput, renderCheckbox } from '../../../../core/Forms/Fields';
 

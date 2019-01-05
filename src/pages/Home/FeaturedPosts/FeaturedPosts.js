@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import './FeaturedPosts.css';
+// import './FeaturedPosts.scss';
 import PostItem from '../../../shared/Components/PostItem/PostItem';
 
 const FeaturedPosts = (props) => {

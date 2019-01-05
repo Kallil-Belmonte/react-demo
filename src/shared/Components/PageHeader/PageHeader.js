@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './PageHeader.css';
+import './PageHeader.scss';
 
 const PageHeader = (props) => {
   return (

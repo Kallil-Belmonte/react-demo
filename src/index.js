@@ -21,7 +21,7 @@ import 'jquery-mask-plugin/dist/jquery.mask.min.js';
 //====================
 // APP
 //====================
-import './index.css';
+import './index.scss';
 import App from './app/App';
 import * as serviceWorker from './serviceWorker';
 

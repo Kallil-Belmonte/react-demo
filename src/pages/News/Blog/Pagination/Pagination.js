@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Pagination.css';
+import './Pagination.scss';
 
 const Pagination = (props) => {
   let firstItem  = props.firstItem;

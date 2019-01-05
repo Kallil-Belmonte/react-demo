@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 
-// import './AccountForm.css';
+// import './AccountForm.scss';
 import { Alert } from 'reactstrap';
 import Validations from '../../../core/Forms/Validations';
 import { renderInput } from '../../../core/Forms/Fields';

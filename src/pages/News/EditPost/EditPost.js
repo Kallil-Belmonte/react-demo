@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import './EditPost.css';
+// import './EditPost.scss';
 import axios, { ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
 import Layout from '../../../layout/Layout';

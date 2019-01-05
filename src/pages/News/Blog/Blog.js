@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
 
-import './Blog.css';
+import './Blog.scss';
 import axios, { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
 import Utils from '../../../shared/Utils/Utils';

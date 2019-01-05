@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './PostItem.css';
+import './PostItem.scss';
 import Utils from '../../Utils/Utils';
 
 const PostItem = (props) => {

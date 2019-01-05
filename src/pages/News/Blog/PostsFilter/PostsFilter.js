@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './PostsFilter.css';
+import './PostsFilter.scss';
 
 const PostsFilter = (props) => {
   return (

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import './Account.css';
+import './Account.scss';
 import * as actionCreators from '../../core/Redux/Actions/ActionCreators';
 import Layout from '../../layout/Layout';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-// import './DeletePostModal.css';
+// import './DeletePostModal.scss';
 
 const DeletePostModal = (props) => {
   return (

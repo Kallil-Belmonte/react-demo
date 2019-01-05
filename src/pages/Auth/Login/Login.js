@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './Login.css';
+import './Login.scss';
 import { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
 import Loader from '../../../shared/Components/Loader/Loader';
