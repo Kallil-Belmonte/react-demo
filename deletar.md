@@ -6,9 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [npm start](#npm-start)
   - [npm run build](#npm-run-build)
 - [Notes](#notes)
-  - [Questions I would ask and my own answers/assumptions](#questions-i-would-ask-and-my-own-answers-assumptions)
-  - [Highlights of my logic/code writing style](#highlights-of-my-logic-code-writing-style)
-  - [What could have been done in a better way, what would I do in version 2.0](#what-could-have-been-done-in-a-better-way-what-would-i-do-in-version-2.0)
+  - [Questions I would ask and my own answers](#questions-i-would-ask-and-my-own-answers)
+  - [Highlights of my code writing style](#highlights-of-my-code-writing-style)
+  - [What could have been done in a better way, what would I do in the next version](#what-could-have-been-done-in-a-better-way-what-would-i-do-in-the-next-version)
   - [Additional notes](#additional-notes)
 
 
@@ -37,7 +37,7 @@ See the section about [deployment](#deployment) for more information.
 
 ## Notes
 
-### `Questions I would ask and my own answers/assumptions`
+### `Questions I would ask and my own answers`
 
 - How would you like to view/keep track the data?
   - All beers status in the same screen.
@@ -54,7 +54,7 @@ See the section about [deployment](#deployment) for more information.
   - Yes.
 
 
-### `Highlights of my logic/code writing style`
+### `Highlights of my code writing style`
 
 **App folder structure:**
 
@@ -85,13 +85,13 @@ These files are imported by the mais scss file (index.scss)<br>
 
 - All the components have a "data-component" attribute, it is used as a namespace/indentifier for its styles.
 
-### `What could have been done in a better way, what would I do in version 2.0`
+### `What could have been done in a better way, what would I do in the next version`
 
-- A block that displays a general status of all beers/containers, telling the total number in which every beer/container are currently in.
+- A block that displays a general status of all beers/containers, telling the total number in which every beer/container is currently in.
 
 - A modal or page with all the beer data details, where the user may go when clicking in the beer card.
 
-- The including of a library responsible for dysplaying a graphic for each beer card.
+- The including of a library responsible for displaying a graphic for each beer card.
 
 - The including of some buttons to play/pause the beers monitoring.
 
@@ -99,4 +99,4 @@ These files are imported by the mais scss file (index.scss)<br>
 
 ### `Additional notes`
 
-- Some css class names are the same used in Bootstrap (e.g. d-block, d-flex), because everytime I see a patter that I like, I adopt it in my writting style, and as a bonus, if some day the app grows where there is a need to implement the Bootstrap framework, it's css classes are already there giving the specific style that I need.
+- Some css class names are the same used in Bootstrap (e.g. d-block, d-flex), because everytime I see a pattern that I like, I adopt it in my writting style, and as a bonus, if some day the app grows where there is a need to implement the Bootstrap framework, it's css classes are already there giving the specific style that I need.
