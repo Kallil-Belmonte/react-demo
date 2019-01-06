@@ -60,7 +60,7 @@ See the section about [deployment](#deployment) for more information.
 
 **_src/_**
 
-  **_app/_** File where the Router is configured, so depending on where the person is currently in (Route), the corresponding component will be loaded here, and nothing else.
+**_app/_** File where the Router is configured, so depending on where the person is currently in (Route), the corresponding component will be loaded here, and nothing else.
 
 **_core/_** All the files that are responsible for configuring the app functionalities (API, Routes, Forms, Redux).
 
@@ -87,7 +87,7 @@ These files are imported by the mais scss file (index.scss)<br>
 
 ### `What could have been done in a better way, what would I do in the next version`
 
-- A block that displays a general status of all beers/containers, telling the total number in which every beer/container is currently in.
+- A block that displays a general status of all beers/containers, telling the status and the total number of how many beers are in it.
 
 - A modal or page with all the beer data details, where the user may go when clicking in the beer card.
 
