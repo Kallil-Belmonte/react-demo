@@ -58,7 +58,7 @@ See the section about [deployment](#deployment) for more information.
 
 **App folder structure:**
 
-*src/*
+**_src/_**
 
 *app/* File where the Router is configured, so depending on where the person is currently in (Route), the corresponding component will be loaded here, and nothing else.
 
