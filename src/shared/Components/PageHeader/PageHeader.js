@@ -7,7 +7,7 @@ import './PageHeader.scss';
 const PageHeader = (props) => {
   return (
     <section data-component="PageHeader">
-      <FontAwesomeIcon className="icon d-block mx-auto" icon={props.icon} />
+      {props.icon ? <FontAwesomeIcon className="icon d-block mx-auto" icon={props.icon} /> : null}
       <h1 className="title">{props.title}</h1>
     </section>
   );
