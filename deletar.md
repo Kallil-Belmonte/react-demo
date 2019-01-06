@@ -40,7 +40,7 @@ See the section about [deployment](#deployment) for more information.
 ### `Questions I would ask and my own answers/assumptions`
 
 - How would you like to view/keep track the data?
-  - All beers status in the same screen
+  - All beers status in the same screen.
 
 - How would you like to be notified when some beer temperature is out the correct range?
   - I would like to get the visual feedback of every beer/container status.
@@ -60,19 +60,19 @@ See the section about [deployment](#deployment) for more information.
 
 **_src/_**
 
-*app/* File where the Router is configured, so depending on where the person is currently in (Route), the corresponding component will be loaded here, and nothing else.
+**_app/_** File where the Router is configured, so depending on where the person is currently in (Route), the corresponding component will be loaded here, and nothing else.
 
-*core/* All the files that are responsible for configuring the app functionalities (API, Routes, Forms, Redux).
+**_core/_** All the files that are responsible for configuring the app functionalities (API, Routes, Forms, Redux).
 
-*layout/* Files that composes the main layout structure (Header and Footer).<br>
+**_layout/_** Files that composes the main layout structure (Header and Footer).<br>
 The Layout.js file is a Higher Order Component and it also contains a method that sets the page title dynamically, depending on the current route.
 
-*pages/* All the features/pages folders, if the app has multiple pages that are part of a same feature, here it will have the folder representing this feature (e.g. News) and inside it, all its pages/folders (e.g. Blog, Post, EditPost).</br>
+**_pages/_** All the features/pages folders, if the app has multiple pages that are part of a same feature, here it will have the folder representing this feature (e.g. News) and inside it, all its pages/folders (e.g. Blog, Post, EditPost).</br>
 If there is a simple page like Home for example, where it does not belong to any feature, this page/folder goes inside the "pages/" folder as a direct children (without any feature folder as direct parent).
 
-*shared/* All the files that are imported/used for more than one component (or has the potential to be).
+**_shared/_** All the files that are imported/used for more than one component (or has the potential to be).
 
-*styles/* The scss files serated in 2 folders:<br>
+**_styles/_** The scss files serated in 2 folders:<br>
 Helpers (variables, mixins, placeholders and functions).<br>
 Layout (elements, general).<br>
 These files are imported by the mais scss file (index.scss)<br>
