@@ -60,7 +60,7 @@ See the section about [deployment](#deployment) for more information.
 
 **_src/_**
 
-**_app/_** File where the Router is configured, so depending on where the person is currently in (Route), the corresponding component will be loaded here, and nothing else.
+  **_app/_** File where the Router is configured, so depending on where the person is currently in (Route), the corresponding component will be loaded here, and nothing else.
 
 **_core/_** All the files that are responsible for configuring the app functionalities (API, Routes, Forms, Redux).
 
