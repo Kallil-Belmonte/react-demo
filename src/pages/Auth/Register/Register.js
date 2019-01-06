@@ -9,6 +9,7 @@ import Loader from '../../../shared/Components/Loader/Loader';
 import RegisterForm from './RegisterForm/RegisterForm';
 
 class Register extends React.Component {
+
   state = {
     loading: false,
     registerForm: {
@@ -68,7 +69,7 @@ class Register extends React.Component {
     });
 
     MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values)
-      .then((response) => {
+      .then(response => {
         if (values.email === 'demo@demo.com') {
 
           // Error simulation
@@ -103,9 +104,10 @@ class Register extends React.Component {
 
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
-
+      })
+      .then(() => {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
@@ -114,6 +116,7 @@ class Register extends React.Component {
         });
       });
   }
+
 }
 
 

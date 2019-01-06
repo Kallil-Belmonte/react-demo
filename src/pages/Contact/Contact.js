@@ -4,16 +4,19 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import './Contact.scss';
-import ThemeFunctions from '../../shared/ThemeFunctions/ThemeFunctions';
+import ThemeFunctions from '../../shared/General/ThemeFunctions';
 import { MOCKY_INSTANCE, ENDPOINTS } from '../../core/API/API';
 import Layout from '../../layout/Layout';
+import Loader from '../../shared/Components/Loader/Loader';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import ContactForm from './ContactForm/ContactForm';
 
 library.add(faEnvelope);
 
 class Contact extends React.Component {
+
   state = {
+    loading: true,
     contactForm: {
       messages: {
         success: null,
@@ -34,6 +37,8 @@ class Contact extends React.Component {
     return (
       <Layout>
         <main data-component="Contact">
+          <Loader loading={this.state.loading} />
+
           <div className="container">
             <PageHeader title="Contact" icon={faEnvelope} />
 
@@ -55,18 +60,30 @@ class Contact extends React.Component {
 
   // GET CONTACT FORM DATA
   getContactFormData() {
-    MOCKY_INSTANCE.get(ENDPOINTS.contactForm.favoriteColors).then(response => {
-      this.setState((prevState, props) => {
-        return {
-          contactForm: {
-            ...prevState.contactForm,
-            data: {
-              favoriteColors: response.data
+    MOCKY_INSTANCE.get(ENDPOINTS.contactForm.favoriteColors)
+      .then(response => {
+        this.setState((prevState, props) => {
+          return {
+            contactForm: {
+              ...prevState.contactForm,
+              data: {
+                favoriteColors: response.data
+              }
             }
-          }
-        };
+          };
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .then(() => {
+        // Deactivate loader
+        this.setState((prevState, props) => {
+          return {
+            loading: false
+          };
+        });
       });
-    });
   }
 
 
@@ -86,6 +103,7 @@ class Contact extends React.Component {
       };
     });
   }
+
 }
 
 export default Contact;

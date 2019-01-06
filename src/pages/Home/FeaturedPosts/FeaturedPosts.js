@@ -10,10 +10,10 @@ const FeaturedPosts = (props) => {
         <h2 className="section-title">Featured posts</h2>
 
         <div className="row">
-          {props.posts.slice(0, 3).map((post, index) =>
-            <React.Fragment key={post.id}>
+          {props.data.slice(0, 3).map((featuredPost, index) =>
+            <React.Fragment key={featuredPost.id}>
               <div className="col-md-4">
-                <PostItem data={post} />
+                <PostItem data={featuredPost} />
               </div>
             </React.Fragment>
           )}

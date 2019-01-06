@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './PostItem.scss';
-import Utils from '../../Utils/Utils';
+import Utils from '../../General/Utils';
 
 const PostItem = (props) => {
   let postImage = <div className="img-placeholder">Não há imagem para esse post</div>;

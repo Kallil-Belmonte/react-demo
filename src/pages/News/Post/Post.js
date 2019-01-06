@@ -11,6 +11,7 @@ import PostBody from './PostBody/PostBody';
 import DeletePostModal from './DeletePostModal/DeletePostModal';
 
 class Post extends React.Component {
+
   state = {
     loading: true,
     isModalOpen: false
@@ -29,7 +30,7 @@ class Post extends React.Component {
           <div className="container">
             <div className="row">
               <div className="offset-md-2 col-md-8">
-                <PostBody post={this.props.currentPost} toggleModal={() => this.handleToggleModal()} />
+                <PostBody data={this.props.currentPost} toggleModal={() => this.handleToggleModal()} />
               </div>
             </div>
           </div>
@@ -88,11 +89,11 @@ class Post extends React.Component {
     });
 
     axios.delete(ENDPOINTS.blog.posts + this.props.match.params.id)
-      .then((response) => {
+      .then(response => {
         // Redirect
         this.props.history.push('/blog');
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
 
         // Deactivate loader
@@ -103,6 +104,7 @@ class Post extends React.Component {
         });
       });
   }
+
 }
 
 

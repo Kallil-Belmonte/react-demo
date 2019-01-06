@@ -13,6 +13,7 @@ import AccountForm from './AccountForm/AccountForm';
 library.add(faUser);
 
 class Account extends React.Component {
+
   state = {
     accountForm: {
       messages: {
@@ -95,6 +96,7 @@ class Account extends React.Component {
       });
     }
   }
+
 }
 
 

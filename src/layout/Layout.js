@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 
 // import './Layout.scss';
 import * as actionCreators from '../core/Redux/Actions/ActionCreators';
-import Utils from '../shared/Utils/Utils';
+import Utils from '../shared/General/Utils';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 
 class Layout extends React.Component {
+
   state = {
     pageTitle: 'React Demo | '
   }
@@ -38,7 +39,7 @@ class Layout extends React.Component {
       // Set Home page title
       document.title = this.state.pageTitle + 'Home';
     } else {
-      let pageUrl = this.props.location.pathname;
+      let pageUrl = this.props.location.pathname.split('-').join(' ');
       let urlName = Utils.capitalizeFirstLetter(pageUrl.split('/')[1]);
 
       // Set dynamic page title
@@ -60,6 +61,7 @@ class Layout extends React.Component {
     // Redirect
     this.props.history.push('/login');
   }
+
 };
 
 

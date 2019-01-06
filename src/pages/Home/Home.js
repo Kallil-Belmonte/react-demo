@@ -7,6 +7,7 @@ import Loader from '../../shared/Components/Loader/Loader';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
 class Home extends React.Component {
+
   state = {
     loading: true,
     posts: []
@@ -22,7 +23,7 @@ class Home extends React.Component {
         <main data-component="Home">
           <Loader loading={this.state.loading} />
 
-          <FeaturedPosts posts={this.state.posts} />
+          <FeaturedPosts data={this.state.posts} />
         </main>
       </Layout>
     );
@@ -35,15 +36,27 @@ class Home extends React.Component {
 
   // GET FEATURED POSTS
   getFeaturedPosts() {
-    axios.get(ENDPOINTS.blog.posts).then(response => {
-      this.setState((prevState, props) => {
-        return {
-          posts: response.data,
-          loading: false
-        };
+    axios.get(ENDPOINTS.blog.posts)
+      .then(response => {
+        this.setState((prevState, props) => {
+          return {
+            posts: response.data
+          };
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .then(() => {
+        // Deactivate loader
+        this.setState((prevState, props) => {
+          return {
+            loading: false
+          };
+        });
       });
-    });
   }
+
 }
 
 export default Home;

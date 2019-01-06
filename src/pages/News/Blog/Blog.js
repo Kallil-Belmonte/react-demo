@@ -7,7 +7,7 @@ import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import './Blog.scss';
 import axios, { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
-import Utils from '../../../shared/Utils/Utils';
+import Utils from '../../../shared/General/Utils';
 import Layout from '../../../layout/Layout';
 import Loader from '../../../shared/Components/Loader/Loader';
 import PageHeader from '../../../shared/Components/PageHeader/PageHeader';
@@ -19,6 +19,7 @@ import Categories from './Categories/Categories';
 library.add(faNewspaper);
 
 class Blog extends React.Component {
+
   state = {
     loading: true,
     postsPerPage: 9,
@@ -234,6 +235,7 @@ class Blog extends React.Component {
         });
     }
   }
+
 }
 
 

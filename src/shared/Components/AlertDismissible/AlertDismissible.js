@@ -3,6 +3,7 @@ import React from 'react';
 import { Alert } from 'reactstrap';
 
 class AlertDismissible  extends React.Component {
+
   state = {
     visible: true
   }
@@ -26,6 +27,7 @@ class AlertDismissible  extends React.Component {
       return { visible: false };
     });
   }
+
 }
 
 export default AlertDismissible;

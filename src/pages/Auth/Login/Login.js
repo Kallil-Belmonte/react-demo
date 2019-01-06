@@ -9,6 +9,7 @@ import Loader from '../../../shared/Components/Loader/Loader';
 import LoginForm from './LoginForm/LoginForm';
 
 class Login extends React.Component {
+
   state = {
     loading: false,
     loginForm: {
@@ -68,7 +69,7 @@ class Login extends React.Component {
     });
 
     MOCKY_INSTANCE.post(ENDPOINTS.auth.login, values)
-      .then((response) => {
+      .then(response => {
         if (values.email === 'demo@demo.com') {
 
           // Error simulation
@@ -108,9 +109,10 @@ class Login extends React.Component {
 
         }
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
-
+      })
+      .then(() => {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
@@ -119,6 +121,7 @@ class Login extends React.Component {
         });
       });
   }
+
 }
 
 

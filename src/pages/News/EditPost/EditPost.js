@@ -10,6 +10,7 @@ import Loader from '../../../shared/Components/Loader/Loader';
 import EditPostForm from './EditPostForm/EditPostForm';
 
 class EditPost extends React.Component {
+
   state = {
     loading: false
   }
@@ -47,16 +48,17 @@ class EditPost extends React.Component {
     });
 
     axios.put(ENDPOINTS.blog.posts + this.props.match.params.id, values)
-      .then((response) => {
+      .then(response => {
         // Handle edit post
         this.props.handleEditPost(response.data);
 
         // Redirect
         this.props.history.push('/post/' + this.props.match.params.id);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
-
+      })
+      .then(() => {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
@@ -65,6 +67,7 @@ class EditPost extends React.Component {
         });
       });
   }
+
 }
 
 
