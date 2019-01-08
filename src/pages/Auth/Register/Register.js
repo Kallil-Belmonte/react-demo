@@ -106,8 +106,7 @@ class Register extends React.Component {
       })
       .catch(error => {
         console.error(error);
-      })
-      .then(() => {
+
         // Deactivate loader
         this.setState((prevState, props) => {
           return {

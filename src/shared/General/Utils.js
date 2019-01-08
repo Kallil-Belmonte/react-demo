@@ -1,4 +1,12 @@
-class Utils {
+import * as moment from 'moment';
+
+export class Utils {
+
+  // FORMAT DATE
+  static formatDate(date, originalFormat = 'DD/MM/YYYY', newFormat = 'YYYY-MM-DD') {
+    return moment(date, originalFormat).format(newFormat);
+  }
+
 
   // CAPITALIZE FIRST LETTER
   static capitalizeFirstLetter(string) {

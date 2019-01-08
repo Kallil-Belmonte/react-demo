@@ -1,7 +1,6 @@
 import React from 'react';
-import { Field } from 'redux-form';
 
-import AlertDismissible from '../../shared/Components/AlertDismissible/AlertDismissible';
+import { Field } from 'redux-form';
 
 // INPUT
 export const renderInput = (field) => {
@@ -12,10 +11,6 @@ export const renderInput = (field) => {
   if (field.meta.touched && field.meta.error) {
     classes =  classes + ' is-invalid';
     invalidFeedback = <div className="d-block invalid-feedback">{field.meta.error}</div>;
-  }
-
-  if (field.errors) {
-    validationErrors = field.errors.map((error, index) => <AlertDismissible key={index} color="danger">{error}</AlertDismissible>);
   }
 
   return (

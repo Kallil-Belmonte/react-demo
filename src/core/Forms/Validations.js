@@ -6,7 +6,7 @@ class Validations {
 
   static minLength3 = minLength(3);
 
-  static minLength0 = minLength(5);
+  static minLength5 = minLength(5);
 
   static maxLength15 = maxLength(15);
 

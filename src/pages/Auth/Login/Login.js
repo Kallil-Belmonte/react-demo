@@ -35,7 +35,11 @@ class Login extends React.Component {
 
           <div className="row">
             <div className="offset-md-3 col-md-6">
-              <LoginForm fieldsErrors={this.state.loginForm.fieldsErrors} onSubmit={(values) => this.handleLogin(values)} />
+              <LoginForm
+                fieldsErrors={this.state.loginForm.fieldsErrors}
+                onSubmit={(values) => this.handleLogin(values)}
+                clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
+              />
             </div>
           </div>
         </div>
@@ -55,6 +59,22 @@ class Login extends React.Component {
 
     if (authToken && !expiredSession) {
       this.props.history.push('/');
+    }
+  }
+
+
+  // HANDLE CLEAR FORM MESSAGE
+  handleClearFormMessage(field, index) {
+    for (let property in this.state.loginForm.fieldsErrors) {
+      if (field === this.state.loginForm.fieldsErrors[property]) {
+        this.setState((prevState, props) => {
+          return {
+            fieldsErrors: {
+              property: field.splice(index, 1)
+            }
+          }
+        });
+      }
     }
   }
 
@@ -111,8 +131,7 @@ class Login extends React.Component {
       })
       .catch(error => {
         console.error(error);
-      })
-      .then(() => {
+
         // Deactivate loader
         this.setState((prevState, props) => {
           return {

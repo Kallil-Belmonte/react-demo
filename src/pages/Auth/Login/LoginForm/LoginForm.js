@@ -6,6 +6,8 @@ import './LoginForm.scss';
 import Validations from '../../../../core/Forms/Validations';
 import { renderInput, renderCheckbox } from '../../../../core/Forms/Fields';
 
+import AlertDismissible from '../../../../shared/Components/AlertDismissible/AlertDismissible';
+
 let LoginForm = (props) => {
   const {
     handleSubmit,
@@ -20,12 +22,20 @@ let LoginForm = (props) => {
 
       <div className="form-group">
         <label htmlFor="email">E-mail</label>
-        <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
+        <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]}  />
+
+        {props.fieldsErrors.email.map((errorMessage, index) =>
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.email, index)} color="danger">{errorMessage}</AlertDismissible>
+        )}
       </div>
 
       <div className="form-group">
         <label htmlFor="password">Password</label>
-        <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} errors={props.fieldsErrors.password} />
+        <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} />
+
+        {props.fieldsErrors.password.map((errorMessage, index) =>
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.password, index)} color="danger">{errorMessage}</AlertDismissible>
+        )}
       </div>
 
       <div className="form-group">
