@@ -6,6 +6,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import './Contact.scss';
 import ThemeFunctions from '../../shared/General/ThemeFunctions';
 import { MOCKY_INSTANCE, ENDPOINTS } from '../../core/API/API';
+import Utils from '../../shared/General/Utils';
 import Layout from '../../layout/Layout';
 import Loader from '../../shared/Components/Loader/Loader';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
@@ -19,7 +20,7 @@ class Contact extends React.Component {
     loading: true,
     contactForm: {
       messages: {
-        success: null,
+        success: [],
         error: []
       },
       data: {
@@ -46,6 +47,7 @@ class Contact extends React.Component {
               data={this.state.contactForm.data}
               onSubmit={(values) => this.handleSubmitContactForm(values)}
               feedbackMessages={this.state.contactForm.messages}
+              clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
             />
           </div>
         </main>
@@ -97,11 +99,17 @@ class Contact extends React.Component {
           ...prevState.contactForm,
           messages: {
             ...prevState.contactForm.messages,
-            success: 'Message sent successfully.'
+            success: ['Message sent successfully.']
           }
         }
       };
     });
+  }
+
+
+  // HANDLE CLEAR FORM MESSAGE
+  handleClearFormMessage(field, index) {
+    Utils.clearFormMessage(this, field, index, this.state.contactForm.messages);
   }
 
 }

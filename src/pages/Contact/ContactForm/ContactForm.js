@@ -1,11 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import { Alert } from 'reactstrap';
-
 // import './ContactForm.scss';
 import Validations from '../../../core/Forms/Validations';
 import { renderInput, renderSelect, renderCheckbox, renderRadioButton } from '../../../core/Forms/Fields';
+import AlertDismissible from '../../../shared/Components/AlertDismissible/AlertDismissible';
 
 const ContactForm = (props) => {
   const {
@@ -18,19 +17,17 @@ const ContactForm = (props) => {
 
   return (
     <form data-component="ContactForm" onSubmit={handleSubmit}>
-      {props.feedbackMessages && props.feedbackMessages.success ?
-        <Alert color="success">
-          {props.feedbackMessages.success}
-        </Alert>
-      : null}
+      {props.feedbackMessages.success.map((successMessage, index) =>
+        <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.success, index)} color="success">
+          {successMessage}
+        </AlertDismissible>
+      )}
 
-      {props.feedbackMessages ?
-        props.feedbackMessages.error.map((message, index) =>
-          <Alert color="danger" key={index}>
-            {message}
-          </Alert>
-        )
-      : null}
+      {props.feedbackMessages.error.map((errorMessage, index) =>
+        <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.error, index)} color="danger">
+          {errorMessage}
+        </AlertDismissible>
+      )}
 
       <div className="form-row">
         <div className="col">
