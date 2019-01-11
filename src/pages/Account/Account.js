@@ -6,6 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import './Account.scss';
 import * as actionCreators from '../../core/Redux/Actions/ActionCreators';
+import Utils from '../../shared/General/Utils';
 import Layout from '../../layout/Layout';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import AccountForm from './AccountForm/AccountForm';
@@ -17,7 +18,7 @@ class Account extends React.Component {
   state = {
     accountForm: {
       messages: {
-        success: null,
+        success: [],
         error: []
       },
       fieldsErrors: {
@@ -34,9 +35,10 @@ class Account extends React.Component {
             <PageHeader title="Account" icon={faUser} />
 
             <AccountForm
-              feedbackMessages={this.state.accountForm.messages}
-              fieldsErrors={this.state.accountForm.fieldsErrors}
               onSubmit={(values) => this.handleSubmitAccountForm(values)}
+              fieldsErrors={this.state.accountForm.fieldsErrors}
+              feedbackMessages={this.state.accountForm.messages}
+              clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
             />
           </div>
         </main>
@@ -89,12 +91,18 @@ class Account extends React.Component {
             ...prevState.accountForm,
             messages: {
               ...prevState.accountForm.messages,
-              success: 'Account saved successfully.'
+              success: ['Account saved successfully.']
             }
           }
         }
       });
     }
+  }
+
+
+  // HANDLE CLEAR FORM MESSAGE
+  handleClearFormMessage(field, index) {
+    Utils.clearFormMessage(this, field, index, this.state.accountForm.messages, this.state.accountForm.fieldsErrors);
   }
 
 }

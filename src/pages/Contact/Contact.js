@@ -44,8 +44,8 @@ class Contact extends React.Component {
 
             <ContactForm
               data={this.state.contactForm.data}
-              feedbackMessages={this.state.contactForm.messages}
               onSubmit={(values) => this.handleSubmitContactForm(values)}
+              feedbackMessages={this.state.contactForm.messages}
             />
           </div>
         </main>

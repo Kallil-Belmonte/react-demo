@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import './Login.scss';
 import { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
+import Utils from '../../../shared/General/Utils';
 import Loader from '../../../shared/Components/Loader/Loader';
 import LoginForm from './LoginForm/LoginForm';
 
@@ -36,8 +37,8 @@ class Login extends React.Component {
           <div className="row">
             <div className="offset-md-3 col-md-6">
               <LoginForm
-                fieldsErrors={this.state.loginForm.fieldsErrors}
                 onSubmit={(values) => this.handleLogin(values)}
+                fieldsErrors={this.state.loginForm.fieldsErrors}
                 clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
               />
             </div>
@@ -59,22 +60,6 @@ class Login extends React.Component {
 
     if (authToken && !expiredSession) {
       this.props.history.push('/');
-    }
-  }
-
-
-  // HANDLE CLEAR FORM MESSAGE
-  handleClearFormMessage(field, index) {
-    for (let property in this.state.loginForm.fieldsErrors) {
-      if (field === this.state.loginForm.fieldsErrors[property]) {
-        this.setState((prevState, props) => {
-          return {
-            fieldsErrors: {
-              property: field.splice(index, 1)
-            }
-          }
-        });
-      }
     }
   }
 
@@ -139,6 +124,12 @@ class Login extends React.Component {
           };
         });
       });
+  }
+
+
+  // HANDLE CLEAR FORM MESSAGE
+  handleClearFormMessage(field, index) {
+    Utils.clearFormMessage(this, field, index, null, this.state.loginForm.fieldsErrors);
   }
 
 }

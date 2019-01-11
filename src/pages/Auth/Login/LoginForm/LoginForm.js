@@ -5,7 +5,6 @@ import { Field, reduxForm } from 'redux-form';
 import './LoginForm.scss';
 import Validations from '../../../../core/Forms/Validations';
 import { renderInput, renderCheckbox } from '../../../../core/Forms/Fields';
-
 import AlertDismissible from '../../../../shared/Components/AlertDismissible/AlertDismissible';
 
 let LoginForm = (props) => {
@@ -25,7 +24,9 @@ let LoginForm = (props) => {
         <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]}  />
 
         {props.fieldsErrors.email.map((errorMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.email, index)} color="danger">{errorMessage}</AlertDismissible>
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.email, index)} color="danger">
+            {errorMessage}
+          </AlertDismissible>
         )}
       </div>
 
@@ -34,7 +35,9 @@ let LoginForm = (props) => {
         <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} />
 
         {props.fieldsErrors.password.map((errorMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.password, index)} color="danger">{errorMessage}</AlertDismissible>
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.password, index)} color="danger">
+            {errorMessage}
+          </AlertDismissible>
         )}
       </div>
 

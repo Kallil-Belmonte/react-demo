@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import './Register.scss';
 import { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
+import Utils from '../../../shared/General/Utils';
 import Loader from '../../../shared/Components/Loader/Loader';
 import RegisterForm from './RegisterForm/RegisterForm';
 
@@ -35,7 +36,11 @@ class Register extends React.Component {
 
           <div className="row">
             <div className="offset-md-3 col-md-6">
-              <RegisterForm fieldsErrors={this.state.registerForm.fieldsErrors} onSubmit={(values) => this.handleRegister(values)} />
+              <RegisterForm
+                onSubmit={(values) => this.handleRegister(values)}
+                fieldsErrors={this.state.registerForm.fieldsErrors}
+                clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
+              />
             </div>
           </div>
         </div>
@@ -114,6 +119,12 @@ class Register extends React.Component {
           };
         });
       });
+  }
+
+
+  // HANDLE CLEAR FORM MESSAGE
+  handleClearFormMessage(field, index) {
+    Utils.clearFormMessage(this, field, index, null, this.state.registerForm.fieldsErrors);
   }
 
 }

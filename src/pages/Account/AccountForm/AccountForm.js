@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 
 // import './AccountForm.scss';
-import { Alert } from 'reactstrap';
 import Validations from '../../../core/Forms/Validations';
 import { renderInput } from '../../../core/Forms/Fields';
+import AlertDismissible from '../../../shared/Components/AlertDismissible/AlertDismissible';
 
 let AccountForm = (props) => {
   const {
@@ -19,19 +19,17 @@ let AccountForm = (props) => {
   return (
     <div data-component="AccountForm" className="row">
       <div className="offset-md-3 col-md-6">
-        {props.feedbackMessages && props.feedbackMessages.success ?
-          <Alert color="success">
-            {props.feedbackMessages.success}
-          </Alert>
-        : null}
+        {props.feedbackMessages.success.map((successMessage, index) =>
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.success, index)} color="success">
+            {successMessage}
+          </AlertDismissible>
+        )}
 
-        {props.feedbackMessages ?
-          props.feedbackMessages.error.map((message, index) =>
-            <Alert color="danger" key={index}>
-              {message}
-            </Alert>
-          )
-        : null}
+        {props.feedbackMessages.error.map((errorMessage, index) =>
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.error, index)} color="danger">
+            {errorMessage}
+          </AlertDismissible>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -47,6 +45,12 @@ let AccountForm = (props) => {
           <div className="form-group">
             <label htmlFor="email">E-mail</label>
             <Field id="email" className="form-control" component={renderInput} type="email" name="email" placeholder="E-mail" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
+
+            {props.fieldsErrors.email.map((errorMessage, index) =>
+              <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.email, index)} color="danger">
+                {errorMessage}
+              </AlertDismissible>
+            )}
           </div>
 
           <button className="btn btn-primary mr-2" type="submit" disabled={!valid || pristine || submitting}>Save</button>

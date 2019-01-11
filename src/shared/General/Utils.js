@@ -38,6 +38,34 @@ export class Utils {
     return newArray;
   }
 
+
+  // CLEAR FORM MESSAGE
+  static clearFormMessage($this, field, index, messagesObject?, errorsObject?) {
+    for (let property in messagesObject) {
+      if (field === messagesObject[property]) {
+        $this.setState((prevState, props) => {
+          return {
+            messages: {
+              property: field.splice(index, 1)
+            }
+          }
+        });
+      }
+    }
+
+    for (let property in errorsObject) {
+      if (field === errorsObject[property]) {
+        $this.setState((prevState, props) => {
+          return {
+            fieldsErrors: {
+              property: field.splice(index, 1)
+            }
+          }
+        });
+      }
+    }
+  }
+
 }
 
 export default Utils;
