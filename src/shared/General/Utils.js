@@ -3,7 +3,7 @@ import * as moment from 'moment';
 export class Utils {
 
   // FORMAT DATE
-  static formatDate(date, originalFormat = 'DD/MM/YYYY', newFormat = 'YYYY-MM-DD') {
+  static formatDate(date, originalFormat = 'YYYY-MM-DD', newFormat = 'DD/MM/YYYY') {
     return moment(date, originalFormat).format(newFormat);
   }
 
