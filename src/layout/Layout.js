@@ -36,7 +36,7 @@ class Layout extends React.Component {
   // SET PAGE TITLE
   setPageTitle() {
     if (this.props.location.pathname === '/') {
-      // Set Home page title
+      // Set home page title
       document.title = this.state.pageTitle + 'Home';
     } else {
       let pageUrl = this.props.location.pathname.split('-').join(' ');

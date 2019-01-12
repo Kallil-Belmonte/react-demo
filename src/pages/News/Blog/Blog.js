@@ -105,7 +105,7 @@ class Blog extends React.Component {
       this.props.handleSetPosts(posts);
       this.props.handleSetCategories(categories);
 
-      // Set page posts
+      // Set Page Posts
       this.setState((prevState, props) => {
         return {
           pagePosts: Utils.groupArrays(posts, this.state.postsPerPage)
@@ -177,7 +177,7 @@ class Blog extends React.Component {
     // Reset pagination
     this.resetPagination();
 
-    // Set page posts
+    // Set Page Posts
     this.setState((prevState, props) => {
       return {
         postsPerPage: +event.target.value,
