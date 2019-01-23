@@ -194,7 +194,7 @@ class Blog extends React.Component {
     event.persist();
 
     // Select active page item
-    let activePageItem = document.querySelector('.page-item.active');
+    const activePageItem = document.querySelector('.page-item.active');
 
     // Navigate back and forth
     let navigateBackAndForth = (back) => {

@@ -55,8 +55,8 @@ class Register extends React.Component {
 
   // REDIRECT USER
   redirectUser() {
-    let authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
-    let expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
+    const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
+    const expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
 
     if (authToken && !expiredSession) {
       this.props.history.push('/');

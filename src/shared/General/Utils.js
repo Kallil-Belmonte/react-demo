@@ -22,10 +22,10 @@ export class Utils {
 
   // GROUP ARRAYS
   static groupArrays(array, itemsQuantity) {
-    let newArray = [[]];
+    const newArray = [[]];
 
     for (let item of array) {
-      let lastIndex = newArray.length - 1;
+      const lastIndex = newArray.length - 1;
 
       if (newArray[lastIndex].length < itemsQuantity) {
         newArray[lastIndex].push(item);

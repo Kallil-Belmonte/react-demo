@@ -39,8 +39,8 @@ class Layout extends React.Component {
       // Set home page title
       document.title = this.state.pageTitle + 'Home';
     } else {
-      let pageUrl = this.props.location.pathname.split('-').join(' ');
-      let urlName = Utils.capitalizeFirstLetter(pageUrl.split('/')[1]);
+      const pageUrl = this.props.location.pathname.split('-').join(' ');
+      const urlName = Utils.capitalizeFirstLetter(pageUrl.split('/')[1]);
 
       // Set dynamic page title
       document.title = this.state.pageTitle + urlName;

@@ -9,7 +9,7 @@ export const renderInput = (field) => {
   let validationErrors;
 
   if (field.meta.touched && field.meta.error) {
-    classes =  classes + ' is-invalid';
+    classes += ' is-invalid';
     invalidFeedback = <div className="d-block invalid-feedback">{field.meta.error}</div>;
   }
 
@@ -29,7 +29,7 @@ export const renderTextarea = (field) => {
   let invalidFeedback;
 
   if (field.meta.touched && field.meta.error) {
-    classes =  classes + ' is-invalid';
+    classes += ' is-invalid';
     invalidFeedback = <div className="d-block invalid-feedback">{field.meta.error}</div>;
   }
 
@@ -48,7 +48,7 @@ export const renderSelect = (field) => {
   let invalidFeedback;
 
   if (field.meta.touched && field.meta.error) {
-    classes =  classes + ' is-invalid';
+    classes += ' is-invalid';
     invalidFeedback = <div className="d-block invalid-feedback">{field.meta.error}</div>;
   }
 

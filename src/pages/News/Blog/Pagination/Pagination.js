@@ -1,16 +1,16 @@
 import React from 'react';
 
-import './Pagination.scss';
+// import './Pagination.scss';
 
 const Pagination = (props) => {
-  let firstItem  = props.firstItem;
-  let secondItem = props.firstItem + 1;
-  let thirdItem  = props.firstItem + 2;
-  let fourthItem = props.firstItem + 3;
-  let fifthItem  = props.firstItem + 4;
+  const firstItem  = props.firstItem;
+  const secondItem = props.firstItem + 1;
+  const thirdItem  = props.firstItem + 2;
+  const fourthItem = props.firstItem + 3;
+  const fifthItem  = props.firstItem + 4;
 
   return (
-    <nav data-component="pagination" aria-label="pagination" onClick={props.paginate}>
+    <nav data-component="pagination" className="d-inline-block" aria-label="Pagination" onClick={props.paginate}>
       <ul className="pagination mb-0">
         {firstItem > 1 ?
           <li className="page-item">

@@ -5,20 +5,20 @@ class ThemeFunctions {
   // JQUERY MASK PLUGIN
   static jQueryMaskPlugin() {
     // Credit card config
-    let creditCardNumberMaskBehavior = function(val) {
+    const creditCardNumberMaskBehavior = function(val) {
       return val.replace(/\D/g, '').length === 16 ? '0000 0000 0000 0000' : '0000 000000 000009';
     };
-    let creditCardNumberMaskOptions = {
+    const creditCardNumberMaskOptions = {
       onKeyPress: function(val, e, field, options) {
         field.mask(creditCardNumberMaskBehavior.apply({}, arguments), options);
       }
     };
 
     // Telephone config
-    let telephoneMaskBehavior = function (val) {
+    const telephoneMaskBehavior = function (val) {
       return val.replace(/\D/g, '').length === 11 ? '(00) 00000 0000' : '(00) 0000 00009';
     };
-    let telephoneMaskOptions = {
+    const telephoneMaskOptions = {
       onKeyPress: function(val, e, field, options) {
         field.mask(telephoneMaskBehavior.apply({}, arguments), options);
       }
