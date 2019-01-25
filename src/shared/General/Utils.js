@@ -14,6 +14,14 @@ export class Utils {
   }
 
 
+  // CAPITALIZE TEXT
+  static capitalizeText(phrase) {
+    return phrase.toLowerCase().replace(/\b./g, function(value) {
+      return value.toUpperCase();
+    });
+  };
+
+
   // LIMIT WORDS
   static limitWords(string, numberOfWords) {
     return string.split(' ').splice(0, numberOfWords).join(' ');
