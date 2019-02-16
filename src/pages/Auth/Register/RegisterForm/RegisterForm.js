@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { Field, reduxForm } from 'redux-form';
 
 import './RegisterForm.scss';

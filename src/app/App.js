@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
+
 import { PersistGate } from 'redux-persist/integration/react';
 
 // import './App.scss';

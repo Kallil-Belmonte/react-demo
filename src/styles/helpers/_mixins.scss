@@ -1,5 +1,6 @@
 //---------- SUMMARY ----------//
 // STYLE BUTTON
+// SIZE
 // SQUARE
 // BACKGROUND IMAGE
 // POSITION
@@ -23,6 +24,14 @@
   &.#{$btn-outline-class}:not(:disabled):not(.disabled).active {
     color: #FFF;
   }
+}
+
+
+// SIZE
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
 }
 
 
