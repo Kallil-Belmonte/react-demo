@@ -5,13 +5,9 @@ import './PostItem.scss';
 import Utils from '../../General/Utils';
 
 const PostItem = (props) => {
-  let postImage = <div className="img-placeholder">Não há imagem para esse post</div>;
-
-  if (props.data.image) {
-    postImage = (
-      <img className="img-fluid" src={props.data.image} alt="Capa" />
-    );
-  }
+  const postImage = props.data.image
+    ? <img className="img-fluid" src={props.data.image} alt="Capa" />
+    : <div className="img-placeholder">Não há imagem para esse post</div>;
 
   return (
     <div data-component="PostItem">
