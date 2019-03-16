@@ -39,7 +39,7 @@ class Login extends React.Component {
               <LoginForm
                 onSubmit={(values) => this.handleLogin(values)}
                 fieldsErrors={this.state.loginForm.fieldsErrors}
-                clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
+                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
               />
             </div>
           </div>
@@ -69,6 +69,7 @@ class Login extends React.Component {
     // Activate loader
     this.setState((prevState, props) => {
       return {
+        ...prevState,
         loading: true
       };
     });
@@ -80,9 +81,12 @@ class Login extends React.Component {
           // Error simulation
           this.setState((prevState, props) => {
             return {
+              ...prevState,
               loading: false,
               loginForm: {
+                ...prevState.loginForm,
                 fieldsErrors: {
+                  ...prevState.loginForm.fieldsErrors,
                   email: ['This e-mail does not exists.'],
                   password: ['The password is incorrect.']
                 }
@@ -120,6 +124,7 @@ class Login extends React.Component {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             loading: false
           };
         });
@@ -128,8 +133,8 @@ class Login extends React.Component {
 
 
   // HANDLE CLEAR FORM MESSAGE
-  handleClearFormMessage(field, index) {
-    Utils.clearFormMessage(this, field, index, null, this.state.loginForm.fieldsErrors);
+  handleClearFormMessage(object, property, index) {
+    Utils.clearFormMessage(this, 'loginForm', object, property, index);
   }
 
 }

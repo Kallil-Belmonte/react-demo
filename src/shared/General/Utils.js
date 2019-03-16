@@ -47,35 +47,32 @@ export class Utils {
   }
 
 
-  // CLEAR FORM MESSAGE
-  static clearFormMessage($this, field, index, messagesObject = null, errorsObject = null) {
-    if (messagesObject) {
-      for (let property in messagesObject) {
-        if (field === messagesObject[property]) {
-          $this.setState((prevState, props) => {
-            return {
-              messages: {
-                property: field.splice(index, 1)
-              }
-            }
-          });
-        }
-      }
-    }
+  // REMOVE ITEMS FROM INDEXES
+  static removeItemsFromIndexes(array, arrayIndexes) {
+    let newArray = array;
 
-    if (errorsObject) {
-      for (let property in errorsObject) {
-        if (field === errorsObject[property]) {
-          $this.setState((prevState, props) => {
-            return {
-              fieldsErrors: {
-                property: field.splice(index, 1)
-              }
-            }
-          });
+    arrayIndexes.forEach((indexItem) => {
+      newArray = newArray.filter(arrayItem => array.indexOf(arrayItem) !== indexItem);
+    });
+
+    return newArray;
+  }
+
+
+  // CLEAR FORM MESSAGE
+  static clearFormMessage($this, formName, objectName, propertyName, index) {
+    $this.setState((prevState, props) => {
+      return {
+        ...prevState,
+        [formName]: {
+          ...prevState[formName],
+          [objectName]: {
+            ...prevState[formName][objectName],
+            [propertyName]: this.removeItemsFromIndexes(prevState[formName][objectName][propertyName], [index])
+          }
         }
       }
-    }
+    });
   }
 
 }

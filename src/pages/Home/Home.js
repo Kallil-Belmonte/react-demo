@@ -40,6 +40,7 @@ class Home extends React.Component {
       .then(response => {
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             posts: response.data
           };
         });
@@ -51,6 +52,7 @@ class Home extends React.Component {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             loading: false
           };
         });

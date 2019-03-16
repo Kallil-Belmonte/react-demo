@@ -17,7 +17,7 @@ class Account extends React.Component {
 
   state = {
     accountForm: {
-      messages: {
+      feedbackMessages: {
         success: [],
         error: []
       },
@@ -37,8 +37,8 @@ class Account extends React.Component {
             <AccountForm
               onSubmit={(values) => this.handleSubmitAccountForm(values)}
               fieldsErrors={this.state.accountForm.fieldsErrors}
-              feedbackMessages={this.state.accountForm.messages}
-              clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
+              feedbackMessages={this.state.accountForm.feedbackMessages}
+              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
             />
           </div>
         </main>
@@ -57,9 +57,11 @@ class Account extends React.Component {
       // Set field error messages
       this.setState((prevState, props) => {
         return {
+          ...prevState,
           accountForm: {
             ...prevState.accountForm,
             fieldsErrors: {
+              ...prevState.accountForm.fieldsErrors,
               email: ['This e-mail already exists.']
             }
           }
@@ -70,10 +72,11 @@ class Account extends React.Component {
       // Set error messages
       this.setState((prevState, props) => {
         return {
+          ...prevState,
           accountForm: {
             ...prevState.accountForm,
-            messages: {
-              ...prevState.accountForm.messages,
+            feedbackMessages: {
+              ...prevState.accountForm.feedbackMessages,
               error: ['An error occurred, please try again later.']
             }
           }
@@ -87,10 +90,11 @@ class Account extends React.Component {
       // Set success message
       this.setState((prevState, props) => {
         return {
+          ...prevState,
           accountForm: {
             ...prevState.accountForm,
-            messages: {
-              ...prevState.accountForm.messages,
+            feedbackMessages: {
+              ...prevState.accountForm.feedbackMessages,
               success: ['Account saved successfully.']
             }
           }
@@ -101,8 +105,8 @@ class Account extends React.Component {
 
 
   // HANDLE CLEAR FORM MESSAGE
-  handleClearFormMessage(field, index) {
-    Utils.clearFormMessage(this, field, index, this.state.accountForm.messages, this.state.accountForm.fieldsErrors);
+  handleClearFormMessage(object, property, index) {
+    Utils.clearFormMessage(this, 'accountForm', object, property, index);
   }
 
 }

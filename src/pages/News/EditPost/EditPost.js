@@ -43,6 +43,7 @@ class EditPost extends React.Component {
     // Activate loader
     this.setState((prevState, props) => {
       return {
+        ...prevState,
         loading: true
       };
     });
@@ -61,6 +62,7 @@ class EditPost extends React.Component {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             loading: false
           };
         });

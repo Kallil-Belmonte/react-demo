@@ -23,7 +23,7 @@ class Register extends React.Component {
 
   componentDidMount() {
     console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
-    this.redirectUser();
+    this.redirectLoggedUser();
   }
 
   render() {
@@ -39,7 +39,7 @@ class Register extends React.Component {
               <RegisterForm
                 onSubmit={(values) => this.handleRegister(values)}
                 fieldsErrors={this.state.registerForm.fieldsErrors}
-                clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
+                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
               />
             </div>
           </div>
@@ -53,8 +53,8 @@ class Register extends React.Component {
   // GENERAL METHODS
   //==============================
 
-  // REDIRECT USER
-  redirectUser() {
+  // REDIRECT LOGGED USER
+  redirectLoggedUser() {
     const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
     const expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
 
@@ -69,6 +69,7 @@ class Register extends React.Component {
     // Activate loader
     this.setState((prevState, props) => {
       return {
+        ...prevState,
         loading: true
       };
     });
@@ -80,9 +81,12 @@ class Register extends React.Component {
           // Error simulation
           this.setState((prevState, props) => {
             return {
+              ...prevState,
               loading: false,
               registerForm: {
+                ...prevState.registerForm,
                 fieldsErrors: {
+                  ...prevState.registerForm.fieldsErrors,
                   email: ['This e-mail already exists.'],
                   password: ['Your password is too weak.']
                 }
@@ -115,6 +119,7 @@ class Register extends React.Component {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             loading: false
           };
         });
@@ -123,8 +128,8 @@ class Register extends React.Component {
 
 
   // HANDLE CLEAR FORM MESSAGE
-  handleClearFormMessage(field, index) {
-    Utils.clearFormMessage(this, field, index, null, this.state.registerForm.fieldsErrors);
+  handleClearFormMessage(object, property, index) {
+    Utils.clearFormMessage(this, 'registerForm', object, property, index);
   }
 
 }

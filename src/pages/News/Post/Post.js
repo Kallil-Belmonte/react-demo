@@ -64,6 +64,7 @@ class Post extends React.Component {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             loading: false
           };
         });
@@ -74,7 +75,10 @@ class Post extends React.Component {
   // HANDLE TOGGLE MODAL
   handleToggleModal() {
     this.setState((prevState, props) => {
-      return { isModalOpen: !this.state.isModalOpen }
+      return {
+        ...prevState,
+        isModalOpen: !this.state.isModalOpen
+      };
     });
   }
 
@@ -84,6 +88,7 @@ class Post extends React.Component {
     // Deactivate loader
     this.setState((prevState, props) => {
       return {
+        ...prevState,
         loading: true
       };
     });
@@ -99,6 +104,7 @@ class Post extends React.Component {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             loading: false
           };
         });

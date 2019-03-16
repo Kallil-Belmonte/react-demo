@@ -19,13 +19,13 @@ const ContactForm = (props) => {
   return (
     <form data-component="ContactForm" onSubmit={handleSubmit}>
       {props.feedbackMessages.success.map((successMessage, index) =>
-        <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.success, index)} color="success">
+        <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'success', index)} color="success">
           {successMessage}
         </AlertDismissible>
       )}
 
       {props.feedbackMessages.error.map((errorMessage, index) =>
-        <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.error, index)} color="danger">
+        <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'error', index)} color="danger">
           {errorMessage}
         </AlertDismissible>
       )}

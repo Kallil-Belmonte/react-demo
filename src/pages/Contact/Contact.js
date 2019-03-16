@@ -19,7 +19,7 @@ class Contact extends React.Component {
   state = {
     loading: true,
     contactForm: {
-      messages: {
+      feedbackMessages: {
         success: [],
         error: []
       },
@@ -46,8 +46,8 @@ class Contact extends React.Component {
             <ContactForm
               data={this.state.contactForm.data}
               onSubmit={(values) => this.handleSubmitContactForm(values)}
-              feedbackMessages={this.state.contactForm.messages}
-              clearFormMessage={(field, index) => this.handleClearFormMessage(field, index)}
+              feedbackMessages={this.state.contactForm.feedbackMessages}
+              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
             />
           </div>
         </main>
@@ -66,9 +66,11 @@ class Contact extends React.Component {
       .then(response => {
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             contactForm: {
               ...prevState.contactForm,
               data: {
+                ...prevState.contactForm.data,
                 favoriteColors: response.data
               }
             }
@@ -82,6 +84,7 @@ class Contact extends React.Component {
         // Deactivate loader
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             loading: false
           };
         });
@@ -95,10 +98,11 @@ class Contact extends React.Component {
 
     this.setState((prevState, props) => {
       return {
+        ...prevState,
         contactForm: {
           ...prevState.contactForm,
-          messages: {
-            ...prevState.contactForm.messages,
+          feedbackMessages: {
+            ...prevState.contactForm.feedbackMessages,
             success: ['Message sent successfully.']
           }
         }
@@ -108,8 +112,8 @@ class Contact extends React.Component {
 
 
   // HANDLE CLEAR FORM MESSAGE
-  handleClearFormMessage(field, index) {
-    Utils.clearFormMessage(this, field, index, this.state.contactForm.messages);
+  handleClearFormMessage(object, property, index) {
+    Utils.clearFormMessage(this, 'contactForm', object, property, index);
   }
 
 }

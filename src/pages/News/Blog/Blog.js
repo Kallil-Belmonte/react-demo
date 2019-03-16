@@ -108,6 +108,7 @@ class Blog extends React.Component {
       // Set Page Posts
       this.setState((prevState, props) => {
         return {
+          ...prevState,
           pagePosts: Utils.groupArrays(posts, this.state.postsPerPage)
         }
       });
@@ -119,6 +120,7 @@ class Blog extends React.Component {
       // Deactivate loader
       this.setState((prevState, props) => {
         return {
+          ...prevState,
           loading: false
         };
       });
@@ -143,6 +145,7 @@ class Blog extends React.Component {
     // Reset posts page
     this.setState((prevState, props) => {
       return {
+        ...prevState,
         loading: !prevState.loading,
         pagePosts: []
       };
@@ -160,6 +163,7 @@ class Blog extends React.Component {
       // Deactivate loader
       this.setState((prevState, props) => {
         return {
+          ...prevState,
           loading: !prevState.loading,
           pagePosts: Utils.groupArrays(response.data, this.state.postsPerPage),
           currentPage: 0,
@@ -180,6 +184,7 @@ class Blog extends React.Component {
     // Set Page Posts
     this.setState((prevState, props) => {
       return {
+        ...prevState,
         postsPerPage: +event.target.value,
         pagePosts: Utils.groupArrays(this.props.posts, +event.target.value),
         currentPage: 0,
@@ -210,6 +215,7 @@ class Blog extends React.Component {
 
       this.setState((prevState, props) => {
         return {
+          ...prevState,
           firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1
         }
       });
@@ -230,6 +236,7 @@ class Blog extends React.Component {
         event.target.parentNode.classList.add('active');
         this.setState((prevState, props) => {
           return {
+            ...prevState,
             currentPage: +event.target.innerText - 1
           }
         });

@@ -21,13 +21,13 @@ let AccountForm = (props) => {
     <div data-component="AccountForm" className="row">
       <div className="offset-md-3 col-md-6">
         {props.feedbackMessages.success.map((successMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.success, index)} color="success">
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'success', index)} color="success">
             {successMessage}
           </AlertDismissible>
         )}
 
         {props.feedbackMessages.error.map((errorMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.feedbackMessages.error, index)} color="danger">
+          <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'error', index)} color="danger">
             {errorMessage}
           </AlertDismissible>
         )}
@@ -48,7 +48,7 @@ let AccountForm = (props) => {
             <Field id="email" className="form-control" component={renderInput} type="email" name="email" placeholder="E-mail" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
 
             {props.fieldsErrors.email.map((errorMessage, index) =>
-              <AlertDismissible key={index} dismiss={() => props.clearFormMessage(props.fieldsErrors.email, index)} color="danger">
+              <AlertDismissible key={index} dismiss={() => props.clearFormMessage('fieldsErrors', 'email', index)} color="danger">
                 {errorMessage}
               </AlertDismissible>
             )}
