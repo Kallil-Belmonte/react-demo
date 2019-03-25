@@ -15,8 +15,8 @@ export class Utils {
 
 
   // CAPITALIZE TEXT
-  static capitalizeText(phrase) {
-    return phrase.toLowerCase().replace(/\b./g, function(value) {
+  static capitalizeText(text) {
+    return text.toLowerCase().replace(/\b./g, function(value) {
       return value.toUpperCase();
     });
   };
