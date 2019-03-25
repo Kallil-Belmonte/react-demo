@@ -23,8 +23,8 @@ export class Utils {
 
 
   // LIMIT WORDS
-  static limitWords(string, numberOfWords) {
-    return string.split(' ').splice(0, numberOfWords).join(' ');
+  static limitWords(text, numberOfWords) {
+    return text.split(' ').splice(0, numberOfWords).join(' ');
   }
 
 
