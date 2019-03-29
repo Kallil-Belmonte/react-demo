@@ -35,10 +35,10 @@ export const MOCKY_INSTANCE = axios.create({
 //==============================
 
 export const ENDPOINTS = {
-	blog: {
+  blog: {
     categories: '5bb20b802e00009015927389/',
-		posts: 'posts/'
-	},
+    posts: 'posts/'
+  },
   contactForm: {
     favoriteColors: '5bbb65983100004d00149011/'
   },
