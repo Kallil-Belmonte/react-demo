@@ -9,14 +9,14 @@ import * as actionCreators from '../../core/Redux/Actions/ActionCreators';
 import Utils from '../../shared/General/Utils';
 import Layout from '../../layout/Layout';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
-import AccountForm from './AccountForm/AccountForm';
+import Form from './Form/Form';
 
 library.add(faUser);
 
 class Account extends React.Component {
 
   state = {
-    accountForm: {
+    form: {
       feedbackMessages: {
         success: [],
         error: []
@@ -34,12 +34,11 @@ class Account extends React.Component {
           <div className="container">
             <PageHeader title="Account" icon={faUser} />
 
-            <AccountForm
-              onSubmit={(values) => this.handleSubmitAccountForm(values)}
-              fieldsErrors={this.state.accountForm.fieldsErrors}
-              feedbackMessages={this.state.accountForm.feedbackMessages}
-              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
-            />
+            <Form
+              onSubmit={(values) => this.handleSubmitForm(values)}
+              fieldsErrors={this.state.form.fieldsErrors}
+              feedbackMessages={this.state.form.feedbackMessages}
+              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)} />
           </div>
         </main>
       </Layout>
@@ -51,17 +50,17 @@ class Account extends React.Component {
   // GENERAL METHODS
   //==============================
 
-  // HANDLE SUBMIT ACCOUNT FORM
-  handleSubmitAccountForm(values) {
+  // HANDLE SUBMIT FORM
+  handleSubmitForm(values) {
     if (values.email === 'john.doe@email.com') {
       // Set field error messages
       this.setState((prevState, props) => {
         return {
           ...prevState,
-          accountForm: {
-            ...prevState.accountForm,
+          form: {
+            ...prevState.form,
             fieldsErrors: {
-              ...prevState.accountForm.fieldsErrors,
+              ...prevState.form.fieldsErrors,
               email: ['This e-mail already exists.']
             }
           }
@@ -73,10 +72,10 @@ class Account extends React.Component {
       this.setState((prevState, props) => {
         return {
           ...prevState,
-          accountForm: {
-            ...prevState.accountForm,
+          form: {
+            ...prevState.form,
             feedbackMessages: {
-              ...prevState.accountForm.feedbackMessages,
+              ...prevState.form.feedbackMessages,
               error: ['An error occurred, please try again later.']
             }
           }
@@ -91,10 +90,10 @@ class Account extends React.Component {
       this.setState((prevState, props) => {
         return {
           ...prevState,
-          accountForm: {
-            ...prevState.accountForm,
+          form: {
+            ...prevState.form,
             feedbackMessages: {
-              ...prevState.accountForm.feedbackMessages,
+              ...prevState.form.feedbackMessages,
               success: ['Account saved successfully.']
             }
           }
@@ -106,7 +105,7 @@ class Account extends React.Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Utils.clearFormMessage(this, 'accountForm', object, property, index);
+    Utils.clearFormMessage(this, 'form', object, property, index);
   }
 
 }

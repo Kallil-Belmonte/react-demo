@@ -50,8 +50,7 @@ class Blog extends React.Component {
                 <Pagination
                   firstItem={this.state.firstPaginationItem}
                   totalItems={this.state.pagePosts.length}
-                  paginate={(event) => this.handlePagination(event)}
-                />
+                  paginate={(event) => this.handlePagination(event)} />
               </div>
               <div className="col-md-3">
                 <Categories data={this.props.categories} click={(event) => this.handleSelectCategory(event)} />

@@ -38,8 +38,7 @@ class Post extends React.Component {
           <DeletePostModal
             isModalOpen={this.state.isModalOpen}
             toggleModal={() => this.handleToggleModal()}
-            delete={() => this.handleDeletePost()}
-          />
+            delete={() => this.handleDeletePost()} />
         </main>
       </Layout>
     );

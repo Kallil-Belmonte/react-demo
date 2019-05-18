@@ -7,7 +7,7 @@ import axios, { ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
 import Layout from '../../../layout/Layout';
 import Loader from '../../../shared/Components/Loader/Loader';
-import EditPostForm from './EditPostForm/EditPostForm';
+import Form from './Form/Form';
 
 class EditPost extends React.Component {
 
@@ -24,7 +24,7 @@ class EditPost extends React.Component {
           <div className="container">
             <div className="row">
               <div className="offset-md-2 col-md-8">
-                <EditPostForm onSubmit={(values) => this.handleSubmitEditPostForm(values)} />
+                <Form onSubmit={(values) => this.handleSubmitForm(values)} />
               </div>
             </div>
           </div>
@@ -38,8 +38,8 @@ class EditPost extends React.Component {
   // GENERAL METHODS
   //==============================
 
-  // HANDLE SUBMIT EDIT POST FORM
-  handleSubmitEditPostForm(values) {
+  // HANDLE SUBMIT FORM
+  handleSubmitForm(values) {
     // Activate loader
     this.setState((prevState, props) => {
       return {

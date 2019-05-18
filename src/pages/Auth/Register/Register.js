@@ -7,13 +7,13 @@ import { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
 import Utils from '../../../shared/General/Utils';
 import Loader from '../../../shared/Components/Loader/Loader';
-import RegisterForm from './RegisterForm/RegisterForm';
+import Form from './Form/Form';
 
 class Register extends React.Component {
 
   state = {
     loading: false,
-    registerForm: {
+    form: {
       fieldsErrors: {
         email: [],
         password: []
@@ -36,11 +36,10 @@ class Register extends React.Component {
 
           <div className="row">
             <div className="offset-md-3 col-md-6">
-              <RegisterForm
+              <Form
                 onSubmit={(values) => this.handleRegister(values)}
-                fieldsErrors={this.state.registerForm.fieldsErrors}
-                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
-              />
+                fieldsErrors={this.state.form.fieldsErrors}
+                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)} />
             </div>
           </div>
         </div>
@@ -83,10 +82,10 @@ class Register extends React.Component {
             return {
               ...prevState,
               loading: false,
-              registerForm: {
-                ...prevState.registerForm,
+              form: {
+                ...prevState.form,
                 fieldsErrors: {
-                  ...prevState.registerForm.fieldsErrors,
+                  ...prevState.form.fieldsErrors,
                   email: ['This e-mail already exists.'],
                   password: ['Your password is too weak.']
                 }
@@ -129,7 +128,7 @@ class Register extends React.Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Utils.clearFormMessage(this, 'registerForm', object, property, index);
+    Utils.clearFormMessage(this, 'form', object, property, index);
   }
 
 }

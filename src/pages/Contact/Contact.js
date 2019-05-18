@@ -10,7 +10,7 @@ import Utils from '../../shared/General/Utils';
 import Layout from '../../layout/Layout';
 import Loader from '../../shared/Components/Loader/Loader';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
-import ContactForm from './ContactForm/ContactForm';
+import Form from './Form/Form';
 
 library.add(faEnvelope);
 
@@ -18,7 +18,7 @@ class Contact extends React.Component {
 
   state = {
     loading: true,
-    contactForm: {
+    form: {
       feedbackMessages: {
         success: [],
         error: []
@@ -30,7 +30,7 @@ class Contact extends React.Component {
   }
 
   componentDidMount() {
-    this.getContactFormData();
+    this.getFormData();
     ThemeFunctions.jQueryMaskPlugin();
   }
 
@@ -43,12 +43,11 @@ class Contact extends React.Component {
           <div className="container">
             <PageHeader title="Contact" icon={faEnvelope} />
 
-            <ContactForm
-              data={this.state.contactForm.data}
-              onSubmit={(values) => this.handleSubmitContactForm(values)}
-              feedbackMessages={this.state.contactForm.feedbackMessages}
-              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
-            />
+            <Form
+              data={this.state.form.data}
+              onSubmit={(values) => this.handleSubmitForm(values)}
+              feedbackMessages={this.state.form.feedbackMessages}
+              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)} />
           </div>
         </main>
       </Layout>
@@ -60,17 +59,17 @@ class Contact extends React.Component {
   // GENERAL METHODS
   //==============================
 
-  // GET CONTACT FORM DATA
-  getContactFormData() {
+  // GET FORM DATA
+  getFormData() {
     MOCKY_INSTANCE.get(ENDPOINTS.contactForm.favoriteColors)
       .then(response => {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            contactForm: {
-              ...prevState.contactForm,
+            form: {
+              ...prevState.form,
               data: {
-                ...prevState.contactForm.data,
+                ...prevState.form.data,
                 favoriteColors: response.data
               }
             }
@@ -92,17 +91,17 @@ class Contact extends React.Component {
   }
 
 
-  // HANDLE SUBMIT CONTACT FORM
-  handleSubmitContactForm(values) {
+  // HANDLE SUBMIT FORM
+  handleSubmitForm(values) {
     console.log('Form submitted:', values);
 
     this.setState((prevState, props) => {
       return {
         ...prevState,
-        contactForm: {
-          ...prevState.contactForm,
+        form: {
+          ...prevState.form,
           feedbackMessages: {
-            ...prevState.contactForm.feedbackMessages,
+            ...prevState.form.feedbackMessages,
             success: ['Message sent successfully.']
           }
         }
@@ -113,7 +112,7 @@ class Contact extends React.Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Utils.clearFormMessage(this, 'contactForm', object, property, index);
+    Utils.clearFormMessage(this, 'form', object, property, index);
   }
 
 }

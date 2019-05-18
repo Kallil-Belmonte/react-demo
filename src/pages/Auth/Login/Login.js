@@ -7,13 +7,13 @@ import { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
 import Utils from '../../../shared/General/Utils';
 import Loader from '../../../shared/Components/Loader/Loader';
-import LoginForm from './LoginForm/LoginForm';
+import Form from './Form/Form';
 
 class Login extends React.Component {
 
   state = {
     loading: false,
-    loginForm: {
+    form: {
       fieldsErrors: {
         email: [],
         password: []
@@ -36,11 +36,10 @@ class Login extends React.Component {
 
           <div className="row">
             <div className="offset-md-3 col-md-6">
-              <LoginForm
+              <Form
                 onSubmit={(values) => this.handleLogin(values)}
-                fieldsErrors={this.state.loginForm.fieldsErrors}
-                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
-              />
+                fieldsErrors={this.state.form.fieldsErrors}
+                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)} />
             </div>
           </div>
         </div>
@@ -83,10 +82,10 @@ class Login extends React.Component {
             return {
               ...prevState,
               loading: false,
-              loginForm: {
-                ...prevState.loginForm,
+              form: {
+                ...prevState.form,
                 fieldsErrors: {
-                  ...prevState.loginForm.fieldsErrors,
+                  ...prevState.form.fieldsErrors,
                   email: ['This e-mail does not exists.'],
                   password: ['The password is incorrect.']
                 }
@@ -134,7 +133,7 @@ class Login extends React.Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Utils.clearFormMessage(this, 'loginForm', object, property, index);
+    Utils.clearFormMessage(this, 'form', object, property, index);
   }
 
 }
