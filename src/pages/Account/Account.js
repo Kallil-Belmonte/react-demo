@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-
 import './Account.scss';
 import * as actionCreators from '../../core/Redux/Actions/ActionCreators';
 import Utils from '../../shared/General/Utils';
 import Layout from '../../layout/Layout';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import Form from './Form/Form';
-
-library.add(faUser);
 
 class Account extends React.Component {
 
@@ -32,7 +27,7 @@ class Account extends React.Component {
       <Layout>
         <main data-component="Account">
           <div className="container">
-            <PageHeader title="Account" icon={faUser} />
+            <PageHeader title="Account" icon="user" />
 
             <Form
               onSubmit={(values) => this.handleSubmitForm(values)}

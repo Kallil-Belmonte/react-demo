@@ -1,13 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faNewspaper, faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Header.scss';
-
-library.add(faHome, faNewspaper, faEnvelope, faUser);
 
 const Header = (props) => {
   return (
@@ -19,25 +15,25 @@ const Header = (props) => {
         <ul>
           <li>
             <NavLink to="/" exact activeClassName="active">
-              <FontAwesomeIcon icon={faHome} />
+              <FontAwesomeIcon icon="home" />
               Home
             </NavLink>
           </li>
           <li>
             <NavLink to="/blog" activeClassName="active">
-              <FontAwesomeIcon icon={faNewspaper} />
+              <FontAwesomeIcon icon="newspaper" />
               Blog
             </NavLink>
           </li>
           <li>
             <NavLink to="/contact" activeClassName="active">
-              <FontAwesomeIcon icon={faEnvelope} />
+              <FontAwesomeIcon icon="envelope" />
               Contact
             </NavLink>
           </li>
           <li>
             <NavLink to="/account" activeClassName="active">
-              <FontAwesomeIcon icon={faUser} />
+              <FontAwesomeIcon icon="user" />
               Account
             </NavLink>
           </li>

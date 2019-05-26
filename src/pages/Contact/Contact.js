@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-
 import './Contact.scss';
 import ThemeFunctions from '../../shared/General/ThemeFunctions';
 import { MOCKY_INSTANCE, ENDPOINTS } from '../../core/API/API';
@@ -11,8 +8,6 @@ import Layout from '../../layout/Layout';
 import Loader from '../../shared/Components/Loader/Loader';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import Form from './Form/Form';
-
-library.add(faEnvelope);
 
 class Contact extends React.Component {
 
@@ -41,7 +36,7 @@ class Contact extends React.Component {
           <Loader loading={this.state.loading} />
 
           <div className="container">
-            <PageHeader title="Contact" icon={faEnvelope} />
+            <PageHeader title="Contact" icon="envelope" />
 
             <Form
               data={this.state.form.data}

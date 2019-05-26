@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
-
 import './Blog.scss';
 import axios, { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
@@ -15,8 +12,6 @@ import PostsFilter from './PostsFilter/PostsFilter';
 import Posts from './Posts/Posts';
 import Pagination from './Pagination/Pagination';
 import Categories from './Categories/Categories';
-
-library.add(faNewspaper);
 
 class Blog extends React.Component {
 
@@ -39,7 +34,7 @@ class Blog extends React.Component {
           <Loader loading={this.state.loading} />
 
           <div className="container">
-            <PageHeader title="Blog" icon={faNewspaper} />
+            <PageHeader title="Blog" icon="newspaper" />
 
             <PostsFilter change={(event) => this.handleFilterPosts(event)} />
 
