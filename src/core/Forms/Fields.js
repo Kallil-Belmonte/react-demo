@@ -6,7 +6,6 @@ import { Field } from 'redux-form';
 export const renderInput = (field) => {
   let classes = field.className;
   let invalidFeedback;
-  let validationErrors;
 
   if (field.meta.touched && field.meta.error) {
     classes += ' is-invalid';
@@ -17,7 +16,6 @@ export const renderInput = (field) => {
     <React.Fragment>
       <input id={field.id} className={classes} {...field.input} type={field.type} placeholder={field.placeholder} />
       {invalidFeedback}
-      {validationErrors}
     </React.Fragment>
   );
 };
