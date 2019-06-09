@@ -95,17 +95,15 @@ class Register extends React.Component {
 
         } else {
 
+          // Store session data
+          sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
+
           // Handle set user data
           this.props.handleSetUserData({
             firstName: response.data.firstName,
             lastName: response.data.lastName,
-            email: response.data.email,
-            token: response.data.idToken,
-            expiresIn: response.data.expiresIn
+            email: response.data.email
           });
-
-          // Store session data
-          sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
 
           // Redirect
           this.props.history.push('/');

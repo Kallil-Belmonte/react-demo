@@ -95,15 +95,6 @@ class Login extends React.Component {
 
         } else {
 
-          // Handle set user data
-          this.props.handleSetUserData({
-            firstName: response.data.firstName,
-            lastName: response.data.lastName,
-            email: response.data.email,
-            token: response.data.idToken,
-            expiresIn: response.data.expiresIn
-          });
-
           // Store session data
           if (values.keepLogged) {
             localStorage.setItem('authTokenReactDemo', response.data.idToken);
@@ -111,6 +102,13 @@ class Login extends React.Component {
           } else {
             sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
           }
+
+          // Handle set user data
+          this.props.handleSetUserData({
+            firstName: response.data.firstName,
+            lastName: response.data.lastName,
+            email: response.data.email
+          });
 
           // Redirect
           this.props.history.push('/');
