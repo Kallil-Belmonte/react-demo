@@ -10,10 +10,6 @@ import Footer from './Footer/Footer';
 
 class Layout extends React.Component {
 
-  state = {
-    pageTitle: 'React Demo | '
-  }
-
   componentDidMount() {
     this.setPageTitle();
   }
@@ -37,13 +33,13 @@ class Layout extends React.Component {
   setPageTitle() {
     if (this.props.location.pathname === '/') {
       // Set home page title
-      document.title = this.state.pageTitle + 'Home';
+      Utils.setPageTitle('Home');
     } else {
       const pageUrl = this.props.location.pathname.split('-').join(' ');
       const urlName = Utils.capitalizeFirstLetter(pageUrl.split('/')[1]);
 
       // Set dynamic page title
-      document.title = this.state.pageTitle + urlName;
+      Utils.setPageTitle(urlName);
     }
   }
 

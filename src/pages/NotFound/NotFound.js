@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './NotFound.scss';
+import Utils from '../../shared/General/Utils';
 
 const NotFound = (props) => {
   // Set page title
-  document.title = 'React Demo | Error 404';
+  Utils.setPageTitle('Error 404');
 
   return (
     <main data-component="NotFound">

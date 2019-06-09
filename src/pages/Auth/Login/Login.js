@@ -23,6 +23,7 @@ class Login extends React.Component {
 
   componentDidMount() {
     console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
+    Utils.setPageTitle('Login');
     this.redirectUser();
   }
 
