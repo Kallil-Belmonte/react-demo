@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RouteGuard from './RouteGuard';
+import RouterGuard from './RouterGuard';
 import Home from '../../pages/Home/Home';
 import Blog from '../../pages/News/Blog/Blog';
 import Post from '../../pages/News/Post/Post';
@@ -15,32 +15,32 @@ const Routes = [
   {
     path: '/',
     exact: true,
-    component: () => RouteGuard(<Home />)
+    component: () => RouterGuard(<Home />)
   },
   {
     path: '/blog',
     exact: true,
-    component: () => RouteGuard(<Blog />)
+    component: () => RouterGuard(<Blog />)
   },
   {
     path: '/post/:id',
     exact: true,
-    component: () => RouteGuard(<Post />)
+    component: () => RouterGuard(<Post />)
   },
   {
     path: '/edit-post/:id',
     exact: true,
-    component: () => RouteGuard(<EditPost />)
+    component: () => RouterGuard(<EditPost />)
   },
   {
     path: '/contact',
     exact: true,
-    component: () => RouteGuard(<Contact />)
+    component: () => RouterGuard(<Contact />)
   },
   {
     path: '/account',
     exact: true,
-    component: () => RouteGuard(<Account />)
+    component: () => RouterGuard(<Account />)
   },
   {
     path: '/login',
@@ -55,7 +55,7 @@ const Routes = [
   {
     path: '*',
     exact: false,
-    component: () => RouteGuard(<NotFound />)
+    component: () => RouterGuard(<NotFound />)
   }
 ];
 

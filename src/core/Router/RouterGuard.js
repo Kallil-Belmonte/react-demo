@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const RouteGuard = (component) => {
+const RouterGuard = (component) => {
   const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
   const expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
 
@@ -18,4 +18,4 @@ const RouteGuard = (component) => {
   }
 };
 
-export default RouteGuard;
+export default RouterGuard;
