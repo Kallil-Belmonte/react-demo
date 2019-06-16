@@ -55,7 +55,7 @@ const Routes = [
   {
     path: '*',
     exact: false,
-    component: () => RouterGuard(<NotFound />)
+    component: () => <NotFound />
   }
 ];
 
