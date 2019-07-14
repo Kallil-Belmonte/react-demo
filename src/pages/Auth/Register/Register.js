@@ -16,9 +16,9 @@ class Register extends React.Component {
     form: {
       fieldsErrors: {
         email: [],
-        password: []
-      }
-    }
+        password: [],
+      },
+    },
   }
 
   componentDidMount() {
@@ -70,7 +70,7 @@ class Register extends React.Component {
     this.setState((prevState, props) => {
       return {
         ...prevState,
-        loading: true
+        loading: true,
       };
     });
 
@@ -88,9 +88,9 @@ class Register extends React.Component {
                 fieldsErrors: {
                   ...prevState.form.fieldsErrors,
                   email: ['This e-mail already exists.'],
-                  password: ['Your password is too weak.']
-                }
-              }
+                  password: ['Your password is too weak.'],
+                },
+              },
             };
           });
 
@@ -103,7 +103,7 @@ class Register extends React.Component {
           this.props.handleSetUserData({
             firstName: response.data.firstName,
             lastName: response.data.lastName,
-            email: response.data.email
+            email: response.data.email,
           });
 
           // Redirect
@@ -118,7 +118,7 @@ class Register extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            loading: false
+            loading: false,
           };
         });
       });
@@ -140,7 +140,7 @@ class Register extends React.Component {
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSetUserData: (userData) => dispatch(actionCreators.logIn(userData))
+    handleSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
   };
 };
 

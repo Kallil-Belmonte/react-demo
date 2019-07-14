@@ -4,7 +4,7 @@ import ACTION_TYPES from './ActionTypes';
 export const logIn = (userData) => {
   return {
     type: ACTION_TYPES.LOG_IN,
-    payload: userData
+    payload: userData,
   };
 };
 
@@ -12,6 +12,6 @@ export const logIn = (userData) => {
 // LOG OUT
 export const logOut = () => {
   return {
-    type: ACTION_TYPES.LOG_OUT
+    type: ACTION_TYPES.LOG_OUT,
   };
 };

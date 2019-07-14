@@ -16,9 +16,9 @@ class Login extends React.Component {
     form: {
       fieldsErrors: {
         email: [],
-        password: []
-      }
-    }
+        password: [],
+      },
+    },
   }
 
   componentDidMount() {
@@ -70,7 +70,7 @@ class Login extends React.Component {
     this.setState((prevState, props) => {
       return {
         ...prevState,
-        loading: true
+        loading: true,
       };
     });
 
@@ -88,9 +88,9 @@ class Login extends React.Component {
                 fieldsErrors: {
                   ...prevState.form.fieldsErrors,
                   email: ['This e-mail does not exists.'],
-                  password: ['The password is incorrect.']
+                  password: ['The password is incorrect.'],
                 }
-              }
+              },
             };
           });
 
@@ -108,7 +108,7 @@ class Login extends React.Component {
           this.props.handleSetUserData({
             firstName: response.data.firstName,
             lastName: response.data.lastName,
-            email: response.data.email
+            email: response.data.email,
           });
 
           // Redirect
@@ -123,7 +123,7 @@ class Login extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            loading: false
+            loading: false,
           };
         });
       });
@@ -145,7 +145,7 @@ class Login extends React.Component {
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSetUserData: (userData) => dispatch(actionCreators.logIn(userData))
+    handleSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
   };
 };
 

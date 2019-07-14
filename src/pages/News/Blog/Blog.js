@@ -20,7 +20,7 @@ class Blog extends React.Component {
     postsPerPage: 9,
     pagePosts: [],
     currentPage: 0,
-    firstPaginationItem: 1
+    firstPaginationItem: 1,
   }
 
   componentDidMount() {
@@ -92,7 +92,7 @@ class Blog extends React.Component {
   getAllData() {
     Promise.all([
       this.getCategories(),
-      this.getPosts()
+      this.getPosts(),
     ])
     .then(([categories, posts]) => {
       // Handle set data
@@ -103,7 +103,7 @@ class Blog extends React.Component {
       this.setState((prevState, props) => {
         return {
           ...prevState,
-          pagePosts: Utils.groupArrays(posts, this.state.postsPerPage)
+          pagePosts: Utils.groupArrays(posts, this.state.postsPerPage),
         }
       });
     })
@@ -115,7 +115,7 @@ class Blog extends React.Component {
       this.setState((prevState, props) => {
         return {
           ...prevState,
-          loading: false
+          loading: false,
         };
       });
     });
@@ -141,7 +141,7 @@ class Blog extends React.Component {
       return {
         ...prevState,
         loading: !prevState.loading,
-        pagePosts: []
+        pagePosts: [],
       };
     });
 
@@ -161,7 +161,7 @@ class Blog extends React.Component {
           loading: !prevState.loading,
           pagePosts: Utils.groupArrays(response.data, this.state.postsPerPage),
           currentPage: 0,
-          firstPaginationItem: 1
+          firstPaginationItem: 1,
         };
       });
     });
@@ -182,7 +182,7 @@ class Blog extends React.Component {
         postsPerPage: +event.target.value,
         pagePosts: Utils.groupArrays(this.props.posts, +event.target.value),
         currentPage: 0,
-        firstPaginationItem: 1
+        firstPaginationItem: 1,
       }
     });
   }
@@ -210,7 +210,7 @@ class Blog extends React.Component {
       this.setState((prevState, props) => {
         return {
           ...prevState,
-          firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1
+          firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1,
         }
       });
     };
@@ -231,7 +231,7 @@ class Blog extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            currentPage: +event.target.innerText - 1
+            currentPage: +event.target.innerText - 1,
           }
         });
     }
@@ -248,7 +248,7 @@ class Blog extends React.Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts,
-    categories: state.categories
+    categories: state.categories,
   };
 };
 
@@ -256,7 +256,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
-    handleSetCategories: (categories) => dispatch(actionCreators.setCategories(categories))
+    handleSetCategories: (categories) => dispatch(actionCreators.setCategories(categories)),
   };
 };
 

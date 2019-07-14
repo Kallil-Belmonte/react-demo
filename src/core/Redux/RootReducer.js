@@ -12,7 +12,7 @@ const appReducer = combineReducers({
   userData:    userDataReducer,
   currentPost: currentPostReducer,
   posts:       postsReducer,
-  categories:  categoriesReducer
+  categories:  categoriesReducer,
 });
 
 

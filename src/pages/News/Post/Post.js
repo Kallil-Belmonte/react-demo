@@ -14,7 +14,7 @@ class Post extends React.Component {
 
   state = {
     loading: true,
-    isModalOpen: false
+    isModalOpen: false,
   }
 
   componentDidMount() {
@@ -64,7 +64,7 @@ class Post extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            loading: false
+            loading: false,
           };
         });
       });
@@ -76,7 +76,7 @@ class Post extends React.Component {
     this.setState((prevState, props) => {
       return {
         ...prevState,
-        isModalOpen: !this.state.isModalOpen
+        isModalOpen: !this.state.isModalOpen,
       };
     });
   }
@@ -88,7 +88,7 @@ class Post extends React.Component {
     this.setState((prevState, props) => {
       return {
         ...prevState,
-        loading: true
+        loading: true,
       };
     });
 
@@ -104,7 +104,7 @@ class Post extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            loading: false
+            loading: false,
           };
         });
       });
@@ -120,14 +120,14 @@ class Post extends React.Component {
 // MAP STATE TO PROPS
 const mapStateToProps = (state) => {
   return {
-    currentPost: state.currentPost
+    currentPost: state.currentPost,
   };
 };
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSetPost: (post) => dispatch(actionCreators.setPost(post))
+    handleSetPost: (post) => dispatch(actionCreators.setPost(post)),
   };
 };
 

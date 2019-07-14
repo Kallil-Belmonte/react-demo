@@ -16,11 +16,11 @@ class Contact extends React.Component {
     form: {
       feedbackMessages: {
         success: [],
-        error: []
+        error: [],
       },
       data: {
-        favoriteColors: []
-      }
+        favoriteColors: [],
+      },
     }
   }
 
@@ -65,9 +65,9 @@ class Contact extends React.Component {
               ...prevState.form,
               data: {
                 ...prevState.form.data,
-                favoriteColors: response.data
-              }
-            }
+                favoriteColors: response.data,
+              },
+            },
           };
         });
       })
@@ -79,7 +79,7 @@ class Contact extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            loading: false
+            loading: false,
           };
         });
       });
@@ -97,9 +97,9 @@ class Contact extends React.Component {
           ...prevState.form,
           feedbackMessages: {
             ...prevState.form.feedbackMessages,
-            success: ['Message sent successfully.']
-          }
-        }
+            success: ['Message sent successfully.'],
+          },
+        },
       };
     });
   }

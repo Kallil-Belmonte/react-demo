@@ -12,7 +12,7 @@ import Form from './Form/Form';
 class EditPost extends React.Component {
 
   state = {
-    loading: false
+    loading: false,
   }
 
   render() {
@@ -44,7 +44,7 @@ class EditPost extends React.Component {
     this.setState((prevState, props) => {
       return {
         ...prevState,
-        loading: true
+        loading: true,
       };
     });
 
@@ -63,7 +63,7 @@ class EditPost extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            loading: false
+            loading: false,
           };
         });
       });

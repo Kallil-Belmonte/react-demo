@@ -1,7 +1,7 @@
 const updateState = (oldState, updatedProperties) => {
   return {
     ...oldState,
-    ...updatedProperties
+    ...updatedProperties,
   };
 };
 

@@ -4,7 +4,7 @@ import ACTION_TYPES from './ActionTypes';
 export const setPosts = (posts) => {
   return {
     type: ACTION_TYPES.SET_POSTS,
-    payload: posts
+    payload: posts,
   };
 };
 
@@ -13,6 +13,6 @@ export const setPosts = (posts) => {
 export const setCategories = (categories) => {
   return {
     type: ACTION_TYPES.SET_CATEGORIES,
-    payload: categories
+    payload: categories,
   };
 };

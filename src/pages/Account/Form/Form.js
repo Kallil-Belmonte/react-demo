@@ -14,7 +14,7 @@ let Form = (props) => {
     valid,
     pristine,
     reset,
-    submitting
+    submitting,
   } = props;
 
   return (
@@ -35,17 +35,17 @@ let Form = (props) => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="first-name">First name</label>
-            <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" placeholder="First name" validate={[Validations.required, Validations.minLength3]} />
+            <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" validate={[Validations.required, Validations.minLength3]} />
           </div>
 
           <div className="form-group">
             <label htmlFor="last-name">Last name</label>
-            <Field id="last-name" className="form-control" component={renderInput} type="text" name="lastName" placeholder="Last name" validate={[Validations.required]} />
+            <Field id="last-name" className="form-control" component={renderInput} type="text" name="lastName" validate={[Validations.required]} />
           </div>
 
           <div className="form-group">
             <label htmlFor="email">E-mail</label>
-            <Field id="email" className="form-control" component={renderInput} type="email" name="email" placeholder="E-mail" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
+            <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
 
             {props.fieldsErrors.email.map((errorMessage, index) =>
               <AlertDismissible key={index} dismiss={() => props.clearFormMessage('fieldsErrors', 'email', index)} color="danger">
@@ -63,12 +63,12 @@ let Form = (props) => {
 };
 
 Form = reduxForm({
-  form: 'settings'
+  form: 'settings',
 })(Form);
 
 Form = connect(
   state => ({
-    initialValues: state.userData
+    initialValues: state.userData,
   })
 )(Form);
 

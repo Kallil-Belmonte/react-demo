@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // JSON PLACEHOLDER
 const JSON_PLACEHOLDER_INSTANCE = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/'
+  baseURL: 'https://jsonplaceholder.typicode.com/',
 });
 
 JSON_PLACEHOLDER_INSTANCE.interceptors.request.use(
@@ -26,7 +26,7 @@ JSON_PLACEHOLDER_INSTANCE.interceptors.request.use(
 
 // MOCKY
 export const MOCKY_INSTANCE = axios.create({
-  baseURL: 'http://www.mocky.io/v2/'
+  baseURL: 'http://www.mocky.io/v2/',
 });
 
 
@@ -37,14 +37,14 @@ export const MOCKY_INSTANCE = axios.create({
 export const ENDPOINTS = {
   blog: {
     categories: '5bb20b802e00009015927389/',
-    posts: 'posts/'
+    posts: 'posts/',
   },
   contactForm: {
-    favoriteColors: '5bbb65983100004d00149011/'
+    favoriteColors: '5bbb65983100004d00149011/',
   },
   auth: {
     login: '5bd312b23400002a00cfe028/',
-    register: '5bd311fc3400006f00cfe021/'
+    register: '5bd311fc3400006f00cfe021/',
   }
 };
 

@@ -13,7 +13,7 @@ const Form = (props) => {
     handleSubmit,
     valid,
     pristine,
-    submitting
+    submitting,
   } = props;
 
   return (
@@ -22,7 +22,7 @@ const Form = (props) => {
 
       <div className="form-group">
         <label htmlFor="email">E-mail</label>
-        <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]}  />
+        <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} />
 
         {props.fieldsErrors.email.map((errorMessage, index) =>
           <AlertDismissible key={index} dismiss={() => props.clearFormMessage('fieldsErrors', 'email', index)} color="danger">
@@ -57,5 +57,5 @@ const Form = (props) => {
 };
 
 export default reduxForm({
-  form: 'login'
+  form: 'login',
 })(Form);

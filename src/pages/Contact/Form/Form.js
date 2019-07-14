@@ -13,7 +13,7 @@ const Form = (props) => {
     valid,
     pristine,
     reset,
-    submitting
+    submitting,
   } = props;
 
   return (
@@ -34,14 +34,14 @@ const Form = (props) => {
         <div className="col">
           <div className="form-group">
             <label htmlFor="firstName">First name</label>
-            <Field id="firstName" className="form-control" component={renderInput} type="text" name="firstName" placeholder="First name" validate={[Validations.required, Validations.minLength3]} />
+            <Field id="firstName" className="form-control" component={renderInput} type="text" name="firstName" validate={[Validations.required, Validations.minLength3]} />
           </div>
         </div>
 
         <div className="col">
           <div className="form-group">
             <label htmlFor="lastName">Last name</label>
-            <Field id="lastName" className="form-control" component={renderInput} type="text" name="lastName" placeholder="Last name" validate={[Validations.required]} />
+            <Field id="lastName" className="form-control" component={renderInput} type="text" name="lastName" validate={[Validations.required]} />
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ const Form = (props) => {
         <div className="col">
           <div className="form-group">
             <label htmlFor="email">E-mail</label>
-            <Field id="email" className="form-control" component={renderInput} type="email" name="email" placeholder="E-mail" validate={[Validations.required, Validations.email]} />
+            <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} />
           </div>
         </div>
 
@@ -92,5 +92,5 @@ const Form = (props) => {
 };
 
 export default reduxForm({
-  form: 'contact'
+  form: 'contact',
 })(Form);

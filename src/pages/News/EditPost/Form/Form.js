@@ -13,7 +13,7 @@ let Form = (props) => {
     valid,
     pristine,
     reset,
-    submitting
+    submitting,
   } = props;
 
   return (
@@ -34,12 +34,12 @@ let Form = (props) => {
 };
 
 Form = reduxForm({
-  form: 'editPost'
+  form: 'editPost',
 })(Form);
 
 Form = connect(
   state => ({
-    initialValues: state.currentPost
+    initialValues: state.currentPost,
   })
 )(Form);
 

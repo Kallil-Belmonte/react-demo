@@ -4,7 +4,7 @@ import ACTION_TYPES from './ActionTypes';
 export const setPost = (post) => {
   return {
     type: ACTION_TYPES.SET_CURRENT_POST,
-    payload: post
+    payload: post,
   };
 };
 
@@ -13,6 +13,6 @@ export const setPost = (post) => {
 export const editPost = (post) => {
   return {
     type: ACTION_TYPES.EDIT_CURRENT_POST,
-    payload: post
+    payload: post,
   };
 };

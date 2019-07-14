@@ -15,47 +15,47 @@ const Routes = [
   {
     path: '/',
     exact: true,
-    component: () => RouterGuard(<Home />)
+    component: () => RouterGuard(<Home />),
   },
   {
     path: '/blog',
     exact: true,
-    component: () => RouterGuard(<Blog />)
+    component: () => RouterGuard(<Blog />),
   },
   {
     path: '/post/:id',
     exact: true,
-    component: () => RouterGuard(<Post />)
+    component: () => RouterGuard(<Post />),
   },
   {
     path: '/edit-post/:id',
     exact: true,
-    component: () => RouterGuard(<EditPost />)
+    component: () => RouterGuard(<EditPost />),
   },
   {
     path: '/contact',
     exact: true,
-    component: () => RouterGuard(<Contact />)
+    component: () => RouterGuard(<Contact />),
   },
   {
     path: '/account',
     exact: true,
-    component: () => RouterGuard(<Account />)
+    component: () => RouterGuard(<Account />),
   },
   {
     path: '/login',
     exact: true,
-    component: () => <Login />
+    component: () => <Login />,
   },
   {
     path: '/register',
     exact: true,
-    component: () => <Register />
+    component: () => <Register />,
   },
   {
     path: '*',
     exact: false,
-    component: () => <NotFound />
+    component: () => <NotFound />,
   }
 ];
 

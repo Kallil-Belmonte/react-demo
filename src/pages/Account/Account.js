@@ -14,12 +14,12 @@ class Account extends React.Component {
     form: {
       feedbackMessages: {
         success: [],
-        error: []
+        error: [],
       },
       fieldsErrors: {
-        email: []
-      }
-    }
+        email: [],
+      },
+    },
   }
 
   render() {
@@ -56,9 +56,9 @@ class Account extends React.Component {
             ...prevState.form,
             fieldsErrors: {
               ...prevState.form.fieldsErrors,
-              email: ['This e-mail already exists.']
-            }
-          }
+              email: ['This e-mail already exists.'],
+            },
+          },
         }
       });
     }
@@ -71,9 +71,9 @@ class Account extends React.Component {
             ...prevState.form,
             feedbackMessages: {
               ...prevState.form.feedbackMessages,
-              error: ['An error occurred, please try again later.']
-            }
-          }
+              error: ['An error occurred, please try again later.'],
+            },
+          },
         }
       });
     }
@@ -89,9 +89,9 @@ class Account extends React.Component {
             ...prevState.form,
             feedbackMessages: {
               ...prevState.form.feedbackMessages,
-              success: ['Account saved successfully.']
-            }
-          }
+              success: ['Account saved successfully.'],
+            },
+          },
         }
       });
     }
@@ -113,7 +113,7 @@ class Account extends React.Component {
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleEditAccount: (userData) => dispatch(actionCreators.editAccount(userData))
+    handleEditAccount: (userData) => dispatch(actionCreators.editAccount(userData)),
   };
 };
 

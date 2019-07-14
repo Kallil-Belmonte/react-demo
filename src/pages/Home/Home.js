@@ -10,7 +10,7 @@ class Home extends React.Component {
 
   state = {
     loading: true,
-    posts: []
+    posts: [],
   }
 
   componentDidMount() {
@@ -41,7 +41,7 @@ class Home extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            posts: response.data
+            posts: response.data,
           };
         });
       })
@@ -53,7 +53,7 @@ class Home extends React.Component {
         this.setState((prevState, props) => {
           return {
             ...prevState,
-            loading: false
+            loading: false,
           };
         });
       });

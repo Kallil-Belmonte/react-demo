@@ -5,5 +5,5 @@ library.add(
   faHome,
   faNewspaper,
   faEnvelope,
-  faUser
+  faUser,
 );

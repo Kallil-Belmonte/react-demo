@@ -13,7 +13,7 @@ const Form = (props) => {
     handleSubmit,
     valid,
     pristine,
-    submitting
+    submitting,
   } = props;
 
   return (
@@ -63,5 +63,5 @@ const Form = (props) => {
 };
 
 export default reduxForm({
-  form: 'register'
+  form: 'register',
 })(Form);
