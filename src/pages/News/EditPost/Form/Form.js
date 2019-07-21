@@ -22,6 +22,7 @@ let Form = (props) => {
         <label htmlFor="title">Title</label>
         <Field id="title" className="form-control" component={renderInput} type="text" name="title" validate={[Validations.required]} />
       </div>
+
       <div className="form-group">
         <label htmlFor="body">Body</label>
         <Field id="body" className="form-control" component={renderTextarea} name="body" rows="6" validate={[Validations.required]} />
