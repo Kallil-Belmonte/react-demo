@@ -10,7 +10,6 @@ import Loader from '../../../shared/Components/Loader/Loader';
 import Form from './Form/Form';
 
 class EditPost extends React.Component {
-
   state = {
     loading: false,
   }
@@ -41,12 +40,9 @@ class EditPost extends React.Component {
   // HANDLE SUBMIT FORM
   handleSubmitForm(values) {
     // Activate loader
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        loading: true,
-      };
-    });
+    this.setState((prevState, props) => ({
+      loading: true,
+    }));
 
     axios.put(ENDPOINTS.blog.posts + this.props.match.params.id, values)
       .then(response => {
@@ -60,15 +56,11 @@ class EditPost extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        this.setState((prevState, props) => ({
+          loading: false,
+        }));
       });
   }
-
 }
 
 

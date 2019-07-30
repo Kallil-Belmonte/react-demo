@@ -14,7 +14,6 @@ import Pagination from './Pagination/Pagination';
 import Categories from './Categories/Categories';
 
 class Blog extends React.Component {
-
   state = {
     loading: true,
     postsPerPage: 9,
@@ -100,24 +99,18 @@ class Blog extends React.Component {
       this.props.handleSetCategories(categories);
 
       // Set Page Posts
-      this.setState((prevState, props) => {
-        return {
-          ...prevState,
-          pagePosts: Utils.groupArrays(posts, this.state.postsPerPage),
-        }
-      });
+      this.setState((prevState, props) => ({
+        pagePosts: Utils.groupArrays(posts, this.state.postsPerPage),
+      }));
     })
     .catch((error) => {
       console.error(error);
     })
     .then(() => {
       // Deactivate loader
-      this.setState((prevState, props) => {
-        return {
-          ...prevState,
-          loading: false,
-        };
-      });
+      this.setState((prevState, props) => ({
+        loading: false,
+      }));
     });
   }
 
@@ -137,13 +130,10 @@ class Blog extends React.Component {
     }
 
     // Reset posts page
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        loading: !prevState.loading,
-        pagePosts: [],
-      };
-    });
+    this.setState((prevState, props) => ({
+      loading: !prevState.loading,
+      pagePosts: [],
+    }));
 
     // Get posts from the selected category
     // let category = document.querySelector('.list-group-item.active').getAttribute('data-name');
@@ -155,15 +145,12 @@ class Blog extends React.Component {
       this.resetPagination();
 
       // Deactivate loader
-      this.setState((prevState, props) => {
-        return {
-          ...prevState,
-          loading: !prevState.loading,
-          pagePosts: Utils.groupArrays(response.data, this.state.postsPerPage),
-          currentPage: 0,
-          firstPaginationItem: 1,
-        };
-      });
+      this.setState((prevState, props) => ({
+        loading: !prevState.loading,
+        pagePosts: Utils.groupArrays(response.data, this.state.postsPerPage),
+        currentPage: 0,
+        firstPaginationItem: 1,
+      }));
     });
   }
 
@@ -176,15 +163,12 @@ class Blog extends React.Component {
     this.resetPagination();
 
     // Set Page Posts
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        postsPerPage: +event.target.value,
-        pagePosts: Utils.groupArrays(this.props.posts, +event.target.value),
-        currentPage: 0,
-        firstPaginationItem: 1,
-      }
-    });
+    this.setState((prevState, props) => ({
+      postsPerPage: +event.target.value,
+      pagePosts: Utils.groupArrays(this.props.posts, +event.target.value),
+      currentPage: 0,
+      firstPaginationItem: 1,
+    }));
   }
 
 
@@ -207,12 +191,9 @@ class Blog extends React.Component {
         }
       }
 
-      this.setState((prevState, props) => {
-        return {
-          ...prevState,
-          firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1,
-        }
-      });
+      this.setState((prevState, props) => ({
+        firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1,
+      }));
     };
 
     // Update current page
@@ -228,15 +209,11 @@ class Blog extends React.Component {
       default:
         if (activePageItem) activePageItem.classList.remove('active');
         event.target.parentNode.classList.add('active');
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            currentPage: +event.target.innerText - 1,
-          }
-        });
+        this.setState((prevState, props) => ({
+          currentPage: +event.target.innerText - 1,
+        }));
     }
   }
-
 }
 
 

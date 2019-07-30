@@ -10,7 +10,6 @@ import Loader from '../../../shared/Components/Loader/Loader';
 import Form from './Form/Form';
 
 class Register extends React.Component {
-
   state = {
     loading: false,
     form: {
@@ -67,32 +66,26 @@ class Register extends React.Component {
   // HANDLE REGISTER
   handleRegister(values) {
     // Activate loader
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        loading: true,
-      };
-    });
+    this.setState((prevState, props) => ({
+      loading: true,
+    }));
 
     MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values)
       .then(response => {
         if (values.email === 'demo@demo.com') {
 
           // Error simulation
-          this.setState((prevState, props) => {
-            return {
-              ...prevState,
-              loading: false,
-              form: {
-                ...prevState.form,
-                fieldsErrors: {
-                  ...prevState.form.fieldsErrors,
-                  email: ['This e-mail already exists.'],
-                  password: ['Your password is too weak.'],
-                },
+          this.setState((prevState, props) => ({
+            loading: false,
+            form: {
+              ...prevState.form,
+              fieldsErrors: {
+                ...prevState.form.fieldsErrors,
+                email: ['This e-mail already exists.'],
+                password: ['Your password is too weak.'],
               },
-            };
-          });
+            },
+          }));
 
         } else {
 
@@ -115,12 +108,9 @@ class Register extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        this.setState((prevState, props) => ({
+          loading: false,
+        }));
       });
   }
 
@@ -129,7 +119,6 @@ class Register extends React.Component {
   handleClearFormMessage(object, property, index) {
     Utils.clearFormMessage(this, 'form', object, property, index);
   }
-
 }
 
 

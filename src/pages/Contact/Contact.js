@@ -10,7 +10,6 @@ import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import Form from './Form/Form';
 
 class Contact extends React.Component {
-
   state = {
     loading: true,
     form: {
@@ -58,30 +57,24 @@ class Contact extends React.Component {
   getFormData() {
     MOCKY_INSTANCE.get(ENDPOINTS.contactForm.favoriteColors)
       .then(response => {
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            form: {
-              ...prevState.form,
-              data: {
-                ...prevState.form.data,
-                favoriteColors: response.data,
-              },
+        this.setState((prevState, props) => ({
+          form: {
+            ...prevState.form,
+            data: {
+              ...prevState.form.data,
+              favoriteColors: response.data,
             },
-          };
-        });
+          },
+        }));
       })
       .catch(error => {
         console.error(error);
       })
       .then(() => {
         // Deactivate loader
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        this.setState((prevState, props) => ({
+          loading: false,
+        }));
       });
   }
 
@@ -90,18 +83,15 @@ class Contact extends React.Component {
   handleSubmitForm(values) {
     console.log('Form submitted:', values);
 
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        form: {
-          ...prevState.form,
-          feedbackMessages: {
-            ...prevState.form.feedbackMessages,
-            success: ['Message sent successfully.'],
-          },
+    this.setState((prevState, props) => ({
+      form: {
+        ...prevState.form,
+        feedbackMessages: {
+          ...prevState.form.feedbackMessages,
+          success: ['Message sent successfully.'],
         },
-      };
-    });
+      },
+    }));
   }
 
 
@@ -109,7 +99,6 @@ class Contact extends React.Component {
   handleClearFormMessage(object, property, index) {
     Utils.clearFormMessage(this, 'form', object, property, index);
   }
-
 }
 
 export default Contact;

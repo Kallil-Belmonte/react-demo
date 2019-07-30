@@ -9,7 +9,6 @@ import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import Form from './Form/Form';
 
 class Account extends React.Component {
-
   state = {
     form: {
       feedbackMessages: {
@@ -49,51 +48,42 @@ class Account extends React.Component {
   handleSubmitForm(values) {
     if (values.email === 'john.doe@email.com') {
       // Set field error messages
-      this.setState((prevState, props) => {
-        return {
-          ...prevState,
-          form: {
-            ...prevState.form,
-            fieldsErrors: {
-              ...prevState.form.fieldsErrors,
-              email: ['This e-mail already exists.'],
-            },
+      this.setState((prevState, props) => ({
+        form: {
+          ...prevState.form,
+          fieldsErrors: {
+            ...prevState.form.fieldsErrors,
+            email: ['This e-mail already exists.'],
           },
-        }
-      });
+        },
+      }));
     }
     else if (values.email === 'demo@demo.com') {
       // Set error messages
-      this.setState((prevState, props) => {
-        return {
-          ...prevState,
-          form: {
-            ...prevState.form,
-            feedbackMessages: {
-              ...prevState.form.feedbackMessages,
-              error: ['An error occurred, please try again later.'],
-            },
+      this.setState((prevState, props) => ({
+        form: {
+          ...prevState.form,
+          feedbackMessages: {
+            ...prevState.form.feedbackMessages,
+            error: ['An error occurred, please try again later.'],
           },
-        }
-      });
+        },
+      }));
     }
     else {
       // Handle edit account
       this.props.handleEditAccount(values);
 
       // Set success message
-      this.setState((prevState, props) => {
-        return {
-          ...prevState,
-          form: {
-            ...prevState.form,
-            feedbackMessages: {
-              ...prevState.form.feedbackMessages,
-              success: ['Account saved successfully.'],
-            },
+      this.setState((prevState, props) => ({
+        form: {
+          ...prevState.form,
+          feedbackMessages: {
+            ...prevState.form.feedbackMessages,
+            success: ['Account saved successfully.'],
           },
-        }
-      });
+        },
+      }));
     }
   }
 
@@ -102,7 +92,6 @@ class Account extends React.Component {
   handleClearFormMessage(object, property, index) {
     Utils.clearFormMessage(this, 'form', object, property, index);
   }
-
 }
 
 

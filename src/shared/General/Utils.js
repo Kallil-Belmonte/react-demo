@@ -67,18 +67,15 @@ export class Utils {
 
   // CLEAR FORM MESSAGE
   static clearFormMessage($this, formName, objectName, propertyName, index) {
-    $this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        [formName]: {
-          ...prevState[formName],
-          [objectName]: {
-            ...prevState[formName][objectName],
-            [propertyName]: this.removeItemsFromIndexes(prevState[formName][objectName][propertyName], [index])
-          }
+    $this.setState((prevState, props) => ({
+      [formName]: {
+        ...prevState[formName],
+        [objectName]: {
+          ...prevState[formName][objectName],
+          [propertyName]: this.removeItemsFromIndexes(prevState[formName][objectName][propertyName], [index])
         }
       }
-    });
+    }));
   }
 
 }

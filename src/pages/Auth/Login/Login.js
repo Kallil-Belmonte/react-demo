@@ -10,7 +10,6 @@ import Loader from '../../../shared/Components/Loader/Loader';
 import Form from './Form/Form';
 
 class Login extends React.Component {
-
   state = {
     loading: false,
     form: {
@@ -67,32 +66,26 @@ class Login extends React.Component {
   // HANDLE LOGIN
   handleLogin(values) {
     // Activate loader
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        loading: true,
-      };
-    });
+    this.setState((prevState, props) => ({
+      loading: true,
+    }));
 
     MOCKY_INSTANCE.post(ENDPOINTS.auth.login, values)
       .then(response => {
         if (values.email === 'demo@demo.com') {
 
           // Error simulation
-          this.setState((prevState, props) => {
-            return {
-              ...prevState,
-              loading: false,
-              form: {
-                ...prevState.form,
-                fieldsErrors: {
-                  ...prevState.form.fieldsErrors,
-                  email: ['This e-mail does not exists.'],
-                  password: ['The password is incorrect.'],
-                }
-              },
-            };
-          });
+          this.setState((prevState, props) => ({
+            loading: false,
+            form: {
+              ...prevState.form,
+              fieldsErrors: {
+                ...prevState.form.fieldsErrors,
+                email: ['This e-mail does not exists.'],
+                password: ['The password is incorrect.'],
+              }
+            },
+          }));
 
         } else {
 
@@ -120,12 +113,9 @@ class Login extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        this.setState((prevState, props) => ({
+          loading: false,
+        }));
       });
   }
 
@@ -134,7 +124,6 @@ class Login extends React.Component {
   handleClearFormMessage(object, property, index) {
     Utils.clearFormMessage(this, 'form', object, property, index);
   }
-
 }
 
 

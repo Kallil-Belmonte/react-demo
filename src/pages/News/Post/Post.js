@@ -11,7 +11,6 @@ import PostBody from './PostBody/PostBody';
 import DeletePostModal from './DeletePostModal/DeletePostModal';
 
 class Post extends React.Component {
-
   state = {
     loading: true,
     isModalOpen: false,
@@ -61,36 +60,27 @@ class Post extends React.Component {
       })
       .then(() => {
         // Deactivate loader
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        this.setState((prevState, props) => ({
+          loading: false,
+        }));
       });
   }
 
 
   // HANDLE TOGGLE MODAL
   handleToggleModal() {
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        isModalOpen: !this.state.isModalOpen,
-      };
-    });
+    this.setState((prevState, props) => ({
+      isModalOpen: !prevState.isModalOpen,
+    }));
   }
 
 
   // HANDLE DELETE POST
   handleDeletePost() {
     // Deactivate loader
-    this.setState((prevState, props) => {
-      return {
-        ...prevState,
-        loading: true,
-      };
-    });
+    this.setState((prevState, props) => ({
+      loading: true,
+    }));
 
     axios.delete(ENDPOINTS.blog.posts + this.props.match.params.id)
       .then(response => {
@@ -101,15 +91,11 @@ class Post extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => {
-          return {
-            ...prevState,
-            loading: false,
-          };
-        });
+        this.setState((prevState, props) => ({
+          loading: false,
+        }));
       });
   }
-
 }
 
 
