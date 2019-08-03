@@ -22,9 +22,9 @@ export class Utils {
 
   // CAPITALIZE TEXT
   static capitalizeText(text) {
-    return text.toLowerCase().replace(/\b./g, function(value) {
-      return value.toUpperCase();
-    });
+    return text.toLowerCase().split(' ').map((word, index) => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    }).join(' ');
   };
 
 
@@ -34,11 +34,11 @@ export class Utils {
   }
 
 
-  // GROUP ARRAYS
-  static groupArrays(array, itemsQuantity) {
+  // GROUP ARRAY ITEMS
+  static groupArrayItems(array, itemsQuantity) {
     const newArray = [[]];
 
-    for (let item of array) {
+    array.forEach((item, index) => {
       const lastIndex = newArray.length - 1;
 
       if (newArray[lastIndex].length < itemsQuantity) {
@@ -47,7 +47,7 @@ export class Utils {
         newArray.push([]);
         newArray[newArray.length - 1].push(item);
       }
-    }
+    });
 
     return newArray;
   }

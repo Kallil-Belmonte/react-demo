@@ -75,15 +75,15 @@ class Blog extends React.Component {
   }
 
 
-  // GET POSTS
-  getPosts() {
-    return axios.get(ENDPOINTS.blog.posts).then(response => response.data);
-  }
-
-
   // GET CATEGORIES
   getCategories() {
     return MOCKY_INSTANCE.get(ENDPOINTS.blog.categories).then(response => response.data);
+  }
+
+
+  // GET POSTS
+  getPosts() {
+    return axios.get(ENDPOINTS.blog.posts).then(response => response.data);
   }
 
 
@@ -100,7 +100,7 @@ class Blog extends React.Component {
 
       // Set Page Posts
       this.setState((prevState, props) => ({
-        pagePosts: Utils.groupArrays(posts, this.state.postsPerPage),
+        pagePosts: Utils.groupArrayItems(posts, this.state.postsPerPage),
       }));
     })
     .catch((error) => {
@@ -131,27 +131,36 @@ class Blog extends React.Component {
 
     // Reset posts page
     this.setState((prevState, props) => ({
-      loading: !prevState.loading,
+      loading: true,
       pagePosts: [],
     }));
 
     // Get posts from the selected category
     // let category = document.querySelector('.list-group-item.active').getAttribute('data-name');
-    axios.get(ENDPOINTS.blog.posts).then(response => {
-      // Handle set posts
-      this.props.handleSetPosts(response.data);
+    axios.get(ENDPOINTS.blog.posts)
+      .then(response => {
+        // Handle set posts
+        this.props.handleSetPosts(response.data);
 
-      // Reset pagination
-      this.resetPagination();
+        // Reset pagination
+        this.resetPagination();
 
-      // Set page settings
-      this.setState((prevState, props) => ({
-        loading: !prevState.loading,
-        pagePosts: Utils.groupArrays(response.data, this.state.postsPerPage),
-        currentPage: 0,
-        firstPaginationItem: 1,
-      }));
-    });
+        // Set page settings
+        this.setState((prevState, props) => ({
+          loading: false,
+          pagePosts: Utils.groupArrayItems(response.data, this.state.postsPerPage),
+          currentPage: 0,
+          firstPaginationItem: 1,
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+
+        // Deactivate loader
+        this.setState((prevState, props) => ({
+          loading: false,
+        }));
+      });
   }
 
 
@@ -162,10 +171,10 @@ class Blog extends React.Component {
     // Reset pagination
     this.resetPagination();
 
-    // Set Page Posts
+    // Set page settings
     this.setState((prevState, props) => ({
       postsPerPage: +event.target.value,
-      pagePosts: Utils.groupArrays(this.props.posts, +event.target.value),
+      pagePosts: Utils.groupArrayItems(this.props.posts, +event.target.value),
       currentPage: 0,
       firstPaginationItem: 1,
     }));
