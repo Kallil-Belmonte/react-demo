@@ -44,7 +44,7 @@ class Blog extends React.Component {
                 <Pagination
                   firstItem={this.state.firstPaginationItem}
                   totalItems={this.state.pagePosts.length}
-                  paginate={(event) => this.handlePagination(event)} />
+                  paginate={(event) => this.handlePaginate(event)} />
               </div>
               <div className="col-md-3">
                 <Categories data={this.props.categories} click={(event) => this.handleSelectCategory(event)} />
@@ -144,7 +144,7 @@ class Blog extends React.Component {
       // Reset pagination
       this.resetPagination();
 
-      // Deactivate loader
+      // Set page settings
       this.setState((prevState, props) => ({
         loading: !prevState.loading,
         pagePosts: Utils.groupArrays(response.data, this.state.postsPerPage),
@@ -172,15 +172,15 @@ class Blog extends React.Component {
   }
 
 
-  // HANDLE PAGINATION
-  handlePagination(event) {
+  // HANDLE PAGINATE
+  handlePaginate(event) {
     event.persist();
 
     // Select active page item
     const activePageItem = document.querySelector('.page-item.active');
 
     // Navigate back and forth
-    let navigateBackAndForth = (back) => {
+    const navigateBackAndForth = (back) => {
       if (activePageItem) activePageItem.classList.remove('active');
 
       for (let item of document.querySelectorAll('.page-item .page-link')) {
