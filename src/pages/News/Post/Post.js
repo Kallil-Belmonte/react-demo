@@ -83,7 +83,7 @@ class Post extends React.Component {
     }));
 
     axios.delete(ENDPOINTS.blog.posts + this.props.match.params.id)
-      .then(response => {
+      .then(() => {
         // Redirect
         this.props.history.push('/blog');
       })

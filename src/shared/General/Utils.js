@@ -1,16 +1,8 @@
-import * as moment from 'moment';
-
 export class Utils {
 
   // SET PAGE TITLE
   static setPageTitle(title) {
     document.title = `React Demo | ${title}`;
-  }
-
-
-  // FORMAT DATE
-  static formatDate(date, originalFormat = 'YYYY-MM-DD', newFormat = 'DD/MM/YYYY') {
-    return moment(date, originalFormat).format(newFormat);
   }
 
 

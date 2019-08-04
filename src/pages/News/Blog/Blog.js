@@ -136,7 +136,7 @@ class Blog extends React.Component {
     }));
 
     // Get posts from the selected category
-    // let category = document.querySelector('.list-group-item.active').getAttribute('data-name');
+    // const category = document.querySelector('.list-group-item.active').getAttribute('data-name');
     axios.get(ENDPOINTS.blog.posts)
       .then(response => {
         // Handle set posts
