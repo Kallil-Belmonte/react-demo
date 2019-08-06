@@ -37,18 +37,14 @@ class Home extends React.Component {
   getFeaturedPosts() {
     axios.get(ENDPOINTS.blog.posts)
       .then(response => {
-        this.setState((prevState, props) => ({
-          posts: response.data,
-        }));
+        this.setState({ posts: response.data });
       })
       .catch(error => {
         console.error(error);
       })
       .then(() => {
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 }

@@ -60,9 +60,7 @@ class Post extends React.Component {
       })
       .then(() => {
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 
@@ -70,7 +68,7 @@ class Post extends React.Component {
   // HANDLE TOGGLE MODAL
   handleToggleModal() {
     this.setState((prevState, props) => ({
-      isModalOpen: !prevState.isModalOpen,
+      isModalOpen: !prevState.isModalOpen
     }));
   }
 
@@ -78,9 +76,7 @@ class Post extends React.Component {
   // HANDLE DELETE POST
   handleDeletePost() {
     // Deactivate loader
-    this.setState((prevState, props) => ({
-      loading: true,
-    }));
+    this.setState({ loading: true });
 
     axios.delete(ENDPOINTS.blog.posts + this.props.match.params.id)
       .then(() => {
@@ -91,9 +87,7 @@ class Post extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 }

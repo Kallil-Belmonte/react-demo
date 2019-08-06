@@ -99,18 +99,16 @@ class Blog extends React.Component {
       this.props.handleSetCategories(categories);
 
       // Set Page Posts
-      this.setState((prevState, props) => ({
+      this.setState({
         pagePosts: Utils.groupArrayItems(posts, this.state.postsPerPage),
-      }));
+      });
     })
     .catch((error) => {
       console.error(error);
     })
     .then(() => {
       // Deactivate loader
-      this.setState((prevState, props) => ({
-        loading: false,
-      }));
+      this.setState({ loading: false });
     });
   }
 
@@ -130,10 +128,10 @@ class Blog extends React.Component {
     }
 
     // Reset posts page
-    this.setState((prevState, props) => ({
+    this.setState({
       loading: true,
       pagePosts: [],
-    }));
+    });
 
     // Get posts from the selected category
     // const category = document.querySelector('.list-group-item.active').getAttribute('data-name');
@@ -146,20 +144,18 @@ class Blog extends React.Component {
         this.resetPagination();
 
         // Set page settings
-        this.setState((prevState, props) => ({
+        this.setState({
           loading: false,
           pagePosts: Utils.groupArrayItems(response.data, this.state.postsPerPage),
           currentPage: 0,
           firstPaginationItem: 1,
-        }));
+        });
       })
       .catch((error) => {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 
@@ -172,12 +168,12 @@ class Blog extends React.Component {
     this.resetPagination();
 
     // Set page settings
-    this.setState((prevState, props) => ({
+    this.setState({
       postsPerPage: +event.target.value,
       pagePosts: Utils.groupArrayItems(this.props.posts, +event.target.value),
       currentPage: 0,
       firstPaginationItem: 1,
-    }));
+    });
   }
 
 
@@ -218,9 +214,7 @@ class Blog extends React.Component {
       default:
         if (activePageItem) activePageItem.classList.remove('active');
         event.target.parentNode.classList.add('active');
-        this.setState((prevState, props) => ({
-          currentPage: +event.target.innerText - 1,
-        }));
+        this.setState({ currentPage: +event.target.innerText - 1 });
     }
   }
 }

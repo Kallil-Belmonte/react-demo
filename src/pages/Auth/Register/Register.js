@@ -66,9 +66,7 @@ class Register extends React.Component {
   // HANDLE REGISTER
   handleRegister(values) {
     // Activate loader
-    this.setState((prevState, props) => ({
-      loading: true,
-    }));
+    this.setState({ loading: true });
 
     MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values)
       .then(response => {
@@ -108,9 +106,7 @@ class Register extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 

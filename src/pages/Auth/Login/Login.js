@@ -66,9 +66,7 @@ class Login extends React.Component {
   // HANDLE LOGIN
   handleLogin(values) {
     // Activate loader
-    this.setState((prevState, props) => ({
-      loading: true,
-    }));
+    this.setState({ loading: true });
 
     MOCKY_INSTANCE.post(ENDPOINTS.auth.login, values)
       .then(response => {
@@ -113,9 +111,7 @@ class Login extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 

@@ -72,9 +72,7 @@ class Contact extends React.Component {
       })
       .then(() => {
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 

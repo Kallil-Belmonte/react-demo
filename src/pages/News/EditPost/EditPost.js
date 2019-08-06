@@ -40,9 +40,7 @@ class EditPost extends React.Component {
   // HANDLE SUBMIT FORM
   handleSubmitForm(values) {
     // Activate loader
-    this.setState((prevState, props) => ({
-      loading: true,
-    }));
+    this.setState({ loading: true });
 
     axios.put(ENDPOINTS.blog.posts + this.props.match.params.id, values)
       .then(response => {
@@ -56,9 +54,7 @@ class EditPost extends React.Component {
         console.error(error);
 
         // Deactivate loader
-        this.setState((prevState, props) => ({
-          loading: false,
-        }));
+        this.setState({ loading: false });
       });
   }
 }
