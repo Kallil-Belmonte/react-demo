@@ -14,24 +14,6 @@ class EditPost extends React.Component {
     loading: false,
   }
 
-  render() {
-    return (
-      <Layout>
-        <main data-component="EditPost">
-          <Loader loading={this.state.loading} />
-
-          <div className="container">
-            <div className="row">
-              <div className="offset-md-2 col-md-8">
-                <Form onSubmit={(values) => this.handleSubmitForm(values)} />
-              </div>
-            </div>
-          </div>
-        </main>
-      </Layout>
-    );
-  }
-
 
   //==============================
   // GENERAL METHODS
@@ -56,6 +38,29 @@ class EditPost extends React.Component {
         // Deactivate loader
         this.setState({ loading: false });
       });
+  }
+
+
+  //==============================
+  // VIEW
+  //==============================
+
+  render() {
+    return (
+      <Layout>
+        <main data-component="EditPost">
+          <Loader loading={this.state.loading} />
+
+          <div className="container">
+            <div className="row">
+              <div className="offset-md-2 col-md-8">
+                <Form onSubmit={(values) => this.handleSubmitForm(values)} />
+              </div>
+            </div>
+          </div>
+        </main>
+      </Layout>
+    );
   }
 }
 

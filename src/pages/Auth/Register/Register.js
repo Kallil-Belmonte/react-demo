@@ -26,27 +26,6 @@ class Register extends React.Component {
     this.redirectLoggedUser();
   }
 
-  render() {
-    return (
-      <main data-component="Register">
-        <Loader loading={this.state.loading} />
-
-        <div className="container">
-          <img src="/assets/img/logo.svg" className="logo d-block mx-auto" alt="logo" />
-
-          <div className="row">
-            <div className="offset-md-3 col-md-6">
-              <Form
-                onSubmit={(values) => this.handleRegister(values)}
-                fieldsErrors={this.state.form.fieldsErrors}
-                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)} />
-            </div>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
 
   //==============================
   // GENERAL METHODS
@@ -114,6 +93,33 @@ class Register extends React.Component {
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
     Utils.clearFormMessage(this, 'form', object, property, index);
+  }
+
+
+  //==============================
+  // VIEW
+  //==============================
+
+  render() {
+    return (
+      <main data-component="Register">
+        <Loader loading={this.state.loading} />
+
+        <div className="container">
+          <img src="/assets/img/logo.svg" className="logo d-block mx-auto" alt="logo" />
+
+          <div className="row">
+            <div className="offset-md-3 col-md-6">
+              <Form
+                onSubmit={(values) => this.handleRegister(values)}
+                fieldsErrors={this.state.form.fieldsErrors}
+                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
+              />
+            </div>
+          </div>
+        </div>
+      </main>
+    );
   }
 }
 

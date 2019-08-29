@@ -20,29 +20,6 @@ class Post extends React.Component {
     this.getCurrentPost();
   }
 
-  render() {
-    return (
-      <Layout>
-        <main data-component="Post">
-          <Loader loading={this.state.loading} />
-
-          <div className="container">
-            <div className="row">
-              <div className="offset-md-2 col-md-8">
-                <PostBody data={this.props.currentPost} toggleModal={() => this.handleToggleModal()} />
-              </div>
-            </div>
-          </div>
-
-          <DeletePostModal
-            isModalOpen={this.state.isModalOpen}
-            toggleModal={() => this.handleToggleModal()}
-            delete={() => this.handleDeletePost()} />
-        </main>
-      </Layout>
-    );
-  }
-
 
   //==============================
   // GENERAL METHODS
@@ -89,6 +66,35 @@ class Post extends React.Component {
         // Deactivate loader
         this.setState({ loading: false });
       });
+  }
+
+
+  //==============================
+  // VIEW
+  //==============================
+
+  render() {
+    return (
+      <Layout>
+        <main data-component="Post">
+          <Loader loading={this.state.loading} />
+
+          <div className="container">
+            <div className="row">
+              <div className="offset-md-2 col-md-8">
+                <PostBody data={this.props.currentPost} toggleModal={() => this.handleToggleModal()} />
+              </div>
+            </div>
+          </div>
+
+          <DeletePostModal
+            isModalOpen={this.state.isModalOpen}
+            toggleModal={() => this.handleToggleModal()}
+            delete={() => this.handleDeletePost()}
+          />
+        </main>
+      </Layout>
+    );
   }
 }
 

@@ -16,18 +16,6 @@ class Home extends React.Component {
     this.getFeaturedPosts();
   }
 
-  render() {
-    return (
-      <Layout>
-        <main data-component="Home">
-          <Loader loading={this.state.loading} />
-
-          <FeaturedPosts data={this.state.posts} />
-        </main>
-      </Layout>
-    );
-  }
-
 
   //==============================
   // GENERAL METHODS
@@ -46,6 +34,23 @@ class Home extends React.Component {
         // Deactivate loader
         this.setState({ loading: false });
       });
+  }
+
+
+  //==============================
+  // VIEW
+  //==============================
+
+  render() {
+    return (
+      <Layout>
+        <main data-component="Home">
+          <Loader loading={this.state.loading} />
+
+          <FeaturedPosts data={this.state.posts} />
+        </main>
+      </Layout>
+    );
   }
 }
 

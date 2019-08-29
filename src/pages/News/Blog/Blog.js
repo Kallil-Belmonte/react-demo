@@ -26,36 +26,6 @@ class Blog extends React.Component {
     this.getAllData();
   }
 
-  render() {
-    return (
-      <Layout>
-        <main data-component="Blog">
-          <Loader loading={this.state.loading} />
-
-          <div className="container">
-            <PageHeader title="Blog" icon="newspaper" />
-
-            <PostsFilter change={(event) => this.handleFilterPosts(event)} />
-
-            <div className="row">
-              <div className="col-md-9">
-                <Posts data={this.state.pagePosts} currentPage={this.state.currentPage} />
-
-                <Pagination
-                  firstItem={this.state.firstPaginationItem}
-                  totalItems={this.state.pagePosts.length}
-                  paginate={(event) => this.handlePaginate(event)} />
-              </div>
-              <div className="col-md-3">
-                <Categories data={this.props.categories} click={(event) => this.handleSelectCategory(event)} />
-              </div>
-            </div>
-          </div>
-        </main>
-      </Layout>
-    );
-  }
-
 
   //==============================
   // GENERAL METHODS
@@ -216,6 +186,42 @@ class Blog extends React.Component {
         event.target.parentNode.classList.add('active');
         this.setState({ currentPage: +event.target.innerText - 1 });
     }
+  }
+
+
+  //==============================
+  // VIEW
+  //==============================
+
+  render() {
+    return (
+      <Layout>
+        <main data-component="Blog">
+          <Loader loading={this.state.loading} />
+
+          <div className="container">
+            <PageHeader title="Blog" icon="newspaper" />
+
+            <PostsFilter change={(event) => this.handleFilterPosts(event)} />
+
+            <div className="row">
+              <div className="col-md-9">
+                <Posts data={this.state.pagePosts} currentPage={this.state.currentPage} />
+
+                <Pagination
+                  firstItem={this.state.firstPaginationItem}
+                  totalItems={this.state.pagePosts.length}
+                  paginate={(event) => this.handlePaginate(event)}
+                />
+              </div>
+              <div className="col-md-3">
+                <Categories data={this.props.categories} click={(event) => this.handleSelectCategory(event)} />
+              </div>
+            </div>
+          </div>
+        </main>
+      </Layout>
+    );
   }
 }
 

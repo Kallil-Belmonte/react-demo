@@ -28,26 +28,6 @@ class Contact extends React.Component {
     ThemeFunctions.jQueryMaskPlugin();
   }
 
-  render() {
-    return (
-      <Layout>
-        <main data-component="Contact">
-          <Loader loading={this.state.loading} />
-
-          <div className="container">
-            <PageHeader title="Contact" icon="envelope" />
-
-            <Form
-              data={this.state.form.data}
-              onSubmit={(values) => this.handleSubmitForm(values)}
-              feedbackMessages={this.state.form.feedbackMessages}
-              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)} />
-          </div>
-        </main>
-      </Layout>
-    );
-  }
-
 
   //==============================
   // GENERAL METHODS
@@ -96,6 +76,32 @@ class Contact extends React.Component {
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
     Utils.clearFormMessage(this, 'form', object, property, index);
+  }
+
+
+  //==============================
+  // VIEW
+  //==============================
+
+  render() {
+    return (
+      <Layout>
+        <main data-component="Contact">
+          <Loader loading={this.state.loading} />
+
+          <div className="container">
+            <PageHeader title="Contact" icon="envelope" />
+
+            <Form
+              data={this.state.form.data}
+              onSubmit={(values) => this.handleSubmitForm(values)}
+              feedbackMessages={this.state.form.feedbackMessages}
+              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
+            />
+          </div>
+        </main>
+      </Layout>
+    );
   }
 }
 

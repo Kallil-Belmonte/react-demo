@@ -21,24 +21,6 @@ class Account extends React.Component {
     },
   }
 
-  render() {
-    return (
-      <Layout>
-        <main data-component="Account">
-          <div className="container">
-            <PageHeader title="Account" icon="user" />
-
-            <Form
-              onSubmit={(values) => this.handleSubmitForm(values)}
-              fieldsErrors={this.state.form.fieldsErrors}
-              feedbackMessages={this.state.form.feedbackMessages}
-              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)} />
-          </div>
-        </main>
-      </Layout>
-    );
-  }
-
 
   //==============================
   // GENERAL METHODS
@@ -91,6 +73,30 @@ class Account extends React.Component {
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
     Utils.clearFormMessage(this, 'form', object, property, index);
+  }
+
+
+  //==============================
+  // VIEW
+  //==============================
+
+  render() {
+    return (
+      <Layout>
+        <main data-component="Account">
+          <div className="container">
+            <PageHeader title="Account" icon="user" />
+
+            <Form
+              onSubmit={(values) => this.handleSubmitForm(values)}
+              fieldsErrors={this.state.form.fieldsErrors}
+              feedbackMessages={this.state.form.feedbackMessages}
+              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
+            />
+          </div>
+        </main>
+      </Layout>
+    );
   }
 }
 
