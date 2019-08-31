@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-// import './DeletePostModal.scss';
-
 const DeletePostModal = (props) => {
   return (
     <Modal isOpen={props.isModalOpen} toggle={props.toggleModal} className="delete-confirmation-modal">

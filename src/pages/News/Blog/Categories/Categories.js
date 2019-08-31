@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import './Categories.scss';
-
 const Categories = (props) => {
   return (
     <aside data-component="categories">

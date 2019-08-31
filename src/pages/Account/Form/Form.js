@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form';
 
-// import './AccountForm.scss';
 import Validations from '../../../core/Forms/Validations';
 import { renderInput } from '../../../core/Forms/Fields';
 import AlertDismissible from '../../../shared/Components/AlertDismissible/AlertDismissible';

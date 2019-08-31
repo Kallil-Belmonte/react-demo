@@ -4,7 +4,7 @@ import './Contact.scss';
 import ThemeFunctions from '../../shared/General/ThemeFunctions';
 import { MOCKY_INSTANCE, ENDPOINTS } from '../../core/API/API';
 import Utils from '../../shared/General/Utils';
-import Layout from '../../layout/Layout';
+import Dashboard from '../../layout/Dashboard';
 import Loader from '../../shared/Components/Loader/Loader';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import Form from './Form/Form';
@@ -85,7 +85,7 @@ class Contact extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Dashboard>
         <main data-component="Contact">
           <Loader loading={this.state.loading} />
 
@@ -100,7 +100,7 @@ class Contact extends React.Component {
             />
           </div>
         </main>
-      </Layout>
+      </Dashboard>
     );
   }
 }

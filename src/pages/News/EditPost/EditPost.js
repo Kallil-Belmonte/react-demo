@@ -2,10 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import './EditPost.scss';
 import axios, { ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
-import Layout from '../../../layout/Layout';
+import Dashboard from '../../../layout/Dashboard';
 import Loader from '../../../shared/Components/Loader/Loader';
 import Form from './Form/Form';
 
@@ -47,7 +46,7 @@ class EditPost extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Dashboard>
         <main data-component="EditPost">
           <Loader loading={this.state.loading} />
 
@@ -59,7 +58,7 @@ class EditPost extends React.Component {
             </div>
           </div>
         </main>
-      </Layout>
+      </Dashboard>
     );
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import './Posts.scss';
 import PostItem from '../../../../shared/Components/PostItem/PostItem';
 
 const Posts = (props) => {

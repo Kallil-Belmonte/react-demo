@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './Account.scss';
 import * as actionCreators from '../../core/Redux/Actions/ActionCreators';
 import Utils from '../../shared/General/Utils';
-import Layout from '../../layout/Layout';
+import Dashboard from '../../layout/Dashboard';
 import PageHeader from '../../shared/Components/PageHeader/PageHeader';
 import Form from './Form/Form';
 
@@ -82,7 +82,7 @@ class Account extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Dashboard>
         <main data-component="Account">
           <div className="container">
             <PageHeader title="Account" icon="user" />
@@ -95,7 +95,7 @@ class Account extends React.Component {
             />
           </div>
         </main>
-      </Layout>
+      </Dashboard>
     );
   }
 }

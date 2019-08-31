@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Field, reduxForm } from 'redux-form';
 
-// import './ContactForm.scss';
 import Validations from '../../../core/Forms/Validations';
 import { renderInput, renderSelect, renderCheckbox, renderRadioButton } from '../../../core/Forms/Fields';
 import AlertDismissible from '../../../shared/Components/AlertDismissible/AlertDismissible';

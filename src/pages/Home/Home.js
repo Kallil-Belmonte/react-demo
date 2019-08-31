@@ -1,8 +1,7 @@
 import React from 'react';
 
-// import './Home.scss';
 import axios, { ENDPOINTS } from '../../core/API/API';
-import Layout from '../../layout/Layout';
+import Dashboard from '../../layout/Dashboard';
 import Loader from '../../shared/Components/Loader/Loader';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
@@ -43,13 +42,13 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Dashboard>
         <main data-component="Home">
           <Loader loading={this.state.loading} />
 
           <FeaturedPosts data={this.state.posts} />
         </main>
-      </Layout>
+      </Dashboard>
     );
   }
 }

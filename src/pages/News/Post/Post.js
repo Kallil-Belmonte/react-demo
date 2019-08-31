@@ -2,10 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import './Post.scss';
 import axios, { ENDPOINTS } from '../../../core/API/API';
 import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
-import Layout from '../../../layout/Layout';
+import Dashboard from '../../../layout/Dashboard';
 import Loader from '../../../shared/Components/Loader/Loader';
 import PostBody from './PostBody/PostBody';
 import DeletePostModal from './DeletePostModal/DeletePostModal';
@@ -75,7 +74,7 @@ class Post extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Dashboard>
         <main data-component="Post">
           <Loader loading={this.state.loading} />
 
@@ -93,7 +92,7 @@ class Post extends React.Component {
             delete={() => this.handleDeletePost()}
           />
         </main>
-      </Layout>
+      </Dashboard>
     );
   }
 }

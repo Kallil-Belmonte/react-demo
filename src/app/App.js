@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 
 import { PersistGate } from 'redux-persist/integration/react';
 
-// import './App.scss';
 import { store, persistor } from '../core/Redux/Store';
 import Routes from '../core/Router/Routes';
 import '../core/Icons/Icons';

@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import './Pagination.scss';
-
 const Pagination = (props) => {
   const firstItem  = props.firstItem;
   const secondItem = props.firstItem + 1;
