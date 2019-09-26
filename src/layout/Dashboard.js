@@ -14,10 +14,12 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    const { fullName, children } = this.props;
+
     return (
       <React.Fragment>
-        <Header userFullName={this.props.fullName} logOut={() => this.logOutUser()} />
-          {this.props.children}
+        <Header userFullName={fullName} onLogOut={() => this.logOutUser()} />
+          {children}
         <Footer />
       </React.Fragment>
     );

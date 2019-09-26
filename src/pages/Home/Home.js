@@ -41,12 +41,14 @@ class Home extends React.Component {
   //==============================
 
   render() {
+    const { loading, posts } = this.state;
+
     return (
       <Dashboard>
         <main data-component="Home">
-          <Loader loading={this.state.loading} />
+          <Loader loading={loading} />
 
-          <FeaturedPosts data={this.state.posts} />
+          <FeaturedPosts data={posts} />
         </main>
       </Dashboard>
     );

@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Pagination = (props) => {
-  const firstItem  = props.firstItem;
-  const secondItem = props.firstItem + 1;
-  const thirdItem  = props.firstItem + 2;
-  const fourthItem = props.firstItem + 3;
-  const fifthItem  = props.firstItem + 4;
+const Pagination = ({ firstPage, totalPages, onPaginate }) => {
+  const firstItem  = firstPage;
+  const secondItem = firstPage + 1;
+  const thirdItem  = firstPage + 2;
+  const fourthItem = firstPage + 3;
+  const fifthItem  = firstPage + 4;
 
   return (
-    <nav data-component="pagination" className="d-inline-block" aria-label="Pagination" onClick={props.paginate}>
+    <nav data-component="pagination" className="d-inline-block" aria-label="Pagination" onClick={(event) => onPaginate(event)}>
       <ul className="pagination mb-0">
         {firstItem > 1 ?
           <li className="page-item">
@@ -20,25 +20,25 @@ const Pagination = (props) => {
           <button className="page-link" type="button">{firstItem}</button>
         </li>
 
-        {secondItem <= props.totalItems ?
+        {secondItem <= totalPages ?
           <li className="page-item">
             <button className="page-link" type="button">{secondItem}</button> {/* <span className="sr-only">(atual)</span> */}
           </li>
         : null}
 
-        {thirdItem <= props.totalItems ?
+        {thirdItem <= totalPages ?
           <li className="page-item">
             <button className="page-link" type="button">{thirdItem}</button>
           </li>
         : null}
 
-        {fourthItem <= props.totalItems ?
+        {fourthItem <= totalPages ?
           <li className="page-item">
             <button className="page-link" type="button">{fourthItem}</button>
           </li>
         : null}
 
-        {fifthItem <= props.totalItems ?
+        {fifthItem <= totalPages ?
           <React.Fragment>
             <li className="page-item">
               <button className="page-link" type="button">{fifthItem}</button>

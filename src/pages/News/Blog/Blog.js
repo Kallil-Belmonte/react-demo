@@ -194,28 +194,31 @@ class Blog extends React.Component {
   //==============================
 
   render() {
+    const { categories } = this.props;
+    const { loading, pagePosts, currentPage, firstPaginationItem } = this.state;
+
     return (
       <Dashboard>
         <main data-component="Blog">
-          <Loader loading={this.state.loading} />
+          <Loader loading={loading} />
 
           <div className="container">
             <PageHeader title="Blog" icon="newspaper" />
 
-            <PostsFilter change={(event) => this.handleFilterPosts(event)} />
+            <PostsFilter onChange={(event) => this.handleFilterPosts(event)} />
 
             <div className="row">
               <div className="col-md-9">
-                <Posts data={this.state.pagePosts} currentPage={this.state.currentPage} />
+                <Posts data={pagePosts} currentPage={currentPage} />
 
                 <Pagination
-                  firstItem={this.state.firstPaginationItem}
-                  totalItems={this.state.pagePosts.length}
-                  paginate={(event) => this.handlePaginate(event)}
+                  firstPage={firstPaginationItem}
+                  totalPages={pagePosts.length}
+                  onPaginate={(event) => this.handlePaginate(event)}
                 />
               </div>
               <div className="col-md-3">
-                <Categories data={this.props.categories} click={(event) => this.handleSelectCategory(event)} />
+                <Categories data={categories} onClick={(event) => this.handleSelectCategory(event)} />
               </div>
             </div>
           </div>

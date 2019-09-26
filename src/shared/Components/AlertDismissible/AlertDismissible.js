@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Alert } from 'reactstrap';
 
-const AlertDismissible  = (props) => {
+const AlertDismissible  = ({ color, onDismiss, children }) => {
   return (
-    <Alert color={props.color} isOpen={true} toggle={() => props.dismiss()}>
-      {props.children}
+    <Alert color={color} isOpen={true} toggle={() => onDismiss()}>
+      {children}
     </Alert>
   );
 }

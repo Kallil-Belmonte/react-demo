@@ -7,26 +7,27 @@ import Validations from '../../../core/Forms/Validations';
 import { renderInput } from '../../../core/Forms/Fields';
 import AlertDismissible from '../../../shared/Components/AlertDismissible/AlertDismissible';
 
-let Form = (props) => {
-  const {
-    handleSubmit,
-    valid,
-    pristine,
-    reset,
-    submitting,
-  } = props;
-
+let Form = ({
+  fieldsErrors,
+  feedbackMessages,
+  onClearFormMessage,
+  handleSubmit,
+  valid,
+  pristine,
+  reset,
+  submitting,
+}) => {
   return (
     <div data-component="AccountForm" className="row">
       <div className="offset-md-3 col-md-6">
-        {props.feedbackMessages.success.map((successMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'success', index)} color="success">
+        {feedbackMessages.success.map((successMessage, index) =>
+          <AlertDismissible key={index} onDismiss={() => onClearFormMessage('feedbackMessages', 'success', index)} color="success">
             {successMessage}
           </AlertDismissible>
         )}
 
-        {props.feedbackMessages.error.map((errorMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'error', index)} color="danger">
+        {feedbackMessages.error.map((errorMessage, index) =>
+          <AlertDismissible key={index} onDismiss={() => onClearFormMessage('feedbackMessages', 'error', index)} color="danger">
             {errorMessage}
           </AlertDismissible>
         )}
@@ -44,10 +45,10 @@ let Form = (props) => {
 
           <div className="form-group">
             <label htmlFor="email">E-mail</label>
-            <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
+            <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} errors={fieldsErrors.email} />
 
-            {props.fieldsErrors.email.map((errorMessage, index) =>
-              <AlertDismissible key={index} dismiss={() => props.clearFormMessage('fieldsErrors', 'email', index)} color="danger">
+            {fieldsErrors.email.map((errorMessage, index) =>
+              <AlertDismissible key={index} onDismiss={() => onClearFormMessage('fieldsErrors', 'email', index)} color="danger">
                 {errorMessage}
               </AlertDismissible>
             )}

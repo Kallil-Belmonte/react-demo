@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './Header.scss';
 
-const Header = (props) => {
+const Header = ({ userFullName, onLogOut }) => {
   return (
     <header data-component="Header">
       <img src="/assets/img/logo.svg" className="logo" alt="logo" />
@@ -41,8 +41,8 @@ const Header = (props) => {
       </nav>
 
       <div className="welcome-box d-flex align-items-center position-absolute">
-        <p className="mb-0 mr-3">Hello {props.userFullName}!</p>
-        <button className="btn btn-dark" type="button" onClick={props.logOut}>Log out</button>
+        <p className="mb-0 mr-3">Hello {userFullName}!</p>
+        <button className="btn btn-dark" type="button" onClick={() => onLogOut()}>Log out</button>
       </div>
     </header>
   );

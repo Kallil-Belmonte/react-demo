@@ -84,19 +84,21 @@ class Contact extends React.Component {
   //==============================
 
   render() {
+    const { loading, form } = this.state;
+
     return (
       <Dashboard>
         <main data-component="Contact">
-          <Loader loading={this.state.loading} />
+          <Loader loading={loading} />
 
           <div className="container">
             <PageHeader title="Contact" icon="envelope" />
 
             <Form
-              data={this.state.form.data}
+              data={form.data}
+              feedbackMessages={form.feedbackMessages}
+              onClearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
               onSubmit={(values) => this.handleSubmitForm(values)}
-              feedbackMessages={this.state.form.feedbackMessages}
-              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
             />
           </div>
         </main>

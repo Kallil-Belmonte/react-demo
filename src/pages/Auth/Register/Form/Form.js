@@ -8,14 +8,14 @@ import Validations from '../../../../core/Forms/Validations';
 import { renderInput } from '../../../../core/Forms/Fields';
 import AlertDismissible from '../../../../shared/Components/AlertDismissible/AlertDismissible';
 
-const Form = (props) => {
-  const {
-    handleSubmit,
-    valid,
-    pristine,
-    submitting,
-  } = props;
-
+const Form = ({
+  fieldsErrors,
+  onClearFormMessage,
+  handleSubmit,
+  valid,
+  pristine,
+  submitting,
+}) => {
   return (
     <form data-component="RegisterForm" onSubmit={handleSubmit}>
       <h1 className="page-title">Register</h1>
@@ -32,10 +32,10 @@ const Form = (props) => {
 
       <div className="form-group">
         <label htmlFor="email">E-mail</label>
-        <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} errors={props.fieldsErrors.email} />
+        <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} errors={fieldsErrors.email} />
 
-        {props.fieldsErrors.email.map((errorMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage('fieldsErrors', 'email', index)} color="danger">
+        {fieldsErrors.email.map((errorMessage, index) =>
+          <AlertDismissible key={index} onDismiss={() => onClearFormMessage('fieldsErrors', 'email', index)} color="danger">
             {errorMessage}
           </AlertDismissible>
         )}
@@ -43,10 +43,10 @@ const Form = (props) => {
 
       <div className="form-group">
         <label htmlFor="password">Password</label>
-        <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} errors={props.fieldsErrors.password} />
+        <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} errors={fieldsErrors.password} />
 
-        {props.fieldsErrors.password.map((errorMessage, index) =>
-          <AlertDismissible key={index} dismiss={() => props.clearFormMessage('fieldsErrors', 'password', index)} color="danger">
+        {fieldsErrors.password.map((errorMessage, index) =>
+          <AlertDismissible key={index} onDismiss={() => onClearFormMessage('fieldsErrors', 'password', index)} color="danger">
             {errorMessage}
           </AlertDismissible>
         )}

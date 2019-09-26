@@ -6,25 +6,26 @@ import Validations from '../../../core/Forms/Validations';
 import { renderInput, renderSelect, renderCheckbox, renderRadioButton } from '../../../core/Forms/Fields';
 import AlertDismissible from '../../../shared/Components/AlertDismissible/AlertDismissible';
 
-const Form = (props) => {
-  const {
-    handleSubmit,
-    valid,
-    pristine,
-    reset,
-    submitting,
-  } = props;
-
+const Form = ({
+  data,
+  feedbackMessages,
+  onClearFormMessage,
+  handleSubmit,
+  valid,
+  pristine,
+  reset,
+  submitting,
+}) => {
   return (
     <form data-component="ContactForm" onSubmit={handleSubmit}>
-      {props.feedbackMessages.success.map((successMessage, index) =>
-        <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'success', index)} color="success">
+      {feedbackMessages.success.map((successMessage, index) =>
+        <AlertDismissible key={index} onDismiss={() => onClearFormMessage('feedbackMessages', 'success', index)} color="success">
           {successMessage}
         </AlertDismissible>
       )}
 
-      {props.feedbackMessages.error.map((errorMessage, index) =>
-        <AlertDismissible key={index} dismiss={() => props.clearFormMessage('feedbackMessages', 'error', index)} color="danger">
+      {feedbackMessages.error.map((errorMessage, index) =>
+        <AlertDismissible key={index} onDismiss={() => onClearFormMessage('feedbackMessages', 'error', index)} color="danger">
           {errorMessage}
         </AlertDismissible>
       )}
@@ -70,7 +71,7 @@ const Form = (props) => {
         <div className="col">
           <div className="form-group">
             <label htmlFor="favoriteColor">Favorite color</label>
-            <Field id="favoriteColor" className="form-control" component={renderSelect} name="favoriteColor" options={props.data.favoriteColors} validate={[Validations.required]} />
+            <Field id="favoriteColor" className="form-control" component={renderSelect} name="favoriteColor" options={data.favoriteColors} validate={[Validations.required]} />
           </div>
         </div>
 

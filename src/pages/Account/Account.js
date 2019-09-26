@@ -81,6 +81,8 @@ class Account extends React.Component {
   //==============================
 
   render() {
+    const { form } = this.state;
+
     return (
       <Dashboard>
         <main data-component="Account">
@@ -88,10 +90,10 @@ class Account extends React.Component {
             <PageHeader title="Account" icon="user" />
 
             <Form
+              fieldsErrors={form.fieldsErrors}
+              feedbackMessages={form.feedbackMessages}
+              onClearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
               onSubmit={(values) => this.handleSubmitForm(values)}
-              fieldsErrors={this.state.form.fieldsErrors}
-              feedbackMessages={this.state.form.feedbackMessages}
-              clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
             />
           </div>
         </main>

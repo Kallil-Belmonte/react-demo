@@ -73,23 +73,26 @@ class Post extends React.Component {
   //==============================
 
   render() {
+    const { currentPost } =  this.props;
+    const { loading, isModalOpen } = this.state;
+
     return (
       <Dashboard>
         <main data-component="Post">
-          <Loader loading={this.state.loading} />
+          <Loader loading={loading} />
 
           <div className="container">
             <div className="row">
               <div className="offset-md-2 col-md-8">
-                <PostBody data={this.props.currentPost} toggleModal={() => this.handleToggleModal()} />
+                <PostBody data={currentPost} onToggleModal={() => this.handleToggleModal()} />
               </div>
             </div>
           </div>
 
           <DeletePostModal
-            isModalOpen={this.state.isModalOpen}
-            toggleModal={() => this.handleToggleModal()}
-            delete={() => this.handleDeletePost()}
+            isModalOpen={isModalOpen}
+            onToggleModal={() => this.handleToggleModal()}
+            onDelete={() => this.handleDeletePost()}
           />
         </main>
       </Dashboard>

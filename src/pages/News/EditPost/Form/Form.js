@@ -7,15 +7,13 @@ import './Form.scss';
 import Validations from '../../../../core/Forms/Validations';
 import { renderInput, renderTextarea } from '../../../../core/Forms/Fields';
 
-let Form = (props) => {
-  const {
-    handleSubmit,
-    valid,
-    pristine,
-    reset,
-    submitting,
-  } = props;
-
+let Form = ({
+  handleSubmit,
+  valid,
+  pristine,
+  reset,
+  submitting,
+}) => {
   return (
     <form data-component="EditPostForm" onSubmit={handleSubmit}>
       <div className="form-group">

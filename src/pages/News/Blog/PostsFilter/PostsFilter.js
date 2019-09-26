@@ -2,7 +2,7 @@ import React from 'react';
 
 import './PostsFilter.scss';
 
-const PostsFilter = (props) => {
+const PostsFilter = ({ onChange }) => {
   return (
     <section data-component="PostsFilter">
       <form>
@@ -10,7 +10,7 @@ const PostsFilter = (props) => {
           <div className="col-md-2">
             <div className="form-group">
               <label htmlFor="filter">Posts per page:</label>
-              <select id="filter" className="form-control" onChange={props.change}>
+              <select id="filter" className="form-control" onChange={(event) => onChange(event)}>
                 <option value="9">9</option>
                 <option value="18">18</option>
                 <option value="27">27</option>

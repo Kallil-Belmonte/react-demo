@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Loader.scss';
 
-const Loader = (props) => {
+const Loader = ({ loading }) => {
   return (
-    props.loading ?
+    loading ?
       <section data-component="Loader">
         <div className="atom-spinner">
           <div className="spinner-inner">

@@ -106,9 +106,11 @@ class Login extends React.Component {
   //==============================
 
   render() {
+    const { loading, form } = this.state;
+
     return (
       <main data-component="Login">
-        <Loader loading={this.state.loading} />
+        <Loader loading={loading} />
 
         <div className="container">
           <img src="/assets/img/logo.svg" className="logo d-block mx-auto" alt="logo" />
@@ -116,9 +118,9 @@ class Login extends React.Component {
           <div className="row">
             <div className="offset-md-3 col-md-6">
               <Form
+                fieldsErrors={form.fieldsErrors}
+                onClearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
                 onSubmit={(values) => this.handleLogin(values)}
-                fieldsErrors={this.state.form.fieldsErrors}
-                clearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
               />
             </div>
           </div>

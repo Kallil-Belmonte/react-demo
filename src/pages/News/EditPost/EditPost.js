@@ -45,10 +45,12 @@ class EditPost extends React.Component {
   //==============================
 
   render() {
+    const { loading } = this.state;
+
     return (
       <Dashboard>
         <main data-component="EditPost">
-          <Loader loading={this.state.loading} />
+          <Loader loading={loading} />
 
           <div className="container">
             <div className="row">
