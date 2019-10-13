@@ -1,7 +1,7 @@
 // SET PAGE TITLE
 export const setPageTitle = (title) => {
   document.title = `React Demo | ${title}`;
-}
+};
 
 
 // GROUP ARRAY ITEMS
@@ -20,7 +20,7 @@ export const groupArrayItems = (array, itemsQuantity) => {
   });
 
   return newArray;
-}
+};
 
 
 // REMOVE ITEMS FROM INDEXES
@@ -32,7 +32,7 @@ export const removeItemsFromIndexes = (array, arrayIndexes) => {
   });
 
   return newArray;
-}
+};
 
 
 // CLEAR FORM MESSAGE
@@ -46,4 +46,4 @@ export const clearFormMessage = ($this, formName, objectName, propertyName, inde
       }
     }
   }));
-}
+};
