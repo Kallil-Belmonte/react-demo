@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import axios, { ENDPOINTS } from '../../core/API/API';
-import Dashboard from '../../layout/Dashboard';
-import Loader from '../../shared/Components/Loader/Loader';
-import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
+import axios, { ENDPOINTS } from 'core/API/API';
+import Dashboard from 'layout/Dashboard';
+import Loader from 'shared/Components/Loader/Loader';
+import FeaturedPosts from 'pages/Home/FeaturedPosts/FeaturedPosts';
 
-class Home extends React.Component {
+class Home extends Component {
   state = {
     loading: true,
     posts: [],

@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form';
 
-import Validations from '../../../core/Forms/Validations';
-import { renderInput } from '../../../core/Forms/Fields';
-import AlertDismissible from '../../../shared/Components/AlertDismissible/AlertDismissible';
+import Validations from 'core/Forms/Validations';
+import { renderInput } from 'core/Forms/Fields';
+import AlertDismissible from 'shared/Components/AlertDismissible/AlertDismissible';
 
 let Form = ({
   fieldsErrors,

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './PostItem.scss';
-import Utils from '../../General/Utils';
+import * as Helpers from 'shared/Helpers';
 
 const PostItem = ({ data }) => {
   const postImage = data.image
@@ -14,7 +14,7 @@ const PostItem = ({ data }) => {
       {postImage}
       <article>
         <h3 className="title">{data.title}</h3>
-        <p className="mb-0">{data.body ? Utils.limitWords(data.body, 8) + '...' : null}</p>
+        <p className="mb-0">{data.body ? Helpers.limitWords(data.body, 8) + '...' : null}</p>
         <NavLink className="btn btn-primary mt-3" to={'/post/' + data.id}>Read more</NavLink>
       </article>
     </div>

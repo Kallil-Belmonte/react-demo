@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './NotFound.scss';
-import Utils from '../../shared/General/Utils';
+import * as Helpers from 'shared/Helpers';
 
 const NotFound = (props) => {
   // Set page title
-  Utils.setPageTitle('Error 404');
+  Helpers.setPageTitle('Error 404');
 
   return (
     <main data-component="NotFound">

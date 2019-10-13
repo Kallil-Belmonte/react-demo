@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import PostItem from '../../../shared/Components/PostItem/PostItem';
+import PostItem from 'shared/Components/PostItem/PostItem';
 
 const FeaturedPosts = ({ data }) => {
   return (
@@ -10,11 +10,11 @@ const FeaturedPosts = ({ data }) => {
 
         <div className="row">
           {data.slice(0, 3).map((featuredPost, index) =>
-            <React.Fragment key={featuredPost.id}>
+            <Fragment key={featuredPost.id}>
               <div className="col-md-4">
                 <PostItem data={featuredPost} />
               </div>
-            </React.Fragment>
+            </Fragment>
           )}
         </div>
       </div>

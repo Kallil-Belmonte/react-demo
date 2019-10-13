@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const Pagination = ({ firstPage, totalPages, onPaginate }) => {
   const firstItem  = firstPage;
@@ -39,7 +39,7 @@ const Pagination = ({ firstPage, totalPages, onPaginate }) => {
         : null}
 
         {fifthItem <= totalPages ?
-          <React.Fragment>
+          <Fragment>
             <li className="page-item">
               <button className="page-link" type="button">{fifthItem}</button>
             </li>
@@ -47,7 +47,7 @@ const Pagination = ({ firstPage, totalPages, onPaginate }) => {
             <li className="page-item">
               <button className="page-link" type="button">Next</button>
             </li>
-          </React.Fragment>
+          </Fragment>
         : null}
       </ul>
     </nav>

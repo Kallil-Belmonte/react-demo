@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as actionCreators from '../core/Redux/Actions/ActionCreators';
-import Utils from '../shared/General/Utils';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
+import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import * as Helpers from 'shared/Helpers';
+import Header from 'layout/Header/Header';
+import Footer from 'layout/Footer/Footer';
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
 
   componentDidMount() {
     this.setPageTitle();
@@ -17,11 +17,11 @@ class Dashboard extends React.Component {
     const { fullName, children } = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <Header userFullName={fullName} onLogOut={() => this.logOutUser()} />
           {children}
         <Footer />
-      </React.Fragment>
+      </Fragment>
     );
   }
 
@@ -34,13 +34,13 @@ class Dashboard extends React.Component {
   setPageTitle() {
     if (this.props.location.pathname === '/') {
       // Set home page title
-      Utils.setPageTitle('Home');
+      Helpers.setPageTitle('Home');
     } else {
       const pageUrl = this.props.location.pathname.split('-').join(' ');
-      const urlName = Utils.capitalizeFirstLetter(pageUrl.split('/')[1]);
+      const urlName = Helpers.capitalizeFirstLetter(pageUrl.split('/')[1]);
 
       // Set dynamic page title
-      Utils.setPageTitle(urlName);
+      Helpers.setPageTitle(urlName);
     }
   }
 

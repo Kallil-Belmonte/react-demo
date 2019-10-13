@@ -1,4 +1,4 @@
-import ACTION_TYPES from '../Actions/ActionTypes';
+import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
 
 // POSTS
 export const postsReducer = (state = [], action) => {

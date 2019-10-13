@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Blog.scss';
-import axios, { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
-import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
-import Utils from '../../../shared/General/Utils';
-import Dashboard from '../../../layout/Dashboard';
-import Loader from '../../../shared/Components/Loader/Loader';
-import PageHeader from '../../../shared/Components/PageHeader/PageHeader';
-import PostsFilter from './PostsFilter/PostsFilter';
-import Posts from './Posts/Posts';
-import Pagination from './Pagination/Pagination';
-import Categories from './Categories/Categories';
+import axios, { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
+import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import * as Helpers from 'shared/Helpers';
+import Dashboard from 'layout/Dashboard';
+import Loader from 'shared/Components/Loader/Loader';
+import PageHeader from 'shared/Components/PageHeader/PageHeader';
+import PostsFilter from 'pages/News/Blog/PostsFilter/PostsFilter';
+import Posts from 'pages/News/Blog/Posts/Posts';
+import Pagination from 'pages/News/Blog/Pagination/Pagination';
+import Categories from 'pages/News/Blog/Categories/Categories';
 
-class Blog extends React.Component {
+class Blog extends Component {
   state = {
     loading: true,
     postsPerPage: 9,
@@ -70,7 +70,7 @@ class Blog extends React.Component {
 
       // Set Page Posts
       this.setState({
-        pagePosts: Utils.groupArrayItems(posts, this.state.postsPerPage),
+        pagePosts: Helpers.groupArrayItems(posts, this.state.postsPerPage),
       });
     })
     .catch((error) => {
@@ -116,7 +116,7 @@ class Blog extends React.Component {
         // Set page settings
         this.setState({
           loading: false,
-          pagePosts: Utils.groupArrayItems(response.data, this.state.postsPerPage),
+          pagePosts: Helpers.groupArrayItems(response.data, this.state.postsPerPage),
           currentPage: 0,
           firstPaginationItem: 1,
         });
@@ -140,7 +140,7 @@ class Blog extends React.Component {
     // Set page settings
     this.setState({
       postsPerPage: +event.target.value,
-      pagePosts: Utils.groupArrayItems(this.props.posts, +event.target.value),
+      pagePosts: Helpers.groupArrayItems(this.props.posts, +event.target.value),
       currentPage: 0,
       firstPaginationItem: 1,
     });

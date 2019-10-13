@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PostItem from '../../../../shared/Components/PostItem/PostItem';
+import PostItem from 'shared/Components/PostItem/PostItem';
 
 const Posts = ({ data, currentPage }) => {
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Field } from 'redux-form';
 
@@ -13,10 +13,10 @@ export const renderInput = (field) => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <input id={field.id} className={classes} {...field.input} type={field.type} placeholder={field.placeholder} />
       {invalidFeedback}
-    </React.Fragment>
+    </Fragment>
   );
 };
 
@@ -32,10 +32,10 @@ export const renderTextarea = (field) => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <textarea id={field.id} className={classes} {...field.input} placeholder={field.placeholder} rows={field.rows} cols={field.cols}></textarea>
       {invalidFeedback}
-    </React.Fragment>
+    </Fragment>
   );
 }
 
@@ -51,7 +51,7 @@ export const renderSelect = (field) => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <select id={field.id} className={classes} {...field.input}>
         <option />
         {field.options.map((item, index) =>
@@ -59,7 +59,7 @@ export const renderSelect = (field) => {
         )}
       </select>
       {invalidFeedback}
-    </React.Fragment>
+    </Fragment>
   );
 };
 
@@ -73,7 +73,7 @@ export const renderCheckbox = (field) => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="pretty p-svg p-curve">
         <input type="checkbox" {...field.input} />
         <div className={`state ${field.className}`}>
@@ -84,7 +84,7 @@ export const renderCheckbox = (field) => {
         </div>
       </div>
       {invalidFeedback}
-    </React.Fragment>
+    </Fragment>
   );
 };
 

@@ -1,15 +1,15 @@
 import React from 'react';
 
-import RouterGuard from './RouterGuard';
-import Home from '../../pages/Home/Home';
-import Blog from '../../pages/News/Blog/Blog';
-import Post from '../../pages/News/Post/Post';
-import EditPost from '../../pages/News/EditPost/EditPost';
-import Contact from '../../pages/Contact/Contact';
-import Account from '../../pages/Account/Account';
-import Login from '../../pages/Auth/Login/Login';
-import Register from '../../pages/Auth/Register/Register';
-import NotFound from '../../pages/NotFound/NotFound';
+import RouterGuard from 'core/Router/RouterGuard';
+import Home from 'pages/Home/Home';
+import Blog from 'pages/News/Blog/Blog';
+import Post from 'pages/News/Post/Post';
+import EditPost from 'pages/News/EditPost/EditPost';
+import Contact from 'pages/Contact/Contact';
+import Account from 'pages/Account/Account';
+import Login from 'pages/Auth/Login/Login';
+import Register from 'pages/Auth/Register/Register';
+import NotFound from 'pages/NotFound/NotFound';
 
 const Routes = [
   {

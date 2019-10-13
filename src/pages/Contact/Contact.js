@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './Contact.scss';
-import ThemeFunctions from '../../shared/General/ThemeFunctions';
-import { MOCKY_INSTANCE, ENDPOINTS } from '../../core/API/API';
-import Utils from '../../shared/General/Utils';
-import Dashboard from '../../layout/Dashboard';
-import Loader from '../../shared/Components/Loader/Loader';
-import PageHeader from '../../shared/Components/PageHeader/PageHeader';
-import Form from './Form/Form';
+import ThemeFunctions from 'shared/Helpers/ThemeFunctions';
+import { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
+import * as Helpers from 'shared/Helpers';
+import Dashboard from 'layout/Dashboard';
+import Loader from 'shared/Components/Loader/Loader';
+import PageHeader from 'shared/Components/PageHeader/PageHeader';
+import Form from 'pages/Contact/Form/Form';
 
-class Contact extends React.Component {
+class Contact extends Component {
   state = {
     loading: true,
     form: {
@@ -75,7 +75,7 @@ class Contact extends React.Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Utils.clearFormMessage(this, 'form', object, property, index);
+    Helpers.clearFormMessage(this, 'form', object, property, index);
   }
 
 

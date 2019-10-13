@@ -1,4 +1,4 @@
-import ACTION_TYPES from './ActionTypes';
+import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
 
 // SET POSTS
 export const setPosts = (posts) => {

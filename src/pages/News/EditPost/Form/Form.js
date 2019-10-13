@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
 
 import './Form.scss';
-import Validations from '../../../../core/Forms/Validations';
-import { renderInput, renderTextarea } from '../../../../core/Forms/Fields';
+import Validations from 'core/Forms/Validations';
+import { renderInput, renderTextarea } from 'core/Forms/Fields';
 
 let Form = ({
   handleSubmit,

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './Account.scss';
-import * as actionCreators from '../../core/Redux/Actions/ActionCreators';
-import Utils from '../../shared/General/Utils';
-import Dashboard from '../../layout/Dashboard';
-import PageHeader from '../../shared/Components/PageHeader/PageHeader';
-import Form from './Form/Form';
+import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import * as Helpers from 'shared/Helpers';
+import Dashboard from 'layout/Dashboard';
+import PageHeader from 'shared/Components/PageHeader/PageHeader';
+import Form from 'pages/Account/Form/Form';
 
-class Account extends React.Component {
+class Account extends Component {
   state = {
     form: {
       feedbackMessages: {
@@ -72,7 +72,7 @@ class Account extends React.Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Utils.clearFormMessage(this, 'form', object, property, index);
+    Helpers.clearFormMessage(this, 'form', object, property, index);
   }
 
 

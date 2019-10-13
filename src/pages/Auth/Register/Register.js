@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Register.scss';
-import { MOCKY_INSTANCE, ENDPOINTS } from '../../../core/API/API';
-import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
-import Utils from '../../../shared/General/Utils';
-import Loader from '../../../shared/Components/Loader/Loader';
-import Form from './Form/Form';
+import { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
+import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import * as Helpers from 'shared/Helpers';
+import Loader from 'shared/Components/Loader/Loader';
+import Form from 'pages/Auth/Register/Form/Form';
 
-class Register extends React.Component {
+class Register extends Component {
   state = {
     loading: false,
     form: {
@@ -22,7 +22,7 @@ class Register extends React.Component {
 
   componentDidMount() {
     console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
-    Utils.setPageTitle('Register');
+    Helpers.setPageTitle('Register');
     this.redirectLoggedUser();
   }
 
@@ -92,7 +92,7 @@ class Register extends React.Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Utils.clearFormMessage(this, 'form', object, property, index);
+    Helpers.clearFormMessage(this, 'form', object, property, index);
   }
 
 

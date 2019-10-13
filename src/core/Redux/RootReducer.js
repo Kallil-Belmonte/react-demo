@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import ACTION_TYPES from './Actions/ActionTypes';
-import { userDataReducer } from './Reducers/Auth';
-import { currentPostReducer } from './Reducers/Post';
-import { postsReducer, categoriesReducer } from './Reducers/Blog';
+import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
+import { userDataReducer } from 'core/Redux/Reducers/Auth';
+import { currentPostReducer } from 'core/Redux/Reducers/Post';
+import { postsReducer, categoriesReducer } from 'core/Redux/Reducers/Blog';
 
 // APP REDUCER
 const appReducer = combineReducers({

@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
 import './Form.scss';
-import Validations from '../../../../core/Forms/Validations';
-import { renderInput } from '../../../../core/Forms/Fields';
-import AlertDismissible from '../../../../shared/Components/AlertDismissible/AlertDismissible';
+import Validations from 'core/Forms/Validations';
+import { renderInput } from 'core/Forms/Fields';
+import AlertDismissible from 'shared/Components/AlertDismissible/AlertDismissible';
 
 const Form = ({
   fieldsErrors,

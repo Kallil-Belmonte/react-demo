@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import axios, { ENDPOINTS } from '../../../core/API/API';
-import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
-import Dashboard from '../../../layout/Dashboard';
-import Loader from '../../../shared/Components/Loader/Loader';
-import Form from './Form/Form';
+import axios, { ENDPOINTS } from 'core/API/API';
+import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import Dashboard from 'layout/Dashboard';
+import Loader from 'shared/Components/Loader/Loader';
+import Form from 'pages/News/EditPost/Form/Form';
 
-class EditPost extends React.Component {
+class EditPost extends Component {
   state = {
     loading: false,
   }

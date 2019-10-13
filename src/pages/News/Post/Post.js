@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import axios, { ENDPOINTS } from '../../../core/API/API';
-import * as actionCreators from '../../../core/Redux/Actions/ActionCreators';
-import Dashboard from '../../../layout/Dashboard';
-import Loader from '../../../shared/Components/Loader/Loader';
-import PostBody from './PostBody/PostBody';
-import DeletePostModal from './DeletePostModal/DeletePostModal';
+import axios, { ENDPOINTS } from 'core/API/API';
+import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import Dashboard from 'layout/Dashboard';
+import Loader from 'shared/Components/Loader/Loader';
+import PostBody from 'pages/News/Post/PostBody/PostBody';
+import DeletePostModal from 'pages/News/Post/DeletePostModal/DeletePostModal';
 
-class Post extends React.Component {
+class Post extends Component {
   state = {
     loading: true,
     isModalOpen: false,
