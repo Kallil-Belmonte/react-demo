@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
-import './Contact.scss';
+import { Container } from 'react-bootstrap';
+
 import ThemeFunctions from 'shared/Helpers/ThemeFunctions';
 import { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
 import * as Helpers from 'shared/Helpers';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/Components/Loader/Loader';
 import PageHeader from 'shared/Components/PageHeader/PageHeader';
-import Form from 'pages/Contact/Form/Form';
+import ContactForm from 'pages/Contact/ContactForm/ContactForm';
+import './Contact.scss';
 
 class Contact extends Component {
   state = {
@@ -91,16 +93,16 @@ class Contact extends Component {
         <main data-component="Contact">
           <Loader loading={loading} />
 
-          <div className="container">
+          <Container>
             <PageHeader title="Contact" icon="envelope" />
 
-            <Form
+            <ContactForm
               data={form.data}
               feedbackMessages={form.feedbackMessages}
               onClearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
               onSubmit={(values) => this.handleSubmitForm(values)}
             />
-          </div>
+          </Container>
         </main>
       </Dashboard>
     );

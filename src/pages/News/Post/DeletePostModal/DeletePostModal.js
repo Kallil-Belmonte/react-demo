@@ -1,18 +1,20 @@
 import React from 'react';
 
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, Button } from 'react-bootstrap';
 
-const DeletePostModal = ({ isModalOpen, onToggleModal, onDelete }) => {
+const DeletePostModal = ({ isModalOpen, onCloseModal, onDelete }) => {
   return (
-    <Modal isOpen={isModalOpen} toggle={() => onToggleModal()} className="delete-confirmation-modal">
-      <ModalHeader toggle={() => onToggleModal()}>Delete confirmation</ModalHeader>
-      <ModalBody>
+    <Modal className="delete-confirmation-modal" show={isModalOpen} onHide={() => onCloseModal()}>
+      <Modal.Header closeButton>
+        <Modal.Title>Delete confirmation</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <p className="text-center mb-0">Are you sure you want to delete this post?</p>
-      </ModalBody>
-      <ModalFooter>
-        <button className="btn btn-primary" type="button" onClick={() => onDelete()}>Confirm</button>
-        <button className="btn btn-light" type="button" onClick={() => onToggleModal()}>Cancel</button>
-      </ModalFooter>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary" onClick={() => onDelete()}>Confirm</Button>
+        <Button variant="light" onClick={() => onCloseModal()}>Cancel</Button>
+      </Modal.Footer>
     </Modal>
   );
 }

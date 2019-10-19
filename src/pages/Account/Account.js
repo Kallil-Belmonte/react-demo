@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './Account.scss';
+import { Container } from 'react-bootstrap';
+
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import * as Helpers from 'shared/Helpers';
 import Dashboard from 'layout/Dashboard';
 import PageHeader from 'shared/Components/PageHeader/PageHeader';
-import Form from 'pages/Account/Form/Form';
+import AccountForm from 'pages/Account/AccountForm/AccountForm';
+import './Account.scss';
 
 class Account extends Component {
   state = {
@@ -86,16 +88,16 @@ class Account extends Component {
     return (
       <Dashboard>
         <main data-component="Account">
-          <div className="container">
+          <Container>
             <PageHeader title="Account" icon="user" />
 
-            <Form
+            <AccountForm
               fieldsErrors={form.fieldsErrors}
               feedbackMessages={form.feedbackMessages}
               onClearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
               onSubmit={(values) => this.handleSubmitForm(values)}
             />
-          </div>
+          </Container>
         </main>
       </Dashboard>
     );

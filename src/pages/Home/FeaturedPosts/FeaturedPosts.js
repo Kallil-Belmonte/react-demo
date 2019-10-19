@@ -1,23 +1,23 @@
 import React, { Fragment } from 'react';
 
+import { Container, Row, Col } from 'react-bootstrap';
+
 import PostItem from 'shared/Components/PostItem/PostItem';
 
 const FeaturedPosts = ({ data }) => {
   return (
     <section data-component="FeaturedPosts" className="page-section">
-      <div className="container">
+      <Container>
         <h2 className="section-title">Featured posts</h2>
 
-        <div className="row">
+        <Row>
           {data.slice(0, 3).map((featuredPost, index) =>
-            <Fragment key={featuredPost.id}>
-              <div className="col-md-4">
-                <PostItem data={featuredPost} />
-              </div>
-            </Fragment>
+            <Col md={4} key={featuredPost.id}>
+              <PostItem data={featuredPost} />
+            </Col>
           )}
-        </div>
-      </div>
+        </Row>
+      </Container>
     </section>
   );
 };

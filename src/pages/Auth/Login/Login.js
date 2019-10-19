@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './Login.scss';
+import { Container, Row, Col } from 'react-bootstrap';
+
 import { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import * as Helpers from 'shared/Helpers';
 import Loader from 'shared/Components/Loader/Loader';
-import Form from 'pages/Auth/Login/Form/Form';
+import LoginForm from 'pages/Auth/Login/LoginForm/LoginForm';
+import './Login.scss';
 
 class Login extends Component {
   state = {
@@ -112,19 +114,19 @@ class Login extends Component {
       <main data-component="Login">
         <Loader loading={loading} />
 
-        <div className="container">
+        <Container>
           <img src="/assets/img/logo.svg" className="logo d-block mx-auto" alt="logo" />
 
-          <div className="row">
-            <div className="offset-md-3 col-md-6">
-              <Form
+          <Row>
+            <Col md={{ span: 6, offset: 3 }}>
+              <LoginForm
                 fieldsErrors={form.fieldsErrors}
                 onClearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
                 onSubmit={(values) => this.handleLogin(values)}
               />
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Container>
       </main>
     );
   }

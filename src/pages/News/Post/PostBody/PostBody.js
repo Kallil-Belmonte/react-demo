@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { Button } from 'react-bootstrap';
+
 import './PostBody.scss';
 
-const PostBody = ({ data, onToggleModal }) => {
+const PostBody = ({ data, onOpenModal }) => {
   return (
     <section data-component="PostBody">
       <article>
@@ -12,7 +14,7 @@ const PostBody = ({ data, onToggleModal }) => {
       </article>
       <hr className="mt-4" />
       <div className="d-flex justify-content-end">
-        <button className="btn btn-danger mr-3" type="button" onClick={() => onToggleModal()}>Delete</button>
+        <Button className="mr-3" variant="danger" onClick={() => onOpenModal()}>Delete</Button>
         <NavLink className="btn btn-light" to={'/edit-post/' + data.id}>Edit</NavLink>
       </div>
     </section>

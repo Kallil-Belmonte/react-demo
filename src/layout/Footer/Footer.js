@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { Container } from 'react-bootstrap';
+
 import './Footer.scss';
 
 const Footer = (props) => {
   return (
     <footer data-component="Footer">
-      <div className="container">
+      <Container>
         <div className="d-flex justify-content-center">
           <ul className="social-networks list-inline">
             <li className="list-inline-item">
@@ -26,7 +28,7 @@ const Footer = (props) => {
         <div className="copyright text-center">
           <p className="mb-0">© Nome 2016 - Todos os Direitos Reservados</p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 };

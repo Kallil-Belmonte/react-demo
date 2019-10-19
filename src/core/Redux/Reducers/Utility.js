@@ -1,6 +1,6 @@
-const updateState = (oldState, updatedProperties) => {
+const updateState = (prevState, updatedProperties) => {
   return {
-    ...oldState,
+    ...prevState,
     ...updatedProperties,
   };
 };

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './Register.scss';
+import { Container, Row, Col } from 'react-bootstrap';
+
 import { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import * as Helpers from 'shared/Helpers';
 import Loader from 'shared/Components/Loader/Loader';
-import Form from 'pages/Auth/Register/Form/Form';
+import RegisterForm from 'pages/Auth/Register/RegisterForm/RegisterForm';
+import './Register.scss';
 
 class Register extends Component {
   state = {
@@ -107,19 +109,19 @@ class Register extends Component {
       <main data-component="Register">
         <Loader loading={loading} />
 
-        <div className="container">
+        <Container>
           <img src="/assets/img/logo.svg" className="logo d-block mx-auto" alt="logo" />
 
-          <div className="row">
-            <div className="offset-md-3 col-md-6">
-              <Form
+          <Row>
+            <Col md={{ span: 6, offset: 3 }}>
+              <RegisterForm
                 fieldsErrors={form.fieldsErrors}
                 onClearFormMessage={(object, property, index) => this.handleClearFormMessage(object, property, index)}
                 onSubmit={(values) => this.handleRegister(values)}
               />
-            </div>
-          </div>
-        </div>
+          </Col>
+          </Row>
+        </Container>
       </main>
     );
   }

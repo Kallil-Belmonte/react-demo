@@ -42,7 +42,7 @@ export const clearFormMessage = ($this, formName, objectName, propertyName, inde
       ...prevState[formName],
       [objectName]: {
         ...prevState[formName][objectName],
-        [propertyName]: this.removeItemsFromIndexes(prevState[formName][objectName][propertyName], [index])
+        [propertyName]: removeItemsFromIndexes(prevState[formName][objectName][propertyName], [index])
       }
     }
   }));

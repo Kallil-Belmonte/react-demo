@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { Container, Row, Col } from 'react-bootstrap';
+
 import axios, { ENDPOINTS } from 'core/API/API';
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import Dashboard from 'layout/Dashboard';
@@ -81,17 +83,17 @@ class Post extends Component {
         <main data-component="Post">
           <Loader loading={loading} />
 
-          <div className="container">
-            <div className="row">
-              <div className="offset-md-2 col-md-8">
-                <PostBody data={currentPost} onToggleModal={() => this.handleToggleModal()} />
-              </div>
-            </div>
-          </div>
+          <Container>
+            <Row>
+              <Col md={{ span: 8, offset: 2 }}>
+                <PostBody data={currentPost} onOpenModal={() => this.handleToggleModal()} />
+              </Col>
+            </Row>
+          </Container>
 
           <DeletePostModal
             isModalOpen={isModalOpen}
-            onToggleModal={() => this.handleToggleModal()}
+            onCloseModal={() => this.handleToggleModal()}
             onDelete={() => this.handleDeletePost()}
           />
         </main>

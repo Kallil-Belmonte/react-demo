@@ -8,7 +8,6 @@ import Header from 'layout/Header/Header';
 import Footer from 'layout/Footer/Footer';
 
 class Dashboard extends Component {
-
   componentDidMount() {
     this.setPageTitle();
   }
@@ -32,11 +31,13 @@ class Dashboard extends Component {
 
   // SET PAGE TITLE
   setPageTitle() {
-    if (this.props.location.pathname === '/') {
+    const { pathname } = this.props.location;
+
+    if (pathname === '/') {
       // Set home page title
       Helpers.setPageTitle('Home');
     } else {
-      const pageUrl = this.props.location.pathname.split('-').join(' ');
+      const pageUrl = pathname.split('-').join(' ');
       const urlName = Helpers.capitalizeFirstLetter(pageUrl.split('/')[1]);
 
       // Set dynamic page title
@@ -47,18 +48,19 @@ class Dashboard extends Component {
 
   // LOG OUT USER
   logOutUser() {
+    const { handleLogOut, history } = this.props;
+
     // Remove token
     sessionStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('expirationDateReactDemo');
 
     // Handle log out
-    this.props.handleLogOut();
+    handleLogOut();
 
     // Redirect
-    this.props.history.push('/login');
+    history.push('/login');
   }
-
 };
 
 
@@ -69,7 +71,7 @@ class Dashboard extends Component {
 // MAP STATE TO PROPS
 const mapStateToProps = (state) => {
   return {
-    fullName: state.userData.firstName + ' ' + state.userData.lastName
+    fullName: `${state.userData.firstName} ${state.userData.lastName}`
   };
 };
 

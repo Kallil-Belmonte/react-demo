@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import './Blog.scss';
+import { Container, Row, Col } from 'react-bootstrap';
+
 import axios, { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import * as Helpers from 'shared/Helpers';
@@ -10,8 +11,9 @@ import Loader from 'shared/Components/Loader/Loader';
 import PageHeader from 'shared/Components/PageHeader/PageHeader';
 import PostsFilter from 'pages/News/Blog/PostsFilter/PostsFilter';
 import Posts from 'pages/News/Blog/Posts/Posts';
-import Pagination from 'pages/News/Blog/Pagination/Pagination';
+import BlogPagination from 'pages/News/Blog/BlogPagination/BlogPagination';
 import Categories from 'pages/News/Blog/Categories/Categories';
+import './Blog.scss';
 
 class Blog extends Component {
   state = {
@@ -160,9 +162,9 @@ class Blog extends Component {
 
       for (const item of document.querySelectorAll('.page-item .page-link')) {
         if (back) {
-          if (+item.innerText === this.state.currentPage + 2) item.parentNode.classList.add('active');
+          if (parseInt(item.innerText) === this.state.currentPage + 2) item.parentNode.classList.add('active');
         } else {
-          if (+item.innerText === this.state.currentPage) item.parentNode.classList.add('active');
+          if (parseInt(item.innerText) === this.state.currentPage) item.parentNode.classList.add('active');
         }
       }
 
@@ -184,7 +186,7 @@ class Blog extends Component {
       default:
         if (activePageItem) activePageItem.classList.remove('active');
         event.target.parentNode.classList.add('active');
-        this.setState({ currentPage: +event.target.innerText - 1 });
+        this.setState({ currentPage: parseInt(event.target.innerText) - 1 });
     }
   }
 
@@ -202,26 +204,26 @@ class Blog extends Component {
         <main data-component="Blog">
           <Loader loading={loading} />
 
-          <div className="container">
+          <Container>
             <PageHeader title="Blog" icon="newspaper" />
 
             <PostsFilter onChange={(event) => this.handleFilterPosts(event)} />
 
-            <div className="row">
-              <div className="col-md-9">
+            <Row>
+              <Col md={9}>
                 <Posts data={pagePosts} currentPage={currentPage} />
 
-                <Pagination
+                <BlogPagination
                   firstPage={firstPaginationItem}
                   totalPages={pagePosts.length}
                   onPaginate={(event) => this.handlePaginate(event)}
                 />
-              </div>
-              <div className="col-md-3">
+              </Col>
+              <Col md={3}>
                 <Categories data={categories} onClick={(event) => this.handleSelectCategory(event)} />
-              </div>
-            </div>
-          </div>
+              </Col>
+            </Row>
+          </Container>
         </main>
       </Dashboard>
     );

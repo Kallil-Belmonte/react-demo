@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { Container, Row, Col } from 'react-bootstrap';
+
 import axios, { ENDPOINTS } from 'core/API/API';
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/Components/Loader/Loader';
-import Form from 'pages/News/EditPost/Form/Form';
+import EditPostForm from 'pages/News/EditPost/EditPostForm/EditPostForm';
 
 class EditPost extends Component {
   state = {
@@ -52,13 +54,13 @@ class EditPost extends Component {
         <main data-component="EditPost">
           <Loader loading={loading} />
 
-          <div className="container">
-            <div className="row">
-              <div className="offset-md-2 col-md-8">
-                <Form onSubmit={(values) => this.handleSubmitForm(values)} />
-              </div>
-            </div>
-          </div>
+          <Container>
+            <Row>
+              <Col md={{ span: 8, offset: 2 }}>
+                <EditPostForm onSubmit={(values) => this.handleSubmitForm(values)} />
+              </Col>
+            </Row>
+          </Container>
         </main>
       </Dashboard>
     );

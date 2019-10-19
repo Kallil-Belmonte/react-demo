@@ -2,13 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Field, reduxForm } from 'redux-form';
+import { Form, Alert, Button } from 'react-bootstrap';
 
-import './Form.scss';
 import Validations from 'core/Forms/Validations';
 import { renderInput, renderCheckbox } from 'core/Forms/Fields';
-import AlertDismissible from 'shared/Components/AlertDismissible/AlertDismissible';
+import './LoginForm.scss';
 
-const Form = ({
+const LoginForm = ({
   fieldsErrors,
   onClearFormMessage,
   handleSubmit,
@@ -17,45 +17,52 @@ const Form = ({
   submitting,
 }) => {
   return (
-    <form data-component="LoginForm" onSubmit={handleSubmit}>
+    <Form data-component="LoginForm" onSubmit={handleSubmit}>
       <h1 className="page-title">Login</h1>
 
-      <div className="form-group">
-        <label htmlFor="email">E-mail</label>
+      <Form.Group controlId="email">
+        <Form.Label>E-mail</Form.Label>
         <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} />
 
         {fieldsErrors.email.map((errorMessage, index) =>
-          <AlertDismissible key={index} onDismiss={() => onClearFormMessage('fieldsErrors', 'email', index)} color="danger">
+          <Alert key={index} variant="danger" dismissible onClose={() => onClearFormMessage('fieldsErrors', 'email', index)}>
             {errorMessage}
-          </AlertDismissible>
+          </Alert>
         )}
-      </div>
+      </Form.Group>
 
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
+      <Form.Group controlId="password">
+        <Form.Label>Password</Form.Label>
         <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} />
 
         {fieldsErrors.password.map((errorMessage, index) =>
-          <AlertDismissible key={index} onDismiss={() => onClearFormMessage('fieldsErrors', 'password', index)} color="danger">
+          <Alert key={index} variant="danger" dismissible onClose={() => onClearFormMessage('fieldsErrors', 'password', index)}>
             {errorMessage}
-          </AlertDismissible>
+          </Alert>
         )}
-      </div>
+      </Form.Group>
 
-      <div className="form-group">
+      <Form.Group>
         <Field className="p-primary" label="Keep logged" component={renderCheckbox} name="keepLogged" />
-      </div>
+      </Form.Group>
 
-      <button className="btn btn-primary d-block mx-auto" type="submit" disabled={!valid || pristine || submitting}>Login</button>
+      <Button
+        className="d-block mx-auto"
+        variant="primary"
+        type="submit"
+        disabled={!valid || pristine || submitting}
+      >
+        Login
+      </Button>
 
       <div className="text-center">
         <hr className="mt-4" />
         Don't have an account? <NavLink to="/register">Register</NavLink>
       </div>
-    </form>
+    </Form>
   );
 };
 
 export default reduxForm({
   form: 'login',
-})(Form);
+})(LoginForm);

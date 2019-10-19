@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './NotFound.scss';
 import * as Helpers from 'shared/Helpers';
+import './NotFound.scss';
 
 const NotFound = (props) => {
   // Set page title

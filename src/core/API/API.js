@@ -14,7 +14,7 @@ JSON_PLACEHOLDER_INSTANCE.interceptors.request.use(
     const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
 
     config.headers['Authorization'] = `Bearer ${authToken}`;
-    // config.url = config.url + '?authKey=' + localStorage.getItem('authTokenReactDemo');
+    // config.url = `${config.url}?authKey=${localStorage.getItem('authTokenReactDemo')}`
 
     return config;
   },

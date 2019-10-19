@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './PostItem.scss';
 import * as Helpers from 'shared/Helpers';
+import './PostItem.scss';
 
 const PostItem = ({ data }) => {
   const postImage = data.image
