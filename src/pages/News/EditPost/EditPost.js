@@ -22,16 +22,18 @@ class EditPost extends Component {
 
   // HANDLE SUBMIT FORM
   handleSubmitForm(values) {
+    const { match, history, handleEditPost } = this.props;
+
     // Activate loader
     this.setState({ loading: true });
 
-    axios.put(ENDPOINTS.blog.posts + this.props.match.params.id, values)
+    axios.put(ENDPOINTS.blog.posts + match.params.id, values)
       .then(response => {
         // Handle edit post
-        this.props.handleEditPost(response.data);
+        handleEditPost(response.data);
 
         // Redirect
-        this.props.history.push('/post/' + this.props.match.params.id);
+        history.push(`/post/${match.params.id}`);
       })
       .catch(error => {
         console.error(error);
@@ -73,10 +75,8 @@ class EditPost extends Component {
 //==============================
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleEditPost: (post) => dispatch(actionCreators.editPost(post))
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleEditPost: (post) => dispatch(actionCreators.editPost(post))
+});
 
 export default connect(null, mapDispatchToProps)(withRouter(EditPost));

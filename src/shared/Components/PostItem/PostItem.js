@@ -4,18 +4,18 @@ import { NavLink } from 'react-router-dom';
 import * as Helpers from 'shared/Helpers';
 import './PostItem.scss';
 
-const PostItem = ({ data }) => {
-  const postImage = data.image
-    ? <img className="img-fluid" src={data.image} alt="Capa" />
+const PostItem = ({ post }) => {
+  const postImage = post.image
+    ? <img className="img-fluid" src={post.image} alt="Capa" />
     : <div className="img-placeholder">Não há imagem para esse post</div>;
 
   return (
     <div data-component="PostItem">
       {postImage}
       <article>
-        <h3 className="title">{data.title}</h3>
-        <p className="mb-0">{data.body ? Helpers.limitWords(data.body, 8) + '...' : null}</p>
-        <NavLink className="btn btn-primary mt-3" to={'/post/' + data.id}>Read more</NavLink>
+        <h3 className="title">{post.title}</h3>
+        <p className="mb-0">{post.body ? Helpers.limitWords(post.body, 8) + '...' : null}</p>
+        <NavLink className="btn btn-primary mt-3" to={`/post/${post.id}`}>Read more</NavLink>
       </article>
     </div>
   );

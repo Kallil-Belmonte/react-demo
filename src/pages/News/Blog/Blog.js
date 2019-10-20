@@ -18,10 +18,11 @@ import './Blog.scss';
 class Blog extends Component {
   state = {
     loading: true,
+    pages: {},
     postsPerPage: 9,
-    pagePosts: [],
-    currentPage: 0,
     firstPaginationItem: 1,
+    maxPaginationItem: 5,
+    currentPage: 1,
   }
 
   componentDidMount() {
@@ -34,16 +35,35 @@ class Blog extends Component {
   //==============================
 
   // RESET PAGINATION
-  resetPagination() {
-    // Remove active class
-    if (document.querySelector('.page-item.active')) document.querySelector('.page-item.active').classList.remove('active');
+  // resetPagination() {
+  //   // Remove active class
+  //   if (document.querySelector('.page-item.active')) document.querySelector('.page-item.active').classList.remove('active');
+  //
+  //   // Add active class
+  //   if (document.querySelector('.page-item .page-link:first-child').innerText !== 'Previous') {
+  //     document.querySelector('.page-item:nth-child(1)').classList.add('active');
+  //   } else {
+  //     document.querySelector('.page-item:nth-child(2)').classList.add('active');
+  //   }
+  // }
 
-    // Add active class
-    if (document.querySelector('.page-item .page-link:first-child').innerText !== 'Previous') {
-      document.querySelector('.page-item:nth-child(1)').classList.add('active');
-    } else {
-      document.querySelector('.page-item:nth-child(2)').classList.add('active');
+
+  // SET PAGINATION SETTINGS
+  setPaginationSettings(posts) {
+    if (posts) {
+      const pages = {};
+      Helpers.groupArrayItems(posts, this.state.postsPerPage).forEach((item, index) => {
+        pages[index + 1] = item;
+      });
+
+      this.setState({ pages });
     }
+
+    this.setState({
+      firstPaginationItem: 1,
+      maxPaginationItem: 5,
+      currentPage: 1,
+    });
   }
 
 
@@ -70,10 +90,8 @@ class Blog extends Component {
       this.props.handleSetPosts(posts);
       this.props.handleSetCategories(categories);
 
-      // Set Page Posts
-      this.setState({
-        pagePosts: Helpers.groupArrayItems(posts, this.state.postsPerPage),
-      });
+      // Set Pagination Settings
+      this.setPaginationSettings(posts);
     })
     .catch((error) => {
       console.error(error);
@@ -102,7 +120,7 @@ class Blog extends Component {
     // Reset posts page
     this.setState({
       loading: true,
-      pagePosts: [],
+      pages: [],
     });
 
     // Get posts from the selected category
@@ -113,15 +131,13 @@ class Blog extends Component {
         this.props.handleSetPosts(response.data);
 
         // Reset pagination
-        this.resetPagination();
+        // this.resetPagination();
 
-        // Set page settings
-        this.setState({
-          loading: false,
-          pagePosts: Helpers.groupArrayItems(response.data, this.state.postsPerPage),
-          currentPage: 0,
-          firstPaginationItem: 1,
-        });
+        // Set Pagination Settings
+        this.setPaginationSettings(response.data);
+
+        // Deactivate loader
+        this.setState({ loading: false });
       })
       .catch((error) => {
         console.error(error);
@@ -137,57 +153,73 @@ class Blog extends Component {
     event.persist();
 
     // Reset pagination
-    this.resetPagination();
+    // this.resetPagination();
 
-    // Set page settings
-    this.setState({
-      postsPerPage: +event.target.value,
-      pagePosts: Helpers.groupArrayItems(this.props.posts, +event.target.value),
-      currentPage: 0,
-      firstPaginationItem: 1,
-    });
+    // Set Pagination Settings
+    this.setPaginationSettings();
+
+    // Set Posts Per Page
+    this.setState({ postsPerPage: +event.target.value });
   }
 
 
   // HANDLE PAGINATE
-  handlePaginate(event) {
-    event.persist();
-
-    // Select active page item
-    const activePageItem = document.querySelector('.page-item.active');
-
-    // Navigate back and forth
-    const navigateBackAndForth = (back) => {
-      if (activePageItem) activePageItem.classList.remove('active');
-
-      for (const item of document.querySelectorAll('.page-item .page-link')) {
-        if (back) {
-          if (parseInt(item.innerText) === this.state.currentPage + 2) item.parentNode.classList.add('active');
-        } else {
-          if (parseInt(item.innerText) === this.state.currentPage) item.parentNode.classList.add('active');
-        }
-      }
-
-      this.setState((prevState, props) => ({
-        firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1,
-      }));
-    };
-
-    // Update current page
-    switch(event.target.innerText) {
-      case 'Previous':
-        navigateBackAndForth(true);
+  handlePaginate(target) {
+    switch(target) {
+      case 'previous':
+        this.setState((prevState) => ({
+          firstPaginationItem: --prevState.firstPaginationItem
+        }));
         break;
 
-      case 'Next':
-        navigateBackAndForth(false);
+      case 'next':
+        this.setState((prevState) => ({
+          firstPaginationItem: ++prevState.firstPaginationItem
+        }));
         break;
 
       default:
-        if (activePageItem) activePageItem.classList.remove('active');
-        event.target.parentNode.classList.add('active');
-        this.setState({ currentPage: parseInt(event.target.innerText) - 1 });
+        console.log('Fazer');
+
     }
+
+    // event.persist();
+
+    // // Select active page item
+    // const activePageItem = document.querySelector('.page-item.active');
+    //
+    // // Navigate back and forth
+    // const navigateBackAndForth = (back) => {
+    //   if (activePageItem) activePageItem.classList.remove('active');
+    //
+    //   for (const item of document.querySelectorAll('.page-item .page-link')) {
+    //     if (back) {
+    //       if (parseInt(item.innerText) === this.state.currentPage + 2) item.parentNode.classList.add('active');
+    //     } else {
+    //       if (parseInt(item.innerText) === this.state.currentPage) item.parentNode.classList.add('active');
+    //     }
+    //   }
+    //
+    //   this.setState((prevState, props) => ({
+    //     firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1,
+    //   }));
+    // };
+    //
+    // // Update current page
+    // switch(event.target.innerText) {
+    //   case 'Previous':
+    //     navigateBackAndForth(true);
+    //     break;
+    //
+    //   case 'Next':
+    //     navigateBackAndForth(false);
+    //     break;
+    //
+    //   default:
+    //     if (activePageItem) activePageItem.classList.remove('active');
+    //     event.target.parentNode.classList.add('active');
+    //     this.setState({ currentPage: parseInt(event.target.innerText) - 1 });
+    // }
   }
 
 
@@ -197,7 +229,7 @@ class Blog extends Component {
 
   render() {
     const { categories } = this.props;
-    const { loading, pagePosts, currentPage, firstPaginationItem } = this.state;
+    const { loading, pages, firstPaginationItem, maxPaginationItem, currentPage } = this.state;
 
     return (
       <Dashboard>
@@ -211,16 +243,18 @@ class Blog extends Component {
 
             <Row>
               <Col md={9}>
-                <Posts data={pagePosts} currentPage={currentPage} />
+                <Posts pages={pages} currentPage={currentPage} />
 
                 <BlogPagination
-                  firstPage={firstPaginationItem}
-                  totalPages={pagePosts.length}
-                  onPaginate={(event) => this.handlePaginate(event)}
+                  pages={Object.keys(pages)}
+                  firstItem={firstPaginationItem}
+                  maxItem={maxPaginationItem}
+                  currentPage={currentPage}
+                  onPaginate={(target) => this.handlePaginate(target)}
                 />
               </Col>
               <Col md={3}>
-                <Categories data={categories} onClick={(event) => this.handleSelectCategory(event)} />
+                <Categories categories={categories} onClick={(event) => this.handleSelectCategory(event)} />
               </Col>
             </Row>
           </Container>
@@ -236,19 +270,15 @@ class Blog extends Component {
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts,
-    categories: state.categories,
-  };
-};
+const mapStateToProps = (state) => ({
+  posts: state.posts,
+  categories: state.categories,
+});
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
-    handleSetCategories: (categories) => dispatch(actionCreators.setCategories(categories)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
+  handleSetCategories: (categories) => dispatch(actionCreators.setCategories(categories)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);

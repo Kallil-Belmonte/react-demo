@@ -48,7 +48,7 @@ class Home extends Component {
         <main data-component="Home">
           <Loader loading={loading} />
 
-          <FeaturedPosts data={posts} />
+          <FeaturedPosts posts={posts} />
         </main>
       </Dashboard>
     );

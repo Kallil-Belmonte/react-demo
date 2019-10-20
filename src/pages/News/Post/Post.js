@@ -86,7 +86,7 @@ class Post extends Component {
           <Container>
             <Row>
               <Col md={{ span: 8, offset: 2 }}>
-                <PostBody data={currentPost} onOpenModal={() => this.handleToggleModal()} />
+                <PostBody post={currentPost} onOpenModal={() => this.handleToggleModal()} />
               </Col>
             </Row>
           </Container>
@@ -108,17 +108,13 @@ class Post extends Component {
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => {
-  return {
-    currentPost: state.currentPost,
-  };
-};
+const mapStateToProps = (state) => ({
+  currentPost: state.currentPost,
+});
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleSetPost: (post) => dispatch(actionCreators.setPost(post)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleSetPost: (post) => dispatch(actionCreators.setPost(post)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));

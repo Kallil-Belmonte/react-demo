@@ -69,17 +69,13 @@ class Dashboard extends Component {
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => {
-  return {
-    fullName: `${state.userData.firstName} ${state.userData.lastName}`
-  };
-};
+const mapStateToProps = (state) => ({
+  fullName: `${state.userData.firstName} ${state.userData.lastName}`
+});
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleLogOut: () => dispatch(actionCreators.logOut())
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleLogOut: () => dispatch(actionCreators.logOut())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dashboard));

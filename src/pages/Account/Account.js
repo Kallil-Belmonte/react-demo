@@ -110,10 +110,8 @@ class Account extends Component {
 //==============================
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleEditAccount: (userData) => dispatch(actionCreators.editAccount(userData)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleEditAccount: (userData) => dispatch(actionCreators.editAccount(userData)),
+});
 
 export default connect(null, mapDispatchToProps)(Account);

@@ -133,10 +133,8 @@ class Register extends Component {
 //==============================
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  handleSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
+});
 
 export default connect(null, mapDispatchToProps)(withRouter(Register));

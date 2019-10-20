@@ -1,33 +1,30 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { Pagination } from 'react-bootstrap';
 
-const BlogPagination = ({ firstPage, totalPages, onPaginate }) => {
-  const firstItem  = firstPage;
-  const secondItem = firstPage + 1;
-  const thirdItem  = firstPage + 2;
-  const fourthItem = firstPage + 3;
-  const fifthItem  = firstPage + 4;
+const BlogPagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }) => {
+  const startPages = firstItem - 1;
+  const endPages = startPages + maxItem;
+  const isItemActive = page => +page === currentPage;
+
+  const renderItems = () => pages.slice(startPages, endPages).map((page, index) => (
+    <Pagination.Item
+      key={index}
+      active={isItemActive(page)}
+      onClick={() => onPaginate()}
+    >
+      {page}
+    </Pagination.Item>
+  ));
 
   return (
-    <nav data-component="pagination" className="d-inline-block" aria-label="Pagination" onClick={(event) => onPaginate(event)}>
+    <nav data-component="pagination" className="d-inline-block">
       <Pagination className="mb-0">
-        {firstItem > 1 && <Pagination.Item>Previous</Pagination.Item>}
+        {firstItem > 1 && <Pagination.Item onClick={() => onPaginate('previous')}>Previous</Pagination.Item>}
 
-        <Pagination.Item active>{firstItem}</Pagination.Item>
+        {renderItems()}
 
-        {secondItem <= totalPages && <Pagination.Item>{secondItem}</Pagination.Item>}
-
-        {thirdItem <= totalPages && <Pagination.Item>{thirdItem}</Pagination.Item>}
-
-        {fourthItem <= totalPages && <Pagination.Item>{fourthItem}</Pagination.Item>}
-
-        {fifthItem <= totalPages && (
-          <Fragment>
-            <Pagination.Item>{fifthItem}</Pagination.Item>
-            <Pagination.Item>Next</Pagination.Item>
-          </Fragment>
-        )}
+        {endPages < pages.length && <Pagination.Item onClick={() => onPaginate('next')}>Next</Pagination.Item>}
       </Pagination>
     </nav>
   );
