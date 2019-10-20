@@ -5,7 +5,7 @@ export const setPageTitle = (title) => {
 
 
 // GROUP ARRAY ITEMS
-export const groupArrayItems = (array, itemsQuantity) => {
+export const groupArrayItemsInArrays = (array, itemsQuantity) => {
   const newArray = [[]];
 
   array.forEach((item, index) => {

@@ -1,6 +1,6 @@
 import {
   setPageTitle,
-  groupArrayItems,
+  groupArrayItemsInArrays,
   removeItemsFromIndexes,
   clearFormMessage,
 } from './General';
@@ -14,7 +14,7 @@ import {
 export {
   // General
   setPageTitle,
-  groupArrayItems,
+  groupArrayItemsInArrays,
   removeItemsFromIndexes,
   clearFormMessage,
 

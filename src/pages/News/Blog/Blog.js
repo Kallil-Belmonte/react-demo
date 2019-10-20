@@ -45,7 +45,7 @@ class Blog extends Component {
     const pages = {};
     const postsPerPage = quantPostsPerPage || 9;
 
-    Helpers.groupArrayItems(posts, postsPerPage).forEach((item, index) => {
+    Helpers.groupArrayItemsInArrays(posts, postsPerPage).forEach((item, index) => {
       pages[index + 1] = item;
     });
 
@@ -110,7 +110,6 @@ class Blog extends Component {
 
       default:
         this.setState({ currentPage: target })
-
     }
   }
 
