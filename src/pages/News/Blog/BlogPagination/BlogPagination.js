@@ -5,13 +5,13 @@ import { Pagination } from 'react-bootstrap';
 const BlogPagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }) => {
   const startPages = firstItem - 1;
   const endPages = startPages + maxItem;
-  const isItemActive = page => +page === currentPage;
+  const isItemActive = page => page === currentPage;
 
   const renderItems = () => pages.slice(startPages, endPages).map((page, index) => (
     <Pagination.Item
       key={index}
       active={isItemActive(page)}
-      onClick={() => onPaginate()}
+      onClick={() => isItemActive(page) ? null : onPaginate(page)}
     >
       {page}
     </Pagination.Item>

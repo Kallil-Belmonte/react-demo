@@ -9,7 +9,7 @@ import * as Helpers from 'shared/Helpers';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/Components/Loader/Loader';
 import PageHeader from 'shared/Components/PageHeader/PageHeader';
-import PostsFilter from 'pages/News/Blog/PostsFilter/PostsFilter';
+import PostsPerPage from 'pages/News/Blog/PostsPerPage/PostsPerPage';
 import Posts from 'pages/News/Blog/Posts/Posts';
 import BlogPagination from 'pages/News/Blog/BlogPagination/BlogPagination';
 import Categories from 'pages/News/Blog/Categories/Categories';
@@ -22,7 +22,7 @@ class Blog extends Component {
     postsPerPage: 9,
     firstPaginationItem: 1,
     maxPaginationItem: 5,
-    currentPage: 1,
+    currentPage: '1',
   }
 
   componentDidMount() {
@@ -34,35 +34,21 @@ class Blog extends Component {
   // GENERAL METHODS
   //==============================
 
-  // RESET PAGINATION
-  // resetPagination() {
-  //   // Remove active class
-  //   if (document.querySelector('.page-item.active')) document.querySelector('.page-item.active').classList.remove('active');
-  //
-  //   // Add active class
-  //   if (document.querySelector('.page-item .page-link:first-child').innerText !== 'Previous') {
-  //     document.querySelector('.page-item:nth-child(1)').classList.add('active');
-  //   } else {
-  //     document.querySelector('.page-item:nth-child(2)').classList.add('active');
-  //   }
-  // }
-
-
   // SET PAGINATION SETTINGS
-  setPaginationSettings(posts) {
-    if (posts) {
-      const pages = {};
-      Helpers.groupArrayItems(posts, this.state.postsPerPage).forEach((item, index) => {
-        pages[index + 1] = item;
-      });
+  setPaginationSettings(posts, quantPostsPerPage) {
+    const pages = {};
+    const postsPerPage = quantPostsPerPage || 9;
 
-      this.setState({ pages });
-    }
+    Helpers.groupArrayItems(posts, postsPerPage).forEach((item, index) => {
+      pages[index + 1] = item;
+    });
 
     this.setState({
+      pages,
+      postsPerPage,
       firstPaginationItem: 1,
       maxPaginationItem: 5,
-      currentPage: 1,
+      currentPage: '1',
     });
   }
 
@@ -104,34 +90,15 @@ class Blog extends Component {
 
 
   // HANDLE SELECT CATEGORY
-  handleSelectCategory(event) {
-    // Remove active class
-    for (const item of document.querySelectorAll('.list-group-item')) {
-      item.classList.remove('active');
-    }
-
-    // Add active class
-    if (event.target.tagName === 'SPAN') {
-      event.target.parentNode.classList.add('active');
-    } else {
-      event.target.classList.add('active');
-    }
-
-    // Reset posts page
-    this.setState({
-      loading: true,
-      pages: [],
-    });
+  handleSelectCategory(category) {
+    // Activate loader
+    this.setState({ loading: true });
 
     // Get posts from the selected category
-    // const category = document.querySelector('.list-group-item.active').getAttribute('data-name');
     axios.get(ENDPOINTS.blog.posts)
       .then(response => {
         // Handle set posts
         this.props.handleSetPosts(response.data);
-
-        // Reset pagination
-        // this.resetPagination();
 
         // Set Pagination Settings
         this.setPaginationSettings(response.data);
@@ -145,21 +112,6 @@ class Blog extends Component {
         // Deactivate loader
         this.setState({ loading: false });
       });
-  }
-
-
-  // HANDLE FILTER POSTS
-  handleFilterPosts(event) {
-    event.persist();
-
-    // Reset pagination
-    // this.resetPagination();
-
-    // Set Pagination Settings
-    this.setPaginationSettings();
-
-    // Set Posts Per Page
-    this.setState({ postsPerPage: +event.target.value });
   }
 
 
@@ -179,47 +131,9 @@ class Blog extends Component {
         break;
 
       default:
-        console.log('Fazer');
+        this.setState({ currentPage: target })
 
     }
-
-    // event.persist();
-
-    // // Select active page item
-    // const activePageItem = document.querySelector('.page-item.active');
-    //
-    // // Navigate back and forth
-    // const navigateBackAndForth = (back) => {
-    //   if (activePageItem) activePageItem.classList.remove('active');
-    //
-    //   for (const item of document.querySelectorAll('.page-item .page-link')) {
-    //     if (back) {
-    //       if (parseInt(item.innerText) === this.state.currentPage + 2) item.parentNode.classList.add('active');
-    //     } else {
-    //       if (parseInt(item.innerText) === this.state.currentPage) item.parentNode.classList.add('active');
-    //     }
-    //   }
-    //
-    //   this.setState((prevState, props) => ({
-    //     firstPaginationItem: back ? prevState.firstPaginationItem - 1 : prevState.firstPaginationItem + 1,
-    //   }));
-    // };
-    //
-    // // Update current page
-    // switch(event.target.innerText) {
-    //   case 'Previous':
-    //     navigateBackAndForth(true);
-    //     break;
-    //
-    //   case 'Next':
-    //     navigateBackAndForth(false);
-    //     break;
-    //
-    //   default:
-    //     if (activePageItem) activePageItem.classList.remove('active');
-    //     event.target.parentNode.classList.add('active');
-    //     this.setState({ currentPage: parseInt(event.target.innerText) - 1 });
-    // }
   }
 
 
@@ -228,8 +142,15 @@ class Blog extends Component {
   //==============================
 
   render() {
-    const { categories } = this.props;
-    const { loading, pages, firstPaginationItem, maxPaginationItem, currentPage } = this.state;
+    const { posts, categories } = this.props;
+    const {
+      loading,
+      pages,
+      postsPerPage,
+      firstPaginationItem,
+      maxPaginationItem,
+      currentPage,
+    } = this.state;
 
     return (
       <Dashboard>
@@ -239,7 +160,10 @@ class Blog extends Component {
           <Container>
             <PageHeader title="Blog" icon="newspaper" />
 
-            <PostsFilter onChange={(event) => this.handleFilterPosts(event)} />
+            <PostsPerPage
+              postsPerPage={postsPerPage}
+              onChange={(value) => this.setPaginationSettings(posts, value)}
+            />
 
             <Row>
               <Col md={9}>
@@ -254,7 +178,10 @@ class Blog extends Component {
                 />
               </Col>
               <Col md={3}>
-                <Categories categories={categories} onClick={(event) => this.handleSelectCategory(event)} />
+                <Categories
+                  categories={categories}
+                  onSelectCategory={(category) => this.handleSelectCategory(category)}
+                />
               </Col>
             </Row>
           </Container>
