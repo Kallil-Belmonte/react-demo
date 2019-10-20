@@ -31,7 +31,6 @@ class Account extends Component {
   // HANDLE SUBMIT FORM
   handleSubmitForm(values) {
     if (values.email === 'john.doe@email.com') {
-      // Set field error messages
       this.setState((prevState, props) => ({
         form: {
           ...prevState.form,
@@ -43,7 +42,6 @@ class Account extends Component {
       }));
     }
     else if (values.email === 'demo@demo.com') {
-      // Set error messages
       this.setState((prevState, props) => ({
         form: {
           ...prevState.form,
@@ -55,10 +53,8 @@ class Account extends Component {
       }));
     }
     else {
-      // Handle edit account
       this.props.handleEditAccount(values);
 
-      // Set success message
       this.setState((prevState, props) => ({
         form: {
           ...prevState.form,

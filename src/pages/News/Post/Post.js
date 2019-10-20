@@ -26,20 +26,9 @@ class Post extends Component {
   // GENERAL METHODS
   //==============================
 
-  // GET CURRENT POST
-  getCurrentPost() {
-    axios.get(ENDPOINTS.blog.posts + this.props.match.params.id)
-      .then((response) => {
-        // Handle set post
-        this.props.handleSetPost(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .then(() => {
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+  // SET LOADING
+  setLoading(loading) {
+    this.setState({ loading });
   }
 
 
@@ -51,22 +40,30 @@ class Post extends Component {
   }
 
 
+  // GET CURRENT POST
+  async getCurrentPost() {
+    try {
+      const response = await axios.get(`${ENDPOINTS.blog.posts}${this.props.match.params.id}`);
+      this.props.handleSetPost(response.data);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setState(false);
+    }
+  }
+
+
   // HANDLE DELETE POST
-  handleDeletePost() {
-    // Deactivate loader
-    this.setState({ loading: true });
+  async handleDeletePost() {
+    this.setLoading(true);
 
-    axios.delete(ENDPOINTS.blog.posts + this.props.match.params.id)
-      .then(() => {
-        // Redirect
-        this.props.history.push('/blog');
-      })
-      .catch(error => {
-        console.error(error);
-
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+    try {
+      const response = await axios.delete(`${ENDPOINTS.blog.posts}${this.props.match.params.id}`);
+      this.props.history.push('/blog');
+    } catch (error) {
+      this.setLoading(false);
+      throw error;
+    }
   }
 
 
@@ -93,8 +90,8 @@ class Post extends Component {
 
           <DeletePostModal
             isModalOpen={isModalOpen}
-            onCloseModal={() => this.handleToggleModal()}
             onDelete={() => this.handleDeletePost()}
+            onCloseModal={() => this.handleToggleModal()}
           />
         </main>
       </Dashboard>

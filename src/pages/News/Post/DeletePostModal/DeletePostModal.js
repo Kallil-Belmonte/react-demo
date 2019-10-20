@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Modal, Button } from 'react-bootstrap';
 
-const DeletePostModal = ({ isModalOpen, onCloseModal, onDelete }) => {
+const DeletePostModal = ({ isModalOpen, onDelete, onCloseModal }) => {
   return (
     <Modal className="delete-confirmation-modal" show={isModalOpen} onHide={() => onCloseModal()}>
       <Modal.Header closeButton>

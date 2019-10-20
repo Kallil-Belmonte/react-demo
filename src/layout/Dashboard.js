@@ -34,13 +34,10 @@ class Dashboard extends Component {
     const { pathname } = this.props.location;
 
     if (pathname === '/') {
-      // Set home page title
       Helpers.setPageTitle('Home');
     } else {
       const pageUrl = pathname.split('-').join(' ');
       const urlName = Helpers.capitalizeFirstLetter(pageUrl.split('/')[1]);
-
-      // Set dynamic page title
       Helpers.setPageTitle(urlName);
     }
   }
@@ -50,16 +47,12 @@ class Dashboard extends Component {
   logOutUser() {
     const { handleLogOut, history } = this.props;
 
-    // Remove token
     sessionStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('expirationDateReactDemo');
 
-    // Handle log out
-    handleLogOut();
-
-    // Redirect
     history.push('/login');
+    handleLogOut();
   }
 };
 

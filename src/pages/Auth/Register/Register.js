@@ -33,6 +33,12 @@ class Register extends Component {
   // GENERAL METHODS
   //==============================
 
+  // SET LOADING
+  setLoading(loading) {
+    this.setState({ loading });
+  }
+
+
   // REDIRECT LOGGED USER
   redirectLoggedUser() {
     const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
@@ -45,50 +51,39 @@ class Register extends Component {
 
 
   // HANDLE REGISTER
-  handleRegister(values) {
-    // Activate loader
-    this.setState({ loading: true });
+  async handleRegister(values) {
+    this.setLoading(true);
 
-    MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values)
-      .then(response => {
-        if (values.email === 'demo@demo.com') {
+    try {
+      const response = await MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values);
 
-          // Error simulation
-          this.setState((prevState, props) => ({
-            loading: false,
-            form: {
-              ...prevState.form,
-              fieldsErrors: {
-                ...prevState.form.fieldsErrors,
-                email: ['This e-mail already exists.'],
-                password: ['Your password is too weak.'],
-              },
+      if (values.email === 'demo@demo.com') {
+        this.setState((prevState, props) => ({
+          loading: false,
+          form: {
+            ...prevState.form,
+            fieldsErrors: {
+              ...prevState.form.fieldsErrors,
+              email: ['This e-mail already exists.'],
+              password: ['Your password is too weak.'],
             },
-          }));
+          },
+        }));
+      } else {
+        sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
 
-        } else {
+        this.props.handleSetUserData({
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email,
+        });
 
-          // Store session data
-          sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
-
-          // Handle set user data
-          this.props.handleSetUserData({
-            firstName: response.data.firstName,
-            lastName: response.data.lastName,
-            email: response.data.email,
-          });
-
-          // Redirect
-          this.props.history.push('/');
-
-        }
-      })
-      .catch(error => {
-        console.error(error);
-
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+        this.props.history.push('/');
+      }
+    } catch (error) {
+      this.setLoading(false);
+      throw error;
+    }
   }
 
 

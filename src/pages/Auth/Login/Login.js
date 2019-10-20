@@ -33,6 +33,12 @@ class Login extends Component {
   // GENERAL METHODS
   //==============================
 
+  // SET LOADING
+  setLoading(loading) {
+    this.setState({ loading });
+  }
+
+
   // REDIRECT USER
   redirectUser() {
     const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
@@ -45,55 +51,44 @@ class Login extends Component {
 
 
   // HANDLE LOGIN
-  handleLogin(values) {
-    // Activate loader
-    this.setState({ loading: true });
+  async handleLogin(values) {
+    this.setLoading(true);
 
-    MOCKY_INSTANCE.post(ENDPOINTS.auth.login, values)
-      .then(response => {
-        if (values.email === 'demo@demo.com') {
+    try {
+      const response = await MOCKY_INSTANCE.post(ENDPOINTS.auth.login, values);
 
-          // Error simulation
-          this.setState((prevState, props) => ({
-            loading: false,
-            form: {
-              ...prevState.form,
-              fieldsErrors: {
-                ...prevState.form.fieldsErrors,
-                email: ['This e-mail does not exists.'],
-                password: ['The password is incorrect.'],
-              }
-            },
-          }));
-
+      if (values.email === 'demo@demo.com') {
+        this.setState((prevState, props) => ({
+          loading: false,
+          form: {
+            ...prevState.form,
+            fieldsErrors: {
+              ...prevState.form.fieldsErrors,
+              email: ['This e-mail does not exists.'],
+              password: ['The password is incorrect.'],
+            }
+          },
+        }));
+      } else {
+        if (values.keepLogged) {
+          localStorage.setItem('authTokenReactDemo', response.data.idToken);
+          localStorage.setItem('expirationDateReactDemo', new Date(new Date().getTime() + response.data.expiresIn * 1000).toISOString());
         } else {
-
-          // Store session data
-          if (values.keepLogged) {
-            localStorage.setItem('authTokenReactDemo', response.data.idToken);
-            localStorage.setItem('expirationDateReactDemo', new Date(new Date().getTime() + response.data.expiresIn * 1000).toISOString());
-          } else {
-            sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
-          }
-
-          // Handle set user data
-          this.props.handleSetUserData({
-            firstName: response.data.firstName,
-            lastName: response.data.lastName,
-            email: response.data.email,
-          });
-
-          // Redirect
-          this.props.history.push('/');
-
+          sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
         }
-      })
-      .catch(error => {
-        console.error(error);
 
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+        this.props.handleSetUserData({
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email,
+        });
+
+        this.props.history.push('/');
+      }
+    } catch (error) {
+      this.setLoading(false);
+      throw error;
+    }
   }
 
 

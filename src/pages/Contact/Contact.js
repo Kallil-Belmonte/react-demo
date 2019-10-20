@@ -35,27 +35,31 @@ class Contact extends Component {
   // GENERAL METHODS
   //==============================
 
+  // SET LOADING
+  setLoading(loading) {
+    this.setState({ loading });
+  }
+
+
   // GET FORM DATA
-  getFormData() {
-    MOCKY_INSTANCE.get(ENDPOINTS.contactForm.favoriteColors)
-      .then(response => {
-        this.setState((prevState, props) => ({
-          form: {
-            ...prevState.form,
-            data: {
-              ...prevState.form.data,
-              favoriteColors: response.data,
-            },
+  async getFormData() {
+    try {
+      const response = await MOCKY_INSTANCE.get(ENDPOINTS.contactForm.favoriteColors);
+
+      this.setState((prevState, props) => ({
+        form: {
+          ...prevState.form,
+          data: {
+            ...prevState.form.data,
+            favoriteColors: response.data,
           },
-        }));
-      })
-      .catch(error => {
-        console.error(error);
-      })
-      .then(() => {
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+        },
+      }));
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setLoading(false);
+    }
   }
 
 

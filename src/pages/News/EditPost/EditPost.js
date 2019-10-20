@@ -20,27 +20,28 @@ class EditPost extends Component {
   // GENERAL METHODS
   //==============================
 
+  // SET LOADING
+  setLoading(loading) {
+    this.setState({ loading });
+  }
+
+
   // HANDLE SUBMIT FORM
-  handleSubmitForm(values) {
+  async handleSubmitForm(values) {
     const { match, history, handleEditPost } = this.props;
 
-    // Activate loader
-    this.setState({ loading: true });
+    this.setLoading(true);
 
-    axios.put(ENDPOINTS.blog.posts + match.params.id, values)
-      .then(response => {
-        // Handle edit post
-        handleEditPost(response.data);
+    try {
+      const response = await axios.put(`${ENDPOINTS.blog.posts}${match.params.id}`, values);
 
-        // Redirect
-        history.push(`/post/${match.params.id}`);
-      })
-      .catch(error => {
-        console.error(error);
-
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+      handleEditPost(response.data);
+      history.push(`/post/${match.params.id}`);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setLoading(false);
+    }
   }
 
 

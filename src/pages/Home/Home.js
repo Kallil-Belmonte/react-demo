@@ -21,18 +21,15 @@ class Home extends Component {
   //==============================
 
   // GET FEATURED POSTS
-  getFeaturedPosts() {
-    axios.get(ENDPOINTS.blog.posts)
-      .then(response => {
-        this.setState({ posts: response.data });
-      })
-      .catch(error => {
-        console.error(error);
-      })
-      .then(() => {
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+  async getFeaturedPosts() {
+    try {
+     const response = await axios.get(ENDPOINTS.blog.posts);
+     this.setState({ posts: response.data });
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setState({ loading: false });
+    }
   }
 
 

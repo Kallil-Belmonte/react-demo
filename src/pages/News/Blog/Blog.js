@@ -34,6 +34,12 @@ class Blog extends Component {
   // GENERAL METHODS
   //==============================
 
+  // SET LOADING
+  setLoading(loading) {
+    this.setState({ loading });
+  }
+
+
   // SET PAGINATION SETTINGS
   setPaginationSettings(posts, quantPostsPerPage) {
     const pages = {};
@@ -53,65 +59,37 @@ class Blog extends Component {
   }
 
 
-  // GET CATEGORIES
-  getCategories() {
-    return MOCKY_INSTANCE.get(ENDPOINTS.blog.categories).then(response => response.data);
-  }
-
-
-  // GET POSTS
-  getPosts() {
-    return axios.get(ENDPOINTS.blog.posts).then(response => response.data);
-  }
-
-
   // GET ALL DATA
-  getAllData() {
-    Promise.all([
-      this.getCategories(),
-      this.getPosts(),
-    ])
-    .then(([categories, posts]) => {
-      // Handle set data
-      this.props.handleSetPosts(posts);
-      this.props.handleSetCategories(categories);
+  async getAllData() {
+    try {
+      const categoriesResponse = await MOCKY_INSTANCE.get(ENDPOINTS.blog.categories);
+      const postsResponse = await axios.get(ENDPOINTS.blog.posts);
 
-      // Set Pagination Settings
-      this.setPaginationSettings(posts);
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-    .then(() => {
-      // Deactivate loader
-      this.setState({ loading: false });
-    });
+      this.props.handleSetCategories(categoriesResponse.data);
+      this.props.handleSetPosts(postsResponse.data);
+      this.setPaginationSettings(postsResponse.data);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setLoading(false);
+    }
   }
 
 
   // HANDLE SELECT CATEGORY
-  handleSelectCategory(category) {
-    // Activate loader
-    this.setState({ loading: true });
+  async handleSelectCategory(category) {
+    this.setLoading(true);
 
-    // Get posts from the selected category
-    axios.get(ENDPOINTS.blog.posts)
-      .then(response => {
-        // Handle set posts
-        this.props.handleSetPosts(response.data);
+    try {
+      const response = await axios.get(ENDPOINTS.blog.posts);
 
-        // Set Pagination Settings
-        this.setPaginationSettings(response.data);
-
-        // Deactivate loader
-        this.setState({ loading: false });
-      })
-      .catch((error) => {
-        console.error(error);
-
-        // Deactivate loader
-        this.setState({ loading: false });
-      });
+      this.props.handleSetPosts(response.data);
+      this.setPaginationSettings(response.data);
+    } catch (error) {
+      throw error;
+    } finally {
+      this.setLoading(false);
+    }
   }
 
 
