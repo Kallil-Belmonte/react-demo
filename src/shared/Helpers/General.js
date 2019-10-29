@@ -4,7 +4,7 @@ export const setPageTitle = (title) => {
 };
 
 
-// GROUP ARRAY ITEMS
+// GROUP ARRAY ITEMS IN ARRAYS
 export const groupArrayItemsInArrays = (array, itemsQuantity) => {
   const newArray = [[]];
 
