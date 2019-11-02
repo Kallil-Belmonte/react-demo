@@ -46,6 +46,7 @@ class Post extends Component {
       const response = await axios.get(`${ENDPOINTS.blog.posts}${this.props.match.params.id}`);
       this.props.handleSetPost(response.data);
     } catch (error) {
+      console.error(error);
       throw error;
     } finally {
       this.setState(false);
@@ -58,9 +59,10 @@ class Post extends Component {
     this.setLoading(true);
 
     try {
-      const response = await axios.delete(`${ENDPOINTS.blog.posts}${this.props.match.params.id}`);
+      await axios.delete(`${ENDPOINTS.blog.posts}${this.props.match.params.id}`);
       this.props.history.push('/blog');
     } catch (error) {
+      console.error(error);
       this.setLoading(false);
       throw error;
     }

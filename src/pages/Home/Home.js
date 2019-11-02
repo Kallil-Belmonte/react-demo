@@ -24,8 +24,10 @@ class Home extends Component {
   async getFeaturedPosts() {
     try {
      const response = await axios.get(ENDPOINTS.blog.posts);
-     this.setState({ posts: response.data });
+     const [firstPost, secondPost, thirdPost] = response.data;
+     this.setState({ posts: [firstPost, secondPost, thirdPost] });
     } catch (error) {
+      console.error(error);
       throw error;
     } finally {
       this.setState({ loading: false });

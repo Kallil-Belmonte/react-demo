@@ -69,6 +69,7 @@ class Blog extends Component {
       this.props.handleSetPosts(postsResponse.data);
       this.setPaginationSettings(postsResponse.data);
     } catch (error) {
+      console.error(error);
       throw error;
     } finally {
       this.setLoading(false);
@@ -86,6 +87,7 @@ class Blog extends Component {
       this.props.handleSetPosts(response.data);
       this.setPaginationSettings(response.data);
     } catch (error) {
+      console.error(error);
       throw error;
     } finally {
       this.setLoading(false);

@@ -86,6 +86,7 @@ class Login extends Component {
         this.props.history.push('/');
       }
     } catch (error) {
+      console.error(error);
       this.setLoading(false);
       throw error;
     }

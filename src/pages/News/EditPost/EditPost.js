@@ -38,6 +38,7 @@ class EditPost extends Component {
       handleEditPost(response.data);
       history.push(`/post/${match.params.id}`);
     } catch (error) {
+      console.error(error);
       throw error;
     } finally {
       this.setLoading(false);
