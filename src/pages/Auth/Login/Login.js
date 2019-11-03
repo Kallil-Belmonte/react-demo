@@ -56,10 +56,13 @@ class Login extends Component {
 
     try {
       const response = await MOCKY_INSTANCE.post(ENDPOINTS.auth.login, values);
+      const { idToken, expiresIn, firstName, lastName, email } = response.data;
+      const expirationDate = new Date(new Date().getTime() + expiresIn * 1000).toISOString();
+
+      this.setLoading(false);
 
       if (values.email === 'demo@demo.com') {
         this.setState((prevState, props) => ({
-          loading: false,
           form: {
             ...prevState.form,
             fieldsErrors: {
@@ -71,18 +74,13 @@ class Login extends Component {
         }));
       } else {
         if (values.keepLogged) {
-          localStorage.setItem('authTokenReactDemo', response.data.idToken);
-          localStorage.setItem('expirationDateReactDemo', new Date(new Date().getTime() + response.data.expiresIn * 1000).toISOString());
+          localStorage.setItem('authTokenReactDemo', idToken);
+          localStorage.setItem('expirationDateReactDemo', expirationDate);
         } else {
-          sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
+          sessionStorage.setItem('authTokenReactDemo', idToken);
         }
 
-        this.props.handleSetUserData({
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          email: response.data.email,
-        });
-
+        this.props.handleSetUserData({ firstName, lastName, email });
         this.props.history.push('/');
       }
     } catch (error) {

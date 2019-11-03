@@ -56,10 +56,12 @@ class Register extends Component {
 
     try {
       const response = await MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values);
+      const { token, firstName, lastName, email } = response.data;
+
+      this.setLoading(false);
 
       if (values.email === 'demo@demo.com') {
         this.setState((prevState, props) => ({
-          loading: false,
           form: {
             ...prevState.form,
             fieldsErrors: {
@@ -70,14 +72,8 @@ class Register extends Component {
           },
         }));
       } else {
-        sessionStorage.setItem('authTokenReactDemo', response.data.idToken);
-
-        this.props.handleSetUserData({
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          email: response.data.email,
-        });
-
+        sessionStorage.setItem('authTokenReactDemo', token);
+        this.props.handleSetUserData({ firstName, lastName, email });
         this.props.history.push('/');
       }
     } catch (error) {

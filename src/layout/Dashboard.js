@@ -51,8 +51,8 @@ class Dashboard extends Component {
     localStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('expirationDateReactDemo');
 
-    history.push('/login');
     handleLogOut();
+    history.push('/login');
   }
 };
 

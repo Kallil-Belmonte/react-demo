@@ -49,7 +49,7 @@ class Post extends Component {
       console.error(error);
       throw error;
     } finally {
-      this.setState(false);
+      this.setLoading(false);
     }
   }
 

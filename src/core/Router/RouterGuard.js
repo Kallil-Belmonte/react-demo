@@ -9,12 +9,10 @@ const RouterGuard = (component) => {
     return component;
   }
 
-  // Remove token
   sessionStorage.removeItem('authTokenReactDemo');
   localStorage.removeItem('authTokenReactDemo');
   localStorage.removeItem('expirationDateReactDemo');
 
-  // Redirect
   return <Redirect to="/login" />;
 };
 

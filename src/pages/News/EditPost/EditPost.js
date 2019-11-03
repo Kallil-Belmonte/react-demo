@@ -34,14 +34,12 @@ class EditPost extends Component {
 
     try {
       const response = await axios.put(`${ENDPOINTS.blog.posts}${match.params.id}`, values);
-
       handleEditPost(response.data);
       history.push(`/post/${match.params.id}`);
     } catch (error) {
       console.error(error);
-      throw error;
-    } finally {
       this.setLoading(false);
+      throw error;
     }
   }
 
