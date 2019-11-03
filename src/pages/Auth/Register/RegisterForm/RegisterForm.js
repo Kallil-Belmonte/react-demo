@@ -58,7 +58,7 @@ const RegisterForm = ({
         type="submit"
         disabled={!valid || pristine || submitting}
       >
-        Submit
+        Register
       </Button>
 
       <div className="text-center">
