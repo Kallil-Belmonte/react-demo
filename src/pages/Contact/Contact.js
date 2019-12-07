@@ -57,7 +57,6 @@ class Contact extends Component {
       }));
     } catch (error) {
       console.error(error);
-      throw error;
     } finally {
       this.setLoading(false);
     }

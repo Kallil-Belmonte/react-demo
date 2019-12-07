@@ -14,5 +14,9 @@ export const capitalizeText = (text) => {
 
 // LIMIT WORDS
 export const limitWords = (text, numberOfWords) => {
-  return text.split(' ').splice(0, numberOfWords).join(' ');
+  if (text.split(' ').length > numberOfWords) {
+    return text.split(' ').splice(0, numberOfWords).join(' ') + '...';
+  }
+
+  return text;
 };

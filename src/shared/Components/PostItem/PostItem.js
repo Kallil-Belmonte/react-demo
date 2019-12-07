@@ -14,7 +14,7 @@ const PostItem = ({ post }) => {
       {postImage}
       <article>
         <h3 className="title">{post.title}</h3>
-        <p className="mb-0">{post.body ? Helpers.limitWords(post.body, 8) + '...' : null}</p>
+        <p className="mb-0">{post.body ? Helpers.limitWords(post.body, 8) : null}</p>
         <NavLink className="btn btn-primary mt-3" to={`/post/${post.id}`}>Read more</NavLink>
       </article>
     </div>

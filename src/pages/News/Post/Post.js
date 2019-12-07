@@ -47,7 +47,6 @@ class Post extends Component {
       this.props.handleSetPost(response.data);
     } catch (error) {
       console.error(error);
-      throw error;
     } finally {
       this.setLoading(false);
     }
@@ -64,7 +63,6 @@ class Post extends Component {
     } catch (error) {
       console.error(error);
       this.setLoading(false);
-      throw error;
     }
   }
 
