@@ -11,7 +11,7 @@ const PostsPerPage = ({ postsPerPage, onChange }) => {
         <Col md={2}>
           <Form.Group controlId="filter">
             <Form.Label>Posts per page:</Form.Label>
-            <Form.Control as="select" value={postsPerPage} onChange={(event) => onChange(+event.target.value)}>
+            <Form.Control as="select" value={postsPerPage} onChange={(event) => onChange(Number(event.target.value))}>
               <option value="9">9</option>
               <option value="18">18</option>
               <option value="27">27</option>

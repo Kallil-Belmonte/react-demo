@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ListGroup, Badge } from 'react-bootstrap';
 
 const Categories = ({ categories, onSelectCategory }) => {
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(undefined);
 
   const isCategoryActive = (category) => activeCategory === category;
 
@@ -20,7 +20,7 @@ const Categories = ({ categories, onSelectCategory }) => {
             key={index}
             active={isCategoryActive(category.name)}
             className="d-flex justify-content-between align-items-center"
-            onClick={() => handleSelectCategory(category.name)}
+            onClick={() => isCategoryActive(category.name) ? undefined : handleSelectCategory(category.name)}
           >
             {category.name}
             <Badge pill variant="primary">{category.posts}</Badge>
