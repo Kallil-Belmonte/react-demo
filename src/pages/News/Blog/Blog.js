@@ -22,7 +22,7 @@ class Blog extends Component {
     postsPerPage: 9,
     firstPaginationItem: 1,
     maxPaginationItem: 5,
-    currentPage: '1',
+    currentPage: 1,
   }
 
   componentDidMount() {
@@ -54,7 +54,7 @@ class Blog extends Component {
       postsPerPage,
       firstPaginationItem: 1,
       maxPaginationItem: 5,
-      currentPage: '1',
+      currentPage: 1,
     });
   }
 
@@ -119,7 +119,7 @@ class Blog extends Component {
   //==============================
 
   render() {
-    const { posts, categories } = this.props;
+    const { categories, posts } = this.props;
     const {
       loading,
       pages,
@@ -175,14 +175,14 @@ class Blog extends Component {
 
 // MAP STATE TO PROPS
 const mapStateToProps = (state) => ({
-  posts: state.posts,
   categories: state.categories,
+  posts: state.posts,
 });
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  handleSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
   handleSetCategories: (categories) => dispatch(actionCreators.setCategories(categories)),
+  handleSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);

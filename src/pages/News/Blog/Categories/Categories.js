@@ -5,6 +5,8 @@ import { ListGroup, Badge } from 'react-bootstrap';
 const Categories = ({ categories, onSelectCategory }) => {
   const [activeCategory, setActiveCategory] = useState(null);
 
+  const isCategoryActive = (category) => activeCategory === category;
+
   const handleSelectCategory = (category) => {
     setActiveCategory(category);
     onSelectCategory(category);
@@ -16,8 +18,8 @@ const Categories = ({ categories, onSelectCategory }) => {
         {categories.map((category, index) =>
           <ListGroup.Item
             key={index}
+            active={isCategoryActive(category.name)}
             className="d-flex justify-content-between align-items-center"
-            active={activeCategory === category.name}
             onClick={() => handleSelectCategory(category.name)}
           >
             {category.name}
