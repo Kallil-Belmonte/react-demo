@@ -15,9 +15,9 @@ const Categories = ({ categories, onSelectCategory }) => {
   return (
     <aside data-component="categories">
       <ListGroup>
-        {categories.map((category, index) =>
+        {categories.map((category) =>
           <ListGroup.Item
-            key={index}
+            key={category.name}
             active={isCategoryActive(category.name)}
             className="d-flex justify-content-between align-items-center"
             onClick={() => isCategoryActive(category.name) ? undefined : handleSelectCategory(category.name)}

@@ -54,8 +54,8 @@ export const renderSelect = (field) => {
     <Fragment>
       <select id={field.id} className={classes} {...field.input}>
         <option />
-        {field.options.map((item, index) =>
-          <option value={item} key={index}>{item}</option>
+        {field.options.map((item) =>
+          <option key={item} value={item}>{item}</option>
         )}
       </select>
       {invalidFeedback}

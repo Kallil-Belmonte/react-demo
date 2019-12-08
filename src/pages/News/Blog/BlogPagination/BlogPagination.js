@@ -7,9 +7,9 @@ const BlogPagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }) 
   const endPages = startPages + maxItem;
   const isItemActive = page => Number(page) === currentPage;
 
-  const renderItems = () => pages.slice(startPages, endPages).map((page, index) => (
+  const renderItems = () => pages.slice(startPages, endPages).map((page) => (
     <Pagination.Item
-      key={index}
+      key={page}
       active={isItemActive(page)}
       onClick={() => isItemActive(page) ? undefined : onPaginate(Number(page))}
     >

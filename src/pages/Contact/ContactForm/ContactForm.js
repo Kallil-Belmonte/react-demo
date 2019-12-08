@@ -19,13 +19,23 @@ const ContactForm = ({
   return (
     <Form data-component="ContactForm" onSubmit={handleSubmit}>
       {feedbackMessages.success.map((successMessage, index) =>
-        <Alert key={index} variant="success" dismissible onClose={() => onClearFormMessage('feedbackMessages', 'success', index)}>
+        <Alert
+          key={successMessage}
+          variant="success"
+          dismissible
+          onClose={() => onClearFormMessage('feedbackMessages', 'success', index)}
+        >
           {successMessage}
         </Alert>
       )}
 
       {feedbackMessages.error.map((errorMessage, index) =>
-        <Alert key={index} variant="danger" dismissible onClose={() => onClearFormMessage('feedbackMessages', 'error', index)}>
+        <Alert
+          key={errorMessage}
+          variant="danger"
+          dismissible
+          onClose={() => onClearFormMessage('feedbackMessages', 'error', index)}
+        >
           {errorMessage}
         </Alert>
       )}

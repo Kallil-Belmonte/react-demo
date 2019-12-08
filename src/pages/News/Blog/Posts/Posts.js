@@ -8,7 +8,7 @@ const Posts = ({ pages, currentPage }) => {
   return (
     <section data-component="Posts">
       <Row>
-        {!!Object.keys(pages).length && pages[currentPage].map((post, index) =>
+        {!!Object.keys(pages).length && pages[currentPage].map((post) =>
           <Col key={post.id} md={4}>
             <PostItem post={post} />
           </Col>

@@ -25,7 +25,12 @@ const LoginForm = ({
         <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} />
 
         {fieldsErrors.email.map((errorMessage, index) =>
-          <Alert key={index} variant="danger" dismissible onClose={() => onClearFormMessage('fieldsErrors', 'email', index)}>
+          <Alert
+            key={errorMessage}
+            variant="danger"
+            dismissible
+            onClose={() => onClearFormMessage('fieldsErrors', 'email', index)}
+          >
             {errorMessage}
           </Alert>
         )}
@@ -36,7 +41,12 @@ const LoginForm = ({
         <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} />
 
         {fieldsErrors.password.map((errorMessage, index) =>
-          <Alert key={index} variant="danger" dismissible onClose={() => onClearFormMessage('fieldsErrors', 'password', index)}>
+          <Alert
+            key={errorMessage}
+            variant="danger"
+            dismissible
+            onClose={() => onClearFormMessage('fieldsErrors', 'password', index)}
+          >
             {errorMessage}
           </Alert>
         )}

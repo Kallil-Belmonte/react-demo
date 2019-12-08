@@ -15,9 +15,9 @@ class App extends Component {
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>
             <Switch>
-              {Routes.map((route, index) => (
+              {Routes.map((route) => (
                 <Route
-                  key={index}
+                  key={route.path}
                   path={route.path}
                   exact={route.exact}
                   component={route.component}

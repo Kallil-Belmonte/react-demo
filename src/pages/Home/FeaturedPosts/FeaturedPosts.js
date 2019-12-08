@@ -11,8 +11,8 @@ const FeaturedPosts = ({ posts }) => {
         <h2 className="section-title">Featured posts</h2>
 
         <Row>
-          {posts.map((featuredPost, index) =>
-            <Col md={4} key={featuredPost.id}>
+          {posts.map((featuredPost) =>
+            <Col key={featuredPost.id} md={4}>
               <PostItem post={featuredPost} />
             </Col>
           )}

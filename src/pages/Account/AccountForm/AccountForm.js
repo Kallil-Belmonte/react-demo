@@ -21,13 +21,21 @@ let AccountForm = ({
     <Row data-component="AccountForm">
       <Col md={{ span: 6, offset: 3 }}>
         {feedbackMessages.success.map((successMessage, index) =>
-          <Alert key={index} variant="success" dismissible onClose={() => onClearFormMessage('feedbackMessages', 'success', index)}>
+          <Alert
+            key={successMessage}
+            variant="success"
+            dismissible onClose={() => onClearFormMessage('feedbackMessages', 'success', index)}
+          >
             {successMessage}
           </Alert>
         )}
 
         {feedbackMessages.error.map((errorMessage, index) =>
-          <Alert key={index} variant="danger" dismissible onClose={() => onClearFormMessage('feedbackMessages', 'error', index)}>
+          <Alert
+            key={errorMessage}
+            variant="danger"
+            dismissible onClose={() => onClearFormMessage('feedbackMessages', 'error', index)}
+          >
             {errorMessage}
           </Alert>
         )}
@@ -48,7 +56,12 @@ let AccountForm = ({
             <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} errors={fieldsErrors.email} />
 
             {fieldsErrors.email.map((errorMessage, index) =>
-              <Alert key={index} variant="danger" dismissible onClose={() => onClearFormMessage('fieldsErrors', 'email', index)}>
+              <Alert
+                key={errorMessage}
+                variant="danger"
+                dismissible
+                onClose={() => onClearFormMessage('fieldsErrors', 'email', index)}
+              >
                 {errorMessage}
               </Alert>
             )}
