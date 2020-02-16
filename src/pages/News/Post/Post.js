@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -11,93 +11,74 @@ import Loader from 'shared/Components/Loader/Loader';
 import PostBody from 'pages/News/Post/PostBody/PostBody';
 import DeletePostModal from 'pages/News/Post/DeletePostModal/DeletePostModal';
 
-class Post extends Component {
-  state = {
-    loading: true,
-    isModalOpen: false,
-  }
+const { blog } = ENDPOINTS;
 
-  componentDidMount() {
-    this.getCurrentPost();
-  }
-
-
-  //==============================
-  // GENERAL METHODS
-  //==============================
-
-  // SET LOADING
-  setLoading(loading) {
-    this.setState({ loading });
-  }
+const Post = ({ currentPost, history, match, handleSetPost }) => {
+  const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
 
   // HANDLE TOGGLE MODAL
-  handleToggleModal() {
-    this.setState((prevState, props) => ({
-      isModalOpen: !prevState.isModalOpen
-    }));
-  }
+  const handleToggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
 
   // GET CURRENT POST
-  async getCurrentPost() {
+  const getCurrentPost = async () => {
     try {
-      const response = await axios.get(`${ENDPOINTS.blog.posts}${this.props.match.params.id}`);
-      this.props.handleSetPost(response.data);
+      const response = await axios.get(`${blog.posts}${match.params.id}`);
+      handleSetPost(response.data);
     } catch (error) {
       console.error(error);
     } finally {
-      this.setLoading(false);
+      setLoading(false);
     }
-  }
+  };
 
 
   // HANDLE DELETE POST
-  async handleDeletePost() {
-    this.setLoading(true);
+  const handleDeletePost = async () => {
+    setLoading(true);
 
     try {
-      await axios.delete(`${ENDPOINTS.blog.posts}${this.props.match.params.id}`);
-      this.props.history.push('/blog');
+      await axios.delete(`${blog.posts}${this.props.match.params.id}`);
+      history.push('/blog');
     } catch (error) {
       console.error(error);
       this.setLoading(false);
     }
-  }
+  };
 
 
-  //==============================
-  // VIEW
-  //==============================
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    getCurrentPost();
+  }, []); // eslint-disable-line
 
-  render() {
-    const { currentPost } =  this.props;
-    const { loading, isModalOpen } = this.state;
 
-    return (
-      <Dashboard>
-        <main data-component="Post">
-          <Loader loading={loading} />
+  return (
+    <Dashboard>
+      <main data-component="Post">
+        <Loader loading={loading} />
 
-          <Container>
-            <Row>
-              <Col md={{ span: 8, offset: 2 }}>
-                <PostBody post={currentPost} onOpenModal={() => this.handleToggleModal()} />
-              </Col>
-            </Row>
-          </Container>
+        <Container>
+          <Row>
+            <Col md={{ span: 8, offset: 2 }}>
+              <PostBody post={currentPost} onOpenModal={() => handleToggleModal()} />
+            </Col>
+          </Row>
+        </Container>
 
-          <DeletePostModal
-            isModalOpen={isModalOpen}
-            onDelete={() => this.handleDeletePost()}
-            onCloseModal={() => this.handleToggleModal()}
-          />
-        </main>
-      </Dashboard>
-    );
-  }
-}
+        <DeletePostModal
+          isModalOpen={isModalOpen}
+          onDelete={() => handleDeletePost()}
+          onCloseModal={() => handleToggleModal()}
+        />
+      </main>
+    </Dashboard>
+  );
+};
 
 
 //==============================

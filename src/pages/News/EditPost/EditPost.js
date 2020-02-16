@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -10,63 +10,43 @@ import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/Components/Loader/Loader';
 import EditPostForm from 'pages/News/EditPost/EditPostForm/EditPostForm';
 
-class EditPost extends Component {
-  state = {
-    loading: false,
-  }
+const { blog } = ENDPOINTS;
 
-
-  //==============================
-  // GENERAL METHODS
-  //==============================
-
-  // SET LOADING
-  setLoading(loading) {
-    this.setState({ loading });
-  }
+const EditPost = ({ history, match, handleEditPost }) => {
+  const [loading, setLoading] = useState(false);
 
 
   // HANDLE SUBMIT FORM
-  async handleSubmitForm(values) {
-    const { match, history, handleEditPost } = this.props;
-
-    this.setLoading(true);
+  const handleSubmitForm = async (values) => {
+    setLoading(true);
 
     try {
-      const response = await axios.put(`${ENDPOINTS.blog.posts}${match.params.id}`, values);
+      const response = await axios.put(`${blog.posts}${match.params.id}`, values);
       handleEditPost(response.data);
       history.push(`/post/${match.params.id}`);
     } catch (error) {
       console.error(error);
-      this.setLoading(false);
+      setLoading(false);
     }
   }
 
 
-  //==============================
-  // VIEW
-  //==============================
+  return (
+    <Dashboard>
+      <main data-component="EditPost">
+        <Loader loading={loading} />
 
-  render() {
-    const { loading } = this.state;
-
-    return (
-      <Dashboard>
-        <main data-component="EditPost">
-          <Loader loading={loading} />
-
-          <Container>
-            <Row>
-              <Col md={{ span: 8, offset: 2 }}>
-                <EditPostForm onSubmit={(values) => this.handleSubmitForm(values)} />
-              </Col>
-            </Row>
-          </Container>
-        </main>
-      </Dashboard>
-    );
-  }
-}
+        <Container>
+          <Row>
+            <Col md={{ span: 8, offset: 2 }}>
+              <EditPostForm onSubmit={(values) => handleSubmitForm(values)} />
+            </Col>
+          </Row>
+        </Container>
+      </main>
+    </Dashboard>
+  );
+};
 
 
 //==============================

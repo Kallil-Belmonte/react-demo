@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 
 import './Footer.scss';
 
-const Footer = (props) => {
+const Footer = () => {
   return (
     <footer data-component="Footer">
       <Container>

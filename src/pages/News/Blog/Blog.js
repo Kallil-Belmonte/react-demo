@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Container, Row, Col } from 'react-bootstrap';
@@ -15,158 +15,128 @@ import BlogPagination from 'pages/News/Blog/BlogPagination/BlogPagination';
 import Categories from 'pages/News/Blog/Categories/Categories';
 import './Blog.scss';
 
-class Blog extends Component {
-  state = {
-    loading: true,
-    pages: {},
-    postsPerPage: 9,
-    firstPaginationItem: 1,
-    maxPaginationItem: 5,
-    currentPage: 1,
-  }
+const { blog } = ENDPOINTS;
 
-  componentDidMount() {
-    this.getAllData();
-  }
-
-
-  //==============================
-  // GENERAL METHODS
-  //==============================
-
-  // SET LOADING
-  setLoading(loading) {
-    this.setState({ loading });
-  }
+const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
+  const [loading, setLoading] = useState(true);
+  const [pages, setPages] = useState({});
+  const [postsPerPage, setPostsPerPage] = useState(9);
+  const [firstPaginationItem, setFirstPaginationItem] = useState(1);
+  const [maxPaginationItem, setMaxPaginationItem] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   // SET PAGINATION SETTINGS
-  setPaginationSettings(posts, quantPostsPerPage) {
-    const pages = {};
-    const postsPerPage = quantPostsPerPage || 9;
+  const setPaginationSettings = (posts, quantPostsPerPage) => {
+    const pagesValue = {};
+    const postsPerPageValue = quantPostsPerPage || 9;
 
-    Helpers.groupArrayItemsInArrays(posts, postsPerPage).forEach((item, index) => {
-      pages[index + 1] = item;
+    Helpers.groupArrayItemsInArrays(posts, postsPerPageValue).forEach((item, index) => {
+      pagesValue[index + 1] = item;
     });
 
-    this.setState({
-      pages,
-      postsPerPage,
-      firstPaginationItem: 1,
-      maxPaginationItem: 5,
-      currentPage: 1,
-    });
-  }
+    setPages(pagesValue);
+    setPostsPerPage(postsPerPageValue);
+    setFirstPaginationItem(1);
+    setMaxPaginationItem(5);
+    setCurrentPage(1);
+  };
 
 
   // GET ALL DATA
-  async getAllData() {
+  const getAllData = async () => {
     try {
-      const categoriesResponse = await MOCKY_INSTANCE.get(ENDPOINTS.blog.categories);
-      const postsResponse = await axios.get(ENDPOINTS.blog.posts);
+      const categoriesResponse = await MOCKY_INSTANCE.get(blog.categories);
+      const postsResponse = await axios.get(blog.posts);
 
-      this.props.handleSetCategories(categoriesResponse.data);
-      this.props.handleSetPosts(postsResponse.data);
-      this.setPaginationSettings(postsResponse.data);
+      handleSetCategories(categoriesResponse.data);
+      handleSetPosts(postsResponse.data);
+      setPaginationSettings(postsResponse.data);
     } catch (error) {
       console.error(error);
     } finally {
-      this.setLoading(false);
+      setLoading(false);
     }
-  }
+  };
 
 
   // HANDLE SELECT CATEGORY
-  async handleSelectCategory(category) {
-    this.setLoading(true);
+  const handleSelectCategory = async (category) => {
+    setLoading(true);
 
     try {
-      const response = await axios.get(ENDPOINTS.blog.posts);
+      const response = await axios.get(blog.posts);
 
-      this.props.handleSetPosts(response.data);
-      this.setPaginationSettings(response.data);
+      handleSetPosts(response.data);
+      setPaginationSettings(response.data);
     } catch (error) {
       console.error(error);
     } finally {
-      this.setLoading(false);
+      setLoading(false);
     }
-  }
+  };
 
 
   // HANDLE PAGINATE
-  handlePaginate(target) {
+  const handlePaginate = (target) => {
     switch(target) {
       case 'previous':
-        this.setState((prevState) => ({
-          firstPaginationItem: --prevState.firstPaginationItem
-        }));
+        setFirstPaginationItem(firstPaginationItem - 1);
         break;
 
       case 'next':
-        this.setState((prevState) => ({
-          firstPaginationItem: ++prevState.firstPaginationItem
-        }));
+        setFirstPaginationItem(firstPaginationItem + 1)
         break;
 
       default:
-        this.setState({ currentPage: target })
+        setCurrentPage(target);
     }
-  }
+  };
 
 
-  //==============================
-  // VIEW
-  //==============================
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    getAllData();
+  }, []); // eslint-disable-line
 
-  render() {
-    const { categories, posts } = this.props;
-    const {
-      loading,
-      pages,
-      postsPerPage,
-      firstPaginationItem,
-      maxPaginationItem,
-      currentPage,
-    } = this.state;
 
-    return (
-      <Dashboard>
-        <main data-component="Blog">
-          <Loader loading={loading} />
+  return (
+    <Dashboard>
+      <main data-component="Blog">
+        <Loader loading={loading} />
 
-          <Container>
-            <PageHeader title="Blog" icon="newspaper" />
+        <Container>
+          <PageHeader title="Blog" icon="newspaper" />
 
-            <PostsPerPage
-              postsPerPage={postsPerPage}
-              onChange={(value) => this.setPaginationSettings(posts, value)}
-            />
+          <PostsPerPage
+            postsPerPage={postsPerPage}
+            onChange={(value) => setPaginationSettings(posts, value)}
+          />
 
-            <Row>
-              <Col md={9}>
-                <Posts pages={pages} currentPage={currentPage} />
+          <Row>
+            <Col md={9}>
+              <Posts pages={pages} currentPage={currentPage} />
 
-                <BlogPagination
-                  pages={Object.keys(pages)}
-                  firstItem={firstPaginationItem}
-                  maxItem={maxPaginationItem}
-                  currentPage={currentPage}
-                  onPaginate={(target) => this.handlePaginate(target)}
-                />
-              </Col>
-              <Col md={3}>
-                <Categories
-                  categories={categories}
-                  onSelectCategory={(category) => this.handleSelectCategory(category)}
-                />
-              </Col>
-            </Row>
-          </Container>
-        </main>
-      </Dashboard>
-    );
-  }
-}
+              <BlogPagination
+                pages={Object.keys(pages)}
+                firstItem={firstPaginationItem}
+                maxItem={maxPaginationItem}
+                currentPage={currentPage}
+                onPaginate={(target) => handlePaginate(target)}
+              />
+            </Col>
+            <Col md={3}>
+              <Categories
+                categories={categories}
+                onSelectCategory={(category) => handleSelectCategory(category)}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </main>
+    </Dashboard>
+  );
+};
 
 
 //==============================

@@ -11,6 +11,8 @@ import Loader from 'shared/Components/Loader/Loader';
 import RegisterForm from 'pages/Auth/Register/RegisterForm/RegisterForm';
 import './Register.scss';
 
+const { auth } = ENDPOINTS;
+
 class Register extends Component {
   state = {
     loading: false,
@@ -55,7 +57,7 @@ class Register extends Component {
     this.setLoading(true);
 
     try {
-      const response = await MOCKY_INSTANCE.post(ENDPOINTS.auth.register, values);
+      const response = await MOCKY_INSTANCE.post(auth.register, values);
       const { token, firstName, lastName, email } = response.data;
 
       this.setLoading(false);

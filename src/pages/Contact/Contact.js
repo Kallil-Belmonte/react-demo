@@ -11,6 +11,8 @@ import PageHeader from 'shared/Components/PageHeader/PageHeader';
 import ContactForm from 'pages/Contact/ContactForm/ContactForm';
 import './Contact.scss';
 
+const { contactForm } = ENDPOINTS;
+
 class Contact extends Component {
   state = {
     loading: true,
@@ -44,7 +46,7 @@ class Contact extends Component {
   // GET FORM DATA
   async getFormData() {
     try {
-      const response = await MOCKY_INSTANCE.get(ENDPOINTS.contactForm.favoriteColors);
+      const response = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
 
       this.setState((prevState, props) => ({
         form: {

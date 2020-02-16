@@ -11,6 +11,8 @@ import Loader from 'shared/Components/Loader/Loader';
 import LoginForm from 'pages/Auth/Login/LoginForm/LoginForm';
 import './Login.scss';
 
+const { auth } = ENDPOINTS;
+
 class Login extends Component {
   state = {
     loading: false,
@@ -55,7 +57,7 @@ class Login extends Component {
     this.setLoading(true);
 
     try {
-      const response = await MOCKY_INSTANCE.post(ENDPOINTS.auth.login, values);
+      const response = await MOCKY_INSTANCE.post(auth.login, values);
       const { idToken, expiresIn, firstName, lastName, email } = response.data;
       const expirationDate = new Date(new Date().getTime() + expiresIn * 1000).toISOString();
 
@@ -123,7 +125,7 @@ class Login extends Component {
       </main>
     );
   }
-}
+};
 
 
 //==============================

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -7,31 +7,10 @@ import * as Helpers from 'shared/Helpers';
 import Header from 'layout/Header/Header';
 import Footer from 'layout/Footer/Footer';
 
-class Dashboard extends Component {
-  componentDidMount() {
-    this.setPageTitle();
-  }
-
-  render() {
-    const { fullName, children } = this.props;
-
-    return (
-      <Fragment>
-        <Header userFullName={fullName} onLogOut={() => this.logOutUser()} />
-          {children}
-        <Footer />
-      </Fragment>
-    );
-  }
-
-
-  //==============================
-  // GENERAL METHODS
-  //==============================
-
+const Dashboard = ({ fullName, location, history, handleLogOut, children }) => {
   // SET PAGE TITLE
-  setPageTitle() {
-    const { pathname } = this.props.location;
+  const setPageTitle = () => {
+    const { pathname } = location;
 
     if (pathname === '/') {
       Helpers.setPageTitle('Home');
@@ -40,20 +19,33 @@ class Dashboard extends Component {
       const urlName = Helpers.capitalizeFirstLetter(pageUrl.split('/')[1]);
       Helpers.setPageTitle(urlName);
     }
-  }
+  };
 
 
   // LOG OUT USER
-  logOutUser() {
-    const { handleLogOut, history } = this.props;
-
+  const logOutUser = () => {
     sessionStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('authTokenReactDemo');
     localStorage.removeItem('expirationDateReactDemo');
 
     handleLogOut();
     history.push('/login');
-  }
+  };
+
+
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    setPageTitle();
+  }, []); // eslint-disable-line
+
+
+  return (
+    <Fragment>
+      <Header userFullName={fullName} onLogOut={() => logOutUser()} />
+        {children}
+      <Footer />
+    </Fragment>
+  );
 };
 
 

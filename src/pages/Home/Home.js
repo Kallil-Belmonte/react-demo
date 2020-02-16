@@ -1,56 +1,46 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios, { ENDPOINTS } from 'core/API/API';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/Components/Loader/Loader';
 import FeaturedPosts from 'pages/Home/FeaturedPosts/FeaturedPosts';
 
-class Home extends Component {
-  state = {
-    loading: true,
-    posts: [],
-  }
+const { blog } = ENDPOINTS;
 
-  componentDidMount() {
-    this.getFeaturedPosts();
-  }
+const Home = () => {
+  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState([]);
 
-
-  //==============================
-  // GENERAL METHODS
-  //==============================
 
   // GET FEATURED POSTS
-  async getFeaturedPosts() {
+  const getFeaturedPosts = async () => {
     try {
-     const response = await axios.get(ENDPOINTS.blog.posts);
+     const response = await axios.get(blog.posts);
      const [firstPost, secondPost, thirdPost] = response.data;
-     this.setState({ posts: [firstPost, secondPost, thirdPost] });
+     setPosts([firstPost, secondPost, thirdPost])
     } catch (error) {
       console.error(error);
     } finally {
-      this.setState({ loading: false });
+      setLoading(false);
     }
   }
 
 
-  //==============================
-  // VIEW
-  //==============================
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    getFeaturedPosts();
+  }, []); // eslint-disable-line
 
-  render() {
-    const { loading, posts } = this.state;
 
-    return (
-      <Dashboard>
-        <main data-component="Home">
-          <Loader loading={loading} />
+  return (
+    <Dashboard>
+      <main data-component="Home">
+        <Loader loading={loading} />
 
-          <FeaturedPosts posts={posts} />
-        </main>
-      </Dashboard>
-    );
-  }
-}
+        <FeaturedPosts posts={posts} />
+      </main>
+    </Dashboard>
+  );
+};
 
 export default Home;
