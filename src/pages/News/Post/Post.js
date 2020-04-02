@@ -27,8 +27,8 @@ const Post = ({ currentPost, history, match, handleSetPost }) => {
   // GET CURRENT POST
   const getCurrentPost = async () => {
     try {
-      const response = await axios.get(`${blog.posts}${match.params.id}`);
-      handleSetPost(response.data);
+      const { data } = await axios.get(`${blog.posts}${match.params.id}`);
+      handleSetPost(data);
     } catch (error) {
       console.error(error);
     } finally {

@@ -15,8 +15,8 @@ const Home = () => {
   // GET FEATURED POSTS
   const getFeaturedPosts = async () => {
     try {
-     const response = await axios.get(blog.posts);
-     const [firstPost, secondPost, thirdPost] = response.data;
+     const { data } = await axios.get(blog.posts);
+     const [firstPost, secondPost, thirdPost] = data;
      setPosts([firstPost, secondPost, thirdPost])
     } catch (error) {
       console.error(error);

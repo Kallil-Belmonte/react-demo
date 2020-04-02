@@ -46,14 +46,14 @@ class Contact extends Component {
   // GET FORM DATA
   async getFormData() {
     try {
-      const response = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
+      const { data } = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
 
       this.setState((prevState, props) => ({
         form: {
           ...prevState.form,
           data: {
             ...prevState.form.data,
-            favoriteColors: response.data,
+            favoriteColors: data,
           },
         },
       }));

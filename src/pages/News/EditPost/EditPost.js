@@ -21,8 +21,8 @@ const EditPost = ({ history, match, handleEditPost }) => {
     setLoading(true);
 
     try {
-      const response = await axios.put(`${blog.posts}${match.params.id}`, values);
-      handleEditPost(response.data);
+      const { data } = await axios.put(`${blog.posts}${match.params.id}`, values);
+      handleEditPost(data);
       history.push(`/post/${match.params.id}`);
     } catch (error) {
       console.error(error);

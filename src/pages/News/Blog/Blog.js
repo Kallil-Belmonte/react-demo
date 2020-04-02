@@ -65,10 +65,10 @@ const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
     setLoading(true);
 
     try {
-      const response = await axios.get(blog.posts);
+      const { data } = await axios.get(blog.posts);
 
-      handleSetPosts(response.data);
-      setPaginationSettings(response.data);
+      handleSetPosts(data);
+      setPaginationSettings(data);
     } catch (error) {
       console.error(error);
     } finally {

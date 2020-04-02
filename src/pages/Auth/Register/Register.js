@@ -57,8 +57,8 @@ class Register extends Component {
     this.setLoading(true);
 
     try {
-      const response = await MOCKY_INSTANCE.post(auth.register, values);
-      const { token, firstName, lastName, email } = response.data;
+      const { data } = await MOCKY_INSTANCE.post(auth.register, values);
+      const { token, firstName, lastName, email } = data;
 
       this.setLoading(false);
 

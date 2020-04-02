@@ -57,8 +57,8 @@ class Login extends Component {
     this.setLoading(true);
 
     try {
-      const response = await MOCKY_INSTANCE.post(auth.login, values);
-      const { idToken, expiresIn, firstName, lastName, email } = response.data;
+      const { data } = await MOCKY_INSTANCE.post(auth.login, values);
+      const { idToken, expiresIn, firstName, lastName, email } = data;
       const expirationDate = new Date(new Date().getTime() + expiresIn * 1000).toISOString();
 
       this.setLoading(false);
