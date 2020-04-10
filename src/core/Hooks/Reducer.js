@@ -3,5 +3,4 @@ const Reducer = (prevState, updatedProperties) => ({
   ...updatedProperties,
 });
 
-
 export default Reducer;
