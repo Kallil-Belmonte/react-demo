@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
 import axios, { ENDPOINTS } from 'core/API/API';
+import Reducer from 'core/Hooks/Reducer';
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/Components/Loader/Loader';
@@ -13,16 +14,20 @@ import DeletePostModal from 'pages/News/Post/DeletePostModal/DeletePostModal';
 
 const { blog } = ENDPOINTS;
 
-const Post = ({ currentPost, history, match, handleSetPost }) => {
-  const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const initialState = {
+  loading: true,
+  isModalOpen: false,
+};
 
+const Post = ({ currentPost, history, match, handleSetPost }) => {
+  const [state, setState] = useReducer(Reducer, initialState);
+
+  const { loading, isModalOpen } = state;
 
   // HANDLE TOGGLE MODAL
   const handleToggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+    setState({ isModalOpen: !isModalOpen });
   };
-
 
   // GET CURRENT POST
   const getCurrentPost = async () => {
@@ -32,30 +37,27 @@ const Post = ({ currentPost, history, match, handleSetPost }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setState({ loading: false });
     }
   };
-
 
   // HANDLE DELETE POST
   const handleDeletePost = async () => {
-    setLoading(true);
+    setState({ loading: true });
 
     try {
-      await axios.delete(`${blog.posts}${this.props.match.params.id}`);
+      await axios.delete(`${blog.posts}${match.params.id}`);
       history.push('/blog');
     } catch (error) {
       console.error(error);
-      this.setLoading(false);
+      setState({ loading: false });
     }
   };
-
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     getCurrentPost();
   }, []); // eslint-disable-line
-
 
   return (
     <Dashboard>

@@ -8,6 +8,8 @@ import Validations from 'core/Forms/Validations';
 import { renderInput, renderTextarea } from 'core/Forms/Fields';
 import './Form.scss';
 
+const { Group, Label } = Form;
+
 let EditPostForm = ({
   handleSubmit,
   valid,
@@ -17,15 +19,15 @@ let EditPostForm = ({
 }) => {
   return (
     <Form data-component="EditPostForm" onSubmit={handleSubmit}>
-      <Form.Group controlId="title">
-        <Form.Label>Title</Form.Label>
+      <Group controlId="title">
+        <Label>Title</Label>
         <Field id="title" className="form-control" component={renderInput} type="text" name="title" validate={[Validations.required]} />
-      </Form.Group>
+      </Group>
 
-      <Form.Group controlId="body">
-        <Form.Label>Body</Form.Label>
+      <Group controlId="body">
+        <Label>Body</Label>
         <Field id="body" className="form-control" component={renderTextarea} name="body" rows="6" validate={[Validations.required]} />
-      </Form.Group>
+      </Group>
 
       <Button className="mr-2" variant="primary" type="submit" disabled={!valid || pristine || submitting}>
         Edit

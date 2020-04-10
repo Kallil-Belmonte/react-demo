@@ -7,6 +7,8 @@ import { Row, Col, Form, Alert, Button } from 'react-bootstrap';
 import Validations from 'core/Forms/Validations';
 import { renderInput } from 'core/Forms/Fields';
 
+const { Group, Label } = Form;
+
 let AccountForm = ({
   fieldsErrors,
   feedbackMessages,
@@ -41,18 +43,18 @@ let AccountForm = ({
         )}
 
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="first-name">
-            <Form.Label>First name</Form.Label>
+          <Group controlId="first-name">
+            <Label>First name</Label>
             <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" validate={[Validations.required, Validations.minLength3]} />
-          </Form.Group>
+          </Group>
 
-          <Form.Group controlId="last-name">
-            <Form.Label>Last name</Form.Label>
+          <Group controlId="last-name">
+            <Label>Last name</Label>
             <Field id="last-name" className="form-control" component={renderInput} type="text" name="lastName" validate={[Validations.required]} />
-          </Form.Group>
+          </Group>
 
-          <Form.Group controlId="email">
-            <Form.Label>E-mail</Form.Label>
+          <Group controlId="email">
+            <Label>E-mail</Label>
             <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} errors={fieldsErrors.email} />
 
             {fieldsErrors.email.map((errorMessage, index) =>
@@ -65,7 +67,7 @@ let AccountForm = ({
                 {errorMessage}
               </Alert>
             )}
-          </Form.Group>
+          </Group>
 
           <Button className="mr-2" variant="primary" type="submit" disabled={!valid || pristine || submitting}>
             Save

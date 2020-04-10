@@ -1,14 +1,16 @@
 import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
 
+const { SET_POSTS, SET_CATEGORIES } = ACTION_TYPES;
+
 // SET POSTS
 export const setPosts = (posts) => ({
-  type: ACTION_TYPES.SET_POSTS,
+  type: SET_POSTS,
   payload: posts,
 });
 
 
 // SET CATEGORIES
 export const setCategories = (categories) => ({
-  type: ACTION_TYPES.SET_CATEGORIES,
+  type: SET_CATEGORIES,
   payload: categories,
 });

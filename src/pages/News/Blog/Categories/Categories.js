@@ -1,30 +1,42 @@
-import React, { useState } from 'react';
+import React, { useReducer, useCallback } from 'react';
 
 import { ListGroup, Badge } from 'react-bootstrap';
 
-const Categories = ({ categories, onSelectCategory }) => {
-  const [activeCategory, setActiveCategory] = useState(undefined);
+import Reducer from 'core/Hooks/Reducer';
 
-  const isCategoryActive = (category) => activeCategory === category;
+const { Item } = ListGroup;
+
+const initialState = {
+  activeCategory: undefined,
+};
+
+const Categories = ({ categories, onSelectCategory }) => {
+  const [state, setState] = useReducer(Reducer, initialState);
+
+  const { activeCategory } = state;
+
+  const isCategoryActive = useCallback((category) => {
+    return category === activeCategory;
+  }, [activeCategory]);
 
   const handleSelectCategory = (category) => {
-    setActiveCategory(category);
+    setState({ activeCategory: category});
     onSelectCategory(category);
   };
 
   return (
     <aside data-component="categories">
       <ListGroup>
-        {categories.map((category) =>
-          <ListGroup.Item
-            key={category.name}
-            active={isCategoryActive(category.name)}
+        {categories.map(({ name, posts }) =>
+          <Item
+            key={name}
+            active={isCategoryActive(name)}
             className="d-flex justify-content-between align-items-center"
-            onClick={() => isCategoryActive(category.name) ? undefined : handleSelectCategory(category.name)}
+            onClick={() => isCategoryActive(name) ? undefined : handleSelectCategory(name)}
           >
-            {category.name}
-            <Badge pill variant="primary">{category.posts}</Badge>
-          </ListGroup.Item>
+            {name}
+            <Badge pill variant="primary">{posts}</Badge>
+          </Item>
         )}
       </ListGroup>
     </aside>

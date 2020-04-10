@@ -8,6 +8,8 @@ import Validations from 'core/Forms/Validations';
 import { renderInput, renderCheckbox } from 'core/Forms/Fields';
 import './LoginForm.scss';
 
+const { Group, Label } = Form;
+
 const LoginForm = ({
   fieldsErrors,
   onClearFormMessage,
@@ -20,8 +22,8 @@ const LoginForm = ({
     <Form data-component="LoginForm" onSubmit={handleSubmit}>
       <h1 className="page-title">Login</h1>
 
-      <Form.Group controlId="email">
-        <Form.Label>E-mail</Form.Label>
+      <Group controlId="email">
+        <Label>E-mail</Label>
         <Field id="email" className="form-control" component={renderInput} type="text" name="email" validate={[Validations.required, Validations.email]} />
 
         {fieldsErrors.email.map((errorMessage, index) =>
@@ -34,10 +36,10 @@ const LoginForm = ({
             {errorMessage}
           </Alert>
         )}
-      </Form.Group>
+      </Group>
 
-      <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
+      <Group controlId="password">
+        <Label>Password</Label>
         <Field id="password" className="form-control" component={renderInput} type="password" name="password" validate={[Validations.required, Validations.minLength3]} />
 
         {fieldsErrors.password.map((errorMessage, index) =>
@@ -50,11 +52,11 @@ const LoginForm = ({
             {errorMessage}
           </Alert>
         )}
-      </Form.Group>
+      </Group>
 
-      <Form.Group>
+      <Group>
         <Field className="p-primary" label="Keep logged" component={renderCheckbox} name="keepLogged" />
-      </Form.Group>
+      </Group>
 
       <Button
         className="d-block mx-auto"

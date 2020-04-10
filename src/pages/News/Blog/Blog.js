@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
 import axios, { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
+import Reducer from 'core/Hooks/Reducer';
 import * as actionCreators from 'core/Redux/Actions/ActionCreators';
 import * as Helpers from 'shared/Helpers';
 import Dashboard from 'layout/Dashboard';
@@ -17,31 +18,44 @@ import './Blog.scss';
 
 const { blog } = ENDPOINTS;
 
-const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
-  const [loading, setLoading] = useState(true);
-  const [pages, setPages] = useState({});
-  const [postsPerPage, setPostsPerPage] = useState(9);
-  const [firstPaginationItem, setFirstPaginationItem] = useState(1);
-  const [maxPaginationItem, setMaxPaginationItem] = useState(5);
-  const [currentPage, setCurrentPage] = useState(1);
+const initialState = {
+  loading: true,
+  pages: {},
+  postsPerPage: 9,
+  firstPaginationItem: 1,
+  maxPaginationItem: 5,
+  currentPage: 1,
+};
 
+const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
+  const [state, setState] = useReducer(Reducer, initialState);
+
+  const {
+    loading,
+    pages,
+    postsPerPage,
+    firstPaginationItem,
+    maxPaginationItem,
+    currentPage,
+  } = state;
 
   // SET PAGINATION SETTINGS
   const setPaginationSettings = (posts, quantPostsPerPage) => {
-    const pagesValue = {};
-    const postsPerPageValue = quantPostsPerPage || 9;
+    const pages = {};
+    const postsPerPage = quantPostsPerPage || 9;
 
-    Helpers.groupArrayItemsInArrays(posts, postsPerPageValue).forEach((item, index) => {
-      pagesValue[index + 1] = item;
+    Helpers.groupArrayItemsInArrays(posts, postsPerPage).forEach((item, index) => {
+      pages[index + 1] = item;
     });
 
-    setPages(pagesValue);
-    setPostsPerPage(postsPerPageValue);
-    setFirstPaginationItem(1);
-    setMaxPaginationItem(5);
-    setCurrentPage(1);
+    setState({
+      pages,
+      postsPerPage,
+      firstPaginationItem: 1,
+      maxPaginationItem: 5,
+      currentPage: 1,
+    });
   };
-
 
   // GET ALL DATA
   const getAllData = async () => {
@@ -55,14 +69,13 @@ const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setState({ loading: false });
     }
   };
 
-
   // HANDLE SELECT CATEGORY
   const handleSelectCategory = async (category) => {
-    setLoading(true);
+    setState({ loading: true });
 
     try {
       const { data } = await axios.get(blog.posts);
@@ -72,33 +85,30 @@ const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setState({ loading: false });
     }
   };
-
 
   // HANDLE PAGINATE
   const handlePaginate = (target) => {
     switch(target) {
       case 'previous':
-        setFirstPaginationItem(firstPaginationItem - 1);
+        setState({ firstPaginationItem: firstPaginationItem - 1 });
         break;
 
       case 'next':
-        setFirstPaginationItem(firstPaginationItem + 1)
+        setState({ firstPaginationItem: firstPaginationItem + 1 })
         break;
 
       default:
-        setCurrentPage(target);
+        setState({ currentPage: target });
     }
   };
-
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     getAllData();
   }, []); // eslint-disable-line
-
 
   return (
     <Dashboard>

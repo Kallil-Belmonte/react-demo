@@ -1,4 +1,8 @@
 const ACTION_TYPES = {
+  // ACCOUNT
+  EDIT_ACCOUNT: 'EDIT_ACCOUNT',
+
+
   // AUTH
   LOG_IN:  'LOG_IN',
   LOG_OUT: 'LOG_OUT',
@@ -13,10 +17,6 @@ const ACTION_TYPES = {
   // Blog
   SET_POSTS:      'SET_POSTS',
   SET_CATEGORIES: 'SET_CATEGORIES',
-
-
-  // ACCOUNT
-  EDIT_ACCOUNT: 'EDIT_ACCOUNT'
 };
 
 export default ACTION_TYPES;

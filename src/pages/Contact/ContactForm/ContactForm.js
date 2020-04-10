@@ -6,6 +6,8 @@ import { Col, Form, Alert, Button } from 'react-bootstrap';
 import Validations from 'core/Forms/Validations';
 import { renderInput, renderSelect, renderCheckbox, renderRadioButton } from 'core/Forms/Fields';
 
+const { Row, Group, Label } = Form;
+
 const ContactForm = ({
   data,
   feedbackMessages,
@@ -40,60 +42,60 @@ const ContactForm = ({
         </Alert>
       )}
 
-      <Form.Row>
+      <Row>
         <Col>
-          <Form.Group controlId="first-name">
-            <Form.Label>First name</Form.Label>
+          <Group controlId="first-name">
+            <Label>First name</Label>
             <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" validate={[Validations.required, Validations.minLength3]} />
-          </Form.Group>
+          </Group>
         </Col>
 
         <Col>
-          <Form.Group controlId="last-name">
-            <Form.Label>Last name</Form.Label>
+          <Group controlId="last-name">
+            <Label>Last name</Label>
             <Field id="last-name" className="form-control" component={renderInput} type="text" name="lastName" validate={[Validations.required]} />
-          </Form.Group>
+          </Group>
         </Col>
-      </Form.Row>
+      </Row>
 
-      <Form.Row>
+      <Row>
         <Col>
-          <Form.Group controlId="email">
-            <Form.Label>E-mail</Form.Label>
+          <Group controlId="email">
+            <Label>E-mail</Label>
             <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} />
-          </Form.Group>
+          </Group>
         </Col>
 
         <Col>
-          <Form.Group controlId="telephone">
-            <Form.Label>Telephone</Form.Label>
+          <Group controlId="telephone">
+            <Label>Telephone</Label>
             <Field id="telephone" className="form-control telephone-mask" component={renderInput} type="tel" name="telephone" placeholder="(00) 0000 0000" validate={[Validations.required]} />
-          </Form.Group>
+          </Group>
         </Col>
-      </Form.Row>
+      </Row>
 
-      <Form.Group>
+      <Group>
         <Field className="p-primary" label="Male" component={renderRadioButton} name="sex" radioValue="male" />
         <Field className="p-primary" label="Female" component={renderRadioButton} name="sex" radioValue="female" />
-      </Form.Group>
+      </Group>
 
-      <Form.Row>
+      <Row>
         <Col>
-          <Form.Group controlId="favoriteColor">
-            <Form.Label>Favorite color</Form.Label>
+          <Group controlId="favoriteColor">
+            <Label>Favorite color</Label>
             <Field id="favoriteColor" className="form-control" component={renderSelect} name="favoriteColor" options={data.favoriteColors} validate={[Validations.required]} />
-          </Form.Group>
+          </Group>
         </Col>
 
         <Col className="mt-4">
           <Field className="p-primary" label="Employed" component={renderCheckbox} name="employed" />
         </Col>
-      </Form.Row>
+      </Row>
 
-      <Form.Group controlId="message">
-        <Form.Label>Message</Form.Label>
+      <Group controlId="message">
+        <Label>Message</Label>
         <Field id="message" className="form-control" component="textarea" name="message" rows="3" validate={[Validations.required]} />
-      </Form.Group>
+      </Group>
 
       <Button className="mr-2" variant="primary" type="submit" disabled={!valid || pristine || submitting}>
         Send
