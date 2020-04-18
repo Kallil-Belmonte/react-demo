@@ -2,7 +2,7 @@ import {
   setPageTitle,
   groupArrayItemsInArrays,
   removeItemsFromArray,
-  getFieldClassName,
+  setFieldClassName,
   getFieldErrorMessage,
 } from './General';
 
@@ -17,7 +17,7 @@ export {
   setPageTitle,
   groupArrayItemsInArrays,
   removeItemsFromArray,
-  getFieldClassName,
+  setFieldClassName,
   getFieldErrorMessage,
 
   // Formatters

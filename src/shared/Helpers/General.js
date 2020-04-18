@@ -43,8 +43,8 @@ export const removeItemsFromArray = (useIndex, array, itemsToRemove) => {
 };
 
 
-// GET FIELD CLASS NAME
-export const getFieldClassName = (errorField) => {
+// SET FIELD CLASS NAME
+export const setFieldClassName = (errorField) => {
   return `form-control ${errorField ? 'is-invalid': ''}`;
 };
 

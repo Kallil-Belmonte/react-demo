@@ -14,7 +14,7 @@ import Loader from 'shared/Components/Loader/Loader';
 import './LoginForm.scss';
 
 const { auth } = ENDPOINTS;
-const { getFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
+const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
 const { Group, Label } = Form;
 
 const initialState = {
@@ -80,7 +80,7 @@ const LoginForm = ({ history, onSetUserData }) => {
           <Label>E-mail</Label>
           <input
             id="email"
-            className={getFieldClassName(errors.email)}
+            className={setFieldClassName(errors.email)}
             type="text"
             name="email"
             ref={register({
@@ -106,7 +106,7 @@ const LoginForm = ({ history, onSetUserData }) => {
           <Label>Password</Label>
           <input
             id="password"
-            className={getFieldClassName(errors.password)}
+            className={setFieldClassName(errors.password)}
             type="password"
             name="password"
             ref={register({
