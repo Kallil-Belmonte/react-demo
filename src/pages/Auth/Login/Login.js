@@ -10,8 +10,8 @@ import './Login.scss';
 const { setPageTitle } = Helpers;
 
 const Login = ({ history }) => {
-  // REDIRECT USER
-  const redirectUser = useCallback(() => {
+  // REDIRECT LOGGED USER
+  const redirectLoggedUser = useCallback(() => {
     const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
     const expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
 
@@ -24,7 +24,7 @@ const Login = ({ history }) => {
   useEffect(() => {
     console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
     setPageTitle('Login');
-    redirectUser();
+    redirectLoggedUser();
   }, []); // eslint-disable-line
 
   return (
