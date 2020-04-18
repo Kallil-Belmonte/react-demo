@@ -1,3 +1,5 @@
+import React from 'react';
+
 // SET PAGE TITLE
 export const setPageTitle = (title) => {
   document.title = `React Demo | ${title}`;
@@ -23,27 +25,31 @@ export const groupArrayItemsInArrays = (array, itemsQuantity) => {
 };
 
 
-// REMOVE ITEMS FROM INDEXES
-export const removeItemsFromIndexes = (array, arrayIndexes) => {
+// REMOVE ITEMS FROM ARRAY
+export const removeItemsFromArray = (useIndex, array, itemsToRemove) => {
   let newArray = array;
 
-  arrayIndexes.forEach((indexItem) => {
-    newArray = newArray.filter(arrayItem => array.indexOf(arrayItem) !== indexItem);
+  itemsToRemove.forEach(itemToRemove => {
+    newArray = newArray.filter(arrayItem => {
+      if (useIndex) {
+        return array.indexOf(arrayItem) !== itemToRemove;
+      }
+
+      return arrayItem !== itemToRemove;
+    });
   });
 
   return newArray;
 };
 
 
-// CLEAR FORM MESSAGE
-export const clearFormMessage = ($this, formName, objectName, propertyName, index) => {
-  $this.setState((prevState, props) => ({
-    [formName]: {
-      ...prevState[formName],
-      [objectName]: {
-        ...prevState[formName][objectName],
-        [propertyName]: removeItemsFromIndexes(prevState[formName][objectName][propertyName], [index])
-      }
-    }
-  }));
+// GET FIELD CLASS NAME
+export const getFieldClassName = (errorField) => {
+  return `form-control ${errorField ? 'is-invalid': ''}`;
+};
+
+
+// GET FIELD ERROR MESSAGE
+export const getFieldErrorMessage = (errorField) => {
+  return errorField && <div className="d-block invalid-feedback">{errorField.message}</div>
 };

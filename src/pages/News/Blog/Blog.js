@@ -17,6 +17,7 @@ import Categories from 'pages/News/Blog/Categories/Categories';
 import './Blog.scss';
 
 const { blog } = ENDPOINTS;
+const { groupArrayItemsInArrays } = Helpers;
 
 const initialState = {
   loading: true,
@@ -44,7 +45,7 @@ const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
     const pages = {};
     const postsPerPage = quantPostsPerPage || 9;
 
-    Helpers.groupArrayItemsInArrays(posts, postsPerPage).forEach((item, index) => {
+    groupArrayItemsInArrays(posts, postsPerPage).forEach((item, index) => {
       pages[index + 1] = item;
     });
 

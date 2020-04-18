@@ -7,17 +7,19 @@ import * as Helpers from 'shared/Helpers';
 import Header from 'layout/Header/Header';
 import Footer from 'layout/Footer/Footer';
 
+const { setPageTitle, capitalizeFirstLetter } = Helpers;
+
 const Dashboard = ({ fullName, location, history, handleLogOut, children }) => {
-  // SET PAGE TITLE
-  const setPageTitle = () => {
+  // HANDLE SET PAGE TITLE
+  const handleSetPageTitle = () => {
     const { pathname } = location;
 
     if (pathname === '/') {
-      Helpers.setPageTitle('Home');
+      setPageTitle('Home');
     } else {
       const pageUrl = pathname.split('-').join(' ');
-      const urlName = Helpers.capitalizeFirstLetter(pageUrl.split('/')[1]);
-      Helpers.setPageTitle(urlName);
+      const urlName = capitalizeFirstLetter(pageUrl.split('/')[1]);
+      setPageTitle(urlName);
     }
   };
 
@@ -35,7 +37,7 @@ const Dashboard = ({ fullName, location, history, handleLogOut, children }) => {
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    setPageTitle();
+    handleSetPageTitle();
   }, []); // eslint-disable-line
 
 

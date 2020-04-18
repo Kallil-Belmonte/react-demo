@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import * as Helpers from 'shared/Helpers';
 import './NotFound.scss';
 
+const { setPageTitle } = Helpers;
+
 const NotFound = (props) => {
-  // Set page title
-  Helpers.setPageTitle('Error 404');
+  useEffect(() => {
+    setPageTitle('Error 404');
+  }, []);
 
   return (
     <main data-component="NotFound">

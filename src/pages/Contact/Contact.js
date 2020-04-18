@@ -83,7 +83,7 @@ class Contact extends Component {
 
   // HANDLE CLEAR FORM MESSAGE
   handleClearFormMessage(object, property, index) {
-    Helpers.clearFormMessage(this, 'form', object, property, index);
+    // Helpers.clearFieldErrorMessage(this, 'form', object, property, index);
   }
 
 

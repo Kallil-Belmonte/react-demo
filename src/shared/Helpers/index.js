@@ -1,8 +1,9 @@
 import {
   setPageTitle,
   groupArrayItemsInArrays,
-  removeItemsFromIndexes,
-  clearFormMessage,
+  removeItemsFromArray,
+  getFieldClassName,
+  getFieldErrorMessage,
 } from './General';
 
 import {
@@ -15,8 +16,9 @@ export {
   // General
   setPageTitle,
   groupArrayItemsInArrays,
-  removeItemsFromIndexes,
-  clearFormMessage,
+  removeItemsFromArray,
+  getFieldClassName,
+  getFieldErrorMessage,
 
   // Formatters
   capitalizeFirstLetter,
