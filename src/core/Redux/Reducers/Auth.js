@@ -5,12 +5,14 @@ const { LOG_IN, EDIT_ACCOUNT } = ACTION_TYPES;
 
 // USER DATA
 export const userDataReducer = (state = {}, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case LOG_IN:
-      return updateState(state, action.payload);
+      return updateState(state, payload);
 
     case EDIT_ACCOUNT:
-      return updateState(state, action.payload);
+      return updateState(state, payload);
 
     default:
       return state;

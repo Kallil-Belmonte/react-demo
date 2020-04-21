@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // JSON PLACEHOLDER
 const JSON_PLACEHOLDER_INSTANCE = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/',
+  baseURL: 'http://jsonplaceholder.typicode.com/',
 });
 
 JSON_PLACEHOLDER_INSTANCE.interceptors.request.use(

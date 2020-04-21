@@ -5,12 +5,14 @@ const { SET_CURRENT_POST, EDIT_CURRENT_POST } = ACTION_TYPES;
 
 // CURRENT POST
 export const currentPostReducer = (state = {}, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case SET_CURRENT_POST:
-      return updateState(state, action.payload);
+      return updateState(state, payload);
 
     case EDIT_CURRENT_POST:
-      return updateState(state, action.payload);
+      return updateState(state, payload);
 
     default:
       return state;

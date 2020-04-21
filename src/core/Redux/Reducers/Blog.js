@@ -4,9 +4,11 @@ const { SET_POSTS, SET_CATEGORIES } = ACTION_TYPES;
 
 // POSTS
 export const postsReducer = (state = [], action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case SET_POSTS:
-      return action.payload;
+      return payload;
 
     default:
       return state;
@@ -16,9 +18,11 @@ export const postsReducer = (state = [], action) => {
 
 // CATEGORIES
 export const categoriesReducer = (state = [], action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case SET_CATEGORIES:
-      return action.payload;
+      return payload;
 
     default:
       return state;
