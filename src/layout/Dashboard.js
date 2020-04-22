@@ -9,7 +9,7 @@ import Footer from 'layout/Footer/Footer';
 
 const { setPageTitle, capitalizeFirstLetter } = Helpers;
 
-const Dashboard = ({ fullName, location, history, handleLogOut, children }) => {
+const Dashboard = ({ fullName, location, history, dispatchLogOut, children }) => {
   // HANDLE SET PAGE TITLE
   const handleSetPageTitle = () => {
     const { pathname } = location;
@@ -26,11 +26,7 @@ const Dashboard = ({ fullName, location, history, handleLogOut, children }) => {
 
   // LOG OUT USER
   const logOutUser = () => {
-    sessionStorage.removeItem('authTokenReactDemo');
-    localStorage.removeItem('authTokenReactDemo');
-    localStorage.removeItem('expirationDateReactDemo');
-
-    handleLogOut();
+    dispatchLogOut();
     history.push('/login');
   };
 
@@ -62,7 +58,7 @@ const mapStateToProps = (state) => ({
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  handleLogOut: () => dispatch(actionCreators.logOut())
+  dispatchLogOut: () => dispatch(actionCreators.logOut())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dashboard));

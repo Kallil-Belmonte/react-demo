@@ -17,7 +17,7 @@ const initialState = {
   loading: false,
 };
 
-const EditPost = ({ history, match, handleEditPost }) => {
+const EditPost = ({ history, match, dispatchEditPost }) => {
   const [state, setState] = useReducer(Reducer, initialState);
 
   const { loading } = state;
@@ -28,7 +28,7 @@ const EditPost = ({ history, match, handleEditPost }) => {
 
     try {
       const { data } = await axios.put(`${blog.posts}${match.params.id}`, values);
-      handleEditPost(data);
+      dispatchEditPost(data);
       history.push(`/post/${match.params.id}`);
     } catch (error) {
       console.error(error);
@@ -60,7 +60,7 @@ const EditPost = ({ history, match, handleEditPost }) => {
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  handleEditPost: (post) => dispatch(actionCreators.editPost(post))
+  dispatchEditPost: (post) => dispatch(actionCreators.editPost(post))
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(EditPost));

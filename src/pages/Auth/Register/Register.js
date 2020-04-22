@@ -75,7 +75,7 @@ class Register extends Component {
         }));
       } else {
         sessionStorage.setItem('authTokenReactDemo', token);
-        this.props.handleSetUserData({ firstName, lastName, email });
+        this.props.dispatchSetUserData({ firstName, lastName, email });
         this.props.history.push('/');
       }
     } catch (error) {
@@ -127,7 +127,7 @@ class Register extends Component {
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  handleSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
+  dispatchSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(Register));

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
+import { clearStorageData } from 'core/Redux/RootReducer';
+
 const RouterGuard = (component) => {
   const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
   const expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
@@ -9,9 +11,7 @@ const RouterGuard = (component) => {
     return component;
   }
 
-  sessionStorage.removeItem('authTokenReactDemo');
-  localStorage.removeItem('authTokenReactDemo');
-  localStorage.removeItem('expirationDateReactDemo');
+  clearStorageData();
 
   return <Redirect to="/login" />;
 };

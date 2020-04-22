@@ -28,7 +28,7 @@ const initialState = {
   currentPage: 1,
 };
 
-const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
+const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) => {
   const [state, setState] = useReducer(Reducer, initialState);
 
   const {
@@ -64,8 +64,8 @@ const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
       const categoriesResponse = await MOCKY_INSTANCE.get(blog.categories);
       const postsResponse = await axios.get(blog.posts);
 
-      handleSetCategories(categoriesResponse.data);
-      handleSetPosts(postsResponse.data);
+      dispatchSetCategories(categoriesResponse.data);
+      dispatchSetPosts(postsResponse.data);
       setPaginationSettings(postsResponse.data);
     } catch (error) {
       console.error(error);
@@ -81,7 +81,7 @@ const Blog = ({ categories, posts, handleSetCategories, handleSetPosts }) => {
     try {
       const { data } = await axios.get(blog.posts);
 
-      handleSetPosts(data);
+      dispatchSetPosts(data);
       setPaginationSettings(data);
     } catch (error) {
       console.error(error);
@@ -162,8 +162,8 @@ const mapStateToProps = (state) => ({
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  handleSetCategories: (categories) => dispatch(actionCreators.setCategories(categories)),
-  handleSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
+  dispatchSetCategories: (categories) => dispatch(actionCreators.setCategories(categories)),
+  dispatchSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);

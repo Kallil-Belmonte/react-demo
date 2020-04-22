@@ -53,7 +53,7 @@ class Account extends Component {
       }));
     }
     else {
-      this.props.handleEditAccount(values);
+      this.props.dispatchEditAccount(values);
 
       this.setState((prevState, props) => ({
         form: {
@@ -107,7 +107,7 @@ class Account extends Component {
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  handleEditAccount: (userData) => dispatch(actionCreators.editAccount(userData)),
+  dispatchEditAccount: (userData) => dispatch(actionCreators.editAccount(userData)),
 });
 
 export default connect(null, mapDispatchToProps)(Account);

@@ -23,7 +23,7 @@ const initialState = {
   passwordErrors: [],
 };
 
-const LoginForm = ({ history, onSetUserData }) => {
+const LoginForm = ({ history, dispatchSetUserData }) => {
   const { register, formState, errors, handleSubmit } = useForm();
   const { dirty, isSubmitting } = formState;
 
@@ -55,7 +55,7 @@ const LoginForm = ({ history, onSetUserData }) => {
           sessionStorage.setItem('authTokenReactDemo', idToken);
         }
 
-        onSetUserData({ firstName, lastName, email });
+        dispatchSetUserData({ firstName, lastName, email });
         history.push('/');
       }
     } catch (error) {
@@ -165,7 +165,7 @@ const LoginForm = ({ history, onSetUserData }) => {
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  onSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
+  dispatchSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(LoginForm));
