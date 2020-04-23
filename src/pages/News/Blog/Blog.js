@@ -41,17 +41,16 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   } = state;
 
   // SET PAGINATION SETTINGS
-  const setPaginationSettings = (posts, quantPostsPerPage) => {
+  const setPaginationSettings = (posts, quantPostsPerPage = 9) => {
     const pages = {};
-    const postsPerPage = quantPostsPerPage || 9;
 
-    groupArrayItemsInArrays(posts, postsPerPage).forEach((item, index) => {
+    groupArrayItemsInArrays(posts, quantPostsPerPage).forEach((item, index) => {
       pages[index + 1] = item;
     });
 
     setState({
       pages,
-      postsPerPage,
+      postsPerPage: quantPostsPerPage,
       firstPaginationItem: 1,
       maxPaginationItem: 5,
       currentPage: 1,
