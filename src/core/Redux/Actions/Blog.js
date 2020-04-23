@@ -8,7 +8,6 @@ export const setPosts = (posts) => ({
   payload: posts,
 });
 
-
 // SET CATEGORIES
 export const setCategories = (categories) => ({
   type: SET_CATEGORIES,

@@ -19,7 +19,7 @@ const initialState = {
   isModalOpen: false,
 };
 
-const Post = ({ currentPost, history, match, dispatchSetPost }) => {
+const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
   const [state, setState] = useReducer(Reducer, initialState);
 
   const { isLoading, isModalOpen } = state;
@@ -33,7 +33,7 @@ const Post = ({ currentPost, history, match, dispatchSetPost }) => {
   const getCurrentPost = async () => {
     try {
       const { data: post } = await axios.get(`${blog.posts}${match.params.id}`);
-      dispatchSetPost(post);
+      dispatchSetCurrentPost(post);
     } catch (error) {
       console.error(error);
     } finally {
@@ -94,7 +94,7 @@ const mapStateToProps = (state) => ({
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = (dispatch) => ({
-  dispatchSetPost: (post) => dispatch(actionCreators.setPost(post)),
+  dispatchSetCurrentPost: (post) => dispatch(actionCreators.setCurrentPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));
