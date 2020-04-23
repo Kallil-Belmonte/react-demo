@@ -15,8 +15,8 @@ const ACTION_TYPES = {
   EDIT_CURRENT_POST: 'EDIT_CURRENT_POST',
 
   // Blog
-  SET_POSTS:      'SET_POSTS',
   SET_CATEGORIES: 'SET_CATEGORIES',
+  SET_POSTS:      'SET_POSTS',
 };
 
 export default ACTION_TYPES;
