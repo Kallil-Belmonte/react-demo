@@ -15,14 +15,14 @@ import DeletePostModal from 'pages/News/Post/DeletePostModal/DeletePostModal';
 const { blog } = ENDPOINTS;
 
 const initialState = {
-  loading: true,
+  isLoading: true,
   isModalOpen: false,
 };
 
 const Post = ({ currentPost, history, match, dispatchSetPost }) => {
   const [state, setState] = useReducer(Reducer, initialState);
 
-  const { loading, isModalOpen } = state;
+  const { isLoading, isModalOpen } = state;
 
   // HANDLE TOGGLE MODAL
   const handleToggleModal = () => {
@@ -32,25 +32,25 @@ const Post = ({ currentPost, history, match, dispatchSetPost }) => {
   // GET CURRENT POST
   const getCurrentPost = async () => {
     try {
-      const { data } = await axios.get(`${blog.posts}${match.params.id}`);
-      dispatchSetPost(data);
+      const { data: post } = await axios.get(`${blog.posts}${match.params.id}`);
+      dispatchSetPost(post);
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setState({ isLoading: false });
     }
   };
 
   // HANDLE DELETE POST
   const handleDeletePost = async () => {
-    setState({ loading: true });
+    setState({ isLoading: true });
 
     try {
       await axios.delete(`${blog.posts}${match.params.id}`);
       history.push('/blog');
     } catch (error) {
       console.error(error);
-      setState({ loading: false });
+      setState({ isLoading: false });
     }
   };
 
@@ -62,7 +62,7 @@ const Post = ({ currentPost, history, match, dispatchSetPost }) => {
   return (
     <Dashboard>
       <main data-component="Post">
-        <Loader loading={loading} />
+        <Loader isLoading={isLoading} />
 
         <Container>
           <Row>

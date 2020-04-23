@@ -15,7 +15,7 @@ const { contactForm } = ENDPOINTS;
 
 class Contact extends Component {
   state = {
-    loading: true,
+    isLoading: true,
     form: {
       feedbackMessages: {
         success: [],
@@ -38,22 +38,22 @@ class Contact extends Component {
   //==============================
 
   // SET LOADING
-  setLoading(loading) {
-    this.setState({ loading });
+  setLoading(isLoading) {
+    this.setState({ isLoading });
   }
 
 
   // GET FORM DATA
   async getFormData() {
     try {
-      const { data } = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
+      const { data: favoriteColors } = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
 
       this.setState((prevState, props) => ({
         form: {
           ...prevState.form,
           data: {
             ...prevState.form.data,
-            favoriteColors: data,
+            favoriteColors,
           },
         },
       }));
@@ -92,12 +92,12 @@ class Contact extends Component {
   //==============================
 
   render() {
-    const { loading, form } = this.state;
+    const { isLoading, form } = this.state;
 
     return (
       <Dashboard>
         <main data-component="Contact">
-          <Loader loading={loading} />
+          <Loader isLoading={isLoading} />
 
           <Container>
             <PageHeader title="Contact" icon="envelope" />

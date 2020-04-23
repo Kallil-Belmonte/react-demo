@@ -14,32 +14,32 @@ import EditPostForm from 'pages/News/EditPost/EditPostForm/EditPostForm';
 const { blog } = ENDPOINTS;
 
 const initialState = {
-  loading: false,
+  isLoading: false,
 };
 
 const EditPost = ({ history, match, dispatchEditPost }) => {
   const [state, setState] = useReducer(Reducer, initialState);
 
-  const { loading } = state;
+  const { isLoading } = state;
 
   // HANDLE SUBMIT FORM
   const handleSubmitForm = async (values) => {
-    setState({ loading: true });
+    setState({ isLoading: true });
 
     try {
-      const { data } = await axios.put(`${blog.posts}${match.params.id}`, values);
-      dispatchEditPost(data);
+      const { data: post } = await axios.put(`${blog.posts}${match.params.id}`, values);
+      dispatchEditPost(post);
       history.push(`/post/${match.params.id}`);
     } catch (error) {
       console.error(error);
-      setState({ loading: false });
+      setState({ isLoading: false });
     }
   }
 
   return (
     <Dashboard>
       <main data-component="EditPost">
-        <Loader loading={loading} />
+        <Loader isLoading={isLoading} />
 
         <Container>
           <Row>

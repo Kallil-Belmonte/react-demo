@@ -15,7 +15,7 @@ const { auth } = ENDPOINTS;
 
 class Register extends Component {
   state = {
-    loading: false,
+    isLoading: false,
     form: {
       fieldsErrors: {
         email: [],
@@ -36,8 +36,8 @@ class Register extends Component {
   //==============================
 
   // SET LOADING
-  setLoading(loading) {
-    this.setState({ loading });
+  setLoading(isLoading) {
+    this.setState({ isLoading });
   }
 
 
@@ -96,11 +96,11 @@ class Register extends Component {
   //==============================
 
   render() {
-    const { loading, form } = this.state;
+    const { isLoading, form } = this.state;
 
     return (
       <main data-component="Register">
-        <Loader loading={loading} />
+        <Loader isLoading={isLoading} />
 
         <Container>
           <img src="/assets/img/logo.svg" className="logo d-block mx-auto" alt="logo" />

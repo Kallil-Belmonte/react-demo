@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Loader.scss';
 
-const Loader = ({ loading }) => {
-  return loading && (
+const Loader = ({ isLoading }) => {
+  return isLoading && (
     <section data-component="Loader">
       <div className="atom-spinner">
         <div className="spinner-inner">

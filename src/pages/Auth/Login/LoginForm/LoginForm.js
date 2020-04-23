@@ -18,7 +18,7 @@ const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helper
 const { Group, Label } = Form;
 
 const initialState = {
-  loading: false,
+  isLoading: false,
   emailErrors: [],
   passwordErrors: [],
 };
@@ -28,18 +28,18 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
   const { dirty, isSubmitting } = formState;
 
   const [state, setState] = useReducer(Reducer, initialState);
-  const { loading, emailErrors, passwordErrors } = state;
+  const { isLoading, emailErrors, passwordErrors } = state;
 
   // HANDLE LOGIN
   const handleLogin = useCallback(async (values) => {
-    setState({ loading: true });
+    setState({ isLoading: true });
 
     try {
       const { data } = await MOCKY_INSTANCE.post(auth.login, values);
       const { idToken, expiresIn, firstName, lastName, email } = data;
       const expirationDate = new Date(new Date().getTime() + expiresIn * 1000).toISOString();
 
-      setState({ loading: false });
+      setState({ isLoading: false });
 
       if (values.email === 'demo@demo.com') {
         setState({
@@ -60,7 +60,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
       }
     } catch (error) {
       console.error(error);
-      setState({ loading: false });
+      setState({ isLoading: false });
     }
   }, [history]); // eslint-disable-line
 
@@ -71,7 +71,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
 
   return (
     <Fragment>
-      <Loader loading={loading} />
+      <Loader isLoading={isLoading} />
 
       <Form data-component="LoginForm" onSubmit={handleSubmit(handleLogin)}>
         <h1 className="page-title">Login</h1>

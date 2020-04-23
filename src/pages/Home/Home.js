@@ -9,25 +9,25 @@ import FeaturedPosts from 'pages/Home/FeaturedPosts/FeaturedPosts';
 const { blog } = ENDPOINTS;
 
 const initialState = {
-  loading: true,
+  isLoading: true,
   posts: [],
 };
 
 const Home = () => {
   const [state, setState] = useReducer(Reducer, initialState);
 
-  const { loading, posts } = state;
+  const { isLoading, posts } = state;
 
   // GET FEATURED POSTS
   const getFeaturedPosts = async () => {
     try {
-     const { data } = await axios.get(blog.posts);
-     const [firstPost, secondPost, thirdPost] = data;
+     const { data: posts } = await axios.get(blog.posts);
+     const [firstPost, secondPost, thirdPost] = posts;
      setState({ posts: [firstPost, secondPost, thirdPost] })
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setState({ isLoading: false });
     }
   }
 
@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <Dashboard>
       <main data-component="Home">
-        <Loader loading={loading} />
+        <Loader isLoading={isLoading} />
 
         <FeaturedPosts posts={posts} />
       </main>

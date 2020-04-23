@@ -20,7 +20,7 @@ const { blog } = ENDPOINTS;
 const { groupArrayItemsInArrays } = Helpers;
 
 const initialState = {
-  loading: true,
+  isLoading: true,
   pages: {},
   postsPerPage: 9,
   firstPaginationItem: 1,
@@ -32,7 +32,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   const [state, setState] = useReducer(Reducer, initialState);
 
   const {
-    loading,
+    isLoading,
     pages,
     postsPerPage,
     firstPaginationItem,
@@ -61,32 +61,32 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   // GET ALL DATA
   const getAllData = async () => {
     try {
-      const categoriesResponse = await MOCKY_INSTANCE.get(blog.categories);
-      const postsResponse = await axios.get(blog.posts);
+      const { data: categories } = await MOCKY_INSTANCE.get(blog.categories);
+      const { data: posts } = await axios.get(blog.posts);
 
-      dispatchSetCategories(categoriesResponse.data);
-      dispatchSetPosts(postsResponse.data);
-      setPaginationSettings(postsResponse.data);
+      dispatchSetCategories(categories);
+      dispatchSetPosts(posts);
+      setPaginationSettings(posts);
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setState({ isLoading: false });
     }
   };
 
   // HANDLE SELECT CATEGORY
   const handleSelectCategory = async (category) => {
-    setState({ loading: true });
+    setState({ isLoading: true });
 
     try {
-      const { data } = await axios.get(blog.posts);
+      const { data: posts } = await axios.get(blog.posts);
 
-      dispatchSetPosts(data);
-      setPaginationSettings(data);
+      dispatchSetPosts(posts);
+      setPaginationSettings(posts);
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setState({ isLoading: false });
     }
   };
 
@@ -114,7 +114,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   return (
     <Dashboard>
       <main data-component="Blog">
-        <Loader loading={loading} />
+        <Loader isLoading={isLoading} />
 
         <Container>
           <PageHeader title="Blog" icon="newspaper" />
