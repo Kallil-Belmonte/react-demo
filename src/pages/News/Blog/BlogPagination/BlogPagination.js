@@ -21,7 +21,7 @@ const BlogPagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }) 
     <Item
       key={page}
       active={isItemActive(page)}
-      onClick={() => isItemActive(page) ? undefined : onPaginate(Number(page))}
+      onClick={() => isItemActive(page) ? undefined : onPaginate(page)}
     >
       {page}
     </Item>

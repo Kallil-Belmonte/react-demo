@@ -101,7 +101,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
         break;
 
       default:
-        setState({ currentPage: target });
+        setState({ currentPage: Number(target) });
     }
   };
 
