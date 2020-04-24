@@ -1,0 +1,16 @@
+@import "../../../../styles/helpers/helpers";
+
+[data-component="categories"] {
+  .list-group {
+    cursor: pointer;
+
+    .list-group-item {
+      &.active {
+        .badge-primary {
+          color: $primary;
+          background-color: #FFF;
+        }
+      }
+    }
+  }
+}

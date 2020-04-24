@@ -3,6 +3,7 @@ import React, { useReducer, useCallback } from 'react';
 import { ListGroup, Badge } from 'react-bootstrap';
 
 import Reducer from 'core/Hooks/Reducer';
+import './Categories.scss';
 
 const { Item } = ListGroup;
 
@@ -20,7 +21,7 @@ const Categories = ({ categories, onSelectCategory }) => {
   }, [activeCategory]);
 
   const handleSelectCategory = (category) => {
-    setState({ activeCategory: category});
+    setState({ activeCategory: category === activeCategory ? undefined : category });
     onSelectCategory(category);
   };
 
@@ -32,7 +33,7 @@ const Categories = ({ categories, onSelectCategory }) => {
             key={name}
             active={isCategoryActive(name)}
             className="d-flex justify-content-between align-items-center"
-            onClick={() => isCategoryActive(name) ? undefined : handleSelectCategory(name)}
+            onClick={() => handleSelectCategory(name)}
           >
             {name}
             <Badge pill variant="primary">{posts}</Badge>
