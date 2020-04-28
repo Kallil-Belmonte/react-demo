@@ -35,12 +35,6 @@ class Register extends Component {
   // GENERAL METHODS
   //==============================
 
-  // SET LOADING
-  setLoading(isLoading) {
-    this.setState({ isLoading });
-  }
-
-
   // REDIRECT LOGGED USER
   redirectLoggedUser() {
     const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
@@ -54,13 +48,13 @@ class Register extends Component {
 
   // HANDLE REGISTER
   async handleRegister(values) {
-    this.setLoading(true);
+    this.setState({ isLoading: true });
 
     try {
       const { data } = await MOCKY_INSTANCE.post(auth.register, values);
       const { token, firstName, lastName, email } = data;
 
-      this.setLoading(false);
+      this.setState({ isLoading: false });
 
       if (values.email === 'demo@demo.com') {
         this.setState((prevState, props) => ({
@@ -80,7 +74,7 @@ class Register extends Component {
       }
     } catch (error) {
       console.error(error);
-      this.setLoading(false);
+      this.setState({ isLoading: false });
     }
   }
 

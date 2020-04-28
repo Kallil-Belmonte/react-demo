@@ -4,13 +4,15 @@ import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { PROJECT_TITLE } from 'shared/Files/Consts';
+
 import './Header.scss';
 
 const Header = ({ userFullName, onLogOut }) => {
   return (
     <header data-component="Header">
       <img src="/assets/img/logo.svg" className="logo" alt="logo" />
-      <h1 className="title">React Demo</h1>
+      <h1 className="title">{ PROJECT_TITLE }</h1>
 
       <nav className="main-menu">
         <ul>

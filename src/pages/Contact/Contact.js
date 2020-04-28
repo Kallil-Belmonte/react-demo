@@ -37,12 +37,6 @@ class Contact extends Component {
   // GENERAL METHODS
   //==============================
 
-  // SET LOADING
-  setLoading(isLoading) {
-    this.setState({ isLoading });
-  }
-
-
   // GET FORM DATA
   async getFormData() {
     try {
@@ -60,7 +54,7 @@ class Contact extends Component {
     } catch (error) {
       console.error(error);
     } finally {
-      this.setLoading(false);
+      this.setState({ isLoading: false });
     }
   }
 

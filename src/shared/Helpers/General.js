@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { PROJECT_TITLE } from 'shared/Files/Consts';
+
 // SET PAGE TITLE
 export const setPageTitle = (title) => {
-  document.title = `React Demo | ${title}`;
+  document.title = `${PROJECT_TITLE} | ${title}`;
 };
 
 
