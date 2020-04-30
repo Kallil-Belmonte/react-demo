@@ -13,7 +13,7 @@
     "@testing-library/user-event": "^10.0.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-mask-plugin": "^1.14.16",
     "node-sass": "^4.13.1",
     "pretty-checkbox": "^3.0.3",
