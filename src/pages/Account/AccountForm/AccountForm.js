@@ -51,8 +51,8 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
   }, []); // eslint-disable-line
 
   // HANDLE CLEAR FORM MESSAGE
-  const handleClearFormMessage = useCallback((fieldName, index) => {
-    setState({ [fieldName]: removeItemsFromArray(true, state[fieldName], [index]) });
+  const handleClearFormMessage = useCallback((field, index) => {
+    setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
   }, [state]);
 
   // LIFECYCLE HOOKS
