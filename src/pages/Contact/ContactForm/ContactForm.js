@@ -49,7 +49,8 @@ const ContactForm = () => {
   const handleSubmitForm = useCallback((values) => {
     console.log('Form submitted:', values);
     setState({ feedbackSuccessMessages: ['Message sent successfully.'] });
-  }, []);
+    reset();
+  }, []); // eslint-disable-line
 
   // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback((fieldName, index) => {
