@@ -4,14 +4,6 @@ export const capitalizeFirstLetter = (string) => {
 };
 
 
-// CAPITALIZE TEXT
-export const capitalizeText = (text) => {
-  return text.toLowerCase().split(' ').map((word, index) => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  }).join(' ');
-};
-
-
 // LIMIT WORDS
 export const limitWords = (text, numberOfWords) => {
   if (text.split(' ').length > numberOfWords) {

@@ -8,7 +8,6 @@ import {
 
 import {
   capitalizeFirstLetter,
-  capitalizeText,
   limitWords,
 } from './Formatters';
 
@@ -22,6 +21,5 @@ export {
 
   // Formatters
   capitalizeFirstLetter,
-  capitalizeText,
   limitWords,
 };

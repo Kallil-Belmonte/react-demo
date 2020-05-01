@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 
 import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
 import { userDataReducer } from 'core/Redux/Reducers/Auth';
@@ -16,7 +15,6 @@ export const clearStorageData = () => {
 
 // APP REDUCER
 const appReducer = combineReducers({
-  form:        formReducer,
   userData:    userDataReducer,
   categories:  categoriesReducer,
   posts:       postsReducer,

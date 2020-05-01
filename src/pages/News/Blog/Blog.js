@@ -60,28 +60,32 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   // GET ALL DATA
   const getAllData = useCallback(async () => {
     try {
-      const { data: categories } = await MOCKY_INSTANCE.get(blog.categories);
-      const { data: posts } = await axios.get(blog.posts);
+      if (!categories.length) {
+        const { data } = await MOCKY_INSTANCE.get(blog.categories);
+        dispatchSetCategories(data.categories);
+      }
 
-      dispatchSetCategories(categories);
-      dispatchSetPosts(posts);
+      if (!posts.length) {
+        const { data } = await axios.get(blog.posts);
+        dispatchSetPosts(data.posts);
+      }
+
       setPaginationSettings(posts);
     } catch (error) {
       console.error(error);
     } finally {
       setState({ isLoading: false });
     }
-  }, []); // eslint-disable-line
+  }, [categories, posts]); // eslint-disable-line
 
   // HANDLE SELECT CATEGORY
-  const handleSelectCategory = useCallback(async (category) => {
+  const handleSelectCategory = useCallback(async (/* category */) => {
     setState({ isLoading: true });
 
     try {
-      const { data: posts } = await axios.get(blog.posts);
-
-      dispatchSetPosts(posts);
-      setPaginationSettings(posts);
+      const { data } = await axios.get(blog.posts);
+      dispatchSetPosts(data.posts);
+      setPaginationSettings(data.posts);
     } catch (error) {
       console.error(error);
     } finally {
@@ -103,7 +107,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
       default:
         setState({ currentPage: Number(target) });
     }
-  }, [firstPaginationItem]); 
+  }, [firstPaginationItem]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
