@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 
 import axios, { ENDPOINTS } from 'core/API/API';
 import Reducer from 'core/Hooks/Reducer';
@@ -15,11 +15,10 @@ const initialState = {
 
 const Home = () => {
   const [state, setState] = useReducer(Reducer, initialState);
-
   const { isLoading, posts } = state;
 
   // GET FEATURED POSTS
-  const getFeaturedPosts = async () => {
+  const getFeaturedPosts = useCallback(async () => {
     try {
      const { data: posts } = await axios.get(blog.posts);
      const [firstPost, secondPost, thirdPost] = posts;
@@ -29,12 +28,12 @@ const Home = () => {
     } finally {
       setState({ isLoading: false });
     }
-  }
+  }, []);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     getFeaturedPosts();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <Dashboard>

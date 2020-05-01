@@ -6,7 +6,8 @@ import './NotFound.scss';
 
 const { setPageTitle } = Helpers;
 
-const NotFound = (props) => {
+const NotFound = () => {
+  // LIFECYCLE HOOKS
   useEffect(() => {
     setPageTitle('Error 404');
   }, []);

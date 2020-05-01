@@ -23,19 +23,16 @@ const Dashboard = ({ fullName, location, history, dispatchLogOut, children }) =>
     }
   };
 
-
   // LOG OUT USER
   const logOutUser = () => {
     dispatchLogOut();
     history.push('/login');
   };
 
-
   // LIFECYCLE HOOKS
   useEffect(() => {
     handleSetPageTitle();
   }, []); // eslint-disable-line
-
 
   return (
     <Fragment>
