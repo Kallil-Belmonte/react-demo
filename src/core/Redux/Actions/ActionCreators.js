@@ -1,4 +1,4 @@
 export { editAccount } from './Account';
 export { logIn, logOut } from './Auth';
 export { setPosts, setCategories } from './Blog';
-export { setCurrentPost, editCurrentPost } from './Post';
+export { setCurrentPost } from './Post';

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { Container, Row, Col } from 'react-bootstrap';
@@ -16,6 +16,7 @@ import BlogPagination from 'pages/News/Blog/BlogPagination/BlogPagination';
 import Categories from 'pages/News/Blog/Categories/Categories';
 import './Blog.scss';
 
+const { keys } = Object;
 const { blog } = ENDPOINTS;
 const { groupArrayItemsInArrays } = Helpers;
 
@@ -30,7 +31,6 @@ const initialState = {
 
 const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) => {
   const [state, setState] = useReducer(Reducer, initialState);
-
   const {
     isLoading,
     pages,
@@ -41,7 +41,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   } = state;
 
   // SET PAGINATION SETTINGS
-  const setPaginationSettings = (posts, quantPostsPerPage = 9) => {
+  const setPaginationSettings = useCallback((posts, quantPostsPerPage = 9) => {
     const pages = {};
 
     groupArrayItemsInArrays(posts, quantPostsPerPage).forEach((item, index) => {
@@ -55,10 +55,10 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
       maxPaginationItem: 5,
       currentPage: 1,
     });
-  };
+  }, []);
 
   // GET ALL DATA
-  const getAllData = async () => {
+  const getAllData = useCallback(async () => {
     try {
       const { data: categories } = await MOCKY_INSTANCE.get(blog.categories);
       const { data: posts } = await axios.get(blog.posts);
@@ -71,10 +71,10 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
     } finally {
       setState({ isLoading: false });
     }
-  };
+  }, []); // eslint-disable-line
 
   // HANDLE SELECT CATEGORY
-  const handleSelectCategory = async (category) => {
+  const handleSelectCategory = useCallback(async (category) => {
     setState({ isLoading: true });
 
     try {
@@ -87,10 +87,10 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
     } finally {
       setState({ isLoading: false });
     }
-  };
+  }, []); // eslint-disable-line
 
   // HANDLE PAGINATE
-  const handlePaginate = (target) => {
+  const handlePaginate = useCallback((target) => {
     switch(target) {
       case 'previous':
         setState({ firstPaginationItem: firstPaginationItem - 1 });
@@ -103,7 +103,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
       default:
         setState({ currentPage: Number(target) });
     }
-  };
+  }, [firstPaginationItem]); 
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -128,7 +128,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
               <Posts pages={pages} currentPage={currentPage} />
 
               <BlogPagination
-                pages={Object.keys(pages)}
+                pages={keys(pages)}
                 firstItem={firstPaginationItem}
                 maxItem={maxPaginationItem}
                 currentPage={currentPage}

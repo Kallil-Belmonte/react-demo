@@ -13,9 +13,9 @@ import * as Helpers from 'shared/Helpers';
 import Loader from 'shared/Components/Loader/Loader';
 import './RegisterForm.scss';
 
+const { Group, Label, Control } = Form;
 const { auth } = ENDPOINTS;
 const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
-const { Group, Label } = Form;
 
 const initialState = {
   isLoading: false,
@@ -57,9 +57,9 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
   }, [history]); // eslint-disable-line
 
   // HANDLE CLEAR FORM MESSAGE
-  const handleClearFormMessage = useCallback((fieldName, fieldValue, index) => {
-    setState({ [fieldName]: removeItemsFromArray(true, fieldValue, [index]) });
-  }, []);
+  const handleClearFormMessage = useCallback((fieldName, index) => {
+    setState({ [fieldName]: removeItemsFromArray(true, state[fieldName], [index]) });
+  }, [state]);
 
   return (
     <Fragment>
@@ -70,8 +70,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
 
         <Group controlId="first-name">
           <Label>First name</Label>
-          <input
-            id="first-name"
+          <Control
             className={setFieldClassName(errors.firstName)}
             type="text"
             name="firstName"
@@ -82,8 +81,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
 
         <Group controlId="last-name">
           <Label>Last name</Label>
-          <input
-            id="last-name"
+          <Control
             className={setFieldClassName(errors.lastName)}
             type="text"
             name="lastName"
@@ -94,8 +92,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
 
         <Group controlId="email">
           <Label>E-mail</Label>
-          <input
-            id="email"
+          <Control
             className={setFieldClassName(errors.email)}
             type="text"
             name="email"
@@ -106,22 +103,21 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
           />
           {getFieldErrorMessage(errors.email)}
 
-          {emailErrors.map((errorMessage, index) =>
+          {emailErrors.map((errorMessage, index) => (
             <Alert
               key={errorMessage}
               variant="danger"
               dismissible
-              onClose={() => handleClearFormMessage('emailErrors', emailErrors, index)}
+              onClose={() => handleClearFormMessage('emailErrors', index)}
             >
               {errorMessage}
             </Alert>
-          )}
+          ))}
         </Group>
 
         <Group controlId="password">
           <Label>Password</Label>
-          <input
-            id="password"
+          <Control
             className={setFieldClassName(errors.password)}
             type="password"
             name="password"
@@ -132,16 +128,16 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
           />
           {getFieldErrorMessage(errors.password)}
 
-          {passwordErrors.map((errorMessage, index) =>
+          {passwordErrors.map((errorMessage, index) => (
             <Alert
               key={errorMessage}
               variant="danger"
               dismissible
-              onClose={() => handleClearFormMessage('passwordErrors', passwordErrors, index)}
+              onClose={() => handleClearFormMessage('passwordErrors', index)}
             >
               {errorMessage}
             </Alert>
-          )}
+          ))}
         </Group>
 
         <Button

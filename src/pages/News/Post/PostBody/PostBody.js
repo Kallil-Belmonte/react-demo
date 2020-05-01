@@ -14,7 +14,7 @@ const PostBody = ({ post, onOpenModal }) => {
       </article>
       <hr className="mt-4" />
       <div className="d-flex justify-content-end">
-        <Button className="mr-3" variant="danger" onClick={() => onOpenModal()}>Delete</Button>
+        <Button className="mr-3" variant="danger" onClick={onOpenModal}>Delete</Button>
         <NavLink className="btn btn-light" to={`/edit-post/${post.id}`}>Edit</NavLink>
       </div>
     </section>

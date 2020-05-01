@@ -2,13 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 //====================
-// JAVASCRIPT
-//====================
-// PLUGIN: JQUERY MASK
-import 'jquery-mask-plugin/dist/jquery.mask.min.js';
-
-
-//====================
 // APP
 //====================
 import './index.scss';

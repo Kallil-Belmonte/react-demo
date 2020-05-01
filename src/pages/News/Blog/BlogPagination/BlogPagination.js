@@ -13,10 +13,12 @@ const BlogPagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }) 
     return startPages + maxItem;
   }, [startPages, maxItem]);
 
+  // IS ITEM ACTIVE
   const isItemActive = useCallback((page) => {
     return Number(page) === currentPage;
   }, [currentPage]);
 
+  // RENDER ITEMS
   const renderItems = () => pages.slice(startPages, endPages).map((page) => (
     <Item
       key={page}

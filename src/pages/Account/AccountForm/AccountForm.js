@@ -1,78 +1,145 @@
-import React from 'react';
-import { connect } from 'react-redux'
+import React, { useReducer, useCallback, useEffect } from 'react';
+import { connect } from 'react-redux';
 
-import { Field, reduxForm } from 'redux-form';
 import { Row, Col, Form, Alert, Button } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 
-import Validations from 'core/Forms/Validations';
-import { renderInput } from 'core/Forms/Fields';
+import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import Reducer from 'core/Hooks/Reducer';
+import { emailPattern } from 'shared/Files/Regex';
+import * as Helpers from 'shared/Helpers';
 
-const { Group, Label } = Form;
+const { Group, Label, Control } = Form;
+const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
 
-let AccountForm = ({
-  fieldsErrors,
-  feedbackMessages,
-  onClearFormMessage,
-  handleSubmit,
-  valid,
-  pristine,
-  reset,
-  submitting,
-}) => {
+const initialState = {
+  emailErrors: [],
+  feedbackSuccessMessages: [],
+  feedbackErrorMessages: [],
+};
+
+const AccountForm = ({ userData, dispatchEditAccount }) => {
+  const { register, formState, errors, setValue, reset, handleSubmit } = useForm();
+  const { dirty, isSubmitting } = formState;
+
+  const [state, setState] = useReducer(Reducer, initialState);
+  const { emailErrors, feedbackSuccessMessages, feedbackErrorMessages } = state;
+
+  // GET USER DATA
+  const getUserData = useCallback(() => {
+    const { firstName, lastName, email } = userData;
+
+    setValue([
+      { firstName },
+      { lastName },
+      { email },
+    ]);
+  }, [userData]); // eslint-disable-line
+
+  // HANDLE SUBMIT FORM
+  const handleSubmitForm = useCallback(async (values) => {
+    if (values.email === 'john.doe@email.com') {
+      setState({ emailErrors: ['This e-mail already exists.'] });
+    }
+    else if (values.email === 'demo@demo.com') {
+      setState({ feedbackErrorMessages: ['An error occurred, please try again later.'] });
+    }
+    else {
+      dispatchEditAccount(values);
+      setState({ feedbackSuccessMessages: ['Account saved successfully.'] });
+    }
+  }, []); // eslint-disable-line
+
+  // HANDLE CLEAR FORM MESSAGE
+  const handleClearFormMessage = useCallback((fieldName, index) => {
+    setState({ [fieldName]: removeItemsFromArray(true, state[fieldName], [index]) });
+  }, [state]);
+
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    getUserData();
+  }, []); // eslint-disable-line
+
   return (
     <Row data-component="AccountForm">
       <Col md={{ span: 6, offset: 3 }}>
-        {feedbackMessages.success.map((successMessage, index) =>
+        {feedbackSuccessMessages.map((message, index) => (
           <Alert
-            key={successMessage}
+            key={message}
             variant="success"
-            dismissible onClose={() => onClearFormMessage('feedbackMessages', 'success', index)}
+            dismissible
+            onClose={() => handleClearFormMessage('feedbackSuccessMessages', index)}
           >
-            {successMessage}
+            {message}
           </Alert>
-        )}
+        ))}
 
-        {feedbackMessages.error.map((errorMessage, index) =>
+        {feedbackErrorMessages.map((message, index) => (
           <Alert
-            key={errorMessage}
+            key={message}
             variant="danger"
-            dismissible onClose={() => onClearFormMessage('feedbackMessages', 'error', index)}
+            dismissible
+            onClose={() => handleClearFormMessage('feedbackErrorMessages', index)}
           >
-            {errorMessage}
+            {message}
           </Alert>
-        )}
+        ))}
 
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit(handleSubmitForm)}>
           <Group controlId="first-name">
             <Label>First name</Label>
-            <Field id="first-name" className="form-control" component={renderInput} type="text" name="firstName" validate={[Validations.required, Validations.minLength3]} />
+            <Control
+              className={setFieldClassName(errors.firstName)}
+              type="text"
+              name="firstName"
+              ref={register({
+                required: { value: true, message: 'First name is required' },
+                minLength: { value: 3, message: 'Must be 3 characters or more' },
+              })}
+            />
+            {getFieldErrorMessage(errors.firstName)}
           </Group>
 
           <Group controlId="last-name">
             <Label>Last name</Label>
-            <Field id="last-name" className="form-control" component={renderInput} type="text" name="lastName" validate={[Validations.required]} />
+            <Control
+              className={setFieldClassName(errors.lastName)}
+              type="text"
+              name="lastName"
+              ref={register({ required: { value: true, message: 'Last name is required' } })}
+            />
+            {getFieldErrorMessage(errors.lastName)}
           </Group>
 
           <Group controlId="email">
             <Label>E-mail</Label>
-            <Field id="email" className="form-control" component={renderInput} type="email" name="email" validate={[Validations.required, Validations.email]} errors={fieldsErrors.email} />
+            <Control
+              className={setFieldClassName(errors.email)}
+              type="text"
+              name="email"
+              ref={register({
+                required: { value: true, message: 'E-mail is required' },
+                pattern: { value: emailPattern, message: 'Invalid e-mail' },
+              })}
+            />
+            {getFieldErrorMessage(errors.email)}
 
-            {fieldsErrors.email.map((errorMessage, index) =>
+            {emailErrors.map((errorMessage, index) => (
               <Alert
                 key={errorMessage}
                 variant="danger"
                 dismissible
-                onClose={() => onClearFormMessage('fieldsErrors', 'email', index)}
+                onClose={() => handleClearFormMessage('emailErrors', emailErrors, index)}
               >
                 {errorMessage}
               </Alert>
-            )}
+            ))}
           </Group>
 
-          <Button className="mr-2" variant="primary" type="submit" disabled={!valid || pristine || submitting}>
+          <Button className="mr-2" variant="primary" type="submit" disabled={!dirty || isSubmitting}>
             Save
           </Button>
-          <Button variant="link" disabled={pristine || submitting}>
+          <Button variant="light" disabled={!dirty || isSubmitting} onClick={reset}>
             Reset form
           </Button>
         </Form>
@@ -81,14 +148,19 @@ let AccountForm = ({
   );
 };
 
-AccountForm = reduxForm({
-  form: 'settings',
-})(AccountForm);
 
-AccountForm = connect(
-  state => ({
-    initialValues: state.userData,
-  })
-)(AccountForm);
+//==============================
+// REDUX
+//==============================
 
-export default AccountForm;
+// MAP STATE TO PROPS
+const mapStateToProps = (state) => ({
+  userData: state.userData,
+});
+
+// MAP DISPATCH TO PROPS
+const mapDispatchToProps = (dispatch) => ({
+  dispatchEditAccount: (userData) => dispatch(actionCreators.editAccount(userData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);

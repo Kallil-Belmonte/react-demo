@@ -39,7 +39,7 @@ const Dashboard = ({ fullName, location, history, dispatchLogOut, children }) =>
 
   return (
     <Fragment>
-      <Header userFullName={fullName} onLogOut={() => logOutUser()} />
+      <Header userFullName={fullName} onLogOut={logOutUser} />
         {children}
       <Footer />
     </Fragment>

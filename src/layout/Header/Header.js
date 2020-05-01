@@ -45,7 +45,7 @@ const Header = ({ userFullName, onLogOut }) => {
 
       <div className="welcome-box d-flex align-items-center position-absolute">
         <p className="mb-0 mr-3">Hello {userFullName}!</p>
-        <Button variant="dark" onClick={() => onLogOut()}>Log out</Button>
+        <Button variant="dark" onClick={onLogOut}>Log out</Button>
       </div>
     </header>
   );

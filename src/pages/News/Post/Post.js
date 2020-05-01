@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -20,39 +20,40 @@ const initialState = {
 };
 
 const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
-  const [state, setState] = useReducer(Reducer, initialState);
+  const { id } = match.params;
 
+  const [state, setState] = useReducer(Reducer, initialState);
   const { isLoading, isModalOpen } = state;
 
-  // HANDLE TOGGLE MODAL
-  const handleToggleModal = () => {
-    setState({ isModalOpen: !isModalOpen });
-  };
-
   // GET CURRENT POST
-  const getCurrentPost = async () => {
+  const getCurrentPost = useCallback(async () => {
     try {
-      const { data: post } = await axios.get(`${blog.posts}${match.params.id}`);
+      const { data: post } = await axios.get(`${blog.posts}${id}`);
       dispatchSetCurrentPost(post);
     } catch (error) {
       console.error(error);
     } finally {
       setState({ isLoading: false });
     }
-  };
+  }, []); // eslint-disable-line
+
+  // HANDLE TOGGLE MODAL
+  const handleToggleModal = useCallback(() => {
+    setState({ isModalOpen: !isModalOpen });
+  }, []); // eslint-disable-line
 
   // HANDLE DELETE POST
-  const handleDeletePost = async () => {
+  const handleDeletePost = useCallback(async () => {
     setState({ isLoading: true });
 
     try {
-      await axios.delete(`${blog.posts}${match.params.id}`);
+      await axios.delete(`${blog.posts}${id}`);
       history.push('/blog');
     } catch (error) {
       console.error(error);
       setState({ isLoading: false });
     }
-  };
+  }, []); // eslint-disable-line
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -67,15 +68,15 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
         <Container>
           <Row>
             <Col md={{ span: 8, offset: 2 }}>
-              <PostBody post={currentPost} onOpenModal={() => handleToggleModal()} />
+              <PostBody post={currentPost} onOpenModal={handleToggleModal} />
             </Col>
           </Row>
         </Container>
 
         <DeletePostModal
           isModalOpen={isModalOpen}
-          onDelete={() => handleDeletePost()}
-          onCloseModal={() => handleToggleModal()}
+          onDelete={handleDeletePost}
+          onCloseModal={handleToggleModal}
         />
       </main>
     </Dashboard>

@@ -13,13 +13,14 @@ const initialState = {
 
 const Categories = ({ categories, onSelectCategory }) => {
   const [state, setState] = useReducer(Reducer, initialState);
-
   const { activeCategory } = state;
 
+  // IS CATEGORY ACTIVE
   const isCategoryActive = useCallback((category) => {
     return category === activeCategory;
   }, [activeCategory]);
 
+  // HANDLE SELECT CATEGORY
   const handleSelectCategory = (category) => {
     setState({ activeCategory: category === activeCategory ? undefined : category });
     onSelectCategory(category);
@@ -28,7 +29,7 @@ const Categories = ({ categories, onSelectCategory }) => {
   return (
     <aside data-component="categories">
       <ListGroup>
-        {categories.map(({ name, posts }) =>
+        {categories.map(({ name, posts }) => (
           <Item
             key={name}
             active={isCategoryActive(name)}
@@ -38,7 +39,7 @@ const Categories = ({ categories, onSelectCategory }) => {
             {name}
             <Badge pill variant="primary">{posts}</Badge>
           </Item>
-        )}
+        ))}
       </ListGroup>
     </aside>
   );
