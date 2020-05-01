@@ -12,13 +12,12 @@ import Loader from 'shared/Components/Loader/Loader';
 
 const { Row, Group, Label, Control } = Form;
 const { contactForm } = ENDPOINTS;
-const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
+const { setFieldClassName, getFieldErrorMessage } = Helpers;
 
 const initialState = {
   isLoading: true,
   favoriteColors: [],
-  feedbackSuccessMessages: [],
-  feedbackErrorMessages: [],
+  feedbackSuccessMessage: undefined,
 };
 
 const ContactForm = () => {
@@ -29,8 +28,7 @@ const ContactForm = () => {
   const {
     isLoading,
     favoriteColors,
-    feedbackSuccessMessages,
-    feedbackErrorMessages,
+    feedbackSuccessMessage,
   } = state;
 
   // GET FORM DATA
@@ -48,14 +46,14 @@ const ContactForm = () => {
   // HANDLE SUBMIT FORM
   const handleSubmitForm = useCallback((values) => {
     console.log('Form submitted:', values);
-    setState({ feedbackSuccessMessages: ['Message sent successfully.'] });
+    setState({ feedbackSuccessMessage: 'Message sent successfully.' });
     reset();
   }, []); // eslint-disable-line
 
-  // HANDLE CLEAR FORM MESSAGE
-  const handleClearFormMessage = useCallback((fieldName, index) => {
-    setState({ [fieldName]: removeItemsFromArray(true, state[fieldName], [index]) });
-  }, [state]);
+  // HANDLE CLEAR FEEDBACK SUCCESS MESSAGE
+  const handleClearFeedbackSuccessMessage = useCallback((fieldName, index) => {
+    setState({ feedbackSuccessMessage: undefined });
+  }, []);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -67,27 +65,15 @@ const ContactForm = () => {
       <Loader isLoading={isLoading} />
 
       <Form data-component="ContactForm" onSubmit={handleSubmit(handleSubmitForm)}>
-        {feedbackSuccessMessages.map((successMessage, index) => (
+        {feedbackSuccessMessage && (
           <Alert
-            key={successMessage}
             variant="success"
             dismissible
-            onClose={() => handleClearFormMessage('feedbackSuccessMessages', index)}
+            onClose={() => handleClearFeedbackSuccessMessage()}
           >
-            {successMessage}
+            {feedbackSuccessMessage}
           </Alert>
-        ))}
-
-        {feedbackErrorMessages.map((errorMessage, index) => (
-          <Alert
-            key={errorMessage}
-            variant="danger"
-            dismissible
-            onClose={() => handleClearFormMessage('feedbackErrorMessages', index)}
-          >
-            {errorMessage}
-          </Alert>
-        ))}
+        )}
 
         <Row>
           <Col>
