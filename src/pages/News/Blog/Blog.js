@@ -84,6 +84,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
 
     try {
       const { data } = await axios.get(blog.posts);
+
       dispatchSetPosts(data.posts);
       setPaginationSettings(data.posts);
     } catch (error) {

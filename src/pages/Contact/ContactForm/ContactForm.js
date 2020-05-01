@@ -12,23 +12,23 @@ import Loader from 'shared/Components/Loader/Loader';
 
 const { Row, Group, Label, Control } = Form;
 const { contactForm } = ENDPOINTS;
-const { setFieldClassName, getFieldErrorMessage } = Helpers;
+const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
 
 const initialState = {
   isLoading: true,
   favoriteColors: [],
-  feedbackSuccessMessage: undefined,
+  feedbackSuccessMessages: [],
 };
 
 const ContactForm = () => {
-  const { register, formState, errors, reset, handleSubmit } = useForm();
+  const { register, formState, errors, reset, handleSubmit } = useForm({ defaultValues: { sex: 'male' } });
   const { dirty, isSubmitting } = formState;
 
   const [state, setState] = useReducer(Reducer, initialState);
   const {
     isLoading,
     favoriteColors,
-    feedbackSuccessMessage,
+    feedbackSuccessMessages,
   } = state;
 
   // GET FORM DATA
@@ -46,14 +46,14 @@ const ContactForm = () => {
   // HANDLE SUBMIT FORM
   const handleSubmitForm = useCallback((values) => {
     console.log('Form submitted:', values);
-    setState({ feedbackSuccessMessage: 'Message sent successfully.' });
+    setState({ feedbackSuccessMessages: ['Message sent successfully.'] });
     reset();
   }, []); // eslint-disable-line
 
-  // HANDLE CLEAR FEEDBACK SUCCESS MESSAGE
-  const handleClearFeedbackSuccessMessage = useCallback((fieldName, index) => {
-    setState({ feedbackSuccessMessage: undefined });
-  }, []);
+  // HANDLE CLEAR FORM MESSAGE
+  const handleClearFormMessage = useCallback((field, index) => {
+    setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
+  }, [state]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -65,15 +65,15 @@ const ContactForm = () => {
       <Loader isLoading={isLoading} />
 
       <Form data-component="ContactForm" onSubmit={handleSubmit(handleSubmitForm)}>
-        {feedbackSuccessMessage && (
+        {feedbackSuccessMessages.map((message, index) => (
           <Alert
             variant="success"
             dismissible
-            onClose={() => handleClearFeedbackSuccessMessage()}
+            onClose={() => handleClearFormMessage('feedbackSuccessMessages', index)}
           >
-            {feedbackSuccessMessage}
+            {message}
           </Alert>
-        )}
+        ))}
 
         <Row>
           <Col>

@@ -21,7 +21,10 @@ const Home = ({ posts, dispatchSetPosts }) => {
 
   // GET FEATURED POSTS
   const getFeaturedPosts = useCallback(async () => {
-    if (!posts.length) {
+    if (posts.length) {
+      const [firstPost, secondPost, thirdPost] = posts;
+      setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
+    } else {
       setState({ isLoading: true });
 
       try {
@@ -34,9 +37,6 @@ const Home = ({ posts, dispatchSetPosts }) => {
       } finally {
         setState({ isLoading: false });
       }
-    } else {
-      const [firstPost, secondPost, thirdPost] = posts;
-      setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
     }
   }, [posts]); // eslint-disable-line
 
