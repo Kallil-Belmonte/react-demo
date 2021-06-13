@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
+import Logo from 'shared/Images/logo.svg';
 import * as Helpers from 'shared/Helpers';
 import LoginForm from 'pages/Auth/Login/LoginForm/LoginForm';
 import './Login.scss';
@@ -12,8 +13,10 @@ const { setPageTitle } = Helpers;
 const Login = ({ history }) => {
   // REDIRECT LOGGED USER
   const redirectLoggedUser = useCallback(() => {
-    const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
-    const expiredSession = new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
+    const authToken =
+      sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
+    const expiredSession =
+      new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
 
     if (authToken && !expiredSession) {
       history.push('/');
@@ -22,7 +25,8 @@ const Login = ({ history }) => {
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
+    console.log('Para logar, utilize qualquer e-mail e senha.');
+    console.log('Para ver os alertas de erro, utilize o e-mail: demo@demo.com');
     setPageTitle('Login');
     redirectLoggedUser();
   }, []); // eslint-disable-line
@@ -30,7 +34,7 @@ const Login = ({ history }) => {
   return (
     <main data-component="Login">
       <Container>
-        <img src="/assets/img/logo.svg" className="logo d-block mx-auto" alt="logo" />
+        <img src={Logo} className="logo d-block mx-auto" alt="logo" />
 
         <Row>
           <Col md={{ span: 6, offset: 3 }}>

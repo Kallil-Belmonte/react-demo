@@ -1,6 +1,6 @@
-@import "../../styles/helpers/helpers";
+@import '../../styles/helpers/helpers';
 
-[data-component="Footer"] {
+[data-component='Footer'] {
   padding: 30px 0;
 
   /* SOCIAL NETWORKS */
@@ -26,25 +26,25 @@
         /* Facebook */
 
         &[href*='facebook.com']::before {
-          background-image: url('/assets/img/icons/social-networks/facebook.svg');
+          background-image: url('../../shared/Images/icons/social-networks/facebook.svg');
         }
 
-        /* Twitter */
+        // /* Twitter */
 
         &[href*='twitter.com']::before {
-          background-image: url('/assets/img/icons/social-networks/twitter.svg');
+          background-image: url('../../shared/Images/icons/social-networks/twitter.svg');
         }
 
         /* Instagram */
 
         &[href*='instagram.com']::before {
-          background-image: url('/assets/img/icons/social-networks/instagram.svg');
+          background-image: url('../../shared/Images/icons/social-networks/instagram.svg');
         }
 
         /* Linkedin */
 
         &[href*='linkedin.com']::before {
-          background-image: url('/assets/img/icons/social-networks/linkedin.svg');
+          background-image: url('../../shared/Images/icons/social-networks/linkedin.svg');
         }
       }
     }

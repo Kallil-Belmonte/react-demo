@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Logo from 'shared/Images/logo.svg';
 import { PROJECT_TITLE } from 'shared/Files/Consts';
 
 import './Header.scss';
@@ -11,8 +12,8 @@ import './Header.scss';
 const Header = ({ userFullName, onLogOut }) => {
   return (
     <header data-component="Header">
-      <img src="/assets/img/logo.svg" className="logo" alt="logo" />
-      <h1 className="title">{ PROJECT_TITLE }</h1>
+      <img src={Logo} className="logo" alt="logo" />
+      <h1 className="title">{PROJECT_TITLE}</h1>
 
       <nav className="main-menu">
         <ul>
@@ -45,7 +46,9 @@ const Header = ({ userFullName, onLogOut }) => {
 
       <div className="welcome-box d-flex align-items-center position-absolute">
         <p className="mb-0 mr-3">Hello {userFullName}!</p>
-        <Button variant="dark" onClick={onLogOut}>Log out</Button>
+        <Button variant="dark" onClick={onLogOut}>
+          Log out
+        </Button>
       </div>
     </header>
   );

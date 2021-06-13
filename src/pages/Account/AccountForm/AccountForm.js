@@ -19,8 +19,8 @@ const initialState = {
 };
 
 const AccountForm = ({ userData, dispatchEditAccount }) => {
-  const { register, formState, errors, setValue, reset, handleSubmit } = useForm();
-  const { dirty, isSubmitting } = formState;
+  const { register, formState, setValue, reset, handleSubmit } = useForm();
+  const { isDirty, isSubmitting, errors } = formState;
 
   const [state, setState] = useReducer(Reducer, initialState);
   const { emailErrors, feedbackSuccessMessages, feedbackErrorMessages } = state;
@@ -29,31 +29,28 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
   const getUserData = useCallback(() => {
     const { firstName, lastName, email } = userData;
 
-    setValue([
-      { firstName },
-      { lastName },
-      { email },
-    ]);
+    setValue([{ firstName }, { lastName }, { email }]);
   }, [userData]); // eslint-disable-line
 
   // HANDLE SUBMIT FORM
   const handleSubmitForm = useCallback(async (values) => {
     if (values.email === 'john.doe@email.com') {
       setState({ emailErrors: ['This e-mail already exists.'] });
-    }
-    else if (values.email === 'demo@demo.com') {
+    } else if (values.email === 'demo@demo.com') {
       setState({ feedbackErrorMessages: ['An error occurred, please try again later.'] });
-    }
-    else {
+    } else {
       dispatchEditAccount(values);
       setState({ feedbackSuccessMessages: ['Account saved successfully.'] });
     }
   }, []); // eslint-disable-line
 
   // HANDLE CLEAR FORM MESSAGE
-  const handleClearFormMessage = useCallback((field, index) => {
-    setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
-  }, [state]);
+  const handleClearFormMessage = useCallback(
+    (field, index) => {
+      setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
+    },
+    [state],
+  );
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -136,10 +133,15 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
             ))}
           </Group>
 
-          <Button className="mr-2" variant="primary" type="submit" disabled={!dirty || isSubmitting}>
+          <Button
+            className="mr-2"
+            variant="primary"
+            type="submit"
+            disabled={!isDirty || isSubmitting}
+          >
             Save
           </Button>
-          <Button variant="light" disabled={!dirty || isSubmitting} onClick={reset}>
+          <Button variant="light" disabled={!isDirty || isSubmitting} onClick={reset}>
             Reset form
           </Button>
         </Form>
@@ -147,7 +149,6 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
     </Row>
   );
 };
-
 
 //==============================
 // REDUX

@@ -24,50 +24,55 @@ const initialState = {
 };
 
 const LoginForm = ({ history, dispatchSetUserData }) => {
-  const { register, formState, errors, handleSubmit } = useForm();
-  const { dirty, isSubmitting } = formState;
+  const { register, formState, handleSubmit } = useForm();
+  const { isDirty, isSubmitting, errors } = formState;
 
   const [state, setState] = useReducer(Reducer, initialState);
   const { isLoading, emailErrors, passwordErrors } = state;
 
   // HANDLE LOGIN
-  const handleLogin = useCallback(async (values) => {
-    setState({ isLoading: true });
+  const handleLogin = useCallback(
+    async (values) => {
+      setState({ isLoading: true });
 
-    try {
-      const { data } = await MOCKY_INSTANCE.post(auth.login, values);
-      const { idToken, expiresIn, firstName, lastName, email } = data;
-      const expirationDate = new Date(new Date().getTime() + expiresIn * 1000).toISOString();
+      try {
+        const { data } = await MOCKY_INSTANCE.post(auth.login, values);
+        const { idToken, expiresIn, firstName, lastName, email } = data;
+        const expirationDate = new Date(new Date().getTime() + expiresIn * 1000).toISOString();
 
-      setState({ isLoading: false });
+        setState({ isLoading: false });
 
-      if (values.email === 'demo@demo.com') {
-        setState({
-          emailErrors: ['This e-mail does not exists.'],
-          passwordErrors: ['The password is incorrect.'],
-        });
-      } else {
-
-        if (values.keepLogged) {
-          localStorage.setItem('authTokenReactDemo', idToken);
-          localStorage.setItem('expirationDateReactDemo', expirationDate);
+        if (values.email === 'demo@demo.com') {
+          setState({
+            emailErrors: ['This e-mail does not exists.'],
+            passwordErrors: ['The password is incorrect.'],
+          });
         } else {
-          sessionStorage.setItem('authTokenReactDemo', idToken);
-        }
+          if (values.keepLogged) {
+            localStorage.setItem('authTokenReactDemo', idToken);
+            localStorage.setItem('expirationDateReactDemo', expirationDate);
+          } else {
+            sessionStorage.setItem('authTokenReactDemo', idToken);
+          }
 
-        dispatchSetUserData({ firstName, lastName, email });
-        history.push('/');
+          dispatchSetUserData({ firstName, lastName, email });
+          history.push('/');
+        }
+      } catch (error) {
+        console.error(error);
+        setState({ isLoading: false });
       }
-    } catch (error) {
-      console.error(error);
-      setState({ isLoading: false });
-    }
-  }, [history]); // eslint-disable-line
+    },
+    [history],
+  ); // eslint-disable-line
 
   // HANDLE CLEAR FORM MESSAGE
-  const handleClearFormMessage = useCallback((field, index) => {
-    setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
-  }, [state]);
+  const handleClearFormMessage = useCallback(
+    (field, index) => {
+      setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
+    },
+    [state],
+  );
 
   return (
     <Fragment>
@@ -131,7 +136,10 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
             <input type="checkbox" name="keepLogged" ref={register} />
             <div className="state p-primary">
               <svg className="svg svg-icon" viewBox="0 0 20 20">
-                <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style={{stroke: '#FFF', fill: '#FFF'}}></path>
+                <path
+                  d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
+                  style={{ stroke: '#FFF', fill: '#FFF' }}
+                ></path>
               </svg>
               <label>Keep logged</label>
             </div>
@@ -142,7 +150,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
           className="d-block mx-auto"
           variant="primary"
           type="submit"
-          disabled={!dirty || isSubmitting}
+          disabled={!isDirty || isSubmitting}
         >
           Login
         </Button>
@@ -155,7 +163,6 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
     </Fragment>
   );
 };
-
 
 //==============================
 // REDUX

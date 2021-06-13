@@ -23,8 +23,8 @@ const initialState = {
 const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) => {
   const { id } = match.params;
 
-  const { register, formState, errors, setValue, reset, handleSubmit } = useForm();
-  const { dirty, isSubmitting } = formState;
+  const { register, formState, setValue, reset, handleSubmit } = useForm();
+  const { isDirty, isSubmitting, errors } = formState;
 
   const [state, setState] = useReducer(Reducer, initialState);
   const { isLoading } = state;
@@ -32,10 +32,7 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
   // SET FORM DATA
   const setFormData = useCallback(() => {
     const { title, body } = currentPost;
-    setValue([
-      { title },
-      { body },
-    ]);
+    setValue([{ title }, { body }]);
   }, [currentPost]); // eslint-disable-line
 
   // GET CURRENT POST
@@ -99,18 +96,21 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
           {getFieldErrorMessage(errors.body)}
         </Group>
 
-        <Button className="mr-2" variant="primary" type="submit" disabled={!dirty || isSubmitting}>
+        <Button
+          className="mr-2"
+          variant="primary"
+          type="submit"
+          disabled={!isDirty || isSubmitting}
+        >
           Edit
         </Button>
-        <Button variant="light" disabled={!dirty || isSubmitting} onClick={reset}>
+        <Button variant="light" disabled={!isDirty || isSubmitting} onClick={reset}>
           Reset form
         </Button>
       </Form>
     </Fragment>
-
   );
 };
-
 
 //==============================
 // REDUX
@@ -118,7 +118,7 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
 
 // MAP STATE TO PROPS
 const mapStateToProps = (state) => ({
-  currentPost: state.currentPost
+  currentPost: state.currentPost,
 });
 
 // MAP DISPATCH TO PROPS

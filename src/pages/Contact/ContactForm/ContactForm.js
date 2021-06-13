@@ -21,21 +21,17 @@ const initialState = {
 };
 
 const ContactForm = () => {
-  const { register, formState, errors, reset, handleSubmit } = useForm({ defaultValues: { sex: 'male' } });
-  const { dirty, isSubmitting } = formState;
+  const { register, formState, reset, handleSubmit } = useForm({ defaultValues: { sex: 'male' } });
+  const { isDirty, isSubmitting, errors } = formState;
 
   const [state, setState] = useReducer(Reducer, initialState);
-  const {
-    isLoading,
-    favoriteColors,
-    feedbackSuccessMessages,
-  } = state;
+  const { isLoading, favoriteColors, feedbackSuccessMessages } = state;
 
   // GET FORM DATA
   const getFormData = useCallback(async () => {
     try {
       const { data: favoriteColors } = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
-      setState({ favoriteColors })
+      setState({ favoriteColors });
     } catch (error) {
       console.error(error);
     } finally {
@@ -51,9 +47,12 @@ const ContactForm = () => {
   }, []); // eslint-disable-line
 
   // HANDLE CLEAR FORM MESSAGE
-  const handleClearFormMessage = useCallback((field, index) => {
-    setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
-  }, [state]);
+  const handleClearFormMessage = useCallback(
+    (field, index) => {
+      setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
+    },
+    [state],
+  );
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -175,7 +174,9 @@ const ContactForm = () => {
               <Label>Favorite color</Label>
               <Control as="select" custom name="favoriteColor" ref={register}>
                 {favoriteColors.map((favoriteColor) => (
-                  <option key={favoriteColor} value={favoriteColor}>{favoriteColor}</option>
+                  <option key={favoriteColor} value={favoriteColor}>
+                    {favoriteColor}
+                  </option>
                 ))}
               </Control>
             </Group>
@@ -186,7 +187,10 @@ const ContactForm = () => {
               <input type="checkbox" name="employed" ref={register} />
               <div className="state p-primary">
                 <svg className="svg svg-icon" viewBox="0 0 20 20">
-                  <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style={{stroke: '#FFF', fill: '#FFF'}}></path>
+                  <path
+                    d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
+                    style={{ stroke: '#FFF', fill: '#FFF' }}
+                  ></path>
                 </svg>
                 <label>Employed</label>
               </div>
@@ -205,10 +209,15 @@ const ContactForm = () => {
           {getFieldErrorMessage(errors.message)}
         </Group>
 
-        <Button className="mr-2" variant="primary" type="submit" disabled={!dirty || isSubmitting}>
+        <Button
+          className="mr-2"
+          variant="primary"
+          type="submit"
+          disabled={!isDirty || isSubmitting}
+        >
           Send
         </Button>
-        <Button variant="light" disabled={!dirty || isSubmitting} onClick={reset}>
+        <Button variant="light" disabled={!isDirty || isSubmitting} onClick={reset}>
           Reset form
         </Button>
       </Form>

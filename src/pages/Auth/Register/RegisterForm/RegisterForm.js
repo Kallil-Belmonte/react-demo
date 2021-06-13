@@ -24,42 +24,48 @@ const initialState = {
 };
 
 const RegisterForm = ({ history, dispatchSetUserData }) => {
-  const { register, formState, errors, handleSubmit } = useForm();
-  const { dirty, isSubmitting } = formState;
+  const { register, formState, handleSubmit } = useForm();
+  const { isDirty, isSubmitting, errors } = formState;
 
   const [state, setState] = useReducer(Reducer, initialState);
   const { isLoading, emailErrors, passwordErrors } = state;
 
   // HANDLE REGISTER
-  const handleRegister = useCallback(async (values) => {
-    setState({ isLoading: true });
+  const handleRegister = useCallback(
+    async (values) => {
+      setState({ isLoading: true });
 
-    try {
-      const { data } = await MOCKY_INSTANCE.post(auth.register, values);
-      const { token, firstName, lastName, email } = data;
+      try {
+        const { data } = await MOCKY_INSTANCE.post(auth.register, values);
+        const { token, firstName, lastName, email } = data;
 
-      setState({ isLoading: false });
+        setState({ isLoading: false });
 
-      if (values.email === 'demo@demo.com') {
-        setState({
-          emailErrors: ['This e-mail does not exists.'],
-          passwordErrors: ['The password is incorrect.'],
-        });
-      } else {
-        sessionStorage.setItem('authTokenReactDemo', token);
-        dispatchSetUserData({ firstName, lastName, email });
-        history.push('/');
+        if (values.email === 'demo@demo.com') {
+          setState({
+            emailErrors: ['This e-mail does not exists.'],
+            passwordErrors: ['The password is incorrect.'],
+          });
+        } else {
+          sessionStorage.setItem('authTokenReactDemo', token);
+          dispatchSetUserData({ firstName, lastName, email });
+          history.push('/');
+        }
+      } catch (error) {
+        console.error(error);
+        setState({ isLoading: false });
       }
-    } catch (error) {
-      console.error(error);
-      setState({ isLoading: false });
-    }
-  }, [history]); // eslint-disable-line
+    },
+    [history],
+  ); // eslint-disable-line
 
   // HANDLE CLEAR FORM MESSAGE
-  const handleClearFormMessage = useCallback((field, index) => {
-    setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
-  }, [state]);
+  const handleClearFormMessage = useCallback(
+    (field, index) => {
+      setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
+    },
+    [state],
+  );
 
   return (
     <Fragment>
@@ -144,7 +150,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
           className="d-block mx-auto"
           variant="primary"
           type="submit"
-          disabled={!dirty || isSubmitting}
+          disabled={!isDirty || isSubmitting}
         >
           Register
         </Button>
@@ -157,7 +163,6 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
     </Fragment>
   );
 };
-
 
 //==============================
 // REDUX
