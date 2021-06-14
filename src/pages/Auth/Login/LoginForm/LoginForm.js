@@ -32,7 +32,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
 
   // HANDLE LOGIN
   const handleLogin = useCallback(
-    async (values) => {
+    async values => {
       setState({ isLoading: true });
 
       try {
@@ -63,8 +63,8 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
         setState({ isLoading: false });
       }
     },
-    [history],
-  ); // eslint-disable-line
+    [history], // eslint-disable-line
+  );
 
   // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback(
@@ -86,8 +86,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
           <Control
             className={setFieldClassName(errors.email)}
             type="text"
-            name="email"
-            ref={register({
+            {...register('email', {
               required: { value: true, message: 'E-mail is required' },
               pattern: { value: emailPattern, message: 'Invalid e-mail' },
             })}
@@ -111,8 +110,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
           <Control
             className={setFieldClassName(errors.password)}
             type="password"
-            name="password"
-            ref={register({
+            {...register('password', {
               required: { value: true, message: 'Password is required' },
               minLength: { value: 3, message: 'Minimum 3 characters required' },
             })}
@@ -133,7 +131,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
 
         <Group>
           <div className="pretty p-svg p-curve">
-            <input type="checkbox" name="keepLogged" ref={register} />
+            <input type="checkbox" {...register('keepLogged')} />
             <div className="state p-primary">
               <svg className="svg svg-icon" viewBox="0 0 20 20">
                 <path
@@ -169,8 +167,8 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
 //==============================
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
+const mapDispatchToProps = dispatch => ({
+  dispatchSetUserData: userData => dispatch(actionCreators.logIn(userData)),
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(LoginForm));

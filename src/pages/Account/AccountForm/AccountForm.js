@@ -33,7 +33,7 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
   }, [userData]); // eslint-disable-line
 
   // HANDLE SUBMIT FORM
-  const handleSubmitForm = useCallback(async (values) => {
+  const handleSubmitForm = useCallback(async values => {
     if (values.email === 'john.doe@email.com') {
       setState({ emailErrors: ['This e-mail already exists.'] });
     } else if (values.email === 'demo@demo.com') {
@@ -88,8 +88,7 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
             <Control
               className={setFieldClassName(errors.firstName)}
               type="text"
-              name="firstName"
-              ref={register({
+              {...register('firstName', {
                 required: { value: true, message: 'First name is required' },
                 minLength: { value: 3, message: 'Must be 3 characters or more' },
               })}
@@ -102,8 +101,9 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
             <Control
               className={setFieldClassName(errors.lastName)}
               type="text"
-              name="lastName"
-              ref={register({ required: { value: true, message: 'Last name is required' } })}
+              {...register('lastName', {
+                required: { value: true, message: 'Last name is required' },
+              })}
             />
             {getFieldErrorMessage(errors.lastName)}
           </Group>
@@ -113,8 +113,7 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
             <Control
               className={setFieldClassName(errors.email)}
               type="text"
-              name="email"
-              ref={register({
+              {...register('email', {
                 required: { value: true, message: 'E-mail is required' },
                 pattern: { value: emailPattern, message: 'Invalid e-mail' },
               })}
@@ -155,13 +154,13 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   userData: state.userData,
 });
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchEditAccount: (userData) => dispatch(actionCreators.editAccount(userData)),
+const mapDispatchToProps = dispatch => ({
+  dispatchEditAccount: userData => dispatch(actionCreators.editAccount(userData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);

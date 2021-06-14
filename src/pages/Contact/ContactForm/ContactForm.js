@@ -40,7 +40,7 @@ const ContactForm = () => {
   }, []);
 
   // HANDLE SUBMIT FORM
-  const handleSubmitForm = useCallback((values) => {
+  const handleSubmitForm = useCallback(values => {
     console.log('Form submitted:', values);
     setState({ feedbackSuccessMessages: ['Message sent successfully.'] });
     reset();
@@ -81,8 +81,7 @@ const ContactForm = () => {
               <Control
                 className={setFieldClassName(errors.firstName)}
                 type="text"
-                name="firstName"
-                ref={register({
+                {...register('firstName', {
                   required: { value: true, message: 'First name is required' },
                   minLength: { value: 3, message: 'Must be 3 characters or more' },
                 })}
@@ -97,8 +96,9 @@ const ContactForm = () => {
               <Control
                 className={setFieldClassName(errors.lastName)}
                 type="text"
-                name="lastName"
-                ref={register({ required: { value: true, message: 'Last name is required' } })}
+                {...register('lastName', {
+                  required: { value: true, message: 'Last name is required' },
+                })}
               />
               {getFieldErrorMessage(errors.lastName)}
             </Group>
@@ -112,8 +112,7 @@ const ContactForm = () => {
               <Control
                 className={setFieldClassName(errors.email)}
                 type="text"
-                name="email"
-                ref={register({
+                {...register('email', {
                   required: { value: true, message: 'E-mail is required' },
                   pattern: { value: emailPattern, message: 'Invalid e-mail' },
                 })}
@@ -126,13 +125,14 @@ const ContactForm = () => {
             <Group controlId="telephone">
               <Label>Telephone</Label>
               <InputMask mask="(99) 9999 99999" maskChar={null}>
-                {(inputProps) => (
+                {inputProps => (
                   <input
                     className={setFieldClassName(errors.telephone)}
                     type="text"
-                    name="telephone"
                     placeholder="(00) 0000 00000"
-                    ref={register({ required: { value: true, message: 'Telephone is required' } })}
+                    {...register('telephone', {
+                      required: { value: true, message: 'Telephone is required' },
+                    })}
                     {...inputProps}
                   />
                 )}
@@ -146,9 +146,8 @@ const ContactForm = () => {
           <div className="pretty p-default p-round">
             <input
               type="radio"
-              name="sex"
               value="male"
-              ref={register({ required: { value: true, message: 'Sex is required' } })}
+              {...register('sex', { required: { value: true, message: 'Sex is required' } })}
             />
             <div className="state p-primary">
               <label>Male</label>
@@ -157,9 +156,8 @@ const ContactForm = () => {
           <div className="pretty p-default p-round">
             <input
               type="radio"
-              name="sex"
               value="female"
-              ref={register({ required: { value: true, message: 'Sex is required' } })}
+              {...register('sex', { required: { value: true, message: 'Sex is required' } })}
             />
             <div className="state p-primary">
               <label>Female</label>
@@ -172,8 +170,8 @@ const ContactForm = () => {
           <Col>
             <Group controlId="favoriteColor">
               <Label>Favorite color</Label>
-              <Control as="select" custom name="favoriteColor" ref={register}>
-                {favoriteColors.map((favoriteColor) => (
+              <Control as="select" custom {...register('favoriteColor')}>
+                {favoriteColors.map(favoriteColor => (
                   <option key={favoriteColor} value={favoriteColor}>
                     {favoriteColor}
                   </option>
@@ -184,7 +182,7 @@ const ContactForm = () => {
 
           <Col className="mt-4">
             <div className="pretty p-svg p-curve">
-              <input type="checkbox" name="employed" ref={register} />
+              <input type="checkbox" {...register('employed')} />
               <div className="state p-primary">
                 <svg className="svg svg-icon" viewBox="0 0 20 20">
                   <path
@@ -202,9 +200,8 @@ const ContactForm = () => {
           <Label>Message</Label>
           <Control
             as="textarea"
-            name="message"
             rows="3"
-            ref={register({ required: { value: true, message: 'Message is required' } })}
+            {...register('message', { required: { value: true, message: 'Message is required' } })}
           />
           {getFieldErrorMessage(errors.message)}
         </Group>

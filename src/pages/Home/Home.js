@@ -28,10 +28,10 @@ const Home = ({ posts, dispatchSetPosts }) => {
       setState({ isLoading: true });
 
       try {
-       const { data } = await axios.get(blog.posts);
-       const [firstPost, secondPost, thirdPost] = data.posts;
-       setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
-       dispatchSetPosts(posts);
+        const { data: posts } = await axios.get(blog.posts);
+        const [firstPost, secondPost, thirdPost] = posts;
+        setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
+        dispatchSetPosts(posts);
       } catch (error) {
         console.error(error);
       } finally {
@@ -56,19 +56,18 @@ const Home = ({ posts, dispatchSetPosts }) => {
   );
 };
 
-
 //==============================
 // REDUX
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   posts: state.posts,
 });
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
+const mapDispatchToProps = dispatch => ({
+  dispatchSetPosts: posts => dispatch(actionCreators.setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

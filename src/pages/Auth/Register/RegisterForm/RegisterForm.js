@@ -32,7 +32,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
 
   // HANDLE REGISTER
   const handleRegister = useCallback(
-    async (values) => {
+    async values => {
       setState({ isLoading: true });
 
       try {
@@ -56,8 +56,8 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
         setState({ isLoading: false });
       }
     },
-    [history],
-  ); // eslint-disable-line
+    [history], // eslint-disable-line
+  );
 
   // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback(
@@ -79,8 +79,9 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
           <Control
             className={setFieldClassName(errors.firstName)}
             type="text"
-            name="firstName"
-            ref={register({ required: { value: true, message: 'First name is required' } })}
+            {...register('firstName', {
+              required: { value: true, message: 'First name is required' },
+            })}
           />
           {getFieldErrorMessage(errors.firstName)}
         </Group>
@@ -90,8 +91,9 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
           <Control
             className={setFieldClassName(errors.lastName)}
             type="text"
-            name="lastName"
-            ref={register({ required: { value: true, message: 'Last name is required' } })}
+            {...register('lastName', {
+              required: { value: true, message: 'Last name is required' },
+            })}
           />
           {getFieldErrorMessage(errors.lastName)}
         </Group>
@@ -101,8 +103,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
           <Control
             className={setFieldClassName(errors.email)}
             type="text"
-            name="email"
-            ref={register({
+            {...register('email', {
               required: { value: true, message: 'E-mail is required' },
               pattern: { value: emailPattern, message: 'Invalid e-mail' },
             })}
@@ -126,8 +127,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
           <Control
             className={setFieldClassName(errors.password)}
             type="password"
-            name="password"
-            ref={register({
+            {...register('password', {
               required: { value: true, message: 'Password is required' },
               minLength: { value: 3, message: 'Minimum 3 characters required' },
             })}
@@ -169,8 +169,8 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
 //==============================
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchSetUserData: (userData) => dispatch(actionCreators.logIn(userData)),
+const mapDispatchToProps = dispatch => ({
+  dispatchSetUserData: userData => dispatch(actionCreators.logIn(userData)),
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(RegisterForm));

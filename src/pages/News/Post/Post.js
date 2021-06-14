@@ -28,8 +28,8 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
   // GET CURRENT POST
   const getCurrentPost = useCallback(async () => {
     try {
-      const { data: post } = await axios.get(`${blog.posts}${id}`);
-      dispatchSetCurrentPost(post);
+      const { data: posts } = await axios.get(`${blog.posts}${id}`);
+      dispatchSetCurrentPost(posts);
     } catch (error) {
       console.error(error);
     } finally {
@@ -83,19 +83,18 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
   );
 };
 
-
 //==============================
 // REDUX
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentPost: state.currentPost,
 });
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchSetCurrentPost: (post) => dispatch(actionCreators.setCurrentPost(post)),
+const mapDispatchToProps = dispatch => ({
+  dispatchSetCurrentPost: post => dispatch(actionCreators.setCurrentPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));

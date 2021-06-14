@@ -3,10 +3,9 @@ import React from 'react';
 import { PROJECT_TITLE } from 'shared/Files/Consts';
 
 // SET PAGE TITLE
-export const setPageTitle = (title) => {
+export const setPageTitle = title => {
   document.title = `${PROJECT_TITLE} | ${title}`;
 };
-
 
 // GROUP ARRAY ITEMS IN ARRAYS
 export const groupArrayItemsInArrays = (array, itemsQuantity, repeatLastItem) => {
@@ -54,7 +53,6 @@ export const groupArrayItemsInArrays = (array, itemsQuantity, repeatLastItem) =>
   return matrix;
 };
 
-
 // REMOVE ITEMS FROM ARRAY
 export const removeItemsFromArray = (useIndex, array, itemsToRemove) => {
   let newArray = array;
@@ -72,14 +70,14 @@ export const removeItemsFromArray = (useIndex, array, itemsToRemove) => {
   return newArray;
 };
 
-
 // SET FIELD CLASS NAME
-export const setFieldClassName = (errorField) => {
-  return `form-control ${errorField ? 'is-invalid': ''}`;
+export const setFieldClassName = errorField => {
+  return `${errorField ? 'is-invalid' : ''}`;
 };
 
-
 // GET FIELD ERROR MESSAGE
-export const getFieldErrorMessage = (errorField) => {
-  return errorField && <div className="d-block invalid-feedback">{errorField.message}</div>
+export const getFieldErrorMessage = errorField => {
+  return (
+    errorField?.message && <div className="d-block invalid-feedback">{errorField.message}</div>
+  );
 };

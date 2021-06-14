@@ -38,8 +38,8 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
   // GET CURRENT POST
   const getCurrentPost = useCallback(async () => {
     try {
-      const { data: post } = await axios.get(`${blog.posts}${id}`);
-      dispatchSetCurrentPost(post);
+      const { data: posts } = await axios.get(`${blog.posts}${id}`);
+      dispatchSetCurrentPost(posts);
       setFormData();
     } catch (error) {
       console.error(error);
@@ -49,12 +49,12 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
   }, []); // eslint-disable-line
 
   // HANDLE SUBMIT FORM
-  const handleSubmitForm = useCallback(async (values) => {
+  const handleSubmitForm = useCallback(async values => {
     setState({ isLoading: true });
 
     try {
-      const { data: post } = await axios.put(`${blog.posts}${id}`, values);
-      dispatchSetCurrentPost(post);
+      const { data: posts } = await axios.put(`${blog.posts}${id}`, values);
+      dispatchSetCurrentPost(posts);
       history.push(`/post/${id}`);
     } catch (error) {
       console.error(error);
@@ -77,8 +77,7 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
           <Control
             className={setFieldClassName(errors.title)}
             type="text"
-            name="title"
-            ref={register({ required: { value: true, message: 'Title is required' } })}
+            {...register('title', { required: { value: true, message: 'Title is required' } })}
           />
           {getFieldErrorMessage(errors.title)}
         </Group>
@@ -90,8 +89,7 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
             rows="6"
             className={setFieldClassName(errors.body)}
             type="text"
-            name="body"
-            ref={register({ required: { value: true, message: 'Body is required' } })}
+            {...register('body', { required: { value: true, message: 'Body is required' } })}
           />
           {getFieldErrorMessage(errors.body)}
         </Group>
@@ -117,13 +115,13 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentPost: state.currentPost,
 });
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchSetCurrentPost: (post) => dispatch(actionCreators.setCurrentPost(post)),
+const mapDispatchToProps = dispatch => ({
+  dispatchSetCurrentPost: post => dispatch(actionCreators.setCurrentPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditPostForm));

@@ -31,14 +31,8 @@ const initialState = {
 
 const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) => {
   const [state, setState] = useReducer(Reducer, initialState);
-  const {
-    isLoading,
-    pages,
-    postsPerPage,
-    firstPaginationItem,
-    maxPaginationItem,
-    currentPage,
-  } = state;
+  const { isLoading, pages, postsPerPage, firstPaginationItem, maxPaginationItem, currentPage } =
+    state;
 
   // SET PAGINATION SETTINGS
   const setPaginationSettings = useCallback((posts, quantPostsPerPage = 9) => {
@@ -66,8 +60,8 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
       }
 
       if (!posts.length) {
-        const { data } = await axios.get(blog.posts);
-        dispatchSetPosts(data.posts);
+        const { data: posts } = await axios.get(blog.posts);
+        dispatchSetPosts(posts);
       }
 
       setPaginationSettings(posts);
@@ -79,36 +73,42 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   }, [categories, posts]); // eslint-disable-line
 
   // HANDLE SELECT CATEGORY
-  const handleSelectCategory = useCallback(async (/* category */) => {
-    setState({ isLoading: true });
+  const handleSelectCategory = useCallback(
+    async (/* category */) => {
+      setState({ isLoading: true });
 
-    try {
-      const { data } = await axios.get(blog.posts);
+      try {
+        const { data: posts } = await axios.get(blog.posts);
 
-      dispatchSetPosts(data.posts);
-      setPaginationSettings(data.posts);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setState({ isLoading: false });
-    }
-  }, []); // eslint-disable-line
+        dispatchSetPosts(posts);
+        setPaginationSettings(posts);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setState({ isLoading: false });
+      }
+    },
+    [], // eslint-disable-line
+  );
 
   // HANDLE PAGINATE
-  const handlePaginate = useCallback((target) => {
-    switch(target) {
-      case 'previous':
-        setState({ firstPaginationItem: firstPaginationItem - 1 });
-        break;
+  const handlePaginate = useCallback(
+    target => {
+      switch (target) {
+        case 'previous':
+          setState({ firstPaginationItem: firstPaginationItem - 1 });
+          break;
 
-      case 'next':
-        setState({ firstPaginationItem: firstPaginationItem + 1 })
-        break;
+        case 'next':
+          setState({ firstPaginationItem: firstPaginationItem + 1 });
+          break;
 
-      default:
-        setState({ currentPage: Number(target) });
-    }
-  }, [firstPaginationItem]);
+        default:
+          setState({ currentPage: Number(target) });
+      }
+    },
+    [firstPaginationItem],
+  );
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -125,7 +125,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
 
           <PostsPerPage
             postsPerPage={postsPerPage}
-            onChange={(value) => setPaginationSettings(posts, value)}
+            onChange={value => setPaginationSettings(posts, value)}
           />
 
           <Row>
@@ -137,13 +137,13 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
                 firstItem={firstPaginationItem}
                 maxItem={maxPaginationItem}
                 currentPage={currentPage}
-                onPaginate={(target) => handlePaginate(target)}
+                onPaginate={target => handlePaginate(target)}
               />
             </Col>
             <Col md={3}>
               <Categories
                 categories={categories}
-                onSelectCategory={(category) => handleSelectCategory(category)}
+                onSelectCategory={category => handleSelectCategory(category)}
               />
             </Col>
           </Row>
@@ -153,21 +153,20 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   );
 };
 
-
 //==============================
 // REDUX
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   categories: state.categories,
   posts: state.posts,
 });
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchSetCategories: (categories) => dispatch(actionCreators.setCategories(categories)),
-  dispatchSetPosts: (posts) => dispatch(actionCreators.setPosts(posts)),
+const mapDispatchToProps = dispatch => ({
+  dispatchSetCategories: categories => dispatch(actionCreators.setCategories(categories)),
+  dispatchSetPosts: posts => dispatch(actionCreators.setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);
