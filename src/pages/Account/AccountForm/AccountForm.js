@@ -28,9 +28,7 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
 
   // GET USER DATA
   const getUserData = useCallback(() => {
-    keys(getValues()).forEach(key => {
-      setValue(key, userData[key]);
-    });
+    keys(getValues()).forEach(key => setValue(key, userData[key]));
   }, [getValues, setValue, userData]);
 
   // HANDLE SUBMIT FORM

@@ -12,6 +12,8 @@ import { getFieldClass, getFieldErrorMessage } from 'shared/helpers';
 import Loader from 'shared/components/Loader/Loader';
 import './Form.scss';
 
+const { keys } = Object;
+
 const { Group, Label, Control } = Form;
 const { blog } = ENDPOINTS;
 
@@ -22,7 +24,7 @@ const initialState = {
 const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) => {
   const { id } = match.params;
 
-  const { register, formState, setValue, reset, handleSubmit } = useForm();
+  const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
 
   const [state, setState] = useReducer(State, initialState);
@@ -30,9 +32,8 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
 
   // SET FORM DATA
   const setFormData = useCallback(() => {
-    const { title, body } = currentPost;
-    setValue([{ title }, { body }]);
-  }, [currentPost, setValue]);
+    keys(getValues()).forEach(key => setValue(key, currentPost[key]));
+  }, [getValues, setValue, currentPost]);
 
   // GET CURRENT POST
   const getCurrentPost = useCallback(async () => {
