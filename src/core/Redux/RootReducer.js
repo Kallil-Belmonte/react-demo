@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
-import { userDataReducer } from 'core/Redux/Reducers/Auth';
-import { categoriesReducer, postsReducer } from 'core/Redux/Reducers/Blog';
-import { currentPostReducer } from 'core/Redux/Reducers/Post';
+import ACTION_TYPES from 'core/redux/actions/actionTypes';
+import { userDataReducer } from 'core/redux/reducers/auth';
+import { categoriesReducer, postsReducer } from 'core/redux/reducers/blog';
+import { currentPostReducer } from 'core/redux/reducers/post';
 
 const { LOG_OUT } = ACTION_TYPES;
 
@@ -15,9 +15,9 @@ export const clearStorageData = () => {
 
 // APP REDUCER
 const appReducer = combineReducers({
-  userData:    userDataReducer,
-  categories:  categoriesReducer,
-  posts:       postsReducer,
+  userData: userDataReducer,
+  categories: categoriesReducer,
+  posts: postsReducer,
   currentPost: currentPostReducer,
 });
 

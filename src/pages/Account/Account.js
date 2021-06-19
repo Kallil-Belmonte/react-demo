@@ -3,7 +3,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 
 import Dashboard from 'layout/Dashboard';
-import PageHeader from 'shared/Components/PageHeader/PageHeader';
+import PageHeader from 'shared/components/PageHeader/PageHeader';
 import AccountForm from 'pages/Account/AccountForm/AccountForm';
 import './Account.scss';
 

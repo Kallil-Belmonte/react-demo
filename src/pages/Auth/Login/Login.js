@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 
+import { withRouter } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import Logo from 'shared/Images/logo.svg';
-import * as Helpers from 'shared/Helpers';
+import Logo from 'shared/images/logo.svg';
+import { setPageTitle } from 'shared/helpers';
 import LoginForm from 'pages/Auth/Login/LoginForm/LoginForm';
 import './Login.scss';
-
-const { setPageTitle } = Helpers;
 
 const Login = ({ history }) => {
   // REDIRECT LOGGED USER

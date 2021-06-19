@@ -2,7 +2,7 @@ import React, { useReducer, useCallback } from 'react';
 
 import { ListGroup, Badge } from 'react-bootstrap';
 
-import Reducer from 'core/Hooks/Reducer';
+import State from 'core/hooks/State';
 import './Categories.scss';
 
 const { Item } = ListGroup;
@@ -12,16 +12,19 @@ const initialState = {
 };
 
 const Categories = ({ categories, onSelectCategory }) => {
-  const [state, setState] = useReducer(Reducer, initialState);
+  const [state, setState] = useReducer(State, initialState);
   const { activeCategory } = state;
 
   // IS CATEGORY ACTIVE
-  const isCategoryActive = useCallback((category) => {
-    return category === activeCategory;
-  }, [activeCategory]);
+  const isCategoryActive = useCallback(
+    category => {
+      return category === activeCategory;
+    },
+    [activeCategory],
+  );
 
   // HANDLE SELECT CATEGORY
-  const handleSelectCategory = (category) => {
+  const handleSelectCategory = category => {
     setState({ activeCategory: category === activeCategory ? undefined : category });
     onSelectCategory(category);
   };
@@ -37,7 +40,9 @@ const Categories = ({ categories, onSelectCategory }) => {
             onClick={() => handleSelectCategory(name)}
           >
             {name}
-            <Badge pill variant="primary">{posts}</Badge>
+            <Badge pill variant="primary">
+              {posts}
+            </Badge>
           </Item>
         ))}
       </ListGroup>

@@ -1,11 +1,12 @@
 import React, { useReducer, useCallback, useEffect } from 'react';
+
 import { connect } from 'react-redux';
 
-import axios, { ENDPOINTS } from 'core/API/API';
-import Reducer from 'core/Hooks/Reducer';
-import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import axios, { ENDPOINTS } from 'core/api';
+import State from 'core/hooks/State';
+import * as Actions from 'core/redux/actions';
 import Dashboard from 'layout/Dashboard';
-import Loader from 'shared/Components/Loader/Loader';
+import Loader from 'shared/components/Loader/Loader';
 import FeaturedPosts from 'pages/Home/FeaturedPosts/FeaturedPosts';
 
 const { blog } = ENDPOINTS;
@@ -16,7 +17,7 @@ const initialState = {
 };
 
 const Home = ({ posts, dispatchSetPosts }) => {
-  const [state, setState] = useReducer(Reducer, initialState);
+  const [state, setState] = useReducer(State, initialState);
   const { isLoading, featuredPosts } = state;
 
   // GET FEATURED POSTS
@@ -38,7 +39,7 @@ const Home = ({ posts, dispatchSetPosts }) => {
         setState({ isLoading: false });
       }
     }
-  }, [posts]); // eslint-disable-line
+  }, [posts, dispatchSetPosts]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -61,13 +62,13 @@ const Home = ({ posts, dispatchSetPosts }) => {
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = state => ({
-  posts: state.posts,
+const mapStateToProps = ({ posts }) => ({
+  posts,
 });
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
-  dispatchSetPosts: posts => dispatch(actionCreators.setPosts(posts)),
+  dispatchSetPosts: posts => dispatch(Actions.setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

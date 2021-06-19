@@ -1,5 +1,5 @@
-import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
-import updateState from './Utility';
+import ACTION_TYPES from 'core/redux/actions/actionTypes';
+import updateState from './utility';
 
 const { SET_CURRENT_POST } = ACTION_TYPES;
 

@@ -1,14 +1,14 @@
 import React, { useReducer, useCallback, useEffect } from 'react';
+
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { Container, Row, Col } from 'react-bootstrap';
 
-import axios, { ENDPOINTS } from 'core/API/API';
-import Reducer from 'core/Hooks/Reducer';
-import * as actionCreators from 'core/Redux/Actions/ActionCreators';
+import axios, { ENDPOINTS } from 'core/api';
+import State from 'core/hooks/State';
+import * as Actions from 'core/redux/actions';
 import Dashboard from 'layout/Dashboard';
-import Loader from 'shared/Components/Loader/Loader';
+import Loader from 'shared/components/Loader/Loader';
 import PostBody from 'pages/News/Post/PostBody/PostBody';
 import DeletePostModal from 'pages/News/Post/DeletePostModal/DeletePostModal';
 
@@ -22,7 +22,7 @@ const initialState = {
 const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
   const { id } = match.params;
 
-  const [state, setState] = useReducer(Reducer, initialState);
+  const [state, setState] = useReducer(State, initialState);
   const { isLoading, isModalOpen } = state;
 
   // GET CURRENT POST
@@ -35,12 +35,12 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
     } finally {
       setState({ isLoading: false });
     }
-  }, []); // eslint-disable-line
+  }, [id, dispatchSetCurrentPost]);
 
   // HANDLE TOGGLE MODAL
   const handleToggleModal = useCallback(() => {
     setState({ isModalOpen: !isModalOpen });
-  }, []); // eslint-disable-line
+  }, [isModalOpen]);
 
   // HANDLE DELETE POST
   const handleDeletePost = useCallback(async () => {
@@ -53,7 +53,7 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
       console.error(error);
       setState({ isLoading: false });
     }
-  }, []); // eslint-disable-line
+  }, [id, history]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -88,13 +88,13 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = state => ({
-  currentPost: state.currentPost,
+const mapStateToProps = ({ currentPost }) => ({
+  currentPost,
 });
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCurrentPost: post => dispatch(actionCreators.setCurrentPost(post)),
+  dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));

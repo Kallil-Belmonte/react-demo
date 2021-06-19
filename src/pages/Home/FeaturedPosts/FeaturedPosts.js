@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
-import PostItem from 'shared/Components/PostItem/PostItem';
+import PostItem from 'shared/components/PostItem/PostItem';
 
 const FeaturedPosts = ({ posts }) => {
   return (
@@ -11,7 +11,7 @@ const FeaturedPosts = ({ posts }) => {
         <h2 className="section-title">Featured posts</h2>
 
         <Row>
-          {posts.map((post) => (
+          {posts.map(post => (
             <Col key={post.id} md={4}>
               <PostItem post={post} />
             </Col>

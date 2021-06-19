@@ -1,21 +1,20 @@
 import React, { Fragment, useReducer, useCallback } from 'react';
+
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { Form, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
-import { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
-import * as actionCreators from 'core/Redux/Actions/ActionCreators';
-import Reducer from 'core/Hooks/Reducer';
-import { emailPattern } from 'shared/Files/Regex';
-import * as Helpers from 'shared/Helpers';
-import Loader from 'shared/Components/Loader/Loader';
+import { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
+import * as Actions from 'core/redux/actions';
+import State from 'core/hooks/State';
+import { emailPattern } from 'shared/files/regex';
+import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from 'shared/helpers';
+import Loader from 'shared/components/Loader/Loader';
 import './LoginForm.scss';
 
 const { Group, Label, Control } = Form;
 const { auth } = ENDPOINTS;
-const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
 
 const initialState = {
   isLoading: false,
@@ -27,7 +26,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
   const { register, formState, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
 
-  const [state, setState] = useReducer(Reducer, initialState);
+  const [state, setState] = useReducer(State, initialState);
   const { isLoading, emailErrors, passwordErrors } = state;
 
   // HANDLE LOGIN
@@ -63,7 +62,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
         setState({ isLoading: false });
       }
     },
-    [history], // eslint-disable-line
+    [dispatchSetUserData, history],
   );
 
   // HANDLE CLEAR FORM MESSAGE
@@ -84,7 +83,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
         <Group controlId="email">
           <Label>E-mail</Label>
           <Control
-            className={setFieldClassName(errors.email)}
+            className={getFieldClass(errors.email)}
             type="text"
             {...register('email', {
               required: { value: true, message: 'E-mail is required' },
@@ -108,7 +107,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
         <Group controlId="password">
           <Label>Password</Label>
           <Control
-            className={setFieldClassName(errors.password)}
+            className={getFieldClass(errors.password)}
             type="password"
             {...register('password', {
               required: { value: true, message: 'Password is required' },
@@ -168,7 +167,7 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
-  dispatchSetUserData: userData => dispatch(actionCreators.logIn(userData)),
+  dispatchSetUserData: userData => dispatch(Actions.logIn(userData)),
 });
 
 export default connect(null, mapDispatchToProps)(withRouter(LoginForm));

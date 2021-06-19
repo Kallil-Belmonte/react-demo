@@ -1,4 +1,4 @@
-import ACTION_TYPES from 'core/Redux/Actions/ActionTypes';
+import ACTION_TYPES from 'core/redux/actions/actionTypes';
 
 const { SET_CATEGORIES, SET_POSTS } = ACTION_TYPES;
 

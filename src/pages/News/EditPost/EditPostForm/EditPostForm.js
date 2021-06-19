@@ -1,20 +1,19 @@
 import React, { Fragment, useReducer, useEffect, useCallback } from 'react';
+
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
-import axios, { ENDPOINTS } from 'core/API/API';
-import * as actionCreators from 'core/Redux/Actions/ActionCreators';
-import Reducer from 'core/Hooks/Reducer';
-import * as Helpers from 'shared/Helpers';
-import Loader from 'shared/Components/Loader/Loader';
+import axios, { ENDPOINTS } from 'core/api';
+import * as Actions from 'core/redux/actions';
+import State from 'core/hooks/State';
+import { getFieldClass, getFieldErrorMessage } from 'shared/helpers';
+import Loader from 'shared/components/Loader/Loader';
 import './Form.scss';
 
 const { Group, Label, Control } = Form;
 const { blog } = ENDPOINTS;
-const { setFieldClassName, getFieldErrorMessage } = Helpers;
 
 const initialState = {
   isLoading: false,
@@ -26,14 +25,14 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
   const { register, formState, setValue, reset, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
 
-  const [state, setState] = useReducer(Reducer, initialState);
+  const [state, setState] = useReducer(State, initialState);
   const { isLoading } = state;
 
   // SET FORM DATA
   const setFormData = useCallback(() => {
     const { title, body } = currentPost;
     setValue([{ title }, { body }]);
-  }, [currentPost]); // eslint-disable-line
+  }, [currentPost, setValue]);
 
   // GET CURRENT POST
   const getCurrentPost = useCallback(async () => {
@@ -46,21 +45,24 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
     } finally {
       setState({ isLoading: false });
     }
-  }, []); // eslint-disable-line
+  }, [id, dispatchSetCurrentPost, setFormData]);
 
   // HANDLE SUBMIT FORM
-  const handleSubmitForm = useCallback(async values => {
-    setState({ isLoading: true });
+  const handleSubmitForm = useCallback(
+    async values => {
+      setState({ isLoading: true });
 
-    try {
-      const { data: posts } = await axios.put(`${blog.posts}${id}`, values);
-      dispatchSetCurrentPost(posts);
-      history.push(`/post/${id}`);
-    } catch (error) {
-      console.error(error);
-      setState({ isLoading: false });
-    }
-  }, []); // eslint-disable-line
+      try {
+        const { data: posts } = await axios.put(`${blog.posts}${id}`, values);
+        dispatchSetCurrentPost(posts);
+        history.push(`/post/${id}`);
+      } catch (error) {
+        console.error(error);
+        setState({ isLoading: false });
+      }
+    },
+    [id, dispatchSetCurrentPost, history],
+  );
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -75,7 +77,7 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
         <Group controlId="title">
           <Label>Title</Label>
           <Control
-            className={setFieldClassName(errors.title)}
+            className={getFieldClass(errors.title)}
             type="text"
             {...register('title', { required: { value: true, message: 'Title is required' } })}
           />
@@ -87,7 +89,7 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
           <Control
             as="textarea"
             rows="6"
-            className={setFieldClassName(errors.body)}
+            className={getFieldClass(errors.body)}
             type="text"
             {...register('body', { required: { value: true, message: 'Body is required' } })}
           />
@@ -102,7 +104,7 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
         >
           Edit
         </Button>
-        <Button variant="light" disabled={!isDirty || isSubmitting} onClick={reset}>
+        <Button variant="light" disabled={!isDirty || isSubmitting} onClick={() => reset()}>
           Reset form
         </Button>
       </Form>
@@ -115,13 +117,13 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = state => ({
-  currentPost: state.currentPost,
+const mapStateToProps = ({ currentPost }) => ({
+  currentPost,
 });
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCurrentPost: post => dispatch(actionCreators.setCurrentPost(post)),
+  dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditPostForm));

@@ -3,7 +3,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 
 import Dashboard from 'layout/Dashboard';
-import PageHeader from 'shared/Components/PageHeader/PageHeader';
+import PageHeader from 'shared/components/PageHeader/PageHeader';
 import ContactForm from 'pages/Contact/ContactForm/ContactForm';
 import './Contact.scss';
 
@@ -19,6 +19,6 @@ const Contact = () => {
       </main>
     </Dashboard>
   );
-}
+};
 
 export default Contact;

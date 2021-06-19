@@ -1,25 +1,12 @@
-import {
-  setPageTitle,
-  groupArrayItemsInArrays,
-  removeItemsFromArray,
-  setFieldClassName,
-  getFieldErrorMessage,
-} from './General';
+// ARRAY
+export { default as groupArrayItemsInArrays } from './array/groupArrayItemsInArrays';
+export { default as removeItemsFromArray } from './array/removeItemsFromArray';
 
-import {
-  capitalizeFirstLetter,
-  limitWords,
-} from './Formatters';
+// GENERAL
+export { default as getFieldClass } from './general/getFieldClass';
+export { default as getFieldErrorMessage } from './general/getFieldErrorMessage';
+export { default as setPageTitle } from './general/setPageTitle';
 
-export {
-  // General
-  setPageTitle,
-  groupArrayItemsInArrays,
-  removeItemsFromArray,
-  setFieldClassName,
-  getFieldErrorMessage,
-
-  // Formatters
-  capitalizeFirstLetter,
-  limitWords,
-};
+// STRING
+export { default as capitalizeFirstLetter } from './string/capitalizeFirstLetter';
+export { default as limitWords } from './string/limitWords';

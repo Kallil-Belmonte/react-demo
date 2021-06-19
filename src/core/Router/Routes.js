@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RouterGuard from 'core/Router/RouterGuard';
+import RouterGuard from 'core/router/routerGuard';
 import Home from 'pages/Home/Home';
 import Blog from 'pages/News/Blog/Blog';
 import Post from 'pages/News/Post/Post';
@@ -56,7 +56,7 @@ const Routes = [
     path: '*',
     exact: false,
     component: () => <NotFound />,
-  }
+  },
 ];
 
 export default Routes;

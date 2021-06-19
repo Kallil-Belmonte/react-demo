@@ -1,15 +1,15 @@
 import React, { useReducer, useCallback, useEffect } from 'react';
-import { connect } from 'react-redux';
 
+import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import axios, { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
-import Reducer from 'core/Hooks/Reducer';
-import * as actionCreators from 'core/Redux/Actions/ActionCreators';
-import * as Helpers from 'shared/Helpers';
+import axios, { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
+import State from 'core/hooks/State';
+import * as Actions from 'core/redux/actions';
+import { groupArrayItemsInArrays } from 'shared/helpers';
 import Dashboard from 'layout/Dashboard';
-import Loader from 'shared/Components/Loader/Loader';
-import PageHeader from 'shared/Components/PageHeader/PageHeader';
+import Loader from 'shared/components/Loader/Loader';
+import PageHeader from 'shared/components/PageHeader/PageHeader';
 import PostsPerPage from 'pages/News/Blog/PostsPerPage/PostsPerPage';
 import Posts from 'pages/News/Blog/Posts/Posts';
 import BlogPagination from 'pages/News/Blog/BlogPagination/BlogPagination';
@@ -18,7 +18,6 @@ import './Blog.scss';
 
 const { keys } = Object;
 const { blog } = ENDPOINTS;
-const { groupArrayItemsInArrays } = Helpers;
 
 const initialState = {
   isLoading: true,
@@ -30,7 +29,7 @@ const initialState = {
 };
 
 const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) => {
-  const [state, setState] = useReducer(Reducer, initialState);
+  const [state, setState] = useReducer(State, initialState);
   const { isLoading, pages, postsPerPage, firstPaginationItem, maxPaginationItem, currentPage } =
     state;
 
@@ -56,7 +55,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
     try {
       if (!categories.length) {
         const { data } = await MOCKY_INSTANCE.get(blog.categories);
-        dispatchSetCategories(data.categories);
+        dispatchSetCategories(data);
       }
 
       if (!posts.length) {
@@ -70,7 +69,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
     } finally {
       setState({ isLoading: false });
     }
-  }, [categories, posts]); // eslint-disable-line
+  }, [categories, dispatchSetCategories, posts, dispatchSetPosts, setPaginationSettings]);
 
   // HANDLE SELECT CATEGORY
   const handleSelectCategory = useCallback(
@@ -88,7 +87,7 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
         setState({ isLoading: false });
       }
     },
-    [], // eslint-disable-line
+    [dispatchSetPosts, setPaginationSettings],
   );
 
   // HANDLE PAGINATE
@@ -158,15 +157,15 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = state => ({
-  categories: state.categories,
-  posts: state.posts,
+const mapStateToProps = ({ categories, posts }) => ({
+  categories,
+  posts,
 });
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCategories: categories => dispatch(actionCreators.setCategories(categories)),
-  dispatchSetPosts: posts => dispatch(actionCreators.setPosts(posts)),
+  dispatchSetCategories: categories => dispatch(Actions.setCategories(categories)),
+  dispatchSetPosts: posts => dispatch(Actions.setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);

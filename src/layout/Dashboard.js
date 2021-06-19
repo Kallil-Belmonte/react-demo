@@ -1,13 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
+
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as actionCreators from 'core/Redux/Actions/ActionCreators';
-import * as Helpers from 'shared/Helpers';
+import * as Actions from 'core/redux/actions';
+import { setPageTitle, capitalizeFirstLetter } from 'shared/helpers';
 import Header from 'layout/Header/Header';
 import Footer from 'layout/Footer/Footer';
-
-const { setPageTitle, capitalizeFirstLetter } = Helpers;
 
 const Dashboard = ({ fullName, location, history, dispatchLogOut, children }) => {
   // HANDLE SET PAGE TITLE
@@ -37,25 +36,24 @@ const Dashboard = ({ fullName, location, history, dispatchLogOut, children }) =>
   return (
     <Fragment>
       <Header userFullName={fullName} onLogOut={logOutUser} />
-        {children}
+      {children}
       <Footer />
     </Fragment>
   );
 };
-
 
 //==============================
 // REDUX
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = (state) => ({
-  fullName: `${state.userData.firstName} ${state.userData.lastName}`
+const mapStateToProps = ({ userData }) => ({
+  fullName: `${userData.firstName} ${userData.lastName}`,
 });
 
 // MAP DISPATCH TO PROPS
-const mapDispatchToProps = (dispatch) => ({
-  dispatchLogOut: () => dispatch(actionCreators.logOut())
+const mapDispatchToProps = dispatch => ({
+  dispatchLogOut: () => dispatch(Actions.logOut()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dashboard));

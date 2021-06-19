@@ -26,25 +26,25 @@
         /* Facebook */
 
         &[href*='facebook.com']::before {
-          background-image: url('../../shared/Images/icons/social-networks/facebook.svg');
+          background-image: url('../../shared/images/icons/social-networks/facebook.svg');
         }
 
         // /* Twitter */
 
         &[href*='twitter.com']::before {
-          background-image: url('../../shared/Images/icons/social-networks/twitter.svg');
+          background-image: url('../../shared/images/icons/social-networks/twitter.svg');
         }
 
         /* Instagram */
 
         &[href*='instagram.com']::before {
-          background-image: url('../../shared/Images/icons/social-networks/instagram.svg');
+          background-image: url('../../shared/images/icons/social-networks/instagram.svg');
         }
 
         /* Linkedin */
 
         &[href*='linkedin.com']::before {
-          background-image: url('../../shared/Images/icons/social-networks/linkedin.svg');
+          background-image: url('../../shared/images/icons/social-networks/linkedin.svg');
         }
       }
     }

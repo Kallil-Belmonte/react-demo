@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 
-import * as Helpers from 'shared/Helpers';
+import { setPageTitle } from 'shared/helpers';
 import './NotFound.scss';
-
-const { setPageTitle } = Helpers;
 
 const NotFound = () => {
   // LIFECYCLE HOOKS
@@ -19,22 +18,22 @@ const NotFound = () => {
         <div className="atom">
           <div className="particle">
             <svg>
-              <circle cx='100' cy='100' fill='none' r='80' strokeWidth='5'></circle>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
             </svg>
           </div>
           <div className="particle">
             <svg>
-              <circle cx='100' cy='100' fill='none' r='80' strokeWidth='5'></circle>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
             </svg>
           </div>
           <div className="particle">
             <svg>
-              <circle cx='100' cy='100' fill='none' r='80' strokeWidth='5'></circle>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
             </svg>
           </div>
           <div className="particle">
             <svg>
-              <circle cx='100' cy='100' fill='none' r='80' strokeWidth='5'></circle>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
             </svg>
           </div>
         </div>
@@ -43,7 +42,9 @@ const NotFound = () => {
 
       <h1 className="page-title text-center">Page not found</h1>
       <div className="d-flex justify-content-center">
-        <Link to="/" className="btn btn-primary mt-4">Go back to the home page</Link>
+        <Link to="/" className="btn btn-primary mt-4">
+          Go back to the home page
+        </Link>
       </div>
     </main>
   );

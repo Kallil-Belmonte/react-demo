@@ -1,31 +1,33 @@
 import React, { Fragment, useReducer, useCallback, useEffect } from 'react';
 
 import { Col, Form, Alert, Button } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 
-import { MOCKY_INSTANCE, ENDPOINTS } from 'core/API/API';
-import Reducer from 'core/Hooks/Reducer';
-import { emailPattern } from 'shared/Files/Regex';
-import * as Helpers from 'shared/Helpers';
-import Loader from 'shared/Components/Loader/Loader';
+import { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
+import State from 'core/hooks/State';
+import { emailPattern } from 'shared/files/regex';
+import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from 'shared/helpers';
+import Loader from 'shared/components/Loader/Loader';
 
 const { Row, Group, Label, Control } = Form;
 const { contactForm } = ENDPOINTS;
-const { setFieldClassName, getFieldErrorMessage, removeItemsFromArray } = Helpers;
 
 const initialState = {
   isLoading: true,
+  telephone: '',
   favoriteColors: [],
   feedbackSuccessMessages: [],
 };
 
 const ContactForm = () => {
-  const { register, formState, reset, handleSubmit } = useForm({ defaultValues: { sex: 'male' } });
+  const { register, formState, reset, control, handleSubmit } = useForm({
+    defaultValues: { sex: 'male' },
+  });
   const { isDirty, isSubmitting, errors } = formState;
 
-  const [state, setState] = useReducer(Reducer, initialState);
-  const { isLoading, favoriteColors, feedbackSuccessMessages } = state;
+  const [state, setState] = useReducer(State, initialState);
+  const { isLoading, telephone, favoriteColors, feedbackSuccessMessages } = state;
 
   // GET FORM DATA
   const getFormData = useCallback(async () => {
@@ -39,12 +41,21 @@ const ContactForm = () => {
     }
   }, []);
 
-  // HANDLE SUBMIT FORM
-  const handleSubmitForm = useCallback(values => {
-    console.log('Form submitted:', values);
-    setState({ feedbackSuccessMessages: ['Message sent successfully.'] });
+  // HANDLE RESET FORM
+  const handleResetForm = useCallback(() => {
+    setState({ telephone: '' });
     reset();
-  }, []); // eslint-disable-line
+  }, [reset]);
+
+  // HANDLE SUBMIT FORM
+  const handleSubmitForm = useCallback(
+    values => {
+      console.log('Form submitted:', values);
+      setState({ feedbackSuccessMessages: ['Message sent successfully.'] });
+      handleResetForm();
+    },
+    [handleResetForm],
+  );
 
   // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback(
@@ -66,6 +77,7 @@ const ContactForm = () => {
       <Form data-component="ContactForm" onSubmit={handleSubmit(handleSubmitForm)}>
         {feedbackSuccessMessages.map((message, index) => (
           <Alert
+            key={message}
             variant="success"
             dismissible
             onClose={() => handleClearFormMessage('feedbackSuccessMessages', index)}
@@ -79,7 +91,7 @@ const ContactForm = () => {
             <Group controlId="first-name">
               <Label>First name</Label>
               <Control
-                className={setFieldClassName(errors.firstName)}
+                className={getFieldClass(errors.firstName)}
                 type="text"
                 {...register('firstName', {
                   required: { value: true, message: 'First name is required' },
@@ -94,7 +106,7 @@ const ContactForm = () => {
             <Group controlId="last-name">
               <Label>Last name</Label>
               <Control
-                className={setFieldClassName(errors.lastName)}
+                className={getFieldClass(errors.lastName)}
                 type="text"
                 {...register('lastName', {
                   required: { value: true, message: 'Last name is required' },
@@ -110,7 +122,7 @@ const ContactForm = () => {
             <Group controlId="email">
               <Label>E-mail</Label>
               <Control
-                className={setFieldClassName(errors.email)}
+                className={getFieldClass(errors.email)}
                 type="text"
                 {...register('email', {
                   required: { value: true, message: 'E-mail is required' },
@@ -124,19 +136,26 @@ const ContactForm = () => {
           <Col>
             <Group controlId="telephone">
               <Label>Telephone</Label>
-              <InputMask mask="(99) 9999 99999" maskChar={null}>
-                {inputProps => (
-                  <input
-                    className={setFieldClassName(errors.telephone)}
+              <Controller
+                control={control}
+                name="telephone"
+                rules={{ required: { value: true, message: 'Telephone is required' } }}
+                render={({ field: { name, onChange } }) => (
+                  <InputMask
                     type="text"
+                    name={name}
                     placeholder="(00) 0000 00000"
-                    {...register('telephone', {
-                      required: { value: true, message: 'Telephone is required' },
-                    })}
-                    {...inputProps}
+                    className={`form-control ${getFieldClass(errors.telephone)}`}
+                    mask="(99) 9999 99999"
+                    maskChar={null}
+                    onChange={e => {
+                      setState({ telephone: e.target.value });
+                      onChange(e);
+                    }}
+                    value={telephone}
                   />
                 )}
-              </InputMask>
+              />
               {getFieldErrorMessage(errors.telephone)}
             </Group>
           </Col>
@@ -170,7 +189,10 @@ const ContactForm = () => {
           <Col>
             <Group controlId="favoriteColor">
               <Label>Favorite color</Label>
-              <Control as="select" custom {...register('favoriteColor')}>
+              <Control as="select" custom defaultValue="" {...register('favoriteColor')}>
+                <option value="" disabled>
+                  Select
+                </option>
                 {favoriteColors.map(favoriteColor => (
                   <option key={favoriteColor} value={favoriteColor}>
                     {favoriteColor}
@@ -214,7 +236,7 @@ const ContactForm = () => {
         >
           Send
         </Button>
-        <Button variant="light" disabled={!isDirty || isSubmitting} onClick={reset}>
+        <Button variant="light" disabled={!isDirty || isSubmitting} onClick={handleResetForm}>
           Reset form
         </Button>
       </Form>

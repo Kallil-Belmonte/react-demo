@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
+import { NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Logo from 'shared/Images/logo.svg';
-import { PROJECT_TITLE } from 'shared/Files/Consts';
+import Logo from 'shared/images/logo.svg';
+import { PROJECT_TITLE } from 'shared/files/consts';
 
 import './Header.scss';
 
