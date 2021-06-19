@@ -23,7 +23,6 @@ const Register = ({ history }) => {
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    console.log('Utilize o e-mail: demo@demo.com para ver os alertas de erro.');
     setPageTitle('Login');
     redirectLoggedUser();
   }, []); // eslint-disable-line

@@ -23,8 +23,8 @@ const Login = ({ history }) => {
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    console.log('Para logar, utilize qualquer e-mail e senha.');
-    console.log('Para ver os alertas de erro, utilize o e-mail: demo@demo.com');
+    console.log('Para logar utilize qualquer e-mail e senha.');
+    console.log('Para ver os alertas de erro utilize o e-mail: demo@demo.com');
     setPageTitle('Login');
     redirectLoggedUser();
   }, []); // eslint-disable-line
