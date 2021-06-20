@@ -13,21 +13,23 @@ const BlogPagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }) 
     return startPages + maxItem;
   }, [startPages, maxItem]);
 
-  // IS ITEM ACTIVE
-  const isItemActive = useCallback((page) => {
-    return Number(page) === currentPage;
-  }, [currentPage]);
+  const isItemActive = useCallback(
+    page => {
+      return Number(page) === currentPage;
+    },
+    [currentPage],
+  );
 
-  // RENDER ITEMS
-  const renderItems = () => pages.slice(startPages, endPages).map((page) => (
-    <Item
-      key={page}
-      active={isItemActive(page)}
-      onClick={() => isItemActive(page) ? undefined : onPaginate(page)}
-    >
-      {page}
-    </Item>
-  ));
+  const renderItems = () =>
+    pages.slice(startPages, endPages).map(page => (
+      <Item
+        key={page}
+        active={isItemActive(page)}
+        onClick={() => (isItemActive(page) ? undefined : onPaginate(page))}
+      >
+        {page}
+      </Item>
+    ));
 
   return (
     <nav data-component="pagination" className="d-inline-block">

@@ -9,7 +9,6 @@ import LoginForm from 'pages/Auth/Login/LoginForm/LoginForm';
 import './Login.scss';
 
 const Login = ({ history }) => {
-  // REDIRECT LOGGED USER
   const redirectLoggedUser = useCallback(() => {
     const authToken =
       sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');

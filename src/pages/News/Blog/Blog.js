@@ -33,7 +33,6 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   const { isLoading, pages, postsPerPage, firstPaginationItem, maxPaginationItem, currentPage } =
     state;
 
-  // SET PAGINATION SETTINGS
   const setPaginationSettings = useCallback((posts, quantPostsPerPage = 9) => {
     const pages = {};
 
@@ -50,7 +49,6 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
     });
   }, []);
 
-  // GET ALL DATA
   const getAllData = useCallback(async () => {
     try {
       if (!categories.length) {
@@ -71,7 +69,6 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
     }
   }, [categories, dispatchSetCategories, posts, dispatchSetPosts, setPaginationSettings]);
 
-  // HANDLE SELECT CATEGORY
   const handleSelectCategory = useCallback(
     async (/* category */) => {
       setState({ isLoading: true });
@@ -90,7 +87,6 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
     [dispatchSetPosts, setPaginationSettings],
   );
 
-  // HANDLE PAGINATE
   const handlePaginate = useCallback(
     target => {
       switch (target) {
@@ -152,17 +148,11 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP STATE TO PROPS
 const mapStateToProps = ({ categories, posts }) => ({
   categories,
   posts,
 });
 
-// MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
   dispatchSetCategories: categories => dispatch(Actions.setCategories(categories)),
   dispatchSetPosts: posts => dispatch(Actions.setPosts(posts)),

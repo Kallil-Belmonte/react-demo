@@ -15,7 +15,6 @@ const Categories = ({ categories, onSelectCategory }) => {
   const [state, setState] = useReducer(State, initialState);
   const { activeCategory } = state;
 
-  // IS CATEGORY ACTIVE
   const isCategoryActive = useCallback(
     category => {
       return category === activeCategory;
@@ -23,7 +22,6 @@ const Categories = ({ categories, onSelectCategory }) => {
     [activeCategory],
   );
 
-  // HANDLE SELECT CATEGORY
   const handleSelectCategory = category => {
     setState({ activeCategory: category === activeCategory ? undefined : category });
     onSelectCategory(category);

@@ -29,7 +29,6 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
   const [state, setState] = useReducer(State, initialState);
   const { isLoading, emailErrors, passwordErrors } = state;
 
-  // HANDLE LOGIN
   const handleLogin = useCallback(
     async values => {
       setState({ isLoading: true });
@@ -65,7 +64,6 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
     [dispatchSetUserData, history],
   );
 
-  // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback(
     (field, index) => {
       setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
@@ -161,11 +159,6 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
   dispatchSetUserData: userData => dispatch(Actions.logIn(userData)),
 });

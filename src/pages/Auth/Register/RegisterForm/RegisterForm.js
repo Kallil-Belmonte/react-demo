@@ -29,7 +29,6 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
   const [state, setState] = useReducer(State, initialState);
   const { isLoading, emailErrors, passwordErrors } = state;
 
-  // HANDLE REGISTER
   const handleRegister = useCallback(
     async values => {
       setState({ isLoading: true });
@@ -58,7 +57,6 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
     [dispatchSetUserData, history],
   );
 
-  // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback(
     (field, index) => {
       setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
@@ -163,11 +161,6 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
   dispatchSetUserData: userData => dispatch(Actions.logIn(userData)),
 });

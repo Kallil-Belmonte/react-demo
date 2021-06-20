@@ -26,12 +26,10 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
   const [state, setState] = useReducer(State, initialState);
   const { emailErrors, feedbackSuccessMessages, feedbackErrorMessages } = state;
 
-  // GET USER DATA
   const getUserData = useCallback(() => {
     keys(getValues()).forEach(key => setValue(key, userData[key]));
   }, [getValues, setValue, userData]);
 
-  // HANDLE SUBMIT FORM
   const handleSubmitForm = useCallback(
     async values => {
       if (values.email === 'john.doe@email.com') {
@@ -46,7 +44,6 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
     [dispatchEditAccount],
   );
 
-  // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback(
     (field, index) => {
       setState({ [field]: removeItemsFromArray(true, state[field], [index]) });
@@ -151,16 +148,10 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP STATE TO PROPS
 const mapStateToProps = ({ userData }) => ({
   userData,
 });
 
-// MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
   dispatchEditAccount: userData => dispatch(Actions.editAccount(userData)),
 });

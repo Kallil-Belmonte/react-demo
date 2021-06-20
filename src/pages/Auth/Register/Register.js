@@ -9,7 +9,6 @@ import RegisterForm from 'pages/Auth/Register/RegisterForm/RegisterForm';
 import './Register.scss';
 
 const Register = ({ history }) => {
-  // REDIRECT LOGGED USER
   const redirectLoggedUser = useCallback(() => {
     const authToken =
       sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');

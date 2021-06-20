@@ -29,7 +29,6 @@ const ContactForm = () => {
   const [state, setState] = useReducer(State, initialState);
   const { isLoading, telephone, favoriteColors, feedbackSuccessMessages } = state;
 
-  // GET FORM DATA
   const getFormData = useCallback(async () => {
     try {
       const { data: favoriteColors } = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
@@ -41,13 +40,11 @@ const ContactForm = () => {
     }
   }, []);
 
-  // HANDLE RESET FORM
   const handleResetForm = useCallback(() => {
     setState({ telephone: '' });
     reset();
   }, [reset]);
 
-  // HANDLE SUBMIT FORM
   const handleSubmitForm = useCallback(
     values => {
       console.log('Form submitted:', values);
@@ -57,7 +54,6 @@ const ContactForm = () => {
     [handleResetForm],
   );
 
-  // HANDLE CLEAR FORM MESSAGE
   const handleClearFormMessage = useCallback(
     (field, index) => {
       setState({ [field]: removeItemsFromArray(true, state[field], [index]) });

@@ -20,7 +20,6 @@ const Home = ({ posts, dispatchSetPosts }) => {
   const [state, setState] = useReducer(State, initialState);
   const { isLoading, featuredPosts } = state;
 
-  // GET FEATURED POSTS
   const getFeaturedPosts = useCallback(async () => {
     if (posts.length) {
       const [firstPost, secondPost, thirdPost] = posts;
@@ -57,16 +56,10 @@ const Home = ({ posts, dispatchSetPosts }) => {
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP STATE TO PROPS
 const mapStateToProps = ({ posts }) => ({
   posts,
 });
 
-// MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
   dispatchSetPosts: posts => dispatch(Actions.setPosts(posts)),
 });

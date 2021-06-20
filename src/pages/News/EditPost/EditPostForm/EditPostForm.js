@@ -30,12 +30,10 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
   const [state, setState] = useReducer(State, initialState);
   const { isLoading } = state;
 
-  // SET FORM DATA
   const setFormData = useCallback(() => {
     keys(getValues()).forEach(key => setValue(key, currentPost[key]));
   }, [getValues, setValue, currentPost]);
 
-  // GET CURRENT POST
   const getCurrentPost = useCallback(async () => {
     try {
       const { data: posts } = await axios.get(`${blog.posts}${id}`);
@@ -48,7 +46,6 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
     }
   }, [id, dispatchSetCurrentPost, setFormData]);
 
-  // HANDLE SUBMIT FORM
   const handleSubmitForm = useCallback(
     async values => {
       setState({ isLoading: true });
@@ -113,16 +110,10 @@ const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) =
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP STATE TO PROPS
 const mapStateToProps = ({ currentPost }) => ({
   currentPost,
 });
 
-// MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
   dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
 });

@@ -25,7 +25,6 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
   const [state, setState] = useReducer(State, initialState);
   const { isLoading, isModalOpen } = state;
 
-  // GET CURRENT POST
   const getCurrentPost = useCallback(async () => {
     try {
       const { data: posts } = await axios.get(`${blog.posts}${id}`);
@@ -37,12 +36,10 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
     }
   }, [id, dispatchSetCurrentPost]);
 
-  // HANDLE TOGGLE MODAL
   const handleToggleModal = useCallback(() => {
     setState({ isModalOpen: !isModalOpen });
   }, [isModalOpen]);
 
-  // HANDLE DELETE POST
   const handleDeletePost = useCallback(async () => {
     setState({ isLoading: true });
 
@@ -83,16 +80,10 @@ const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP STATE TO PROPS
 const mapStateToProps = ({ currentPost }) => ({
   currentPost,
 });
 
-// MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
   dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
 });
