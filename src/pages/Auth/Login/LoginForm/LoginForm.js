@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
 import * as Actions from 'core/redux/actions';
 import State from 'core/hooks/State';
-import { ACCESS_TOKEN_KEY, EXPIRATION_DATE_KEY } from 'shared/files/consts';
+import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from 'shared/files/consts';
 import { emailPattern } from 'shared/files/regex';
 import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from 'shared/helpers';
 import Loader from 'shared/components/Loader/Loader';
@@ -50,10 +50,10 @@ const LoginForm = ({ dispatchSetUserData }) => {
           });
         } else {
           if (values.keepLogged) {
-            localStorage.setItem(ACCESS_TOKEN_KEY, idToken);
+            localStorage.setItem(AUTH_TOKEN_KEY, idToken);
             localStorage.setItem(EXPIRATION_DATE_KEY, expirationDate);
           } else {
-            sessionStorage.setItem(ACCESS_TOKEN_KEY, idToken);
+            sessionStorage.setItem(AUTH_TOKEN_KEY, idToken);
           }
 
           dispatchSetUserData({ firstName, lastName, email });
