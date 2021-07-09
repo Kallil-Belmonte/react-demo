@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import { ACCESS_TOKEN_KEY, EXPIRATION_DATE_KEY } from 'shared/files/consts';
 import ACTION_TYPES from 'core/redux/actions/actionTypes';
 import { userDataReducer } from 'core/redux/reducers/auth';
 import { categoriesReducer, postsReducer } from 'core/redux/reducers/blog';
@@ -8,9 +9,9 @@ import { currentPostReducer } from 'core/redux/reducers/post';
 const { LOG_OUT } = ACTION_TYPES;
 
 export const clearStorageData = () => {
-  sessionStorage.removeItem('authTokenReactDemo');
-  localStorage.removeItem('authTokenReactDemo');
-  localStorage.removeItem('expirationDateReactDemo');
+  sessionStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(EXPIRATION_DATE_KEY);
 };
 
 // APP REDUCER

@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { ACCESS_TOKEN_KEY } from 'shared/files/consts';
+
 //==============================
 // INSTANCES
 //==============================
@@ -10,25 +12,24 @@ const JSON_PLACEHOLDER_INSTANCE = axios.create({
 });
 
 JSON_PLACEHOLDER_INSTANCE.interceptors.request.use(
-  (config) => {
-    const authToken = sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
+  config => {
+    const authToken =
+      sessionStorage.getItem(ACCESS_TOKEN_KEY) || localStorage.getItem(ACCESS_TOKEN_KEY);
 
     config.headers['Authorization'] = `Bearer ${authToken}`;
-    // config.url = `${config.url}?authKey=${localStorage.getItem('authTokenReactDemo')}`
+    // config.url = `${config.url}?authKey=${localStorage.getItem(ACCESS_TOKEN_KEY)}`
 
     return config;
   },
-  (error) => {
+  error => {
     return Promise.reject(error);
-  }
+  },
 );
-
 
 // MOCKY
 export const MOCKY_INSTANCE = axios.create({
   baseURL: 'http://www.mocky.io/v2/',
 });
-
 
 //==============================
 // ENDPOINTS
@@ -45,7 +46,7 @@ export const ENDPOINTS = {
   auth: {
     login: '5bd312b23400002a00cfe028/',
     register: '5bd311fc3400006f00cfe021/',
-  }
+  },
 };
 
 export default JSON_PLACEHOLDER_INSTANCE;

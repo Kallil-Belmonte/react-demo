@@ -1,6 +1,6 @@
 import React, { Fragment, useReducer, useCallback } from 'react';
 
-import { NavLink, withRouter } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
 import * as Actions from 'core/redux/actions';
 import State from 'core/hooks/State';
+import { ACCESS_TOKEN_KEY } from 'shared/files/consts';
 import { emailPattern } from 'shared/files/regex';
 import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from 'shared/helpers';
 import Loader from 'shared/components/Loader/Loader';
@@ -22,7 +23,9 @@ const initialState = {
   passwordErrors: [],
 };
 
-const RegisterForm = ({ history, dispatchSetUserData }) => {
+const RegisterForm = ({ dispatchSetUserData }) => {
+  const history = useHistory();
+
   const { register, formState, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
 
@@ -45,7 +48,7 @@ const RegisterForm = ({ history, dispatchSetUserData }) => {
             passwordErrors: ['The password is incorrect.'],
           });
         } else {
-          sessionStorage.setItem('authTokenReactDemo', token);
+          sessionStorage.setItem(ACCESS_TOKEN_KEY, token);
           dispatchSetUserData({ firstName, lastName, email });
           history.push('/');
         }
@@ -165,4 +168,4 @@ const mapDispatchToProps = dispatch => ({
   dispatchSetUserData: userData => dispatch(Actions.logIn(userData)),
 });
 
-export default connect(null, mapDispatchToProps)(withRouter(RegisterForm));
+export default connect(null, mapDispatchToProps)(RegisterForm);

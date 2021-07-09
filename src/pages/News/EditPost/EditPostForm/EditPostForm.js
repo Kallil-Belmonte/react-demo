@@ -1,6 +1,6 @@
 import React, { Fragment, useReducer, useEffect, useCallback } from 'react';
 
-import { withRouter } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -21,8 +21,9 @@ const initialState = {
   isLoading: false,
 };
 
-const EditPostForm = ({ history, match, currentPost, dispatchSetCurrentPost }) => {
-  const { id } = match.params;
+const EditPostForm = ({ match, currentPost, dispatchSetCurrentPost }) => {
+  const history = useHistory();
+  const { id } = useParams();
 
   const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
@@ -118,4 +119,4 @@ const mapDispatchToProps = dispatch => ({
   dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EditPostForm));
+export default connect(mapStateToProps, mapDispatchToProps)(EditPostForm);

@@ -15,32 +15,32 @@ const Routes = [
   {
     path: '/',
     exact: true,
-    component: () => RouterGuard(<Home />),
+    component: () => RouterGuard('Home', <Home />),
   },
   {
     path: '/blog',
     exact: true,
-    component: () => RouterGuard(<Blog />),
+    component: () => RouterGuard('Blog', <Blog />),
   },
   {
     path: '/post/:id',
     exact: true,
-    component: () => RouterGuard(<Post />),
+    component: () => RouterGuard('Post', <Post />),
   },
   {
     path: '/edit-post/:id',
     exact: true,
-    component: () => RouterGuard(<EditPost />),
+    component: () => RouterGuard('Edit Post', <EditPost />),
   },
   {
     path: '/contact',
     exact: true,
-    component: () => RouterGuard(<Contact />),
+    component: () => RouterGuard('Contact', <Contact />),
   },
   {
     path: '/account',
     exact: true,
-    component: () => RouterGuard(<Account />),
+    component: () => RouterGuard('Account', <Account />),
   },
   {
     path: '/login',

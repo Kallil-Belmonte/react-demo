@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback, useEffect } from 'react';
 
-import { withRouter } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -19,8 +19,9 @@ const initialState = {
   isModalOpen: false,
 };
 
-const Post = ({ currentPost, history, match, dispatchSetCurrentPost }) => {
-  const { id } = match.params;
+const Post = ({ currentPost, dispatchSetCurrentPost }) => {
+  const history = useHistory();
+  const { id } = useParams();
 
   const [state, setState] = useReducer(State, initialState);
   const { isLoading, isModalOpen } = state;
@@ -88,4 +89,4 @@ const mapDispatchToProps = dispatch => ({
   dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

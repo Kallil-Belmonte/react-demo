@@ -1,19 +1,22 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Logo from 'shared/images/logo.svg';
 import { setPageTitle } from 'shared/helpers';
+import { ACCESS_TOKEN_KEY, EXPIRATION_DATE_KEY } from 'shared/files/consts';
 import LoginForm from 'pages/Auth/Login/LoginForm/LoginForm';
 import './Login.scss';
 
-const Login = ({ history }) => {
+const Login = () => {
+  const history = useHistory();
+
   const redirectLoggedUser = useCallback(() => {
     const authToken =
-      sessionStorage.getItem('authTokenReactDemo') || localStorage.getItem('authTokenReactDemo');
+      sessionStorage.getItem(ACCESS_TOKEN_KEY) || localStorage.getItem(ACCESS_TOKEN_KEY);
     const expiredSession =
-      new Date().getTime() > Date.parse(localStorage.getItem('expirationDateReactDemo'));
+      new Date().getTime() > Date.parse(localStorage.getItem(EXPIRATION_DATE_KEY));
 
     if (authToken && !expiredSession) {
       history.push('/');
@@ -43,4 +46,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default withRouter(Login);
+export default Login;

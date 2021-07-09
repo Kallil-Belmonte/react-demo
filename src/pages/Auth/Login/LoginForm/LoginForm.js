@@ -1,6 +1,6 @@
 import React, { Fragment, useReducer, useCallback } from 'react';
 
-import { NavLink, withRouter } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Form, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
 import * as Actions from 'core/redux/actions';
 import State from 'core/hooks/State';
+import { ACCESS_TOKEN_KEY, EXPIRATION_DATE_KEY } from 'shared/files/consts';
 import { emailPattern } from 'shared/files/regex';
 import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from 'shared/helpers';
 import Loader from 'shared/components/Loader/Loader';
@@ -22,7 +23,9 @@ const initialState = {
   passwordErrors: [],
 };
 
-const LoginForm = ({ history, dispatchSetUserData }) => {
+const LoginForm = ({ dispatchSetUserData }) => {
+  const history = useHistory();
+
   const { register, formState, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
 
@@ -47,10 +50,10 @@ const LoginForm = ({ history, dispatchSetUserData }) => {
           });
         } else {
           if (values.keepLogged) {
-            localStorage.setItem('authTokenReactDemo', idToken);
-            localStorage.setItem('expirationDateReactDemo', expirationDate);
+            localStorage.setItem(ACCESS_TOKEN_KEY, idToken);
+            localStorage.setItem(EXPIRATION_DATE_KEY, expirationDate);
           } else {
-            sessionStorage.setItem('authTokenReactDemo', idToken);
+            sessionStorage.setItem(ACCESS_TOKEN_KEY, idToken);
           }
 
           dispatchSetUserData({ firstName, lastName, email });
@@ -163,4 +166,4 @@ const mapDispatchToProps = dispatch => ({
   dispatchSetUserData: userData => dispatch(Actions.logIn(userData)),
 });
 
-export default connect(null, mapDispatchToProps)(withRouter(LoginForm));
+export default connect(null, mapDispatchToProps)(LoginForm);
