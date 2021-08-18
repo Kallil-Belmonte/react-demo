@@ -6,15 +6,13 @@
 // POSITION
 //---------- END SUMMARY ----------//
 
-
 // STYLE BUTTON
-
 @mixin style-btn($btn-class) {
   &.#{$btn-class},
   &.#{$btn-class}:hover,
   &.#{$btn-class}:not(:disabled):not(.disabled):active,
   &.#{$btn-class}:not(:disabled):not(.disabled).active {
-    color: #FFF;
+    color: #fff;
   }
 }
 
@@ -22,38 +20,37 @@
   &.#{$btn-outline-class}:hover,
   &.#{$btn-outline-class}:not(:disabled):not(.disabled):active,
   &.#{$btn-outline-class}:not(:disabled):not(.disabled).active {
-    color: #FFF;
+    color: #fff;
   }
 }
 
-
 // SIZE
-
 @mixin size($width, $height) {
   width: $width;
   height: $height;
 }
 
-
 // SQUARE
-
 @mixin square($size) {
   width: $size;
   height: $size;
 }
 
-
 // BACKGROUND IMAGE
-
 @mixin bg-image($url, $attachment: fixed, $size: cover) {
   background: url($url) no-repeat center center $attachment;
   background-size: $size;
 }
 
-
 // POSITION
-
-@mixin position($position: static, $top: auto, $right: auto, $bottom: auto, $left: auto, $z-index: auto) {
+@mixin position(
+  $position: static,
+  $top: auto,
+  $right: auto,
+  $bottom: auto,
+  $left: auto,
+  $z-index: auto
+) {
   position: $position;
   top: $top;
   right: $right;
