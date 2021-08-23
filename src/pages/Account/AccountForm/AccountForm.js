@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback, useEffect } from 'react';
 
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Row, Col, Form, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
@@ -19,7 +19,9 @@ const initialState = {
   feedbackErrorMessages: [],
 };
 
-const AccountForm = ({ userData, dispatchEditAccount }) => {
+const AccountForm = () => {
+  const { userData } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
   const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
 
@@ -37,11 +39,11 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
       } else if (values.email === 'demo@demo.com') {
         setState({ feedbackErrorMessages: ['An error occurred, please try again later.'] });
       } else {
-        dispatchEditAccount(values);
+        dispatch(editAccount(values));
         setState({ feedbackSuccessMessages: ['Account saved successfully.'] });
       }
     },
-    [dispatchEditAccount],
+    [dispatch],
   );
 
   const handleClearFormMessage = useCallback(
@@ -148,12 +150,4 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
   );
 };
 
-const mapStateToProps = ({ auth: { userData } }) => ({
-  userData,
-});
-
-const mapDispatchToProps = dispatch => ({
-  dispatchEditAccount: userData => dispatch(editAccount(userData)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);
+export default AccountForm;

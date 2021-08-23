@@ -1,41 +1,29 @@
 import React, { Fragment } from 'react';
 
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { logOut } from 'core/redux/reducers/auth';
 import Header from 'layout/Header/Header';
 import Footer from 'layout/Footer/Footer';
 
-const Dashboard = ({ fullName, dispatchLogOut, children }) => {
+const Dashboard = ({ children }) => {
+  const { userData } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const logOutUser = () => {
-    dispatchLogOut();
+    dispatch(logOut());
     history.push('/login');
   };
 
   return (
     <Fragment>
-      <Header userFullName={fullName} onLogOut={logOutUser} />
+      <Header userFullName={`${userData.firstName} ${userData.lastName}`} onLogOut={logOutUser} />
       {children}
       <Footer />
     </Fragment>
   );
 };
 
-//==============================
-// REDUX
-//==============================
-
-// MAP STATE TO PROPS
-const mapStateToProps = ({ user: { userData } }) => ({
-  fullName: `${userData.firstName} ${userData.lastName}`,
-});
-
-// MAP DISPATCH TO PROPS
-const mapDispatchToProps = dispatch => ({
-  dispatchLogOut: () => dispatch(logOut()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;

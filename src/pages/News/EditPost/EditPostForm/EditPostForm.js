@@ -1,7 +1,7 @@
 import React, { Fragment, useReducer, useEffect, useCallback } from 'react';
 
 import { useHistory, useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
@@ -21,7 +21,9 @@ const initialState = {
   isLoading: false,
 };
 
-const EditPostForm = ({ match, currentPost, dispatchSetCurrentPost }) => {
+const EditPostForm = ({ match }) => {
+  const { currentPost } = useSelector(state => state.blog);
+  const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
 
@@ -37,30 +39,30 @@ const EditPostForm = ({ match, currentPost, dispatchSetCurrentPost }) => {
 
   const getCurrentPost = useCallback(async () => {
     try {
-      const { data: posts } = await axios.get(`${blog.posts}${id}`);
-      dispatchSetCurrentPost(posts);
+      const { data: post } = await axios.get(`${blog.posts}${id}`);
+      dispatch(setCurrentPost(post));
       setFormData();
     } catch (error) {
       console.error(error);
     } finally {
       setState({ isLoading: false });
     }
-  }, [id, dispatchSetCurrentPost, setFormData]);
+  }, [id, dispatch, setFormData]);
 
   const handleSubmitForm = useCallback(
     async values => {
       setState({ isLoading: true });
 
       try {
-        const { data: posts } = await axios.put(`${blog.posts}${id}`, values);
-        dispatchSetCurrentPost(posts);
+        const { data: post } = await axios.put(`${blog.posts}${id}`, values);
+        dispatch(setCurrentPost(post));
         history.push(`/post/${id}`);
       } catch (error) {
         console.error(error);
         setState({ isLoading: false });
       }
     },
-    [id, dispatchSetCurrentPost, history],
+    [id, dispatch, history],
   );
 
   // LIFECYCLE HOOKS
@@ -111,12 +113,4 @@ const EditPostForm = ({ match, currentPost, dispatchSetCurrentPost }) => {
   );
 };
 
-const mapStateToProps = ({ blog: { currentPost } }) => ({
-  currentPost,
-});
-
-const mapDispatchToProps = dispatch => ({
-  dispatchSetCurrentPost: post => dispatch(setCurrentPost(post)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditPostForm);
+export default EditPostForm;

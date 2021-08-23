@@ -1,7 +1,7 @@
 import React, { Fragment, useReducer, useCallback } from 'react';
 
 import { useHistory, NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
@@ -23,9 +23,9 @@ const initialState = {
   passwordErrors: [],
 };
 
-const RegisterForm = ({ dispatchSetUserData }) => {
+const RegisterForm = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
-
   const { register, formState, handleSubmit } = useForm();
   const { isDirty, isSubmitting, errors } = formState;
 
@@ -49,7 +49,7 @@ const RegisterForm = ({ dispatchSetUserData }) => {
           });
         } else {
           sessionStorage.setItem(AUTH_TOKEN_KEY, token);
-          dispatchSetUserData({ firstName, lastName, email });
+          dispatch(logIn({ firstName, lastName, email }));
           history.push('/');
         }
       } catch (error) {
@@ -57,7 +57,7 @@ const RegisterForm = ({ dispatchSetUserData }) => {
         setState({ isLoading: false });
       }
     },
-    [dispatchSetUserData, history],
+    [dispatch, history],
   );
 
   const handleClearFormMessage = useCallback(
@@ -164,8 +164,4 @@ const RegisterForm = ({ dispatchSetUserData }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  dispatchSetUserData: userData => dispatch(logIn(userData)),
-});
-
-export default connect(null, mapDispatchToProps)(RegisterForm);
+export default RegisterForm;

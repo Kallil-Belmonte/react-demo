@@ -14,7 +14,7 @@ export const authSlice = createSlice({
       const { payload } = action;
       state.userData = payload;
     },
-    logOut: (state, action) => {
+    logOut: () => {
       clearStorageData();
     },
     editAccount: (state, action) => {

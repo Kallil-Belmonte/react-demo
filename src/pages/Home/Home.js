@@ -1,6 +1,6 @@
 import React, { useReducer, useCallback, useEffect } from 'react';
 
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import axios, { ENDPOINTS } from 'core/api';
 import State from 'core/hooks/State';
@@ -16,7 +16,9 @@ const initialState = {
   featuredPosts: [],
 };
 
-const Home = ({ posts, dispatchSetPosts }) => {
+const Home = () => {
+  const { posts } = useSelector(state => state.blog);
+  const dispatch = useDispatch();
   const [state, setState] = useReducer(State, initialState);
   const { isLoading, featuredPosts } = state;
 
@@ -31,14 +33,14 @@ const Home = ({ posts, dispatchSetPosts }) => {
         const { data: posts } = await axios.get(blog.posts);
         const [firstPost, secondPost, thirdPost] = posts;
         setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
-        dispatchSetPosts(posts);
+        dispatch(setPosts(posts));
       } catch (error) {
         console.error(error);
       } finally {
         setState({ isLoading: false });
       }
     }
-  }, [posts, dispatchSetPosts]);
+  }, [posts, dispatch]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -56,12 +58,4 @@ const Home = ({ posts, dispatchSetPosts }) => {
   );
 };
 
-const mapStateToProps = ({ blog: { posts } }) => ({
-  posts,
-});
-
-const mapDispatchToProps = dispatch => ({
-  dispatchSetPosts: posts => dispatch(setPosts(posts)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

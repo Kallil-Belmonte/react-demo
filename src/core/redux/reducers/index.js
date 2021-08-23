@@ -6,7 +6,7 @@ import authReducer from 'core/redux/reducers/auth';
 import blogReducer from 'core/redux/reducers/blog';
 
 // ROOT REDUCER
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   auth: authReducer,
   blog: blogReducer,
 });

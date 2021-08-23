@@ -1,7 +1,7 @@
 import React, { useReducer, useCallback, useEffect } from 'react';
 
 import { useHistory, useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import axios, { ENDPOINTS } from 'core/api';
@@ -19,7 +19,9 @@ const initialState = {
   isModalOpen: false,
 };
 
-const Post = ({ currentPost, dispatchSetCurrentPost }) => {
+const Post = () => {
+  const { currentPost } = useSelector(state => state.blog);
+  const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
 
@@ -28,14 +30,14 @@ const Post = ({ currentPost, dispatchSetCurrentPost }) => {
 
   const getCurrentPost = useCallback(async () => {
     try {
-      const { data: posts } = await axios.get(`${blog.posts}${id}`);
-      dispatchSetCurrentPost(posts);
+      const { data: post } = await axios.get(`${blog.posts}${id}`);
+      dispatch(setCurrentPost(post));
     } catch (error) {
       console.error(error);
     } finally {
       setState({ isLoading: false });
     }
-  }, [id, dispatchSetCurrentPost]);
+  }, [id, dispatch]);
 
   const handleToggleModal = useCallback(() => {
     setState({ isModalOpen: !isModalOpen });
@@ -81,12 +83,4 @@ const Post = ({ currentPost, dispatchSetCurrentPost }) => {
   );
 };
 
-const mapStateToProps = ({ blog: { currentPost } }) => ({
-  currentPost,
-});
-
-const mapDispatchToProps = dispatch => ({
-  dispatchSetCurrentPost: post => dispatch(setCurrentPost(post)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default Post;
