@@ -1,24 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import ACTION_TYPES from 'core/redux/actions/actionTypes';
-// import updateState from './utility';
 
-// const { LOG_IN, EDIT_ACCOUNT } = ACTION_TYPES;
-
-// USER DATA
-// export const userDataReducer = (state = {}, action) => {
-//   const { type, payload } = action;
-
-//   switch (type) {
-//     case LOG_IN:
-//       return updateState(state, payload);
-
-//     case EDIT_ACCOUNT:
-//       return updateState(state, payload);
-
-//     default:
-//       return state;
-//   }
-// };
+import { clearStorageData } from 'shared/helpers';
 
 const initialState = {
   userData: {},
@@ -32,11 +14,16 @@ export const authSlice = createSlice({
       const { payload } = action;
       state.userData = payload;
     },
+    logOut: (state, action) => {
+      clearStorageData();
+    },
     editAccount: (state, action) => {
       const { payload } = action;
       state.userData = payload;
     },
   },
 });
+
+export const { logIn, logOut, editAccount } = authSlice.action;
 
 export default authSlice.reducer;

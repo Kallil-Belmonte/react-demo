@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
 import axios, { ENDPOINTS } from 'core/api';
-import * as Actions from 'core/redux/actions';
+import { setCurrentPost } from 'core/redux/reducers/blog';
 import State from 'core/hooks/State';
 import { getFieldClass, getFieldErrorMessage } from 'shared/helpers';
 import Loader from 'shared/components/Loader/Loader';
@@ -111,12 +111,12 @@ const EditPostForm = ({ match, currentPost, dispatchSetCurrentPost }) => {
   );
 };
 
-const mapStateToProps = ({ currentPost }) => ({
+const mapStateToProps = ({ blog: { currentPost } }) => ({
   currentPost,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
+  dispatchSetCurrentPost: post => dispatch(setCurrentPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostForm);

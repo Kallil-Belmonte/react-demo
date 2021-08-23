@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import axios, { ENDPOINTS } from 'core/api';
 import State from 'core/hooks/State';
-import * as Actions from 'core/redux/actions';
+import { setPosts } from 'core/redux/reducers/blog';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/components/Loader/Loader';
 import FeaturedPosts from 'pages/Home/FeaturedPosts/FeaturedPosts';
@@ -56,12 +56,12 @@ const Home = ({ posts, dispatchSetPosts }) => {
   );
 };
 
-const mapStateToProps = ({ posts }) => ({
+const mapStateToProps = ({ blog: { posts } }) => ({
   posts,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchSetPosts: posts => dispatch(Actions.setPosts(posts)),
+  dispatchSetPosts: posts => dispatch(setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

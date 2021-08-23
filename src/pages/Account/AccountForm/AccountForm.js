@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Form, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
-import * as Actions from 'core/redux/actions';
+import { editAccount } from 'core/redux/reducers/auth';
 import State from 'core/hooks/State';
 import { emailPattern } from 'shared/files/regex';
 import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from 'shared/helpers';
@@ -148,12 +148,12 @@ const AccountForm = ({ userData, dispatchEditAccount }) => {
   );
 };
 
-const mapStateToProps = ({ userData }) => ({
+const mapStateToProps = ({ auth: { userData } }) => ({
   userData,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchEditAccount: userData => dispatch(Actions.editAccount(userData)),
+  dispatchEditAccount: userData => dispatch(editAccount(userData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountForm);

@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { Redirect } from 'react-router-dom';
-import { clearStorageData } from 'core/redux/rootReducer';
 
 import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from 'shared/files/consts';
-import { setPageTitle } from 'shared/helpers';
+import { setPageTitle, clearStorageData } from 'shared/helpers';
 
 const RouterGuard = (pageTitle, component) => {
   const authToken = sessionStorage.getItem(AUTH_TOKEN_KEY) || localStorage.getItem(AUTH_TOKEN_KEY);

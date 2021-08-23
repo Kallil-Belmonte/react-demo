@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import axios, { ENDPOINTS } from 'core/api';
 import State from 'core/hooks/State';
-import * as Actions from 'core/redux/actions';
+import { setCurrentPost } from 'core/redux/reducers/blog';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/components/Loader/Loader';
 import PostBody from 'pages/News/Post/PostBody/PostBody';
@@ -81,12 +81,12 @@ const Post = ({ currentPost, dispatchSetCurrentPost }) => {
   );
 };
 
-const mapStateToProps = ({ currentPost }) => ({
+const mapStateToProps = ({ blog: { currentPost } }) => ({
   currentPost,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCurrentPost: post => dispatch(Actions.setCurrentPost(post)),
+  dispatchSetCurrentPost: post => dispatch(setCurrentPost(post)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

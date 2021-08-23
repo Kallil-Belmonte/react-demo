@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import * as Actions from 'core/redux/actions';
+import { logOut } from 'core/redux/reducers/auth';
 import Header from 'layout/Header/Header';
 import Footer from 'layout/Footer/Footer';
 
@@ -29,13 +29,13 @@ const Dashboard = ({ fullName, dispatchLogOut, children }) => {
 //==============================
 
 // MAP STATE TO PROPS
-const mapStateToProps = ({ userData }) => ({
+const mapStateToProps = ({ user: { userData } }) => ({
   fullName: `${userData.firstName} ${userData.lastName}`,
 });
 
 // MAP DISPATCH TO PROPS
 const mapDispatchToProps = dispatch => ({
-  dispatchLogOut: () => dispatch(Actions.logOut()),
+  dispatchLogOut: () => dispatch(logOut()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

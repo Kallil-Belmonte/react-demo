@@ -6,7 +6,7 @@ import { Form, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
 import { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
-import * as Actions from 'core/redux/actions';
+import { logIn } from 'core/redux/reducers/auth';
 import State from 'core/hooks/State';
 import { AUTH_TOKEN_KEY } from 'shared/files/consts';
 import { emailPattern } from 'shared/files/regex';
@@ -165,7 +165,7 @@ const RegisterForm = ({ dispatchSetUserData }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  dispatchSetUserData: userData => dispatch(Actions.logIn(userData)),
+  dispatchSetUserData: userData => dispatch(logIn(userData)),
 });
 
 export default connect(null, mapDispatchToProps)(RegisterForm);

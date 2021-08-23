@@ -3,6 +3,7 @@ export { default as groupArrayItemsInArrays } from './array/groupArrayItemsInArr
 export { default as removeItemsFromArray } from './array/removeItemsFromArray';
 
 // GENERAL
+export { default as clearStorageData } from './general/clearStorageData';
 export { default as getFieldClass } from './general/getFieldClass';
 export { default as getFieldErrorMessage } from './general/getFieldErrorMessage';
 export { default as setPageTitle } from './general/setPageTitle';

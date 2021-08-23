@@ -5,7 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import axios, { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
 import State from 'core/hooks/State';
-import * as Actions from 'core/redux/actions';
+import { setCategories, setPosts } from 'core/redux/reducers/blog';
 import { groupArrayItemsInArrays } from 'shared/helpers';
 import Dashboard from 'layout/Dashboard';
 import Loader from 'shared/components/Loader/Loader';
@@ -148,14 +148,14 @@ const Blog = ({ categories, posts, dispatchSetCategories, dispatchSetPosts }) =>
   );
 };
 
-const mapStateToProps = ({ categories, posts }) => ({
+const mapStateToProps = ({ blog: { categories, posts } }) => ({
   categories,
   posts,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchSetCategories: categories => dispatch(Actions.setCategories(categories)),
-  dispatchSetPosts: posts => dispatch(Actions.setPosts(posts)),
+  dispatchSetCategories: categories => dispatch(setCategories(categories)),
+  dispatchSetPosts: posts => dispatch(setPosts(posts)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);
