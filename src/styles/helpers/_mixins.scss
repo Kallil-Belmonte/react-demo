@@ -25,15 +25,23 @@
 }
 
 // SIZE
-@mixin size($width, $height) {
+@mixin size($width, $height, $radius: '') {
   width: $width;
   height: $height;
+
+  @if $radius {
+    border-radius: $radius;
+  }
 }
 
 // SQUARE
-@mixin square($size) {
+@mixin square($size, $radius: '') {
   width: $size;
   height: $size;
+
+  @if $radius {
+    border-radius: $radius;
+  }
 }
 
 // BACKGROUND IMAGE
