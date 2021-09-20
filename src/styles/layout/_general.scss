@@ -1,12 +1,8 @@
-/* GENERAL
-==============================*/
-
 /* TEXT CONTINUED */
 
 .text-continued {
   @extend %text-continued;
 }
-
 
 /* CENTER ABSOLUTE */
 
@@ -26,7 +22,6 @@
   @extend %center-absolute-y;
 }
 
-
 /* BACKGROUND IMAGE */
 
 /* Contain */
@@ -41,13 +36,11 @@
   @extend %background-image-cover;
 }
 
-
 /* DISABLES CURSOR ACTIONS ON THE ELEMENT */
 
 .disabled-cursor {
   pointer-events: none;
 }
-
 
 /* FONTS */
 
@@ -113,7 +106,6 @@
 //   src: url('../fonts/nome-da-fonte/nome-da-fonte-bold-webfont.woff');
 // }
 
-
 /* SCROLLBAR */
 
 ::-webkit-scrollbar-track {
@@ -127,9 +119,8 @@
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #C1C8CC;
+  background-color: #c1c8cc;
 }
-
 
 /* LINKS */
 

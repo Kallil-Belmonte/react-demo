@@ -1,12 +1,3 @@
-//---------- SUMMARY ----------//
-// STYLE BUTTON
-// SIZE
-// SQUARE
-// BACKGROUND IMAGE
-// POSITION
-//---------- END SUMMARY ----------//
-
-// STYLE BUTTON
 @mixin style-btn($btn-class) {
   &.#{$btn-class},
   &.#{$btn-class}:hover,
@@ -24,7 +15,6 @@
   }
 }
 
-// SIZE
 @mixin size($width, $height, $radius: '') {
   width: $width;
   height: $height;
@@ -34,7 +24,6 @@
   }
 }
 
-// SQUARE
 @mixin square($size, $radius: '') {
   width: $size;
   height: $size;
@@ -44,13 +33,11 @@
   }
 }
 
-// BACKGROUND IMAGE
 @mixin bg-image($url, $attachment: fixed, $size: cover) {
   background: url($url) no-repeat center center $attachment;
   background-size: $size;
 }
 
-// POSITION
 @mixin position(
   $position: static,
   $top: auto,
