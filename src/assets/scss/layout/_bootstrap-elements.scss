@@ -1,0 +1,186 @@
+// BUTTONS
+
+button,
+.btn {
+  @include style-btn(btn-primary);
+  @include style-btn(btn-secondary);
+  @include style-btn(btn-success);
+  @include style-btn(btn-danger);
+  @include style-btn(btn-warning);
+  @include style-btn(btn-info);
+
+  @include style-btn-outline(btn-outline-primary);
+  @include style-btn-outline(btn-outline-secondary);
+  @include style-btn-outline(btn-outline-success);
+  @include style-btn-outline(btn-outline-danger);
+  @include style-btn-outline(btn-outline-warning);
+  @include style-btn-outline(btn-outline-info);
+
+  &:focus,
+  &.focus,
+  &:disabled,
+  &.disabled,
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    &,
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+
+// ALERTS
+
+.alert-primary,
+.alert-secondary,
+.alert-success,
+.alert-info,
+.alert-warning,
+.alert-danger,
+.alert-dark {
+  color: #fff;
+  border: none;
+}
+
+// Primary
+
+.alert-primary {
+  background-color: $primary;
+}
+
+// Secondary
+
+.alert-secondary {
+  background-color: $secondary;
+}
+
+// Success
+
+.alert-success {
+  background-color: $success;
+}
+
+// Info
+
+.alert-info {
+  background-color: $info;
+}
+
+// Warning
+
+.alert-warning {
+  background-color: $warning;
+}
+
+// Danger
+
+.alert-danger {
+  background-color: $danger;
+}
+
+// Light
+
+.alert-light {
+  background-color: $light;
+}
+
+// Dark
+
+.alert-dark {
+  background-color: $dark;
+}
+
+// BADGES
+
+.badge:not(.badge-light) {
+  color: #fff;
+}
+
+// TOOLTIPS
+
+.tooltip-inner {
+  background-color: $primary;
+}
+
+.bs-tooltip-auto[x-placement^='top'] .arrow::before,
+.bs-tooltip-top .arrow::before {
+  border-top-color: $primary;
+}
+
+.bs-tooltip-auto[x-placement^='right'] .arrow::before,
+.bs-tooltip-right .arrow::before {
+  border-right-color: $primary;
+}
+
+.bs-tooltip-auto[x-placement^='bottom'] .arrow::before,
+.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: $primary;
+}
+
+.bs-tooltip-auto[x-placement^='left'] .arrow::before,
+.bs-tooltip-left .arrow::before {
+  border-left-color: $primary;
+}
+
+// FORMS
+
+// Alert
+
+.form-group > .alert {
+  margin-top: 1rem;
+}
+
+// Input
+
+.form-control {
+  &,
+  &:focus {
+    border-color: #d0d7e5;
+    box-shadow: none;
+  }
+
+  &::-webkit-input-placeholder {
+    color: #c5cbd8;
+  }
+
+  &::-moz-placeholder {
+    color: #c5cbd8;
+  }
+
+  &[type='number']::-webkit-inner-spin-button,
+  &[type='number']::-webkit-outer-spin-button {
+    appearance: none;
+  }
+}
+
+// Invalid
+
+.invalid-feedback:first-letter {
+  text-transform: uppercase;
+}
+
+.was-validated .form-control:invalid:focus,
+.form-control.is-invalid:focus,
+.was-validated .custom-select:invalid:focus,
+.custom-select.is-invalid:focus {
+  box-shadow: none;
+}
+
+// LIST GROUP
+
+.list-group {
+  .list-group-item-action {
+    cursor: pointer;
+
+    &.active {
+      background-color: $primary;
+      border-color: $primary;
+
+      .badge-primary {
+        color: $primary;
+        background-color: #fff;
+      }
+    }
+  }
+}
