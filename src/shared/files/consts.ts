@@ -1,4 +1,4 @@
-export const PROJECT_TITLE = 'Vue Demo';
+export const PROJECT_TITLE = 'React Demo';
 
-export const AUTH_TOKEN_KEY = 'authTokenVueDemo';
-export const EXPIRATION_DATE_KEY = 'expirationDateVueDemo';
+export const AUTH_TOKEN_KEY = 'authTokenReactDemo';
+export const EXPIRATION_DATE_KEY = 'expirationDateReactDemo';

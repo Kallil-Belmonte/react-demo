@@ -1,5 +1,3 @@
-import { useRouter } from 'vue-router';
-
 import { EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import getAuthToken from './getAuthToken';
 

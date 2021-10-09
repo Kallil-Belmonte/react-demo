@@ -1,0 +1,32 @@
+@import '../../../styles/helpers/bootstrap-helpers';
+@import '../../../styles/helpers/helpers';
+
+[data-component='PostItem'] {
+  text-align: center;
+  margin-bottom: 50px;
+
+  img {
+    display: block;
+    @include square(100px);
+    margin: 0 auto 10px;
+  }
+
+  .img-placeholder {
+    font-weight: 700;
+    color: #fff;
+    padding: 20px;
+    @include border-top-radius(5px);
+    background-color: #61dafb;
+  }
+
+  article {
+    padding: 20px;
+    @include border-bottom-radius(5px);
+    box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.1);
+
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+}
