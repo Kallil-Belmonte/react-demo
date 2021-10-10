@@ -1,7 +1,7 @@
 import React from 'react';
 
 import RouterGuard from '@/core/router/guard';
-// import Home from '@/pages/Home/Home';
+import Home from '@/pages/Home/Home';
 // import Blog from '@/pages/News/Blog/Blog';
 // import Post from '@/pages/News/Post/Post';
 // import EditPost from '@/pages/News/EditPost/EditPost';
@@ -14,11 +14,11 @@ import RouterGuard from '@/core/router/guard';
 // VER: https://stackoverflow.com/questions/41474134/nested-routes-with-react-router-v4-v5
 
 const Routes = [
-  // {
-  //   path: '/',
-  //   exact: true,
-  //   component: () => RouterGuard('Home', <Home />),
-  // },
+  {
+    path: '/',
+    exact: true,
+    component: () => RouterGuard('Home', <Home />),
+  },
   // {
   //   path: '/blog',
   //   exact: true,

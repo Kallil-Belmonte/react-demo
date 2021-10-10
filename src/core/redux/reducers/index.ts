@@ -1,9 +1,9 @@
 import authReducer from '@/core/redux/reducers/auth';
-import blogReducer from '@/core/redux/reducers/blog';
+import newsReducer from '@/core/redux/reducers/news';
 
 const reducer = {
   auth: authReducer,
-  blog: blogReducer,
+  news: newsReducer,
 };
 
 export default reducer;

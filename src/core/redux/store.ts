@@ -11,6 +11,9 @@ const store = configureStore({
   // preloadedState,
 });
 
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
 // SUBSCRIBE
 // store.subscribe(() => {
 //   console.log('Subscribe:', store.getState());

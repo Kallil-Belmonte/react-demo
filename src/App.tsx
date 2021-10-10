@@ -3,8 +3,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import { store } from 'core/redux/store';
-import Routes from 'core/router/routes';
+import store from '@/core/redux/store';
+import Routes from '@/core/router/routes';
 
 const App = () => {
   return (

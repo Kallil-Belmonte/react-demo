@@ -1,29 +1,38 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { clearStorageData } from '@/shared/helpers';
+import { LoginUser } from '@/core/services/auth/types';
 
-const initialState = {
-  userData: {},
+type User = Pick<LoginUser, 'firstName' | 'lastName' | 'email'>;
+
+type AuthState = {
+  user: User;
+};
+
+const initialState: AuthState = {
+  user: {
+    firstName: '',
+    lastName: '',
+    email: '',
+  },
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logIn: (state, action) => {
+    setUser: (state, action: PayloadAction<AuthState['user']>) => {
       const { payload } = action;
-      state.userData = payload;
+      state.user = payload;
     },
-    logOut: () => {
-      clearStorageData();
-    },
-    editAccount: (state, action) => {
-      const { payload } = action;
-      state.userData = payload;
+    resetUser: state => {
+      state.user = {
+        firstName: '',
+        lastName: '',
+        email: '',
+      };
     },
   },
 });
 
-export const { logIn, logOut, editAccount } = authSlice.action;
-
+export const { setUser, resetUser } = authSlice.actions;
 export default authSlice.reducer;
