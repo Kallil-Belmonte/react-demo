@@ -4,15 +4,13 @@ import { Redirect } from 'react-router-dom';
 
 import { ReactType } from '@/shared/files/types';
 import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
-import { setPageTitle, clearStorageData } from '@/shared/helpers';
+import { clearStorageData, getAuthToken } from '@/shared/helpers';
 
-const RouterGuard = (pageTitle: string, component: any) => {
-  // const authToken = sessionStorage.getItem(AUTH_TOKEN_KEY) || localStorage.getItem(AUTH_TOKEN_KEY);
-  // const expiredSession =
+const guard = (/*pageTitle: string, */ component: any) => {
+  // const isExpiredSession =
   //   new Date().getTime() > Date.parse(localStorage.getItem(EXPIRATION_DATE_KEY) || '');
 
-  // if (authToken && !expiredSession) {
-  //   setPageTitle(pageTitle);
+  // if (getAuthToken() && !isExpiredSession) {
   return component;
   // }
 
@@ -20,4 +18,4 @@ const RouterGuard = (pageTitle: string, component: any) => {
   // return <Redirect to="/login" />;
 };
 
-export default RouterGuard;
+export default guard;

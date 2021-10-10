@@ -2,7 +2,6 @@ import React, { useCallback, useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
 import { setPosts } from '@/core/redux/reducers/news';
-import AppDashboard from '@/core/layout/AppDashboard/AppDashboard';
 // import Loader from '@/shared/components/Loader/Loader';
 // import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
@@ -43,13 +42,11 @@ const Home = () => {
   // }, []);
 
   return (
-    <AppDashboard>
-      <main data-component="Home">
-        {/* <Loader isLoading={isLoading} /> */}
+    <main data-component="Home">
+      {/* <Loader isLoading={isLoading} /> */}
 
-        {/* <FeaturedPosts posts={featuredPosts} /> */}
-      </main>
-    </AppDashboard>
+      {/* <FeaturedPosts posts={featuredPosts} /> */}
+    </main>
   );
 };
 
