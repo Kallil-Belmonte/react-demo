@@ -51,10 +51,8 @@
             color: $primary;
           }
 
-          svg {
-            @include square(100%);
-            max-width: 20px;
-            max-height: 20px;
+          [data-element='icon'] {
+            @include square(20px);
             margin-right: 10px;
           }
         }
