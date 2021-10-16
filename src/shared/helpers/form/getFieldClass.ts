@@ -2,6 +2,6 @@
  * @name getFieldClass
  */
 
-const getFieldClass = (fieldError: any) => `${fieldError ? 'is-invalid' : ''}`;
+const getFieldClass = (fieldError: any) => `form-control ${fieldError ? 'is-invalid' : ''}`;
 
 export default getFieldClass;

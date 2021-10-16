@@ -9,6 +9,7 @@ import { LoginUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { emailRegex } from '@/shared/files/regex';
 import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from '@/shared/helpers';
+import clearFormMessage from '@/shared/helpers/form/clearFormMessage';
 import { useCustomState } from '@/shared/hooks';
 import { loginUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
@@ -29,7 +30,7 @@ const initialState: LoginFormState = {
 const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { register, formState, handleSubmit } = useForm();
+  const { register, formState, handleSubmit } = useForm<LoginUserPayload>();
   const { errors } = formState;
 
   const [state, setState] = useCustomState<LoginFormState>(initialState);
@@ -83,12 +84,7 @@ const Login = () => {
   };
 
   const handleClearFormMessage = (field: string, index: number) => {
-    setState({
-      serverErrors: {
-        ...serverErrors,
-        [field]: removeItemsFromArray(serverErrors[field], [index], true),
-      },
-    });
+    clearFormMessage(field, index, state, setState);
   };
 
   return (
