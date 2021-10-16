@@ -11,14 +11,13 @@ import Home from '@/pages/Home/Home';
 // import EditPost from '@/pages/News/EditPost/EditPost';
 // import Contact from '@/pages/Contact/Contact';
 // import Account from '@/pages/Account/Account';
-// import Login from '@/pages/Auth/Login/Login';
+import Login from '@/pages/Auth/Login/Login';
 // import Register from '@/pages/Auth/Register/Register';
 import NotFound from '@/pages/NotFound/NotFound';
 
 const Routes = [
   {
     path: '/',
-    state: { teste: true },
     exact: true,
     render: ({ match: { url } }: RouteComponentProps<any>) =>
       guard(
@@ -32,11 +31,11 @@ const Routes = [
         </AppDashboard>,
       ),
   },
-  // {
-  //   path: '/login',
-  //   exact: true,
-  //   component: () => <Login />,
-  // },
+  {
+    path: '/login',
+    exact: true,
+    component: () => <Login />,
+  },
   // {
   //   path: '/register',
   //   exact: true,
