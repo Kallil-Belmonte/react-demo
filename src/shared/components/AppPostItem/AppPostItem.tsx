@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { Post } from '@/core/services/news/types';
 import { limitWords } from '@/shared/helpers';
-import './PostItem.scss';
+import './AppPostItem.scss';
 
 type Props = {
   post: Post;

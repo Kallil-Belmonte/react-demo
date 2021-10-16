@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconProps } from '../AppIcon';
 
-const AppUser = ({ className, size, fill }: IconProps) => {
+const AppUser = ({ className, style, fill }: IconProps) => {
   return (
     <figure data-element="icon" className={`icon-user ${className}`} style={style}>
       <svg

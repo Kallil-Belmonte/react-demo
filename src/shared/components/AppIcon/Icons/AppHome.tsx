@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconProps } from '../AppIcon';
 
-const AppHome = ({ className, size, fill }: IconProps) => {
+const AppHome = ({ className, style, fill }: IconProps) => {
   return (
     <figure data-element="icon" className={`icon-home ${className}`} style={style}>
       <svg

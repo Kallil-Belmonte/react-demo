@@ -1,8 +1,11 @@
 import React, { CSSProperties, useState, useCallback, useEffect } from 'react';
 
+import { Icons } from './types';
+import './AppIcon.scss';
+
 type Props = {
   className?: string;
-  icon: string;
+  icon: Icons;
   size?: string;
   fill?: string;
 };
