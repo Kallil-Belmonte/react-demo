@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { RouteComponentProps } from 'node_modules/@types/react-router';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import guard from '@/core/router/guard';
 import AppDashboard from '@/core/layout/AppDashboard/AppDashboard';
@@ -18,18 +18,33 @@ import NotFound from '@/pages/NotFound/NotFound';
 const Routes = [
   {
     path: '/',
-    // exact: true,
-    render: ({ match: { url } }: RouteComponentProps<any>) =>
-      guard(
-        <AppDashboard>
-          <Route path={`${url}`} component={() => <Home />} exact />
-          {/* <Route path={`${url}blog`} component={() => <Blog />} exact />
-          <Route path={`${url}blog/post/:id`} component={() => <Post />} exact />
-          <Route path={`${url}blog/edit-post/:id`} component={() => <EditPost />} exact />*/}
-          <Route path={`${url}contact`} component={() => <Contact />} exact />
-          <Route path={`${url}account`} component={() => <Account />} exact />
-        </AppDashboard>,
-      ),
+    exact: true,
+    component: () => guard(<Home />),
+  },
+  // {
+  //   path: '/blog',
+  //   exact: true,
+  //   component: () => guard(<Blog />),
+  // },
+  // {
+  //   path: '/post/:id',
+  //   exact: true,
+  //   component: () => guard(<Post />),
+  // },
+  // {
+  //   path: '/edit-post/:id',
+  //   exact: true,
+  //   component: () => guard(<EditPost />),
+  // },
+  {
+    path: '/contact',
+    exact: true,
+    component: () => guard(<Contact />),
+  },
+  {
+    path: '/account',
+    exact: true,
+    component: () => guard(<Account />),
   },
   {
     path: '/login',
@@ -43,7 +58,7 @@ const Routes = [
   },
   {
     path: '*',
-    // exact: false,
+    exact: false,
     component: () => <NotFound />,
   },
 ];
