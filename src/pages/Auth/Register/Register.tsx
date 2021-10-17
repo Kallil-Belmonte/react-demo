@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
-import { LoginUserPayload } from '@/core/services/auth/types';
+import { RegisterUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { emailRegex } from '@/shared/files/regex';
-import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
+import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from '@/shared/helpers';
 import clearFormMessage from '@/shared/helpers/form/clearFormMessage';
 import { useCustomState } from '@/shared/hooks';
-import { loginUser } from '@/core/services';
+import { registerUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
 import AppLoader from '@/shared/components/AppLoader/AppLoader';
 import AppAlertDismissible from '@/shared/components/AppAlertDismissible/AppAlertDismissible';
@@ -26,29 +26,26 @@ const initialState: FormState = {
   },
 };
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { register, formState, handleSubmit } = useForm<LoginUserPayload>();
+  const { register, formState, handleSubmit } = useForm<RegisterUserPayload>();
   const { errors } = formState;
 
   const [state, setState] = useCustomState<FormState>(initialState);
   const { isLoading, serverErrors } = state;
 
-  const handleLogin = async (values: LoginUserPayload) => {
+  const handleRegister = async (values: RegisterUserPayload) => {
     setState({ isLoading: true });
 
     try {
-      const payload: LoginUserPayload = {
+      const payload: RegisterUserPayload = {
+        firstName: values.firstName,
+        lastName: values.lastName,
         email: values.email,
         password: values.password,
-        keepLogged: values.keepLogged,
       };
-      const { token, expiresIn, firstName, lastName, email } = await loginUser(payload);
-
-      const expirationDate = new Date(
-        new Date().getTime() + Number(expiresIn) * 1000,
-      ).toISOString();
+      const { token, firstName, lastName, email } = await registerUser(payload);
 
       if (values.email === 'demo@demo.com') {
         setState({
@@ -59,13 +56,7 @@ const Login = () => {
           },
         });
       } else {
-        if (values.keepLogged) {
-          localStorage.setItem(AUTH_TOKEN_KEY, token);
-          localStorage.setItem(EXPIRATION_DATE_KEY, expirationDate);
-        } else {
-          sessionStorage.setItem(AUTH_TOKEN_KEY, token);
-        }
-
+        sessionStorage.setItem(AUTH_TOKEN_KEY, token);
         dispatch(setUser({ firstName, lastName, email }));
         history.push('/');
       }
@@ -90,8 +81,40 @@ const Login = () => {
     <Auth>
       <AppLoader isLoading={isLoading} />
 
-      <form className="auth-form" onSubmit={handleSubmit(handleLogin)}>
-        <h1 className="page-title">Login</h1>
+      <form className="auth-form" onSubmit={handleSubmit(handleRegister)}>
+        <h1 className="page-title">Register</h1>
+
+        <div className="mb-3">
+          <label className="form-label" htmlFor="first-name">
+            First name
+          </label>
+          <input
+            id="first-name"
+            className={getFieldClass(errors.firstName)}
+            type="text"
+            {...register('firstName', {
+              required: { value: true, message: 'First name is required' },
+              minLength: { value: 2, message: 'Must be 2 characters or more' },
+            })}
+          />
+          {getFieldErrorMessage(errors.firstName)}
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label" htmlFor="last-name">
+            Last name
+          </label>
+          <input
+            id="last-name"
+            className={getFieldClass(errors.lastName)}
+            type="text"
+            {...register('lastName', {
+              required: { value: true, message: 'Last name is required' },
+              minLength: { value: 2, message: 'Must be 2 characters or more' },
+            })}
+          />
+          {getFieldErrorMessage(errors.lastName)}
+        </div>
 
         <div className="mb-3">
           <label className="form-label" htmlFor="email">
@@ -145,18 +168,6 @@ const Login = () => {
           </AppAlertDismissible>
         ))}
 
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="checkbox"
-            id="keep-logged"
-            {...register('keepLogged')}
-          />
-          <label className="form-check-label" htmlFor="keep-logged">
-            Keep logged
-          </label>
-        </div>
-
         {serverErrors.request.map((errorMessage, index) => (
           <AppAlertDismissible
             key={errorMessage}
@@ -168,16 +179,16 @@ const Login = () => {
         ))}
 
         <button className="btn btn-primary d-block mx-auto" type="submit">
-          Login
+          Register
         </button>
 
         <div className="text-center">
           <hr className="mt-4" />
-          Don't have an account? <NavLink to="/register">Register</NavLink>
+          Aleady have an account? <NavLink to="/login">Login</NavLink>
         </div>
       </form>
     </Auth>
   );
 };
 
-export default Login;
+export default Register;

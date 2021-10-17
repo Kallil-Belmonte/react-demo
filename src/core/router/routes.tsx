@@ -12,7 +12,7 @@ import Home from '@/pages/Home/Home';
 // import Contact from '@/pages/Contact/Contact';
 // import Account from '@/pages/Account/Account';
 import Login from '@/pages/Auth/Login/Login';
-// import Register from '@/pages/Auth/Register/Register';
+import Register from '@/pages/Auth/Register/Register';
 import NotFound from '@/pages/NotFound/NotFound';
 
 const Routes = [
@@ -36,11 +36,11 @@ const Routes = [
     exact: true,
     component: () => <Login />,
   },
-  // {
-  //   path: '/register',
-  //   exact: true,
-  //   component: () => <Register />,
-  // },
+  {
+    path: '/register',
+    exact: true,
+    component: () => <Register />,
+  },
   {
     path: '*',
     exact: false,
