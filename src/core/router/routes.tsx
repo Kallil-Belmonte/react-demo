@@ -7,7 +7,7 @@ import guard from '@/core/router/guard';
 import AppDashboard from '@/core/layout/AppDashboard/AppDashboard';
 import Home from '@/pages/Home/Home';
 // import Blog from '@/pages/News/Blog/Blog';
-// import Post from '@/pages/News/Post/Post';
+import Post from '@/pages/News/Post/Post';
 // import EditPost from '@/pages/News/EditPost/EditPost';
 import Contact from '@/pages/Contact/Contact';
 import Account from '@/pages/Account/Account';
@@ -26,11 +26,11 @@ const Routes = [
   //   exact: true,
   //   component: () => guard(<Blog />),
   // },
-  // {
-  //   path: '/post/:id',
-  //   exact: true,
-  //   component: () => guard(<Post />),
-  // },
+  {
+    path: '/post/:id',
+    exact: true,
+    component: () => guard(<Post />),
+  },
   // {
   //   path: '/edit-post/:id',
   //   exact: true,
