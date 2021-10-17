@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { Post } from '@/core/services/news/types';
+import { FeaturedPostsProps } from '@/pages/Home/_files/types';
 import AppPostItem from '@/shared/components/AppPostItem/AppPostItem';
 
-type Props = {
-  posts: Post[];
-};
-
-const FeaturedPosts = ({ posts }: Props) => {
+const FeaturedPosts = ({ posts }: FeaturedPostsProps) => {
   return (
     <section data-component="FeaturedPosts" className="page-section">
       <div className="container">

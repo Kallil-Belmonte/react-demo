@@ -2,14 +2,10 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { Post } from '@/core/services/news/types';
+import { PostProps } from '@/pages/News/Post/_files/types';
 import './PostBody.scss';
 
-type Props = {
-  post: Post;
-};
-
-const PostBody = ({ post }: Props) => {
+const PostBody = ({ post }: PostProps) => {
   return (
     <section data-component="PostBody">
       <article>

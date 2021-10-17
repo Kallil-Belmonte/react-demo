@@ -2,16 +2,12 @@ import React, { useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import { ReactType } from '@/shared/files/types';
+import { AuthProps } from '@/pages/Auth/_files/types';
 import { redirectLoggedUser } from '@/shared/helpers';
 import Logo from '@/assets/icons/brand/logo.svg';
 import './Auth.scss';
 
-type Props = {
-  children: ReactType;
-};
-
-const Auth = ({ children }: Props) => {
+const Auth = ({ children }: AuthProps) => {
   const history = useHistory();
 
   // LIFECYCLE HOOKS

@@ -1,0 +1,16 @@
+@import '@/assets/scss/helpers/helpers';
+
+[data-component='Categories'] {
+  .list-group {
+    cursor: pointer;
+
+    .list-group-item {
+      &.active {
+        .badge-primary {
+          color: $primary;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}
