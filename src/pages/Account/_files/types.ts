@@ -1,4 +1,4 @@
-export type FormState = {
+export type AccountFormState = {
   successMessages: string[];
   serverErrors: {
     email: string[];

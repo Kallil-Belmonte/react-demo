@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { AuthState } from '@/core/redux/reducers/auth';
-import { FormState } from '@/pages/Account/_files/types';
+import { AccountFormState } from '@/pages/Account/_files/types';
 import { setUser } from '@/core/redux/reducers/auth';
 import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
 import { emailRegex } from '@/shared/files/regex';
@@ -12,7 +12,7 @@ import AppAlertDismissible from '@/shared/components/AppAlertDismissible/AppAler
 
 const { keys } = Object;
 
-const initialState: FormState = {
+const initialState: AccountFormState = {
   successMessages: [],
   serverErrors: { email: [], request: [] },
 };
@@ -24,7 +24,7 @@ const Form = () => {
   const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
   const { errors } = formState;
 
-  const [state, setState] = useCustomState<FormState>(initialState);
+  const [state, setState] = useCustomState<AccountFormState>(initialState);
   const { successMessages, serverErrors } = state;
 
   const getUserData = () => {

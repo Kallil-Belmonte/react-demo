@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { FormState } from '@/pages/Contact/_files/types';
+import { ContactFormState } from '@/pages/Contact/_files/types';
 import { emailRegex } from '@/shared/files/regex';
 import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useCustomState } from '@/shared/hooks';
@@ -10,7 +10,7 @@ import { getFavoriteColors } from '@/core/services';
 import AppLoader from '@/shared/components/AppLoader/AppLoader';
 import AppAlertDismissible from '@/shared/components/AppAlertDismissible/AppAlertDismissible';
 
-const initialState: FormState = {
+const initialState: ContactFormState = {
   isLoading: true,
   favoriteColors: [],
   successMessages: [],
@@ -20,7 +20,7 @@ const Form = () => {
   const { register, formState, reset, handleSubmit } = useForm();
   const { errors } = formState;
 
-  const [state, setState] = useCustomState<FormState>(initialState);
+  const [state, setState] = useCustomState<ContactFormState>(initialState);
   const { isLoading, favoriteColors, successMessages } = state;
 
   const setFavoriteColors = async () => {
