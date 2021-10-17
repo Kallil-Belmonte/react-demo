@@ -18,16 +18,15 @@ import NotFound from '@/pages/NotFound/NotFound';
 const Routes = [
   {
     path: '/',
-    exact: true,
     render: ({ match: { url } }: RouteComponentProps<any>) =>
       guard(
         <AppDashboard>
           <Route path={`${url}`} component={() => <Home />} exact />
-          {/* <Route path={`${url}/blog`} component={() => <Blog />} exact />
-          <Route path={`${url}/blog/post/:id`} component={() => <Post />} exact />
-          <Route path={`${url}/blog/edit-post/:id`} component={() => <EditPost />} exact />*/}
-          <Route path={`${url}/contact`} component={() => <Contact />} exact />
-          {/*<Route path={`${url}/account`} component={() => <Account />} exact /> */}
+          {/* <Route path={`${url}blog`} component={() => <Blog />} exact />
+          <Route path={`${url}blog/post/:id`} component={() => <Post />} exact />
+          <Route path={`${url}blog/edit-post/:id`} component={() => <EditPost />} exact />*/}
+          <Route path={`${url}contact`} component={() => <Contact />} exact />
+          {/*<Route path={`${url}account`} component={() => <Account />} exact /> */}
         </AppDashboard>,
       ),
   },
