@@ -12,7 +12,7 @@ type Props = {
 
 const PostItem = ({ post }: Props) => {
   return (
-    <div data-component="PostItem">
+    <div data-component="AppPostItem">
       {post.image ? (
         <img className="img-fluid" src={post.image} alt="Capa" />
       ) : (

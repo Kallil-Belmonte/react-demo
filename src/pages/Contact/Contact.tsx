@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AppPageHeader from '@/shared/components/AppPageHeader/AppPageHeader';
-import ContactForm from '@/pages/Contact/ContactForm/ContactForm';
+import Form from '@/pages/Contact/Form/Form';
 import './Contact.scss';
 
 const Contact = () => {
@@ -9,7 +9,7 @@ const Contact = () => {
     <main data-component="Contact">
       <div className="container">
         <AppPageHeader icon="Envelope">Contact</AppPageHeader>
-        <ContactForm />
+        <Form />
       </div>
     </main>
   );

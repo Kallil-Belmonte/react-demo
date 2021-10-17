@@ -1,37 +1,32 @@
 import React, { Fragment, useEffect } from 'react';
 
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
-import { MOCKY_INSTANCE, ENDPOINTS } from 'core/api';
+import { FormState } from '@/pages/Contact/_files/types';
 import { emailRegex } from '@/shared/files/regex';
-import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
+import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useCustomState } from '@/shared/hooks';
+import { getFavoriteColors } from '@/core/services';
 import AppLoader from '@/shared/components/AppLoader/AppLoader';
 import AppAlertDismissible from '@/shared/components/AppAlertDismissible/AppAlertDismissible';
 
-const { Row, Group, Label, Control } = Form;
-const { contactForm } = ENDPOINTS;
-
-const initialState = {
+const initialState: FormState = {
   isLoading: true,
-  telephone: '',
   favoriteColors: [],
   successMessages: [],
 };
 
-const ContactForm = () => {
-  const { register, formState, reset, control, handleSubmit } = useForm({
-    defaultValues: { sex: 'male' },
-  });
-  const { isDirty, isSubmitting, errors } = formState;
+const Form = () => {
+  const { register, formState, reset, handleSubmit } = useForm();
+  const { errors } = formState;
 
-  const [state, setState] = useCustomState(State, initialState);
-  const { isLoading, telephone, favoriteColors, feedbackSuccessMessages } = state;
+  const [state, setState] = useCustomState<FormState>(initialState);
+  const { isLoading, favoriteColors, successMessages } = state;
 
-  const getFormData = async () => {
+  const setFavoriteColors = async () => {
     try {
-      const { data: favoriteColors } = await MOCKY_INSTANCE.get(contactForm.favoriteColors);
-      setState({ favoriteColors });
+      const response = await getFavoriteColors();
+      setState({ favoriteColors: response });
     } catch (error) {
       console.error(error);
     } finally {
@@ -39,40 +34,27 @@ const ContactForm = () => {
     }
   };
 
-  const handleResetForm = () => {
-    setState({ telephone: '' });
-    reset();
-  };
-
-  const handleSubmitForm = values => {
+  const handleSubmitForm = (values: any) => {
     console.log('Form submitted:', values);
-    setState({ feedbackSuccessMessages: ['Message sent successfully.'] });
-    handleResetForm();
-  };
-
-  const handleClearFormMessage = (field: string, index: number) => {
-    clearFormMessage(field, index, state, setState);
+    setState({ successMessages: ['Message sent successfully.'] });
+    reset();
   };
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    getFormData();
+    setFavoriteColors();
   }, []);
 
   return (
     <Fragment>
       <AppLoader isLoading={isLoading} />
 
-      <form
-        data-component="ContactForm"
-        className="auth-form"
-        onSubmit={handleSubmit(handleSubmitForm)}
-      >
-        {successMessages.map((successMessage, index) => (
+      <form data-component="Form" className="auth-form" onSubmit={handleSubmit(handleSubmitForm)}>
+        {successMessages.map(successMessage => (
           <AppAlertDismissible
             key={successMessage}
             variant="success"
-            onDismiss={() => handleClearFormMessage('successMessage', index)}
+            onDismiss={() => setState({ successMessages: [] })}
           >
             {successMessage}
           </AppAlertDismissible>
@@ -147,10 +129,10 @@ const ContactForm = () => {
 
         <div className="row">
           <div className="col mb-3">
-            <div className="form-check form-check-inline">
+            <div className={`form-check form-check-inline ${errors.sex ? 'is-invalid' : ''}`}>
               <input
                 id="male"
-                className="form-check-input"
+                className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
                 type="radio"
                 value="male"
                 {...register('sex', { required: { value: true, message: 'Sex is required' } })}
@@ -159,10 +141,10 @@ const ContactForm = () => {
                 Male
               </label>
             </div>
-            <div className="form-check form-check-inline">
+            <div className={`form-check form-check-inline ${errors.sex ? 'is-invalid' : ''}`}>
               <input
                 id="female"
-                className="form-check-input"
+                className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
                 type="radio"
                 value="female"
                 {...register('sex', { required: { value: true, message: 'Sex is required' } })}
@@ -171,6 +153,7 @@ const ContactForm = () => {
                 Female
               </label>
             </div>
+            {getFieldErrorMessage(errors.sex)}
           </div>
         </div>
 
@@ -183,16 +166,17 @@ const ContactForm = () => {
               id="favorite-color"
               className={getFieldClass(errors.favoriteColor)}
               aria-label="Favorite color"
+              defaultValue=""
               {...register('favoriteColor', {
                 required: { value: true, message: 'Favorite color is required' },
               })}
             >
-              <option selected disabled value="select">
+              <option disabled value="">
                 Select
               </option>
-              {favoriteColors.map(favoriteColor => (
-                <option key={favoriteColor} value={favoriteColor}>
-                  {favoriteColor}
+              {favoriteColors.map(({ text, value }) => (
+                <option key={value} value={value}>
+                  {text}
                 </option>
               ))}
             </select>
@@ -214,7 +198,7 @@ const ContactForm = () => {
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="">
+          <label className="form-label" htmlFor="message">
             Message
           </label>
           <textarea
@@ -229,7 +213,7 @@ const ContactForm = () => {
         <button className="btn btn-primary me-2" type="submit">
           Send
         </button>
-        <button className="btn btn-light" type="button" onClick={handleResetForm}>
+        <button className="btn btn-light" type="button" onClick={() => reset()}>
           Reset form
         </button>
       </form>
@@ -237,4 +221,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default Form;

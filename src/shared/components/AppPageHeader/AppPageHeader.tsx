@@ -12,7 +12,7 @@ type Props = {
 
 const PageHeader = ({ icon, children }: Props) => {
   return (
-    <section data-component="PageHeader">
+    <section data-component="AppPageHeader">
       {icon && <AppIcon className="icon d-block mx-auto" icon={icon} size="32px" />}
       <h1 className="title">{children}</h1>
     </section>
