@@ -20,6 +20,7 @@ const initialState: FormState = {
 const Form = () => {
   const { user } = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
+
   const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
   const { errors } = formState;
 

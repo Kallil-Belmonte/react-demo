@@ -14,6 +14,7 @@ import './AppHeader.scss';
 const Header = () => {
   const { user } = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
+
   const history = useHistory();
 
   const fullName = `${user.firstName} ${user.lastName}`;

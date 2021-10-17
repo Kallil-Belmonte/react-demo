@@ -27,6 +27,7 @@ const initialState: FormState = {
 const Login = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
+
   const { register, formState, handleSubmit } = useForm<LoginUserPayload>();
   const { errors } = formState;
 
