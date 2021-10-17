@@ -1,10 +1,6 @@
 import React from 'react';
 
-import { RouteComponentProps } from 'node_modules/@types/react-router';
-import { Route, Switch } from 'react-router-dom';
-
 import guard from '@/core/router/guard';
-import AppDashboard from '@/core/layout/AppDashboard/AppDashboard';
 import Home from '@/pages/Home/Home';
 import Blog from '@/pages/News/Blog/Blog';
 import Post from '@/pages/News/Post/Post';

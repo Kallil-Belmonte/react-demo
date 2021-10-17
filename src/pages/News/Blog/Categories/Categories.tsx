@@ -28,7 +28,7 @@ const Categories = ({ categories, onSelectCategory }: CategoriesProps) => {
         {categories.map(({ name, posts }) => (
           <li
             key={name}
-            className={`d-flex justify-content-between align-items-center ${
+            className={`list-group-item d-flex justify-content-between align-items-center ${
               isActive(name) ? 'active' : ''
             }`}
             onClick={() => handleSelectCategory(name)}

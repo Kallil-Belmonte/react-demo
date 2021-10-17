@@ -14,7 +14,7 @@ const PostsPerPage = ({ postsPerPage, onChange }: PostsPerPageProps) => {
             </label>
             <select
               id="filter"
-              className="form-control"
+              className="form-select"
               aria-label="Filter"
               value={postsPerPage}
               onChange={onChange}

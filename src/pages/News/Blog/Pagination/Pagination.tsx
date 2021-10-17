@@ -9,7 +9,7 @@ const Pagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }: Pagi
   const isItemActive = (page: string) => Number(page) === currentPage;
 
   return (
-    <nav data-component="Pagination" className="d-inline-block" aria-label="Blog Pagination">
+    <nav data-component="Pagination" className="d-inline-block" aria-label="Pagination">
       <ul className="pagination mb-0">
         {firstItem > 1 && (
           <li className="page-item" v-if="firstItem > 1">
@@ -27,7 +27,7 @@ const Pagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }: Pagi
             onClick={() => (isItemActive(page) ? undefined : onPaginate(page))}
           >
             <button className="page-link" type="button">
-              {{ page }}
+              {page}
             </button>
           </li>
         ))}
