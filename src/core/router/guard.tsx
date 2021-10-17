@@ -13,7 +13,7 @@ const guard = (component: ReactType) => {
   if (getAuthToken() && !isExpiredSession) {
     return component;
   }
-
+  console.log(component);
   clearStorageData();
   return <Redirect to="/login" />;
 };

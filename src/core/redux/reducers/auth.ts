@@ -4,7 +4,7 @@ import { LoginUser } from '@/core/services/auth/types';
 
 type User = Pick<LoginUser, 'firstName' | 'lastName' | 'email'>;
 
-type AuthState = {
+export type AuthState = {
   user: User;
 };
 

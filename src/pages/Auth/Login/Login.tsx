@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useHistory, NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
@@ -9,7 +8,7 @@ import { LoginUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { emailRegex } from '@/shared/files/regex';
 import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { useCustomState } from '@/shared/hooks';
+import { useAppDispatch, useCustomState } from '@/shared/hooks';
 import { loginUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
 import AppLoader from '@/shared/components/AppLoader/AppLoader';
@@ -26,7 +25,7 @@ const initialState: FormState = {
 };
 
 const Login = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const { register, formState, handleSubmit } = useForm<LoginUserPayload>();
   const { errors } = formState;

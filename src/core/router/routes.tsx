@@ -10,7 +10,7 @@ import Home from '@/pages/Home/Home';
 // import Post from '@/pages/News/Post/Post';
 // import EditPost from '@/pages/News/EditPost/EditPost';
 import Contact from '@/pages/Contact/Contact';
-// import Account from '@/pages/Account/Account';
+import Account from '@/pages/Account/Account';
 import Login from '@/pages/Auth/Login/Login';
 import Register from '@/pages/Auth/Register/Register';
 import NotFound from '@/pages/NotFound/NotFound';
@@ -18,6 +18,7 @@ import NotFound from '@/pages/NotFound/NotFound';
 const Routes = [
   {
     path: '/',
+    // exact: true,
     render: ({ match: { url } }: RouteComponentProps<any>) =>
       guard(
         <AppDashboard>
@@ -26,7 +27,7 @@ const Routes = [
           <Route path={`${url}blog/post/:id`} component={() => <Post />} exact />
           <Route path={`${url}blog/edit-post/:id`} component={() => <EditPost />} exact />*/}
           <Route path={`${url}contact`} component={() => <Contact />} exact />
-          {/*<Route path={`${url}account`} component={() => <Account />} exact /> */}
+          <Route path={`${url}account`} component={() => <Account />} exact />
         </AppDashboard>,
       ),
   },
@@ -42,7 +43,7 @@ const Routes = [
   },
   {
     path: '*',
-    exact: false,
+    // exact: false,
     component: () => <NotFound />,
   },
 ];

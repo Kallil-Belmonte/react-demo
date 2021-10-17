@@ -71,7 +71,7 @@ const Form = () => {
               type="text"
               {...register('firstName', {
                 required: { value: true, message: 'First name is required' },
-                minLength: { value: 3, message: 'Must be 3 characters or more' },
+                minLength: { value: 2, message: 'Must be 2 characters or more' },
               })}
             />
             {getFieldErrorMessage(errors.firstName)}
@@ -87,7 +87,7 @@ const Form = () => {
               type="text"
               {...register('lastName', {
                 required: { value: true, message: 'Last name is required' },
-                minLength: { value: 3, message: 'Must be 3 characters or more' },
+                minLength: { value: 2, message: 'Must be 2 characters or more' },
               })}
             />
             {getFieldErrorMessage(errors.lastName)}

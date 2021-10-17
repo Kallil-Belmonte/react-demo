@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export type ReactType = ReactNode;
+export type ReactType = ReactNode | ReactNode[];
 
 export type BootstrapVariants =
   | 'primary'

@@ -1,8 +1,7 @@
 export type FormState = {
-  isLoading: boolean;
+  successMessages: string[];
   serverErrors: {
     email: string[];
-    password: string[];
     request: string[];
   };
 };
