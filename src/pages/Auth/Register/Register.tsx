@@ -8,8 +8,7 @@ import { FormState } from '@/pages/Auth/_files/types';
 import { RegisterUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { emailRegex } from '@/shared/files/regex';
-import { getFieldClass, getFieldErrorMessage, removeItemsFromArray } from '@/shared/helpers';
-import clearFormMessage from '@/shared/helpers/form/clearFormMessage';
+import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useCustomState } from '@/shared/hooks';
 import { registerUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
@@ -143,7 +142,7 @@ const Register = () => {
         ))}
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
+          <label className="form-label" htmlFor="password">
             Password
           </label>
           <input

@@ -9,7 +9,7 @@ import Home from '@/pages/Home/Home';
 // import Blog from '@/pages/News/Blog/Blog';
 // import Post from '@/pages/News/Post/Post';
 // import EditPost from '@/pages/News/EditPost/EditPost';
-// import Contact from '@/pages/Contact/Contact';
+import Contact from '@/pages/Contact/Contact';
 // import Account from '@/pages/Account/Account';
 import Login from '@/pages/Auth/Login/Login';
 import Register from '@/pages/Auth/Register/Register';
@@ -25,9 +25,9 @@ const Routes = [
           <Route path={`${url}`} component={() => <Home />} exact />
           {/* <Route path={`${url}/blog`} component={() => <Blog />} exact />
           <Route path={`${url}/blog/post/:id`} component={() => <Post />} exact />
-          <Route path={`${url}/blog/edit-post/:id`} component={() => <EditPost />} exact />
+          <Route path={`${url}/blog/edit-post/:id`} component={() => <EditPost />} exact />*/}
           <Route path={`${url}/contact`} component={() => <Contact />} exact />
-          <Route path={`${url}/account`} component={() => <Account />} exact /> */}
+          {/*<Route path={`${url}/account`} component={() => <Account />} exact /> */}
         </AppDashboard>,
       ),
   },
