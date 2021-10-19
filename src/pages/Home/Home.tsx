@@ -4,7 +4,7 @@ import { HomeState } from '@/pages/Home/_files/types';
 import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
 import { setPosts } from '@/core/redux/reducers/news';
 import { getPosts } from '@/core/services/news';
-import AppLoader from '@/shared/components/AppLoader/AppLoader';
+import { AppLoader } from '@/shared/components';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
 const initialState: HomeState = {

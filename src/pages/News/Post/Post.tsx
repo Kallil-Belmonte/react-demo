@@ -6,7 +6,7 @@ import { PostState } from '@/pages/News/Post/_files/types';
 import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getPost } from '@/core/services';
-import AppLoader from '@/shared/components/AppLoader/AppLoader';
+import { AppLoader } from '@/shared/components';
 import PostBody from './PostBody/PostBody';
 import DeletePostModal from './DeletePostModal/DeletePostModal';
 

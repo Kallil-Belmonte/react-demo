@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PostsProps } from '@/pages/News/Blog/_files/types';
-import AppPostItem from '@/shared/components/AppPostItem/AppPostItem';
+import { AppPostItem } from '@/shared/components';
 
 const { keys } = Object;
 

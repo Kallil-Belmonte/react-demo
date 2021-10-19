@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ReactType } from '@/shared/files/types';
-import { Icons } from '@/shared/components/AppIcon/types';
-import AppIcon from '@/shared/components/AppIcon/AppIcon';
+import { Icons } from '../AppIcon/types';
+import AppIcon from '../AppIcon/AppIcon';
 import './AppPageHeader.scss';
 
 type Props = {

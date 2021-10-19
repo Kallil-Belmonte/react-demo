@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppPageHeader from '@/shared/components/AppPageHeader/AppPageHeader';
+import { AppPageHeader } from '@/shared/components';
 import Form from '@/pages/Contact/Form/Form';
 import './Contact.scss';
 

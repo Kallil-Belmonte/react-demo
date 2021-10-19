@@ -6,7 +6,7 @@ import { Modal } from 'bootstrap';
 import { DeletePostModalState } from '@/pages/News/Post/_files/types';
 import { useCustomState } from '@/shared/hooks';
 import { deletePost } from '@/core/services/news';
-import AppLoader from '@/shared/components/AppLoader/AppLoader';
+import { AppLoader } from '@/shared/components';
 
 const initialState: DeletePostModalState = {
   isLoading: false,

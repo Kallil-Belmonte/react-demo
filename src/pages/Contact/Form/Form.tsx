@@ -7,8 +7,7 @@ import { emailRegex } from '@/shared/files/regex';
 import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useCustomState } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
-import AppLoader from '@/shared/components/AppLoader/AppLoader';
-import AppAlertDismissible from '@/shared/components/AppAlertDismissible/AppAlertDismissible';
+import { AppAlertDismissible, AppLoader } from '@/shared/components';
 
 const initialState: ContactFormState = {
   isLoading: true,

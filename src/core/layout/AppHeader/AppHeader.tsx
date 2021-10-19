@@ -8,7 +8,7 @@ import { clearStorageData } from '@/shared/helpers';
 import { useAppSelector, useAppDispatch } from '@/shared/hooks';
 import { setUser, resetUser } from '@/core/redux/reducers/auth';
 import { getUser } from '@/core/services/auth';
-import AppIcon from '@/shared/components/AppIcon/AppIcon';
+import { AppIcon } from '@/shared/components';
 import './AppHeader.scss';
 
 const Header = () => {

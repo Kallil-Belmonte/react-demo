@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FeaturedPostsProps } from '@/pages/Home/_files/types';
-import AppPostItem from '@/shared/components/AppPostItem/AppPostItem';
+import { AppPostItem } from '@/shared/components';
 
 const FeaturedPosts = ({ posts }: FeaturedPostsProps) => {
   return (

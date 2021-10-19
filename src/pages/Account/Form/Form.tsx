@@ -8,7 +8,7 @@ import { setUser } from '@/core/redux/reducers/auth';
 import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
 import { emailRegex } from '@/shared/files/regex';
 import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import AppAlertDismissible from '@/shared/components/AppAlertDismissible/AppAlertDismissible';
+import { AppAlertDismissible } from '@/shared/components';
 
 const { keys } = Object;
 

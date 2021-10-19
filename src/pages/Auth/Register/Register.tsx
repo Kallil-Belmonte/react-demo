@@ -11,8 +11,7 @@ import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/
 import { useAppDispatch, useCustomState } from '@/shared/hooks';
 import { registerUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
-import AppLoader from '@/shared/components/AppLoader/AppLoader';
-import AppAlertDismissible from '@/shared/components/AppAlertDismissible/AppAlertDismissible';
+import { AppAlertDismissible, AppLoader } from '@/shared/components';
 import Auth from '../Auth';
 
 const initialState: FormState = {

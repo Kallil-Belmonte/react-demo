@@ -9,7 +9,7 @@ import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
 import { getPost, editPost } from '@/core/services';
-import AppLoader from '@/shared/components/AppLoader/AppLoader';
+import { AppLoader } from '@/shared/components';
 import './Form.scss';
 
 const { keys } = Object;
