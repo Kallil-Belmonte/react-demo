@@ -17,17 +17,19 @@ export type IconProps = {
 };
 
 const AppIcon = (props: Props) => {
+  const { className, icon, size, fill } = props;
+
   const [iconComponent, setIconComponent] = useState(null);
 
   const setComponent = useCallback(async () => {
     const moduleProps = {
-      className: props.className || '',
-      style: props.size ? { width: props.size, height: props.size } : {},
-      fill: props.fill || 'currentColor',
+      className: className || '',
+      style: size ? { width: size, height: size } : {},
+      fill: fill || 'currentColor',
     };
 
     try {
-      const module = await import(`./Icons/App${props.icon}`);
+      const module = await import(`./Icons/App${icon}`);
       setIconComponent(module.default(moduleProps));
     } catch (error) {
       console.error(error);
@@ -37,7 +39,7 @@ const AppIcon = (props: Props) => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     setComponent();
-  }, []);
+  }, [icon]);
 
   return iconComponent;
 };
