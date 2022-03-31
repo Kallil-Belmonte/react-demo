@@ -17,19 +17,19 @@ export type IconProps = {
 };
 
 const AppIcon = (props: Props) => {
-  const { className, icon, size, fill } = props;
+  const { className = '', icon, size, fill } = props;
 
   const [iconComponent, setIconComponent] = useState(null);
 
   const setComponent = useCallback(async () => {
     const moduleProps = {
-      className: className || '',
+      className: `${className} d-flex align-items-center justify-content-center`,
       style: size ? { width: size, height: size } : {},
       fill: fill || 'currentColor',
     };
 
     try {
-      const module = await import(`./Icons/App${icon}`);
+      const module = await import(`./Icons/App${icon}.tsx`);
       setIconComponent(module.default(moduleProps));
     } catch (error) {
       console.error(error);
