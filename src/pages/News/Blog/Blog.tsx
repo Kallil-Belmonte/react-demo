@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Category, Post } from '@/core/services/news/types';
 import { BlogState } from '@/pages/News/Blog/_files/types';
 import { groupArrayItemsInArrays } from '@/shared/helpers';
-import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
+import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setCategories, setPosts } from '@/core/redux/reducers/news';
 import { getCategories, getPosts } from '@/core/services';
 import { AppLoader, AppPageHeader } from '@/shared/components';
@@ -25,8 +25,8 @@ const initialState: BlogState = {
 };
 
 const Blog = () => {
-  const { categories, posts } = useAppSelector(state => state.news);
-  const dispatch = useAppDispatch();
+  const { categories, posts } = useSelector(state => state.news);
+  const dispatch = useDispatch();
 
   const [state, setState] = useCustomState<BlogState>(initialState);
   const { isLoading, pages, postsPerPage, firstPaginationItem, maxPaginationItem, currentPage } =

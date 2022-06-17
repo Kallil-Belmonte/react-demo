@@ -5,15 +5,15 @@ import { NavLink, useHistory } from 'react-router-dom';
 import Logo from '@/assets/icons/brand/logo.svg';
 import { PROJECT_TITLE } from '@/shared/files/consts';
 import { clearStorageData } from '@/shared/helpers';
-import { useAppSelector, useAppDispatch } from '@/shared/hooks';
+import { useSelector, useDispatch } from '@/shared/hooks';
 import { setUser, resetUser } from '@/core/redux/reducers/auth';
 import { getUser } from '@/core/services/auth';
 import { AppIcon } from '@/shared/components';
 import './AppHeader.scss';
 
 const Header = () => {
-  const { user } = useAppSelector(state => state.auth);
-  const dispatch = useAppDispatch();
+  const { user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
   const history = useHistory();
 

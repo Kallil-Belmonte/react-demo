@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { HomeState } from '@/pages/Home/_files/types';
-import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
+import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setPosts } from '@/core/redux/reducers/news';
 import { getPosts } from '@/core/services/news';
 import { AppLoader } from '@/shared/components';
@@ -13,8 +13,8 @@ const initialState: HomeState = {
 };
 
 const Home = () => {
-  const { posts } = useAppSelector(state => state.news);
-  const dispatch = useAppDispatch();
+  const { posts } = useSelector(state => state.news);
+  const dispatch = useDispatch();
 
   const [state, setState] = useCustomState<HomeState>(initialState);
   const { isLoading, featuredPosts } = state;

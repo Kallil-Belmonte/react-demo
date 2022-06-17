@@ -7,7 +7,7 @@ import { Post } from '@/core/services/news/types';
 import { EditPostFormState } from '@/pages/News/EditPost/_files/types';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
+import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { getPost, editPost } from '@/core/services';
 import { AppLoader } from '@/shared/components';
 import './Form.scss';
@@ -19,8 +19,8 @@ const initialState: EditPostFormState = {
 };
 
 const Form = () => {
-  const { currentPost } = useAppSelector(state => state.news);
-  const dispatch = useAppDispatch();
+  const { currentPost } = useSelector(state => state.news);
+  const dispatch = useDispatch();
   const history = useHistory();
   const { id = '' } = useParams<{ id?: string }>();
 

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { AuthState } from '@/core/redux/reducers/auth';
 import { AccountFormState } from '@/pages/Account/_files/types';
 import { setUser } from '@/core/redux/reducers/auth';
-import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
+import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { emailRegex } from '@/shared/files/regex';
 import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { AppAlertDismissible } from '@/shared/components';
@@ -18,8 +18,8 @@ const initialState: AccountFormState = {
 };
 
 const Form = () => {
-  const { user } = useAppSelector(state => state.auth);
-  const dispatch = useAppDispatch();
+  const { user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
 
   const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
   const { errors } = formState;

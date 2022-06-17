@@ -8,7 +8,7 @@ import { RegisterUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { emailRegex } from '@/shared/files/regex';
 import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { useAppDispatch, useCustomState } from '@/shared/hooks';
+import { useDispatch, useCustomState } from '@/shared/hooks';
 import { registerUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
 import { AppAlertDismissible, AppLoader } from '@/shared/components';
@@ -24,7 +24,7 @@ const initialState: FormState = {
 };
 
 const Register = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const { register, formState, handleSubmit } = useForm<RegisterUserPayload>();

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { PostState } from '@/pages/News/Post/_files/types';
-import { useAppSelector, useAppDispatch, useCustomState } from '@/shared/hooks';
+import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getPost } from '@/core/services';
 import { AppLoader } from '@/shared/components';
@@ -15,8 +15,8 @@ const initialState: PostState = {
 };
 
 const Post = () => {
-  const { currentPost } = useAppSelector(state => state.news);
-  const dispatch = useAppDispatch();
+  const { currentPost } = useSelector(state => state.news);
+  const dispatch = useDispatch();
 
   const { id = '' } = useParams<{ id?: string }>();
 
