@@ -36,7 +36,7 @@
   @extend %background-image-cover;
 }
 
-// DISABLES CURSOR ACTIONS ON THE ELEMENT
+// DISABLES CURSOR ACTIONS
 
 .disabled-cursor {
   pointer-events: none;
