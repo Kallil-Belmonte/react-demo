@@ -6,7 +6,7 @@ import { Modal } from 'bootstrap';
 import { DeletePostModalState } from '@/pages/News/Post/_files/types';
 import { useCustomState } from '@/shared/hooks';
 import { deletePost } from '@/core/services/news';
-import { AppLoader } from '@/shared/components';
+import { Loader } from '@/shared/components';
 
 const initialState: DeletePostModalState = {
   isLoading: false,
@@ -45,7 +45,7 @@ const DeletePostModal = () => {
 
   return (
     <Fragment>
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
 
       <div id="delete-post-modal" className="modal fade" tabIndex={-1} ref={modalRef}>
         <div className="modal-dialog">

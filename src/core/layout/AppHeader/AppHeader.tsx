@@ -8,7 +8,7 @@ import { clearStorageData } from '@/shared/helpers';
 import { useSelector, useDispatch } from '@/shared/hooks';
 import { setUser, resetUser } from '@/core/redux/reducers/auth';
 import { getUser } from '@/core/services/auth';
-import { AppIcon } from '@/shared/components';
+import { Icon } from '@/shared/components';
 import './AppHeader.scss';
 
 const Header = () => {
@@ -51,25 +51,25 @@ const Header = () => {
         <ul>
           <li>
             <NavLink to="/" exact activeClassName="active" className="d-flex align-items-center">
-              <AppIcon icon="Home" />
+              <Icon icon="Home" />
               Home
             </NavLink>
           </li>
           <li>
             <NavLink to="/blog" activeClassName="active" className="d-flex align-items-center">
-              <AppIcon icon="Newspaper" />
+              <Icon icon="Newspaper" />
               Blog
             </NavLink>
           </li>
           <li>
             <NavLink to="/contact" activeClassName="active" className="d-flex align-items-center">
-              <AppIcon icon="Envelope" />
+              <Icon icon="Envelope" />
               Contact
             </NavLink>
           </li>
           <li>
             <NavLink to="/account" activeClassName="active" className="d-flex align-items-center">
-              <AppIcon icon="User" />
+              <Icon icon="User" />
               Account
             </NavLink>
           </li>

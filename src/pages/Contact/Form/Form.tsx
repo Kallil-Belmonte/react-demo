@@ -7,7 +7,7 @@ import { emailRegex } from '@/shared/files/regex';
 import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useCustomState } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
-import { AppAlertDismissible, AppLoader } from '@/shared/components';
+import { AlertDismissible, Loader } from '@/shared/components';
 
 const initialState: ContactFormState = {
   isLoading: true,
@@ -46,17 +46,17 @@ const Form = () => {
 
   return (
     <Fragment>
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
 
       <form data-component="Form" className="auth-form" onSubmit={handleSubmit(handleSubmitForm)}>
         {successMessages.map(successMessage => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={successMessage}
             variant="success"
             onDismiss={() => setState({ successMessages: [] })}
           >
             {successMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         <div className="row">

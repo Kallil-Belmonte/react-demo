@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconProps } from '../AppIcon';
+import { IconProps } from '../Icon';
 
 const AppUser = ({ className, style, fill }: IconProps) => {
   return (

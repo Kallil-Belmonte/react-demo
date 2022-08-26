@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { Post } from '@/core/services/news/types';
 import { limitWords } from '@/shared/helpers';
-import './AppPostItem.scss';
+import './PostItem.scss';
 
 type Props = {
   post: Post;
@@ -12,7 +12,7 @@ type Props = {
 
 const PostItem = ({ post }: Props) => {
   return (
-    <div data-component="AppPostItem">
+    <div data-component="PostItem">
       {post.image ? (
         <img className="img-fluid" src={post.image} alt="Capa" />
       ) : (

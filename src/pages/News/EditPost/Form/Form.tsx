@@ -9,7 +9,7 @@ import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { getPost, editPost } from '@/core/services';
-import { AppLoader } from '@/shared/components';
+import { Loader } from '@/shared/components';
 import './Form.scss';
 
 const { keys } = Object;
@@ -73,7 +73,7 @@ const Form = () => {
 
   return (
     <Fragment>
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
 
       <form data-component="EditPostForm" onSubmit={handleSubmit(handleSubmitForm)}>
         <div className="mb-3">

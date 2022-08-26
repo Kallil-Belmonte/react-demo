@@ -4,7 +4,7 @@ import { HomeState } from '@/pages/Home/_files/types';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setPosts } from '@/core/redux/reducers/news';
 import { getPosts } from '@/core/services/news';
-import { AppLoader } from '@/shared/components';
+import { Loader } from '@/shared/components';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
 const initialState: HomeState = {
@@ -46,7 +46,7 @@ const Home = () => {
 
   return (
     <main data-component="Home">
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
       <FeaturedPosts posts={featuredPosts} />
     </main>
   );

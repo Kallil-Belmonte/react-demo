@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PostsProps } from '@/pages/News/Blog/_files/types';
-import { AppPostItem } from '@/shared/components';
+import { PostItem } from '@/shared/components';
 
 const { keys } = Object;
 
@@ -12,7 +12,7 @@ const Posts = ({ pages, currentPage }: PostsProps) => {
         {!!keys(pages).length &&
           pages[currentPage].map(post => (
             <div key={post.id} className="col-md-4">
-              <AppPostItem post={post} />
+              <PostItem post={post} />
             </div>
           ))}
       </div>

@@ -1,15 +1,15 @@
 import React from 'react';
 
-import './AppLoader.scss';
+import './Loader.scss';
 
 type Props = {
   isLoading: boolean;
 };
 
-const AppLoader = ({ isLoading }: Props) => {
+const Loader = ({ isLoading }: Props) => {
   if (!isLoading) return null;
   return (
-    <section data-component="AppLoader">
+    <section data-component="Loader">
       <div className="atom-spinner">
         <div className="spinner-inner">
           <div className="spinner-line"></div>
@@ -22,4 +22,4 @@ const AppLoader = ({ isLoading }: Props) => {
   );
 };
 
-export default AppLoader;
+export default Loader;

@@ -1,7 +1,7 @@
 import React, { CSSProperties, useState, useCallback, useEffect } from 'react';
 
 import { Icons } from './types';
-import './AppIcon.scss';
+import './Icon.scss';
 
 type Props = {
   className?: string;
@@ -16,7 +16,7 @@ export type IconProps = {
   fill?: string;
 };
 
-const AppIcon = (props: Props) => {
+const Icon = (props: Props) => {
   const { className = '', icon, size, fill } = props;
 
   const [iconComponent, setIconComponent] = useState(null);
@@ -29,7 +29,7 @@ const AppIcon = (props: Props) => {
     };
 
     try {
-      const module = await import(`./Icons/App${icon}.tsx`);
+      const module = await import(`./Icons/${icon}Icon.tsx`);
       setIconComponent(module.default(moduleProps));
     } catch (error) {
       console.error(error);
@@ -44,4 +44,4 @@ const AppIcon = (props: Props) => {
   return iconComponent;
 };
 
-export default AppIcon;
+export default Icon;

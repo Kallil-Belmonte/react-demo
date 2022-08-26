@@ -6,7 +6,7 @@ import { PostState } from '@/pages/News/Post/_files/types';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getPost } from '@/core/services';
-import { AppLoader } from '@/shared/components';
+import { Loader } from '@/shared/components';
 import PostBody from './PostBody/PostBody';
 import DeletePostModal from './DeletePostModal/DeletePostModal';
 
@@ -41,7 +41,7 @@ const Post = () => {
 
   return (
     <main data-component="Post">
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
 
       <div className="container">
         <div className="row">

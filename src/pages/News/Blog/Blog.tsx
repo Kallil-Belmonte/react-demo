@@ -6,7 +6,7 @@ import { groupArrayItemsInArrays } from '@/shared/helpers';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setCategories, setPosts } from '@/core/redux/reducers/news';
 import { getCategories, getPosts } from '@/core/services';
-import { AppLoader, AppPageHeader } from '@/shared/components';
+import { Loader, PageHeader } from '@/shared/components';
 import PostsPerPage from './PostsPerPage/PostsPerPage';
 import Posts from './Posts/Posts';
 import Pagination from './Pagination/Pagination';
@@ -105,10 +105,10 @@ const Blog = () => {
 
   return (
     <main data-component="Blog">
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
 
       <div className="container">
-        <AppPageHeader icon="Newspaper">Blog</AppPageHeader>
+        <PageHeader icon="Newspaper">Blog</PageHeader>
 
         <PostsPerPage
           postsPerPage={postsPerPage}

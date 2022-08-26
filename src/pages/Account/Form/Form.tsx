@@ -8,7 +8,7 @@ import { setUser } from '@/core/redux/reducers/auth';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { emailRegex } from '@/shared/files/regex';
 import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { AppAlertDismissible } from '@/shared/components';
+import { AlertDismissible } from '@/shared/components';
 
 const { keys } = Object;
 
@@ -67,23 +67,23 @@ const Form = () => {
     <div className="row" data-component="Form">
       <div className="col-md-6 offset-md-3">
         {successMessages.map(successMessage => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={successMessage}
             variant="success"
             onDismiss={() => setState({ successMessages: [] })}
           >
             {successMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         {serverErrors.request.map((errorMessage, index) => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={errorMessage}
             variant="danger"
             onDismiss={() => handleClearFormMessage('request', index)}
           >
             {errorMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         <form onSubmit={handleSubmit(handleSubmitForm)}>
@@ -136,13 +136,13 @@ const Form = () => {
           </div>
 
           {serverErrors.email.map((errorMessage, index) => (
-            <AppAlertDismissible
+            <AlertDismissible
               key={errorMessage}
               variant="danger"
               onDismiss={() => handleClearFormMessage('email', index)}
             >
               {errorMessage}
-            </AppAlertDismissible>
+            </AlertDismissible>
           ))}
 
           <button className="btn btn-primary me-2" type="submit">

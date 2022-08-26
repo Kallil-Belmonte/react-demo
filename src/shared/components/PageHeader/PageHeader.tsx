@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { ReactType } from '@/shared/files/types';
-import { Icons } from '../AppIcon/types';
-import AppIcon from '../AppIcon/AppIcon';
-import './AppPageHeader.scss';
+import { Icons } from '../Icon/types';
+import Icon from '../Icon/Icon';
+import './PageHeader.scss';
 
 type Props = {
   icon?: Icons;
@@ -12,8 +12,8 @@ type Props = {
 
 const PageHeader = ({ icon, children }: Props) => {
   return (
-    <section data-component="AppPageHeader">
-      {icon && <AppIcon className="icon d-block mx-auto" icon={icon} size="32px" />}
+    <section data-component="PageHeader">
+      {icon && <Icon className="icon d-block mx-auto" icon={icon} size="32px" />}
       <h1 className="title">{children}</h1>
     </section>
   );

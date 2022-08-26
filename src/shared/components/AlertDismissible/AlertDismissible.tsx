@@ -8,7 +8,7 @@ type Props = {
   children: ReactType;
 };
 
-const AppAlertDismissible = ({ variant, onDismiss, children }: Props) => {
+const AlertDismissible = ({ variant, onDismiss, children }: Props) => {
   return (
     <div className={`alert alert-${variant} alert-dismissible fade show`} role="alert">
       {children}
@@ -23,4 +23,4 @@ const AppAlertDismissible = ({ variant, onDismiss, children }: Props) => {
   );
 };
 
-export default AppAlertDismissible;
+export default AlertDismissible;

@@ -11,7 +11,7 @@ import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/
 import { useDispatch, useCustomState } from '@/shared/hooks';
 import { registerUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
-import { AppAlertDismissible, AppLoader } from '@/shared/components';
+import { AlertDismissible, Loader } from '@/shared/components';
 import Auth from '../Auth';
 
 const initialState: FormState = {
@@ -77,7 +77,7 @@ const Register = () => {
 
   return (
     <Auth>
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
 
       <form className="auth-form" onSubmit={handleSubmit(handleRegister)}>
         <h1 className="page-title">Register</h1>
@@ -131,13 +131,13 @@ const Register = () => {
         </div>
 
         {serverErrors.email.map((errorMessage, index) => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={errorMessage}
             variant="danger"
             onDismiss={() => handleClearFormMessage('email', index)}
           >
             {errorMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         <div className="mb-3">
@@ -157,23 +157,23 @@ const Register = () => {
         </div>
 
         {serverErrors.password.map((errorMessage, index) => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={errorMessage}
             variant="danger"
             onDismiss={() => handleClearFormMessage('password', index)}
           >
             {errorMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         {serverErrors.request.map((errorMessage, index) => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={errorMessage}
             variant="danger"
             onDismiss={() => handleClearFormMessage('request', index)}
           >
             {errorMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         <button className="btn btn-primary d-block mx-auto" type="submit">

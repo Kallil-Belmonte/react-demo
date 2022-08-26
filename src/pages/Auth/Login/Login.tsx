@@ -11,7 +11,7 @@ import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/
 import { useDispatch, useCustomState } from '@/shared/hooks';
 import { loginUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
-import { AppAlertDismissible, AppLoader } from '@/shared/components';
+import { AlertDismissible, Loader } from '@/shared/components';
 import Auth from '../Auth';
 
 const initialState: FormState = {
@@ -86,7 +86,7 @@ const Login = () => {
 
   return (
     <Auth>
-      <AppLoader isLoading={isLoading} />
+      <Loader isLoading={isLoading} />
 
       <form className="auth-form" onSubmit={handleSubmit(handleLogin)}>
         <h1 className="page-title">Login</h1>
@@ -108,13 +108,13 @@ const Login = () => {
         </div>
 
         {serverErrors.email.map((errorMessage, index) => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={errorMessage}
             variant="danger"
             onDismiss={() => handleClearFormMessage('email', index)}
           >
             {errorMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         <div className="mb-3">
@@ -134,13 +134,13 @@ const Login = () => {
         </div>
 
         {serverErrors.password.map((errorMessage, index) => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={errorMessage}
             variant="danger"
             onDismiss={() => handleClearFormMessage('password', index)}
           >
             {errorMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         <div className="form-check">
@@ -156,13 +156,13 @@ const Login = () => {
         </div>
 
         {serverErrors.request.map((errorMessage, index) => (
-          <AppAlertDismissible
+          <AlertDismissible
             key={errorMessage}
             variant="danger"
             onDismiss={() => handleClearFormMessage('request', index)}
           >
             {errorMessage}
-          </AppAlertDismissible>
+          </AlertDismissible>
         ))}
 
         <button className="btn btn-primary d-block mx-auto" type="submit">
