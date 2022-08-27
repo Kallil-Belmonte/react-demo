@@ -4,22 +4,40 @@
   @extend %text-continued;
 }
 
-// CENTER ABSOLUTE
+// FLEX CENTER
 
-.center-absolute {
-  @extend %center-absolute;
-}
-
-// Horizontal center
-
-.center-absolute-x {
-  @extend %center-absolute-x;
+.flex-center {
+  @extend %flex-center;
 }
 
 // Vertical center
 
-.center-absolute-y {
-  @extend %center-absolute-y;
+.flex-center-y {
+  @extend %flex-center-y;
+}
+
+// Horizontal center
+
+.flex-center-x {
+  @extend %flex-center-x;
+}
+
+// ABSOLUTE CENTER
+
+.absolute-center {
+  @extend %absolute-center;
+}
+
+// Vertical center
+
+.absolute-center-y {
+  @extend %absolute-center-y;
+}
+
+// Horizontal center
+
+.absolute-center-x {
+  @extend %absolute-center-x;
 }
 
 // BACKGROUND IMAGE

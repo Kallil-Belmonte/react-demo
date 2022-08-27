@@ -4,24 +4,43 @@
   text-overflow: ellipsis;
 }
 
-%center-absolute,
-%center-absolute-y,
-%center-absolute-x {
+%flex-center,
+%flex-center-y,
+%flex-center-x {
+  display: flex;
+}
+
+%flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-center-y {
+  align-items: center;
+}
+
+%flex-center-x {
+  justify-content: center;
+}
+
+%absolute-center,
+%absolute-center-y,
+%absolute-center-x {
   position: absolute;
 }
 
-%center-absolute {
+%absolute-center {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-%center-absolute-y {
+%absolute-center-y {
   top: 50%;
   transform: translateY(-50%);
 }
 
-%center-absolute-x {
+%absolute-center-x {
   left: 50%;
   transform: translateX(-50%);
 }

@@ -47,7 +47,7 @@
       font-weight: 700;
       color: #00d7fe;
       margin: 0;
-      @extend %center-absolute-y;
+      @extend %absolute-center-y;
 
       &:first-child {
         left: -50%;
@@ -69,7 +69,7 @@
         border-radius: 50%;
         box-shadow: 0 0 1.5em 1px #00d7fe;
         content: '';
-        @extend %center-absolute;
+        @extend %absolute-center;
       }
 
       .particle {

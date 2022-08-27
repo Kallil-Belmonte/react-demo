@@ -25,7 +25,7 @@
   .atom-spinner {
     @include square(100px);
     overflow: hidden;
-    @extend %center-absolute;
+    @extend %absolute-center;
 
     .spinner-inner {
       position: relative;
@@ -37,7 +37,7 @@
       display: block;
       color: #61dafb;
       font-size: calc(80px * 0.24);
-      @extend %center-absolute;
+      @extend %absolute-center;
     }
 
     .spinner-line {
