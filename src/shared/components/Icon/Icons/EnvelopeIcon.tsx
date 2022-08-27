@@ -4,7 +4,7 @@ import { IconProps } from '../Icon';
 
 const AppEnvelope = ({ className, style, fill }: IconProps) => {
   return (
-    <figure data-element="icon" className={`icon-envelope ${className}`} style={style}>
+    <figure className={`icon-envelope ${className}`} style={style}>
       <svg
         aria-hidden="true"
         role="img"

@@ -4,7 +4,7 @@ import { IconProps } from '../Icon';
 
 const AppHome = ({ className, style, fill }: IconProps) => {
   return (
-    <figure data-element="icon" className={`icon-home ${className}`} style={style}>
+    <figure className={`icon-home ${className}`} style={style}>
       <svg
         aria-hidden="true"
         role="img"

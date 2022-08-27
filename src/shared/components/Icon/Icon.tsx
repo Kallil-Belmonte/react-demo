@@ -1,7 +1,6 @@
 import React, { CSSProperties, useState, useCallback, useEffect } from 'react';
 
 import { Icons } from './types';
-import './Icon.scss';
 
 type Props = {
   className?: string;

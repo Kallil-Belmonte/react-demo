@@ -4,7 +4,7 @@ import { IconProps } from '../Icon';
 
 const AppNewspaper = ({ className, style, fill }: IconProps) => {
   return (
-    <figure data-element="icon" className={`icon-newspaper ${className}`} style={style}>
+    <figure className={`icon-newspaper ${className}`} style={style}>
       <svg
         aria-hidden="true"
         role="img"
