@@ -2,11 +2,12 @@ import React from 'react';
 
 import { IconProps } from '../Icon';
 
-const AppEnvelope = ({ className, style, fill }: IconProps) => {
+const AppEnvelope = ({ className, style, ariaLabel, fill }: IconProps) => {
   return (
-    <figure className={`icon icon-envelope ${className}`} style={style}>
+    <figure className={`icon ${className}`} style={style}>
       <svg
         role="img"
+        aria-label={ariaLabel}
         viewBox="0 0 512 512"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

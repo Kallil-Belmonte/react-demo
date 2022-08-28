@@ -1,34 +1,50 @@
-import React, { CSSProperties, useState, useCallback, useEffect } from 'react';
+import React, { CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
 
 import { Icons } from './types';
 
+export type IconProps = {
+  className: string;
+  style: CSSProperties;
+  ariaLabel: string;
+  fill: string;
+};
+
 type Props = {
   className?: string;
-  icon: Icons;
+  name: Icons;
   size?: string;
   fill?: string;
 };
 
-export type IconProps = {
-  className?: string;
-  style: CSSProperties;
-  fill?: string;
-};
-
 const Icon = (props: Props) => {
-  const { className = '', icon, size, fill } = props;
+  const { className = '', name, size, fill } = props;
 
   const [iconComponent, setIconComponent] = useState(null);
 
+  const iconClass = useMemo(() => {
+    const convertLetters = (letter: string, index: number) => {
+      const result = index && letter.match(/[A-Z]/) ? `-${letter}` : letter;
+      return result.toLowerCase();
+    };
+    const iconName = name.split('').map(convertLetters).join('');
+    return `${iconName}-icon`;
+  }, []);
+
+  const ariaLabel = useMemo(() => {
+    const className = iconClass.replaceAll('-', ' ');
+    return `${className.charAt(0).toUpperCase()}${className.slice(1)}`;
+  }, [iconClass]);
+
   const setComponent = useCallback(async () => {
     const moduleProps = {
-      className: `${className} d-flex align-items-center justify-content-center`,
+      className: `${iconClass} ${className} d-flex align-items-center justify-content-center`,
       style: size ? { width: size, height: size } : {},
+      ariaLabel,
       fill: fill || 'currentColor',
     };
 
     try {
-      const module = await import(`./Icons/${icon}Icon.tsx`);
+      const module = await import(`./Icons/${name}Icon.tsx`);
       setIconComponent(module.default(moduleProps));
     } catch (error) {
       console.error(error);
@@ -38,7 +54,7 @@ const Icon = (props: Props) => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     setComponent();
-  }, [icon]);
+  }, [name]);
 
   return iconComponent;
 };

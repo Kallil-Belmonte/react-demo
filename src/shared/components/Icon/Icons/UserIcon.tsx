@@ -2,11 +2,12 @@ import React from 'react';
 
 import { IconProps } from '../Icon';
 
-const AppUser = ({ className, style, fill }: IconProps) => {
+const AppUser = ({ className, style, ariaLabel, fill }: IconProps) => {
   return (
-    <figure className={`icon icon-user ${className}`} style={style}>
+    <figure className={`icon ${className}`} style={style}>
       <svg
         role="img"
+        aria-label={ariaLabel}
         viewBox="0 0 448 512"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

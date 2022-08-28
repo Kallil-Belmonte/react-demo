@@ -51,25 +51,25 @@ const Header = () => {
         <ul>
           <li>
             <NavLink to="/" exact activeClassName="active" className="d-flex align-items-center">
-              <Icon icon="Home" />
+              <Icon name="Home" />
               Home
             </NavLink>
           </li>
           <li>
             <NavLink to="/blog" activeClassName="active" className="d-flex align-items-center">
-              <Icon icon="Newspaper" />
+              <Icon name="Newspaper" />
               Blog
             </NavLink>
           </li>
           <li>
             <NavLink to="/contact" activeClassName="active" className="d-flex align-items-center">
-              <Icon icon="Envelope" />
+              <Icon name="Envelope" />
               Contact
             </NavLink>
           </li>
           <li>
             <NavLink to="/account" activeClassName="active" className="d-flex align-items-center">
-              <Icon icon="User" />
+              <Icon name="User" />
               Account
             </NavLink>
           </li>
