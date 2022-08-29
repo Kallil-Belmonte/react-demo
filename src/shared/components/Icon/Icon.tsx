@@ -1,5 +1,6 @@
 import React, { CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
 
+import { firstLetterToUpperCase } from '@/shared/helpers';
 import { Icons } from './types';
 
 export type IconProps = {
@@ -32,7 +33,7 @@ const Icon = (props: Props) => {
 
   const ariaLabel = useMemo(() => {
     const className = iconClass.replaceAll('-', ' ');
-    return `${className.charAt(0).toUpperCase()}${className.slice(1)}`;
+    return firstLetterToUpperCase(className);
   }, [iconClass]);
 
   const setComponent = useCallback(async () => {
