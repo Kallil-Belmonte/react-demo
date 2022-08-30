@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { HomeState } from '@/pages/Home/_files/types';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setPosts } from '@/core/redux/reducers/news';
-import { getPosts } from '@/core/services/news';
+import { getPosts } from '@/core/services';
 import { Loader } from '@/shared/components';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 

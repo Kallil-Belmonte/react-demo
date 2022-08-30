@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
 import { RegisterUserPayload } from '@/core/services/auth/types';
-import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
+import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
 import { emailRegex } from '@/shared/files/regex';
 import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useDispatch, useCustomState } from '@/shared/hooks';

@@ -7,7 +7,7 @@ import { PROJECT_TITLE } from '@/shared/files/consts';
 import { clearStorageData } from '@/shared/helpers';
 import { useSelector, useDispatch } from '@/shared/hooks';
 import { setUser, resetUser } from '@/core/redux/reducers/auth';
-import { getUser } from '@/core/services/auth';
+import { getUser } from '@/core/services';
 import { Icon } from '@/shared/components';
 import './AppHeader.scss';
 
