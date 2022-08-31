@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { AuthProps } from '@/pages/Auth/_files/types';
 import { redirectLoggedUser } from '@/shared/helpers';
@@ -8,11 +8,11 @@ import Logo from '@/assets/icons/brand/logo.svg';
 import './Auth.scss';
 
 const Auth = ({ children }: AuthProps) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    redirectLoggedUser(history);
+    redirectLoggedUser(navigate);
   }, []);
 
   return (

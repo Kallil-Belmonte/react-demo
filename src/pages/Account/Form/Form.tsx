@@ -12,6 +12,12 @@ import { AlertDismissible } from '@/shared/components';
 
 const { keys } = Object;
 
+type AccountFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
 const initialState: AccountFormState = {
   successMessages: [],
   serverErrors: { email: [], request: [] },
@@ -21,14 +27,16 @@ const Form = () => {
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
+  const { register, formState, getValues, setValue, reset, handleSubmit } =
+    useForm<AccountFormValues>();
   const { errors } = formState;
 
   const [state, setState] = useCustomState<AccountFormState>(initialState);
   const { successMessages, serverErrors } = state;
 
   const getUserData = () => {
-    keys(getValues()).forEach(key => setValue(key, (user as any)[key]));
+    const userKeys = keys(getValues()) as ('firstName' | 'lastName' | 'email')[];
+    userKeys.forEach(key => setValue(key, user[key]));
   };
 
   const handleSubmitForm = async (values: AuthState['user']) => {

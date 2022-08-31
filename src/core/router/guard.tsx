@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { ReactType } from '@/shared/files/types';
 import { EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { clearStorageData, getAuthToken, setPageTitle } from '@/shared/helpers';
 import AppDashboard from '@/core/layout/AppDashboard/AppDashboard';
 
-const guard = (pageTitle: string, component: ReactType) => {
+type Props = { pageTitle: string; component: ReactType };
+
+const Guard = ({ pageTitle, component }: Props) => {
   const isExpiredSession =
     new Date().getTime() > Date.parse(localStorage.getItem(EXPIRATION_DATE_KEY) || '');
 
@@ -17,7 +19,7 @@ const guard = (pageTitle: string, component: ReactType) => {
   }
 
   clearStorageData();
-  return <Redirect to="/login" />;
+  return <Navigate to="/login" />;
 };
 
-export default guard;
+export default Guard;

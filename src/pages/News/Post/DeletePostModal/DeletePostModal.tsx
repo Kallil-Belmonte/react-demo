@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, Fragment } from 'react';
 
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from 'bootstrap';
 
 import { DeletePostModalState } from '@/pages/News/Post/_files/types';
@@ -13,7 +13,7 @@ const initialState: DeletePostModalState = {
 };
 
 const DeletePostModal = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id = '' } = useParams<{ id?: string }>();
 
   const modalRef = useRef<any>(null);
@@ -31,7 +31,7 @@ const DeletePostModal = () => {
 
     try {
       await deletePost(id);
-      history.push('/blog');
+      navigate('/blog');
     } catch (error) {
       console.error(error);
       setState({ isLoading: false });

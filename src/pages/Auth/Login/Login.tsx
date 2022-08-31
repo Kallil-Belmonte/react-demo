@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHistory, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
@@ -25,7 +25,7 @@ const initialState: FormState = {
 
 const Login = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { register, formState, handleSubmit } = useForm<LoginUserPayload>();
   const { errors } = formState;
@@ -37,12 +37,7 @@ const Login = () => {
     setState({ isLoading: true });
 
     try {
-      const payload: LoginUserPayload = {
-        email: values.email,
-        password: values.password,
-        keepLogged: values.keepLogged,
-      };
-      const { token, expiresIn, firstName, lastName, email } = await loginUser(payload);
+      const { token, expiresIn, firstName, lastName, email } = await loginUser(values);
 
       const expirationDate = new Date(
         new Date().getTime() + Number(expiresIn) * 1000,
@@ -65,7 +60,7 @@ const Login = () => {
         }
 
         dispatch(setUser({ firstName, lastName, email }));
-        history.push('/');
+        navigate('/');
       }
     } catch (error: any) {
       setState({

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import getAuthToken from './getAuthToken';
@@ -10,13 +10,13 @@ import getAuthToken from './getAuthToken';
  */
 
 const redirectLoggedUser = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const expiredSession =
     new Date().getTime() > Date.parse(localStorage.getItem(EXPIRATION_DATE_KEY) || '');
 
   if (getAuthToken() && !expiredSession) {
-    history.push('/');
+    navigate('/');
   }
 
   return null;

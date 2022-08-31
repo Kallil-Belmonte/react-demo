@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 
-import { useHistory, useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 
 import { Post } from '@/core/services/news/types';
 import { EditPostFormState } from '@/pages/News/EditPost/_files/types';
@@ -14,6 +14,8 @@ import './Form.scss';
 
 const { keys } = Object;
 
+type PostToEdit = Pick<Post, 'title' | 'body'>;
+
 const initialState: EditPostFormState = {
   isLoading: false,
 };
@@ -21,17 +23,18 @@ const initialState: EditPostFormState = {
 const Form = () => {
   const { currentPost } = useSelector(state => state.news);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { id = '' } = useParams<{ id?: string }>();
 
-  const { register, formState, getValues, setValue, reset, handleSubmit } = useForm();
+  const { register, formState, getValues, setValue, reset, handleSubmit } = useForm<PostToEdit>();
   const { errors } = formState;
 
   const [state, setState] = useCustomState<EditPostFormState>(initialState);
   const { isLoading } = state;
 
   const setFormData = () => {
-    keys(getValues()).forEach(key => setValue(key, (currentPost as any)[key]));
+    const currentPostKeys = keys(getValues()) as ('title' | 'body')[];
+    currentPostKeys.forEach(key => setValue(key, currentPost[key]));
   };
 
   const getCurrentPost = async () => {
@@ -46,7 +49,7 @@ const Form = () => {
     }
   };
 
-  const handleSubmitForm = async (values: Post) => {
+  const handleSubmitForm = async (values: PostToEdit) => {
     setState({ isLoading: true });
 
     try {
@@ -59,7 +62,7 @@ const Form = () => {
 
       await editPost(payload);
       dispatch(setCurrentPost(payload));
-      history.push(`/post/${id}`);
+      navigate(`/post/${id}`);
     } catch (error) {
       console.error(error);
       setState({ isLoading: false });

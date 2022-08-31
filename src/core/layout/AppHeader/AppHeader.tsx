@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import Logo from '@/assets/icons/brand/logo.svg';
 import { PROJECT_TITLE } from '@/shared/files/consts';
@@ -15,7 +15,7 @@ const Header = () => {
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const fullName = `${user.firstName} ${user.lastName}`;
 
@@ -33,7 +33,7 @@ const Header = () => {
   const handleLogOut = () => {
     clearStorageData();
     dispatch(resetUser());
-    history.push('/login');
+    navigate('/login');
   };
 
   // LIFECYCLE HOOKS
@@ -50,25 +50,37 @@ const Header = () => {
       <nav className="main-menu">
         <ul>
           <li>
-            <NavLink to="/" exact activeClassName="active" className="d-flex align-items-center">
+            <NavLink
+              to="/"
+              className={({ isActive }) => `${isActive ? 'active' : ''} d-flex align-items-center`}
+            >
               <Icon name="Home" />
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/blog" activeClassName="active" className="d-flex align-items-center">
+            <NavLink
+              to="/blog"
+              className={({ isActive }) => `${isActive ? 'active' : ''} d-flex align-items-center`}
+            >
               <Icon name="Newspaper" />
               Blog
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact" activeClassName="active" className="d-flex align-items-center">
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => `${isActive ? 'active' : ''} d-flex align-items-center`}
+            >
               <Icon name="Envelope" />
               Contact
             </NavLink>
           </li>
           <li>
-            <NavLink to="/account" activeClassName="active" className="d-flex align-items-center">
+            <NavLink
+              to="/account"
+              className={({ isActive }) => `${isActive ? 'active' : ''} d-flex align-items-center`}
+            >
               <Icon name="User" />
               Account
             </NavLink>

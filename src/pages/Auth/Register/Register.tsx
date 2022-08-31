@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHistory, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
@@ -25,7 +25,7 @@ const initialState: FormState = {
 
 const Register = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { register, formState, handleSubmit } = useForm<RegisterUserPayload>();
   const { errors } = formState;
@@ -37,13 +37,7 @@ const Register = () => {
     setState({ isLoading: true });
 
     try {
-      const payload: RegisterUserPayload = {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        password: values.password,
-      };
-      const { token, firstName, lastName, email } = await registerUser(payload);
+      const { token, firstName, lastName, email } = await registerUser(values);
 
       if (values.email === 'demo@demo.com') {
         setState({
@@ -56,7 +50,7 @@ const Register = () => {
       } else {
         sessionStorage.setItem(AUTH_TOKEN_KEY, token);
         dispatch(setUser({ firstName, lastName, email }));
-        history.push('/');
+        navigate('/');
       }
     } catch (error: any) {
       setState({

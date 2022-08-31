@@ -9,6 +9,17 @@ import { useCustomState } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
 import { AlertDismissible, Loader } from '@/shared/components';
 
+type ContactFormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  telephone: string;
+  sex: string;
+  favoriteColor: string;
+  employed: boolean;
+  message: string;
+};
+
 const initialState: ContactFormState = {
   isLoading: true,
   favoriteColors: [],
@@ -16,7 +27,7 @@ const initialState: ContactFormState = {
 };
 
 const Form = () => {
-  const { register, formState, reset, handleSubmit } = useForm();
+  const { register, formState, reset, handleSubmit } = useForm<ContactFormValues>();
   const { errors } = formState;
 
   const [state, setState] = useCustomState<ContactFormState>(initialState);
@@ -33,7 +44,7 @@ const Form = () => {
     }
   };
 
-  const handleSubmitForm = (values: any) => {
+  const handleSubmitForm = (values: ContactFormValues) => {
     console.log('Form submitted:', values);
     setState({ successMessages: ['Message sent successfully.'] });
     reset();

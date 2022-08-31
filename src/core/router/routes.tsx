@@ -1,6 +1,5 @@
 import React from 'react';
 
-import guard from '@/core/router/guard';
 import Home from '@/pages/Home/Home';
 import Blog from '@/pages/News/Blog/Blog';
 import Post from '@/pages/News/Post/Post';
@@ -10,53 +9,45 @@ import Account from '@/pages/Account/Account';
 import Login from '@/pages/Auth/Login/Login';
 import Register from '@/pages/Auth/Register/Register';
 import NotFound from '@/pages/NotFound/NotFound';
+import Guard from './Guard';
 
-const Routes = [
+const ROUTES = [
   {
     path: '/',
-    exact: true,
-    component: () => guard('Home', <Home />),
+    element: <Guard pageTitle="Home" component={<Home />} />,
   },
   {
     path: '/blog',
-    exact: true,
-    component: () => guard('Blog', <Blog />),
+    element: <Guard pageTitle="Blog" component={<Blog />} />,
   },
   {
     path: '/post/:id',
-    exact: true,
-    component: () => guard('Post', <Post />),
+    element: <Guard pageTitle="Post" component={<Post />} />,
   },
   {
     path: '/edit-post/:id',
-    exact: true,
-    component: () => guard('Edit Post', <EditPost />),
+    element: <Guard pageTitle="Edit Post" component={<EditPost />} />,
   },
   {
     path: '/contact',
-    exact: true,
-    component: () => guard('Contact', <Contact />),
+    element: <Guard pageTitle="Contact" component={<Contact />} />,
   },
   {
     path: '/account',
-    exact: true,
-    component: () => guard('Account', <Account />),
+    element: <Guard pageTitle="Account" component={<Account />} />,
   },
   {
     path: '/login',
-    exact: true,
-    component: () => <Login />,
+    element: <Login />,
   },
   {
     path: '/register',
-    exact: true,
-    component: () => <Register />,
+    element: <Register />,
   },
   {
     path: '*',
-    exact: false,
-    component: () => <NotFound />,
+    element: <NotFound />,
   },
 ];
 
-export default Routes;
+export default ROUTES;
