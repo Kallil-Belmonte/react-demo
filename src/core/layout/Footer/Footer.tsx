@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './AppFooter.scss';
+import './Footer.scss';
 
-const AppFooter = () => {
+const Footer = () => {
   return (
-    <footer data-component="AppFooter">
+    <footer data-component="Footer">
       <div className="footer">
         <div className="d-flex justify-content-center">
           <ul className="social-networks list-inline">
@@ -39,4 +39,4 @@ const AppFooter = () => {
   );
 };
 
-export default AppFooter;
+export default Footer;

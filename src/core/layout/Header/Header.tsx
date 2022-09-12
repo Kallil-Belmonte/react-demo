@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from '@/shared/hooks';
 import { setUser, resetUser } from '@/core/redux/reducers/auth';
 import { getUser } from '@/core/services';
 import { Icon } from '@/shared/components';
-import './AppHeader.scss';
+import './Header.scss';
 
 const Header = () => {
   const { user } = useSelector(state => state.auth);
@@ -42,7 +42,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header data-component="AppHeader">
+    <header data-component="Header">
       <img src={Logo} className="logo" alt="logo" />
 
       <h1 className="title">{PROJECT_TITLE}</h1>

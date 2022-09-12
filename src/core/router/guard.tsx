@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { ReactType } from '@/shared/files/types';
 import { EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { clearStorageData, getAuthToken, setPageTitle } from '@/shared/helpers';
-import AppDashboard from '@/core/layout/AppDashboard/AppDashboard';
+import Dashboard from '@/core/layout/Dashboard/Dashboard';
 
 type Props = { pageTitle: string; component: ReactType };
 
@@ -15,7 +15,7 @@ const Guard = ({ pageTitle, component }: Props) => {
 
   if (getAuthToken() && !isExpiredSession) {
     setPageTitle(pageTitle);
-    return <AppDashboard>{component}</AppDashboard>;
+    return <Dashboard>{component}</Dashboard>;
   }
 
   clearStorageData();
