@@ -1,4 +1,4 @@
-import { JSON_PLACEHOLDER_URL } from './endpoints';
+import { JSON_PLACEHOLDER_API } from './endpoints';
 
 const fetchInterceptor = async () => {
   const { fetch: originalFetch } = window;
@@ -8,7 +8,7 @@ const fetchInterceptor = async () => {
       sessionStorage.getItem('authTokenVueDemo') || localStorage.getItem('authTokenVueDemo');
     const url = `${input}`;
 
-    if (url.includes(JSON_PLACEHOLDER_URL)) {
+    if (url.includes(JSON_PLACEHOLDER_API)) {
       // url = `${url}?authKey=${authToken}`;
 
       const newHeaders = new Headers();
