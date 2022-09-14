@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
 import { LoginUserPayload } from '@/core/services/auth/types';
-import { AUTH_TOKEN_KEY, EXPIRATION_DATE_KEY } from '@/shared/files/consts';
+import { AUTH_TOKEN_KEY, AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { emailRegex } from '@/shared/files/regex';
 import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
 import { useDispatch, useCustomState } from '@/shared/hooks';
@@ -54,7 +54,7 @@ const Login = () => {
       } else {
         if (values.keepLogged) {
           localStorage.setItem(AUTH_TOKEN_KEY, token);
-          localStorage.setItem(EXPIRATION_DATE_KEY, expirationDate);
+          localStorage.setItem(AUTH_EXPIRATION_DATE_KEY, expirationDate);
         } else {
           sessionStorage.setItem(AUTH_TOKEN_KEY, token);
         }
