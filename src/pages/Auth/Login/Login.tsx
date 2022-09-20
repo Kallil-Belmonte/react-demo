@@ -139,15 +139,15 @@ const Login = () => {
         ))}
 
         <div className="form-check">
+          <label className="form-check-label" htmlFor="keep-logged">
+            Keep logged
+          </label>
           <input
             id="keep-logged"
             className="form-check-input"
             type="checkbox"
             {...register('keepLogged')}
           />
-          <label className="form-check-label" htmlFor="keep-logged">
-            Keep logged
-          </label>
         </div>
 
         {serverErrors.request.map((errorMessage, index) => (

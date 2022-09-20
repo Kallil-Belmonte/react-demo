@@ -194,15 +194,15 @@ const Form = () => {
           </div>
           <div className="col mt-4">
             <div className="form-check">
+              <label className="form-check-label" htmlFor="employed">
+                Employed
+              </label>
               <input
                 id="employed"
                 className="form-check-input"
                 type="checkbox"
                 {...register('employed')}
               />
-              <label className="form-check-label" htmlFor="employed">
-                Employed
-              </label>
             </div>
           </div>
         </div>
