@@ -140,6 +140,9 @@ const Form = () => {
         <div className="row">
           <div className="col mb-3">
             <div className={`form-check form-check-inline ${errors.sex ? 'is-invalid' : ''}`}>
+              <label className="form-check-label" htmlFor="male">
+                Male
+              </label>
               <input
                 id="male"
                 className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
@@ -147,11 +150,11 @@ const Form = () => {
                 value="male"
                 {...register('sex', { required: { value: true, message: 'Sex is required' } })}
               />
-              <label className="form-check-label" htmlFor="male">
-                Male
-              </label>
             </div>
             <div className={`form-check form-check-inline ${errors.sex ? 'is-invalid' : ''}`}>
+              <label className="form-check-label" htmlFor="female">
+                Female
+              </label>
               <input
                 id="female"
                 className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
@@ -159,9 +162,6 @@ const Form = () => {
                 value="female"
                 {...register('sex', { required: { value: true, message: 'Sex is required' } })}
               />
-              <label className="form-check-label" htmlFor="female">
-                Female
-              </label>
             </div>
             {getFieldErrorMessage(errors.sex)}
           </div>
