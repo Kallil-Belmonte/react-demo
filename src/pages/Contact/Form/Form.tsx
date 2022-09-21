@@ -181,7 +181,7 @@ const Form = () => {
                 required: { value: true, message: 'Favorite color is required' },
               })}
             >
-              <option disabled value="">
+              <option value="" disabled>
                 Select
               </option>
               {favoriteColors.map(({ text, value }) => (
