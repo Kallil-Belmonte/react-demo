@@ -1,0 +1,112 @@
+import { Dispatch, SetStateAction, useState, useRef, useEffect } from 'react';
+
+import { ValidationConfig, Validations, validate } from '@/shared/helpers';
+import useCustomState from '@/shared/hooks/state/useCustomState';
+
+// untouched: True if the user has not focused on the element.
+// touched: True if the user has focused on the element.
+// pristine: True if the element’s value have not been changed.
+// dirty: True if the element’s value have been changed.
+// valid: True if the element’s value is valid and false otherwise.
+// invalid: True if the element’s value is invalid and false otherwise.
+
+export type FieldState = Validations & {
+  name: string;
+  untouched: boolean;
+  touched: boolean;
+  pristine: boolean;
+  dirty: boolean;
+  valid: boolean;
+  invalid: boolean;
+  errorMessages: string[];
+};
+
+type UseFieldConfig<Type> = {
+  name: string;
+  defaultValue?: Type;
+  validation?: ValidationConfig;
+};
+
+export type UseField<Type = any> = {
+  value: Type;
+  ref: React.MutableRefObject<Type | undefined>;
+  state: FieldState;
+  onSetValue: Dispatch<SetStateAction<Type>>;
+  onSetState: (modifiedProps: Partial<FieldState>) => void;
+};
+
+const { keys } = Object;
+
+export const getFieldState = (name: string, required: boolean = false): FieldState => ({
+  name,
+  untouched: true,
+  touched: false,
+  pristine: true,
+  dirty: false,
+  valid: !required,
+  invalid: required,
+  errorMessages: [],
+});
+
+const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> => {
+  const { name, defaultValue, validation = {} } = config;
+
+  const [value, setValue] = useState(defaultValue as Type);
+  const fieldRef = useRef<Type>();
+
+  const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
+  const { pristine, dirty } = state;
+
+  const controlUpdate = (value: Type) => {
+    if (pristine) state.pristine = false;
+    if (!dirty) state.dirty = true;
+
+    if (keys(validation).length) {
+      const { isValid, errorMessages, ...otherValidationProps } = validate(
+        value as string,
+        validation,
+      );
+
+      state.valid = isValid;
+      state.invalid = !isValid;
+      state.errorMessages = errorMessages;
+      keys(otherValidationProps).forEach((validationKey: string) => {
+        const key = validationKey as keyof Validations;
+        state[key] = otherValidationProps[key];
+      });
+    }
+  };
+
+  const controlTouching = () => {
+    if (!fieldRef.current || state.touched) return;
+
+    const setUntouched = () => {
+      state.untouched = false;
+      fieldRef.current.removeEventListener('focus', setUntouched);
+    };
+    fieldRef.current.addEventListener('focus', setUntouched);
+
+    const setTouched = () => {
+      state.touched = true;
+      fieldRef.current.removeEventListener('focusout', setTouched);
+    };
+    fieldRef.current.addEventListener('focusout', setTouched);
+  };
+
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    controlUpdate(value);
+  }, [value]);
+
+  useEffect(() => {
+    controlTouching();
+  }, [state.touched]);
+
+  useEffect(() => {
+    controlTouching();
+  }, []);
+
+  return { value, ref: fieldRef, state, onSetValue: setValue, onSetState: setState };
+};
+
+export default useField;

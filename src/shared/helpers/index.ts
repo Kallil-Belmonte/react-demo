@@ -11,6 +11,8 @@ export { default as redirectLoggedUser } from './auth/redirectLoggedUser';
 export { default as clearFormMessage } from './form/clearFormMessage';
 export { default as getFieldClass } from './form/getFieldClass';
 export { default as getFieldErrorMessage } from './form/getFieldErrorMessage';
+export { default as setFields } from './form/setFields';
+export { validateFields, default as validateForm } from './form/validateForm';
 
 // GENERAL
 export { default as setPageTitle } from './general/setPageTitle';
@@ -18,3 +20,8 @@ export { default as setPageTitle } from './general/setPageTitle';
 // STRING
 export { default as firstLetterToUpperCase } from './string/firstLetterToUpperCase';
 export { default as limitWords } from './string/limitWords';
+export {
+  type Config as ValidationConfig,
+  type Validations,
+  default as validate,
+} from './string/validate';
