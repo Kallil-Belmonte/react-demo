@@ -55,11 +55,11 @@ const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> =
   const fieldRef = useRef<Type>();
 
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
-  const { pristine, dirty } = state;
+  const { touched, pristine, dirty } = state;
 
   const controlUpdate = (value: Type) => {
-    if (pristine) state.pristine = false;
-    if (!dirty) state.dirty = true;
+    if (pristine) setState({ pristine: false });
+    if (!dirty) setState({ dirty: true });
 
     if (keys(validation).length) {
       const { isValid, errorMessages, ...otherValidationProps } = validate(
@@ -67,27 +67,29 @@ const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> =
         validation,
       );
 
-      state.valid = isValid;
-      state.invalid = !isValid;
-      state.errorMessages = errorMessages;
+      setState({
+        valid: isValid,
+        invalid: !isValid,
+        errorMessages: errorMessages,
+      });
       keys(otherValidationProps).forEach((validationKey: string) => {
         const key = validationKey as keyof Validations;
-        state[key] = otherValidationProps[key];
+        setState({ [key]: otherValidationProps[key] });
       });
     }
   };
 
   const controlTouching = () => {
-    if (!fieldRef.current || state.touched) return;
+    if (!fieldRef.current || touched) return;
 
     const setUntouched = () => {
-      state.untouched = false;
+      setState({ untouched: false });
       fieldRef.current.removeEventListener('focus', setUntouched);
     };
     fieldRef.current.addEventListener('focus', setUntouched);
 
     const setTouched = () => {
-      state.touched = true;
+      setState({ touched: true });
       fieldRef.current.removeEventListener('focusout', setTouched);
     };
     fieldRef.current.addEventListener('focusout', setTouched);
@@ -100,7 +102,7 @@ const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> =
 
   useEffect(() => {
     controlTouching();
-  }, [state.touched]);
+  }, [touched]);
 
   useEffect(() => {
     controlTouching();
