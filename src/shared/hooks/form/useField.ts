@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState, useRef, useEffect } from 'react';
+import { Dispatch, SetStateAction, MutableRefObject, useState, useRef, useEffect } from 'react';
 
 import { ValidationConfig, Validations, validate } from '@/shared/helpers';
 import useCustomState from '@/shared/hooks/state/useCustomState';
@@ -29,7 +29,7 @@ type UseFieldConfig<Type> = {
 
 export type UseField<Type = any> = {
   value: Type;
-  ref: React.MutableRefObject<Type | undefined>;
+  ref: MutableRefObject<HTMLDivElement>;
   state: FieldState;
   onSetValue: Dispatch<SetStateAction<Type>>;
   onSetState: (modifiedProps: Partial<FieldState>) => void;
@@ -52,7 +52,7 @@ const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> =
   const { name, defaultValue, validation = {} } = config;
 
   const [value, setValue] = useState(defaultValue as Type);
-  const fieldRef = useRef<Type>();
+  const fieldRef = useRef() as MutableRefObject<HTMLDivElement>;
 
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
   const { touched, pristine, dirty } = state;
