@@ -29,7 +29,7 @@ type UseFieldConfig<Type> = {
 
 export type UseField<Type = any> = {
   value: Type;
-  ref: MutableRefObject<HTMLDivElement>;
+  ref: MutableRefObject<HTMLElement>;
   state: FieldState;
   onSetValue: Dispatch<SetStateAction<Type>>;
   onSetState: (modifiedProps: Partial<FieldState>) => void;
@@ -52,7 +52,7 @@ const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> =
   const { name, defaultValue, validation = {} } = config;
 
   const [value, setValue] = useState(defaultValue as Type);
-  const fieldRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const fieldRef = useRef() as MutableRefObject<HTMLElement>;
 
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
   const { touched, pristine, dirty } = state;
