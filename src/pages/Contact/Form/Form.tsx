@@ -169,9 +169,9 @@ const Form = () => {
           <div className="col mb-3">
             <Select
               label="Favorite color"
-              className="`${
-            favoriteColorState.dirty && favoriteColorValue === 'select' ? 'is-invalid' : ''
-          }`"
+              className={`${
+                favoriteColorState.dirty && favoriteColorValue === 'select' ? 'is-invalid' : ''
+              }`}
               field={favoriteColor}
               isFormSubmitted={isFormSubmitted}
             >
