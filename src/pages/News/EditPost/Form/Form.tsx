@@ -1,47 +1,44 @@
 import { useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 
 import { Post } from '@/core/services/news/types';
 import { EditPostFormState } from '@/pages/News/EditPost/_files/types';
+import { requiredMin } from '@/shared/files/validations';
 import { setCurrentPost } from '@/core/redux/reducers/news';
-import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
+import { validateForm, setFields } from '@/shared/helpers';
+import { useSelector, useDispatch, useCustomState, useField } from '@/shared/hooks';
 import { getPost, editPost } from '@/core/services';
-import { Loader } from '@/shared/components';
+import { Loader, Input } from '@/shared/components';
 import './Form.scss';
-
-const { keys } = Object;
-
-type PostToEdit = Pick<Post, 'title' | 'body'>;
 
 const initialState: EditPostFormState = {
   isLoading: false,
+  isFormSubmitted: false,
 };
 
 const Form = () => {
+  const [state, setState] = useCustomState<EditPostFormState>(initialState);
+  const { isLoading, isFormSubmitted } = state;
+
   const { currentPost } = useSelector(state => state.news);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id = '' } = useParams<{ id?: string }>();
 
-  const { register, formState, getValues, setValue, reset, handleSubmit } = useForm<PostToEdit>();
-  const { errors } = formState;
+  const title = useField({ name: 'title', validation: requiredMin(2) });
+  const body = useField({ name: 'body', validation: requiredMin(2) });
 
-  const [state, setState] = useCustomState<EditPostFormState>(initialState);
-  const { isLoading } = state;
-
-  const setFormData = () => {
-    const currentPostKeys = keys(getValues()) as ('title' | 'body')[];
-    currentPostKeys.forEach(key => setValue(key, currentPost[key]));
+  const setFormData = (data: Post) => {
+    setFields({ fields: [title], value: data.title });
+    setFields({ fields: [body], value: data.body });
   };
 
   const getCurrentPost = async () => {
     try {
       const post = await getPost(id);
       dispatch(setCurrentPost(post));
-      setFormData();
+      setFormData(post);
     } catch (error) {
       console.error(error);
     } finally {
@@ -49,15 +46,22 @@ const Form = () => {
     }
   };
 
-  const handleSubmitForm = async (values: PostToEdit) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setState({ isFormSubmitted: true });
+
+    const isValidForm = validateForm([{ fields: [title, body], validation: requiredMin(2) }]);
+    if (!isValidForm) return;
+
     setState({ isLoading: true });
 
     try {
       const payload: Post = {
         userId: currentPost.userId,
         id: currentPost.userId,
-        title: values.title,
-        body: values.body,
+        title: title.value,
+        body: body.value,
       };
 
       await editPost(payload);
@@ -78,37 +82,19 @@ const Form = () => {
     <>
       <Loader isLoading={isLoading} />
 
-      <form data-component="EditPostForm" onSubmit={handleSubmit(handleSubmitForm)}>
+      <form data-component="EditPostForm" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label" htmlFor="title">
-            Title
-          </label>
-          <input
-            id="title"
-            className={getFieldClass(errors.title)}
-            type="text"
-            {...register('title', { required: { value: true, message: 'Title is required' } })}
-          />
-          {getFieldErrorMessage(errors.title)}
+          <Input label="Title" field={title} isFormSubmitted={isFormSubmitted} />
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="body">
-            Body
-          </label>
-          <textarea
-            id="body"
-            className={getFieldClass(errors.body)}
-            rows={6}
-            {...register('body', { required: { value: true, message: 'Body is required' } })}
-          />
-          {getFieldErrorMessage(errors.body)}
+          <Input label="Body" field={body} isFormSubmitted={isFormSubmitted} />
         </div>
 
         <button className="btn btn-primary me-2" type="submit">
           Edit
         </button>
-        <button className="btn btn-light" type="button" onClick={() => reset()}>
+        <button className="btn btn-light" type="button" onClick={() => setFormData(currentPost)}>
           Reset form
         </button>
       </form>

@@ -24,7 +24,7 @@ const Form = () => {
   const lastName = useField({ name: 'last-name', validation: requiredMin(2) });
   const email = useField({ name: 'email', validation: requiredEmail });
 
-  const getUserData = () => {
+  const setFormData = () => {
     setFields({ fields: [firstName], value: user.firstName });
     setFields({ fields: [lastName], value: user.lastName });
     setFields({ fields: [email], value: user.email });
@@ -74,7 +74,7 @@ const Form = () => {
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    getUserData();
+    setFormData();
   }, [user]);
 
   return (
@@ -131,7 +131,7 @@ const Form = () => {
           <button className="btn btn-primary me-2" type="submit">
             Save
           </button>
-          <button className="btn btn-light" type="button" onClick={getUserData}>
+          <button className="btn btn-light" type="button" onClick={setFormData}>
             Reset form
           </button>
         </form>
