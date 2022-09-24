@@ -21,17 +21,17 @@ export type FieldState = Validations & {
   errorMessages: string[];
 };
 
-type UseFieldConfig<Type> = {
+type UseFieldConfig<Value> = {
   name: string;
-  defaultValue?: Type;
+  defaultValue?: Value;
   validation?: ValidationConfig;
 };
 
-export type UseField<Type = any> = {
-  value: Type;
+export type UseField<Value = any> = {
+  value: Value;
   ref: React.LegacyRef<HTMLInputElement>;
   state: FieldState;
-  onSetValue: Dispatch<SetStateAction<Type>>;
+  onSetValue: Dispatch<SetStateAction<Value>>;
   onSetState: (modifiedProps: Partial<FieldState>) => void;
 };
 
@@ -48,16 +48,16 @@ export const getFieldState = (name: string, required: boolean = false): FieldSta
   errorMessages: [],
 });
 
-const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> => {
+const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value> => {
   const { name, defaultValue, validation = {} } = config;
 
-  const [value, setValue] = useState(defaultValue as Type);
+  const [value, setValue] = useState(defaultValue as Value);
   const fieldRef: any = useRef();
 
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
   const { touched, pristine, dirty } = state;
 
-  const controlUpdate = (value: Type) => {
+  const controlUpdate = (value: Value) => {
     if (value === undefined) return;
     if (pristine) setState({ pristine: false });
     if (!dirty) setState({ dirty: true });

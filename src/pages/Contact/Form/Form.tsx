@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { ContactFormState } from '@/pages/Contact/_files/types';
-import { required, requiredEmail, requiredMin } from '@/shared/files/validations';
+import { required, requiredEmail, requiredMin, custom } from '@/shared/files/validations';
 import { validateForm, setFields } from '@/shared/helpers';
 import { useCustomState, useField } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
@@ -14,17 +14,6 @@ import {
   Select,
   Textarea,
 } from '@/shared/components';
-
-type ContactFormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  telephone: string;
-  sex: string;
-  favoriteColor: string;
-  employed: boolean;
-  message: string;
-};
 
 const initialState: ContactFormState = {
   isLoading: true,
@@ -42,7 +31,11 @@ const Form = () => {
   const email = useField({ name: 'email', validation: requiredEmail });
   const telephone = useField({ name: 'telephone', validation: requiredMin(8) });
   const sex = useField({ name: 'sex', validation: required });
-  const favoriteColor = useField({ name: 'favorite-color', validation: required });
+  const favoriteColor = useField({
+    name: 'favorite-color',
+    defaultValue: 'select',
+    validation: required,
+  });
   const { value: favoriteColorValue, state: favoriteColorState } = favoriteColor;
   const employed = useField<boolean>({ name: 'employed' });
   const message = useField({ name: 'message', validation: required });
@@ -87,7 +80,11 @@ const Form = () => {
       { fields: [firstName, lastName], validation: requiredMin(2) },
       { fields: [email], validation: requiredEmail },
       { fields: [telephone], validation: requiredMin(8) },
-      { fields: [sex, favoriteColor, message], validation: required },
+      { fields: [sex, message], validation: required },
+      {
+        fields: [favoriteColor],
+        validation: custom(favoriteColorValue !== 'select', 'Value required.'),
+      },
     ]);
     if (!isValidForm) return;
 
@@ -170,7 +167,7 @@ const Form = () => {
             <Select
               label="Favorite color"
               className={`${
-                favoriteColorState.dirty && favoriteColorValue === 'select' ? 'is-invalid' : ''
+                favoriteColorState.touched && favoriteColorValue === 'select' ? 'is-invalid' : ''
               }`}
               field={favoriteColor}
               isFormSubmitted={isFormSubmitted}
