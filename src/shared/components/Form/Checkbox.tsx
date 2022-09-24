@@ -23,7 +23,7 @@ const Checkbox = ({
   onChange,
   ...otherProps
 }: Props) => {
-  const { value = '', ref, state, onSetValue } = field;
+  const { value, ref, state, onSetValue } = field;
   const { errorMessages } = state;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
@@ -42,6 +42,7 @@ const Checkbox = ({
         type="checkbox"
         name={state.name}
         value={value}
+        checked={!!value}
         ref={ref}
         onChange={handleChange}
         {...otherProps}

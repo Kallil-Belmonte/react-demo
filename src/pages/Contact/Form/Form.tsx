@@ -186,7 +186,7 @@ const Form = () => {
             <div className="form-check">
               <Checkbox
                 label="Employed"
-                trueValue={true}
+                trueValue
                 falseValue={false}
                 field={employed}
                 isFormSubmitted={isFormSubmitted}
