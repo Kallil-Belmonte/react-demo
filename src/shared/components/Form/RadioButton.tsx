@@ -19,7 +19,7 @@ const RadioButton = ({
   onChange,
   ...otherProps
 }: Props) => {
-  const { state, onSetValue } = field;
+  const { value, state, onSetValue } = field;
   const { errorMessages } = state;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
@@ -47,6 +47,7 @@ const RadioButton = ({
             type="radio"
             name={state.name}
             value={radio.value}
+            checked={value === radio.value}
             onChange={handleChange}
             {...otherProps}
           />
