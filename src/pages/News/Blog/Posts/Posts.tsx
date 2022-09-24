@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { PostsProps } from '@/pages/News/Blog/_files/types';
 import { PostItem } from '@/shared/components';
 

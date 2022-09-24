@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Category } from '@/core/services/news/types';
 import { CategoriesProps, CategoriesState } from '@/pages/News/Blog/_files/types';
 import { useCustomState } from '@/shared/hooks';

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { HomeState } from '@/pages/Home/_files/types';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';

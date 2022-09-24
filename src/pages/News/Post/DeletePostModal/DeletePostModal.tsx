@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Fragment } from 'react';
+import { useRef, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from 'bootstrap';
@@ -44,7 +44,7 @@ const DeletePostModal = () => {
   });
 
   return (
-    <Fragment>
+    <>
       <Loader isLoading={isLoading} />
 
       <div id="delete-post-modal" className="modal fade" tabIndex={-1} ref={modalRef}>
@@ -73,7 +73,7 @@ const DeletePostModal = () => {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

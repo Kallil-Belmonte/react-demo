@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FieldError } from 'node_modules/react-hook-form/dist/types/errors.d';
 
 /**

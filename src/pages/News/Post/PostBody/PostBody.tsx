@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { NavLink } from 'react-router-dom';
 
 import { PostProps } from '@/pages/News/Post/_files/types';

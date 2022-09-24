@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
+import { CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
 
 import { firstLetterToUpperCase } from '@/shared/helpers';
 import { Icons } from './types';

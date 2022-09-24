@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ReactType, BootstrapVariants } from '@/shared/files/types';
 
 type Props = {

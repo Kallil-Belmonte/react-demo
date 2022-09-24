@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Home from '@/pages/Home/Home';
 import Blog from '@/pages/News/Blog/Blog';
 import Post from '@/pages/News/Post/Post';

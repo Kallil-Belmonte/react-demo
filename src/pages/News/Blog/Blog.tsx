@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { Category, Post } from '@/core/services/news/types';
 import { BlogState } from '@/pages/News/Blog/_files/types';

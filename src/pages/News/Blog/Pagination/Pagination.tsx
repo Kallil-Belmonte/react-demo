@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { PaginationProps } from '@/pages/News/Blog/_files/types';
 
 const Pagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }: PaginationProps) => {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { IconProps } from '../Icon';
 
 const AppUser = ({ className, style, ariaLabel, fill }: IconProps) => {

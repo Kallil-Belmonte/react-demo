@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -56,7 +56,7 @@ const Form = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       <Loader isLoading={isLoading} />
 
       <form data-component="Form" className="auth-form" onSubmit={handleSubmit(handleSubmitForm)}>
@@ -227,7 +227,7 @@ const Form = () => {
           Reset form
         </button>
       </form>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,7 +1,4 @@
-import React from 'react';
-
 import { useNavigate, NavLink } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
 import { LoginUserPayload } from '@/core/services/auth/types';

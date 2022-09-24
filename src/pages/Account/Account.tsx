@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { PageHeader } from '@/shared/components';
 import Form from '@/pages/Account/Form/Form';
 import './Account.scss';

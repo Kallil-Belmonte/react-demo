@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { PostsPerPageProps } from '@/pages/News/Blog/_files/types';
 import './PostsPerPage.scss';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { IconProps } from '../Icon';
 
 const AppHome = ({ className, style, ariaLabel, fill }: IconProps) => {

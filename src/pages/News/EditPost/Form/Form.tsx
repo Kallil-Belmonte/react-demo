@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
@@ -75,7 +75,7 @@ const Form = () => {
   }, []);
 
   return (
-    <Fragment>
+    <>
       <Loader isLoading={isLoading} />
 
       <form data-component="EditPostForm" onSubmit={handleSubmit(handleSubmitForm)}>
@@ -112,7 +112,7 @@ const Form = () => {
           Reset form
         </button>
       </form>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 

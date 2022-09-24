@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Form from '@/pages/News/EditPost/Form/Form';
 
 const EditPost = () => {
