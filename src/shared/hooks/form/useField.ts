@@ -29,7 +29,7 @@ type UseFieldConfig<Type> = {
 
 export type UseField<Type = any> = {
   value: Type;
-  ref: MutableRefObject<HTMLElement>;
+  ref: React.LegacyRef<HTMLInputElement>;
   state: FieldState;
   onSetValue: Dispatch<SetStateAction<Type>>;
   onSetState: (modifiedProps: Partial<FieldState>) => void;
@@ -52,12 +52,13 @@ const useField = <Type = string>(config: UseFieldConfig<Type>): UseField<Type> =
   const { name, defaultValue, validation = {} } = config;
 
   const [value, setValue] = useState(defaultValue as Type);
-  const fieldRef = useRef() as MutableRefObject<HTMLElement>;
+  const fieldRef: any = useRef();
 
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
   const { touched, pristine, dirty } = state;
 
   const controlUpdate = (value: Type) => {
+    if (value === undefined) return;
     if (pristine) setState({ pristine: false });
     if (!dirty) setState({ dirty: true });
 

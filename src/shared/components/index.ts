@@ -1,5 +1,5 @@
 export { default as AlertDismissible } from './AlertDismissible/AlertDismissible';
-// export { default as Checkbox } from './Form/Checkbox';
+export { default as Checkbox } from './Form/Checkbox';
 export { default as Icon } from './Icon/Icon';
 export { default as Input } from './Form/Input';
 export { default as Loader } from './Loader/Loader';

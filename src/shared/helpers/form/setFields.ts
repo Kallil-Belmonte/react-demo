@@ -1,4 +1,4 @@
-import { UseField, getFieldState } from '@/shared/composables';
+import { UseField, getFieldState } from '@/shared/hooks';
 
 /**
  * @name setFields
@@ -17,7 +17,7 @@ const { assign } = Object;
 const setFields = ({ fields, value, reset }: SetFieldParams) => {
   const { required } = reset || {};
 
-  if (value !== undefined) fields.forEach(field => (field.model.value = value));
+  if (value !== undefined) fields.forEach(field => (field.value = value));
 
   if (reset) {
     setTimeout(() => {

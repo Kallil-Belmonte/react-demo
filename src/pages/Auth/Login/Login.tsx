@@ -6,16 +6,17 @@ import { useForm } from 'react-hook-form';
 import { FormState } from '@/pages/Auth/_files/types';
 import { LoginUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY, AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
-import { emailRegex } from '@/shared/files/regex';
-import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { useDispatch, useCustomState } from '@/shared/hooks';
+import { requiredEmail, requiredMin } from '@/shared/files/validations';
+import { clearFormMessage, validateForm } from '@/shared/helpers';
+import { useDispatch, useCustomState, useField } from '@/shared/hooks';
 import { loginUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
-import { AlertDismissible, Loader } from '@/shared/components';
+import { AlertDismissible, Loader, Input, Checkbox } from '@/shared/components';
 import Auth from '../Auth';
 
 const initialState: FormState = {
   isLoading: false,
+  isFormSubmitted: false,
   serverErrors: {
     email: [],
     password: [],
@@ -31,10 +32,25 @@ const Login = () => {
   const { errors } = formState;
 
   const [state, setState] = useCustomState<FormState>(initialState);
-  const { isLoading, serverErrors } = state;
+  const { isLoading, isFormSubmitted, serverErrors } = state;
+
+  const email = useField({ name: 'email', validation: requiredEmail });
+  const password = useField({ name: 'password', validation: requiredMin(3) });
+  const keepLogged = useField<boolean>({ name: 'keep-logged' });
 
   const handleLogin = async (values: LoginUserPayload) => {
-    setState({ isLoading: true });
+    setState({ isFormSubmitted: true });
+
+    const isValidFields = validateForm([
+      { fields: [email], validation: requiredEmail },
+      { fields: [password], validation: requiredMin(3) },
+    ]);
+    if (!isValidFields) return;
+
+    setState({
+      isLoading: true,
+      serverErrors: { email: [], password: [], request: [] },
+    });
 
     try {
       const { token, expiresIn, firstName, lastName, email } = await loginUser(values);
@@ -87,19 +103,12 @@ const Login = () => {
         <h1 className="page-title">Login</h1>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
-            E-mail address
-          </label>
-          <input
-            id="email"
-            className={getFieldClass(errors.email)}
+          <Input
             type="email"
-            {...register('email', {
-              required: { value: true, message: 'E-mail is required' },
-              pattern: { value: emailRegex, message: 'Invalid e-mail' },
-            })}
+            label="E-mail address"
+            field={email}
+            isFormSubmitted={isFormSubmitted}
           />
-          {getFieldErrorMessage(errors.email)}
         </div>
 
         {serverErrors.email.map((errorMessage, index) => (
@@ -113,19 +122,12 @@ const Login = () => {
         ))}
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="password">
-            Password
-          </label>
-          <input
-            id="password"
-            className={getFieldClass(errors.password)}
+          <Input
             type="password"
-            {...register('password', {
-              required: { value: true, message: 'Password is required' },
-              minLength: { value: 3, message: 'Minimum 3 characters required' },
-            })}
+            label="Password"
+            field={password}
+            isFormSubmitted={isFormSubmitted}
           />
-          {getFieldErrorMessage(errors.password)}
         </div>
 
         {serverErrors.password.map((errorMessage, index) => (
@@ -139,7 +141,9 @@ const Login = () => {
         ))}
 
         <div className="form-check">
-          <label className="form-check-label" htmlFor="keep-logged">
+          <Checkbox label="Keep logged" field={keepLogged} isFormSubmitted={isFormSubmitted} />
+
+          {/* <label className="form-check-label" htmlFor="keep-logged">
             Keep logged
           </label>
           <input
@@ -147,7 +151,7 @@ const Login = () => {
             className="form-check-input"
             type="checkbox"
             {...register('keepLogged')}
-          />
+          /> */}
         </div>
 
         {serverErrors.request.map((errorMessage, index) => (

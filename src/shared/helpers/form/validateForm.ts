@@ -1,5 +1,5 @@
 import { Validations, ValidationConfig, validate } from '@/shared/helpers';
-import { UseField } from '@/shared/composables';
+import { UseField } from '@/shared/hooks';
 
 /**
  * @name validateForm
@@ -20,7 +20,7 @@ export const validateFields = ({ fields, validation = {}, updateState = true }: 
     isValidFields = fields
       .map(field => {
         const { isValid, errorMessages, ...otherValidationProps } = validate(
-          field.model.value,
+          field.value,
           validation,
         );
 

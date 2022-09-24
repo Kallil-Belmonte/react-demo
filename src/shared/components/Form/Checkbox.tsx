@@ -6,20 +6,16 @@ import { UseField } from '@/shared/hooks';
 type Props = {
   labelClass?: string;
   label: string;
-  baseClasses?: string;
   className?: string;
-  type?: string;
   field: UseField<any>;
   isFormSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-const Input = ({
-  labelClass = 'form-label',
+const Checkbox = ({
+  labelClass = 'form-check-label',
   label,
-  baseClasses,
   className,
-  type = 'text',
   field,
   isFormSubmitted,
   onChange,
@@ -40,8 +36,8 @@ const Input = ({
       </label>
       <input
         id={state.name}
-        className={`${getFieldClass(isFormSubmitted, state, baseClasses)} ${className}`}
-        type={type}
+        className={`${getFieldClass(isFormSubmitted, state, 'form-check-input')} ${className}`}
+        type="checkbox"
         name={state.name}
         value={value}
         ref={ref}
@@ -57,4 +53,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default Checkbox;
