@@ -22,24 +22,26 @@ const initialState: FormState = {
 };
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const [state, setState] = useCustomState<FormState>(initialState);
   const { isLoading, isFormSubmitted, serverErrors } = state;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const email = useField({ name: 'email', validation: requiredEmail });
   const password = useField({ name: 'password', validation: requiredMin(3) });
   const keepLogged = useField<boolean>({ name: 'keep-logged' });
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     setState({ isFormSubmitted: true });
 
-    const isValidFields = validateForm([
+    const isValidForm = validateForm([
       { fields: [email], validation: requiredEmail },
       { fields: [password], validation: requiredMin(3) },
     ]);
-    if (!isValidFields) return;
+    if (!isValidForm) return;
 
     setState({
       isLoading: true,

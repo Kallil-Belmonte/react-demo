@@ -1,55 +1,60 @@
 import { useEffect } from 'react';
 
-import { useForm } from 'react-hook-form';
-
-import { AuthState } from '@/core/redux/reducers/auth';
 import { AccountFormState } from '@/pages/Account/_files/types';
+import { requiredEmail, requiredMin } from '@/shared/files/validations';
 import { setUser } from '@/core/redux/reducers/auth';
-import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
-import { emailRegex } from '@/shared/files/regex';
-import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { AlertDismissible } from '@/shared/components';
-
-const { keys } = Object;
-
-type AccountFormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-};
+import { useSelector, useDispatch, useCustomState, useField } from '@/shared/hooks';
+import { clearFormMessage, validateForm, setFields } from '@/shared/helpers';
+import { AlertDismissible, Input } from '@/shared/components';
 
 const initialState: AccountFormState = {
+  isFormSubmitted: false,
   successMessages: [],
   serverErrors: { email: [], request: [] },
 };
 
 const Form = () => {
+  const [state, setState] = useCustomState<AccountFormState>(initialState);
+  const { isFormSubmitted, successMessages, serverErrors } = state;
+
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
-  const { register, formState, getValues, setValue, reset, handleSubmit } =
-    useForm<AccountFormValues>();
-  const { errors } = formState;
-
-  const [state, setState] = useCustomState<AccountFormState>(initialState);
-  const { successMessages, serverErrors } = state;
+  const firstName = useField({ name: 'first-name', validation: requiredMin(2) });
+  const lastName = useField({ name: 'last-name', validation: requiredMin(2) });
+  const email = useField({ name: 'email', validation: requiredEmail });
 
   const getUserData = () => {
-    const userKeys = keys(getValues()) as ('firstName' | 'lastName' | 'email')[];
-    userKeys.forEach(key => setValue(key, user[key]));
+    console.log(user);
+    setFields({ fields: [firstName], value: user.firstName });
+    setFields({ fields: [lastName], value: user.lastName });
+    setFields({ fields: [email], value: user.email });
   };
 
-  const handleSubmitForm = async (values: AuthState['user']) => {
-    setState(initialState);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    if (values.email === 'john.doe@email.com') {
+    setState({ isFormSubmitted: true });
+
+    const isValidForm = validateForm([
+      { fields: [firstName, lastName], validation: requiredMin(2) },
+      { fields: [email], validation: requiredEmail },
+    ]);
+    if (!isValidForm) return;
+
+    setState({
+      successMessages: initialState.successMessages,
+      serverErrors: initialState.serverErrors,
+    });
+
+    if (email.value === 'john.doe@email.com') {
       setState({
         serverErrors: {
           email: ['This e-mail already exists.'],
           request: [],
         },
       });
-    } else if (values.email === 'demo@demo.com') {
+    } else if (email.value === 'demo@demo.com') {
       setState({
         serverErrors: {
           email: [],
@@ -57,7 +62,7 @@ const Form = () => {
         },
       });
     } else {
-      dispatch(setUser(values));
+      dispatch(setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }));
       setState({ successMessages: ['Account saved successfully.'] });
     }
   };
@@ -94,53 +99,22 @@ const Form = () => {
           </AlertDismissible>
         ))}
 
-        <form onSubmit={handleSubmit(handleSubmitForm)}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label" htmlFor="first-name">
-              First name
-            </label>
-            <input
-              id="first-name"
-              className={getFieldClass(errors.firstName)}
-              type="text"
-              {...register('firstName', {
-                required: { value: true, message: 'First name is required' },
-                minLength: { value: 2, message: 'Must be 2 characters or more' },
-              })}
-            />
-            {getFieldErrorMessage(errors.firstName)}
+            <Input label="First name" field={firstName} isFormSubmitted={isFormSubmitted} />
           </div>
 
           <div className="mb-3">
-            <label className="form-label" htmlFor="last-name">
-              Last name
-            </label>
-            <input
-              id="last-name"
-              className={getFieldClass(errors.lastName)}
-              type="text"
-              {...register('lastName', {
-                required: { value: true, message: 'Last name is required' },
-                minLength: { value: 2, message: 'Must be 2 characters or more' },
-              })}
-            />
-            {getFieldErrorMessage(errors.lastName)}
+            <Input label="Last name" field={lastName} isFormSubmitted={isFormSubmitted} />
           </div>
 
           <div className="col mb-3">
-            <label className="form-label" htmlFor="email">
-              E-mail address
-            </label>
-            <input
-              id="email"
-              className={getFieldClass(errors.email)}
+            <Input
               type="email"
-              {...register('email', {
-                required: { value: true, message: 'E-mail is required' },
-                pattern: { value: emailRegex, message: 'Invalid e-mail' },
-              })}
+              label="E-mail address"
+              field={email}
+              isFormSubmitted={isFormSubmitted}
             />
-            {getFieldErrorMessage(errors.email)}
           </div>
 
           {serverErrors.email.map((errorMessage, index) => (
@@ -156,7 +130,7 @@ const Form = () => {
           <button className="btn btn-primary me-2" type="submit">
             Save
           </button>
-          <button className="btn btn-light" type="button" onClick={() => reset()}>
+          <button className="btn btn-light" type="button" onClick={getUserData}>
             Reset form
           </button>
         </form>

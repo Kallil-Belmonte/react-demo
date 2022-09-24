@@ -1,19 +1,19 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 
 import { FormState } from '@/pages/Auth/_files/types';
 import { RegisterUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
-import { emailRegex } from '@/shared/files/regex';
-import { clearFormMessage, getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { useDispatch, useCustomState } from '@/shared/hooks';
+import { requiredEmail, requiredMin } from '@/shared/files/validations';
+import { clearFormMessage, validateForm } from '@/shared/helpers';
+import { useDispatch, useCustomState, useField } from '@/shared/hooks';
 import { registerUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
-import { AlertDismissible, Loader } from '@/shared/components';
+import { AlertDismissible, Loader, Input } from '@/shared/components';
 import Auth from '../Auth';
 
 const initialState: FormState = {
   isLoading: false,
+  isFormSubmitted: false,
   serverErrors: {
     email: [],
     password: [],
@@ -22,32 +22,57 @@ const initialState: FormState = {
 };
 
 const Register = () => {
+  const [state, setState] = useCustomState<FormState>(initialState);
+  const { isLoading, isFormSubmitted, serverErrors } = state;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { register, formState, handleSubmit } = useForm<RegisterUserPayload>();
-  const { errors } = formState;
+  const firstName = useField({ name: 'first-name', validation: requiredMin(2) });
+  const lastName = useField({ name: 'last-name', validation: requiredMin(2) });
+  const email = useField({ name: 'email', validation: requiredEmail });
+  const password = useField({ name: 'password', validation: requiredMin(3) });
 
-  const [state, setState] = useCustomState<FormState>(initialState);
-  const { isLoading, serverErrors } = state;
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  const handleRegister = async (values: RegisterUserPayload) => {
-    setState({ isLoading: true });
+    setState({ isFormSubmitted: true });
+
+    const isValidForm = validateForm([
+      { fields: [firstName, lastName], validation: requiredMin(2) },
+      { fields: [email], validation: requiredEmail },
+      { fields: [password], validation: requiredMin(3) },
+    ]);
+    if (!isValidForm) return;
+
+    setState({
+      isLoading: true,
+      serverErrors: { email: [], password: [], request: [] },
+    });
 
     try {
-      const { token, firstName, lastName, email } = await registerUser(values);
+      const payload: RegisterUserPayload = {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        password: password.value,
+      };
 
-      if (values.email === 'demo@demo.com') {
+      const user = await registerUser(payload);
+
+      if (email.value === 'demo@demo.com') {
         setState({
           serverErrors: {
-            email: ['This e-mail does not exists.'],
-            password: ['The password is incorrect.'],
+            email: ['This e-mail already exists.'],
+            password: ['Your password is too weak.'],
             request: [],
           },
         });
       } else {
-        sessionStorage.setItem(AUTH_TOKEN_KEY, token);
-        dispatch(setUser({ firstName, lastName, email }));
+        sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
+        dispatch(
+          setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }),
+        );
         navigate('/');
       }
     } catch (error: any) {
@@ -71,55 +96,24 @@ const Register = () => {
     <Auth>
       <Loader isLoading={isLoading} />
 
-      <form className="auth-form" onSubmit={handleSubmit(handleRegister)}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <h1 className="page-title">Register</h1>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="first-name">
-            First name
-          </label>
-          <input
-            id="first-name"
-            className={getFieldClass(errors.firstName)}
-            type="text"
-            {...register('firstName', {
-              required: { value: true, message: 'First name is required' },
-              minLength: { value: 2, message: 'Must be 2 characters or more' },
-            })}
-          />
-          {getFieldErrorMessage(errors.firstName)}
+          <Input label="First name" field={firstName} isFormSubmitted={isFormSubmitted} />
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="last-name">
-            Last name
-          </label>
-          <input
-            id="last-name"
-            className={getFieldClass(errors.lastName)}
-            type="text"
-            {...register('lastName', {
-              required: { value: true, message: 'Last name is required' },
-              minLength: { value: 2, message: 'Must be 2 characters or more' },
-            })}
-          />
-          {getFieldErrorMessage(errors.lastName)}
+          <Input label="Last name" field={lastName} isFormSubmitted={isFormSubmitted} />
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="email">
-            E-mail address
-          </label>
-          <input
-            id="email"
-            className={getFieldClass(errors.email)}
+          <Input
             type="email"
-            {...register('email', {
-              required: { value: true, message: 'E-mail is required' },
-              pattern: { value: emailRegex, message: 'Invalid e-mail' },
-            })}
+            label="E-mail address"
+            field={email}
+            isFormSubmitted={isFormSubmitted}
           />
-          {getFieldErrorMessage(errors.email)}
         </div>
 
         {serverErrors.email.map((errorMessage, index) => (
@@ -133,19 +127,12 @@ const Register = () => {
         ))}
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="password">
-            Password
-          </label>
-          <input
-            id="password"
-            className={getFieldClass(errors.password)}
+          <Input
             type="password"
-            {...register('password', {
-              required: { value: true, message: 'Password is required' },
-              minLength: { value: 3, message: 'Minimum 3 characters required' },
-            })}
+            label="Password"
+            field={password}
+            isFormSubmitted={isFormSubmitted}
           />
-          {getFieldErrorMessage(errors.password)}
         </div>
 
         {serverErrors.password.map((errorMessage, index) => (
