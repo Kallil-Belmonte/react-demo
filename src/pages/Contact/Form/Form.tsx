@@ -1,13 +1,19 @@
 import { useEffect } from 'react';
 
-import { useForm } from 'react-hook-form';
-
 import { ContactFormState } from '@/pages/Contact/_files/types';
-import { emailRegex } from '@/shared/files/regex';
-import { getFieldClass, getFieldErrorMessage } from '@/shared/helpers';
-import { useCustomState } from '@/shared/hooks';
+import { required, requiredEmail, requiredMin } from '@/shared/files/validations';
+import { validateForm, setFields } from '@/shared/helpers';
+import { useCustomState, useField } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
-import { AlertDismissible, Loader } from '@/shared/components';
+import {
+  AlertDismissible,
+  Loader,
+  Input,
+  Checkbox,
+  RadioButton,
+  Select,
+  Textarea,
+} from '@/shared/components';
 
 type ContactFormValues = {
   firstName: string;
@@ -22,16 +28,24 @@ type ContactFormValues = {
 
 const initialState: ContactFormState = {
   isLoading: true,
+  isFormSubmitted: false,
   favoriteColors: [],
   successMessages: [],
 };
 
 const Form = () => {
-  const { register, formState, reset, handleSubmit } = useForm<ContactFormValues>();
-  const { errors } = formState;
-
   const [state, setState] = useCustomState<ContactFormState>(initialState);
-  const { isLoading, favoriteColors, successMessages } = state;
+  const { isLoading, isFormSubmitted, favoriteColors, successMessages } = state;
+
+  const firstName = useField({ name: 'first-name', validation: requiredMin(2) });
+  const lastName = useField({ name: 'last-name', validation: requiredMin(2) });
+  const email = useField({ name: 'email', validation: requiredEmail });
+  const telephone = useField({ name: 'telephone', validation: requiredMin(8) });
+  const sex = useField({ name: 'sex', validation: required });
+  const favoriteColor = useField({ name: 'favorite-color', validation: required });
+  const { value: favoriteColorValue, state: favoriteColorState } = favoriteColor;
+  const employed = useField<boolean>({ name: 'employed' });
+  const message = useField({ name: 'message', validation: required });
 
   const setFavoriteColors = async () => {
     try {
@@ -44,9 +58,52 @@ const Form = () => {
     }
   };
 
-  const handleSubmitForm = (values: ContactFormValues) => {
-    console.log('Form submitted:', values);
+  const reset = () => {
+    setState({ isFormSubmitted: false });
+
+    setFields({
+      fields: [firstName, lastName, email, telephone, sex, message],
+      value: '',
+      reset: { required: true },
+    });
+    setFields({
+      fields: [favoriteColor],
+      value: 'select',
+      reset: { required: true },
+    });
+    setFields({
+      fields: [employed],
+      value: false,
+      reset: { required: false },
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setState({ isFormSubmitted: true });
+
+    const isValidForm = validateForm([
+      { fields: [firstName, lastName], validation: requiredMin(2) },
+      { fields: [email], validation: requiredEmail },
+      { fields: [telephone], validation: requiredMin(8) },
+      { fields: [sex, favoriteColor, message], validation: required },
+    ]);
+    if (!isValidForm) return;
+
+    console.log('Form submitted:', {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      telephone: telephone.value,
+      sex: sex.value,
+      favoriteColor: favoriteColor.value,
+      employed: employed.value,
+      message: message.value,
+    });
+
     setState({ successMessages: ['Message sent successfully.'] });
+
     reset();
   };
 
@@ -59,7 +116,7 @@ const Form = () => {
     <>
       <Loader isLoading={isLoading} />
 
-      <form data-component="Form" className="auth-form" onSubmit={handleSubmit(handleSubmitForm)}>
+      <form data-component="Form" className="auth-form" onSubmit={handleSubmit}>
         {successMessages.map(successMessage => (
           <AlertDismissible
             key={successMessage}
@@ -72,116 +129,53 @@ const Form = () => {
 
         <div className="row">
           <div className="col mb-3">
-            <label className="form-label" htmlFor="first-name">
-              First name
-            </label>
-            <input
-              id="first-name"
-              className={getFieldClass(errors.firstName)}
-              type="text"
-              {...register('firstName', {
-                required: { value: true, message: 'First name is required' },
-                minLength: { value: 2, message: 'Must be 2 characters or more' },
-              })}
-            />
-            {getFieldErrorMessage(errors.firstName)}
+            <Input label="First name" field={firstName} isFormSubmitted={isFormSubmitted} />
           </div>
 
           <div className="col mb-3">
-            <label className="form-label" htmlFor="last-name">
-              Last name
-            </label>
-            <input
-              id="last-name"
-              className={getFieldClass(errors.lastName)}
-              type="text"
-              {...register('lastName', {
-                required: { value: true, message: 'Last name is required' },
-                minLength: { value: 2, message: 'Must be 2 characters or more' },
-              })}
-            />
-            {getFieldErrorMessage(errors.lastName)}
+            <Input label="Last name" field={lastName} isFormSubmitted={isFormSubmitted} />
           </div>
         </div>
 
         <div className="row">
           <div className="col mb-3">
-            <label className="form-label" htmlFor="email">
-              E-mail address
-            </label>
-            <input
-              id="email"
-              className={getFieldClass(errors.email)}
+            <Input
               type="email"
-              {...register('email', {
-                required: { value: true, message: 'E-mail is required' },
-                pattern: { value: emailRegex, message: 'Invalid e-mail' },
-              })}
+              label="E-mail address"
+              field={email}
+              isFormSubmitted={isFormSubmitted}
             />
-            {getFieldErrorMessage(errors.email)}
           </div>
 
           <div className="col mb-3">
-            <label className="form-label" htmlFor="telephone">
-              Telephone
-            </label>
-            <input
-              id="telephone"
-              className={getFieldClass(errors.telephone)}
-              type="text"
-              {...register('telephone', {
-                required: { value: true, message: 'Telephone is required' },
-              })}
-            />
-            {getFieldErrorMessage(errors.telephone)}
+            <Input label="Telephone" field={telephone} isFormSubmitted={isFormSubmitted} />
           </div>
         </div>
 
         <div className="row">
           <div className="col mb-3">
-            <div className={`form-check form-check-inline ${errors.sex ? 'is-invalid' : ''}`}>
-              <label className="form-check-label" htmlFor="male">
-                Male
-              </label>
-              <input
-                id="male"
-                className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
-                type="radio"
-                value="male"
-                {...register('sex', { required: { value: true, message: 'Sex is required' } })}
-              />
-            </div>
-            <div className={`form-check form-check-inline ${errors.sex ? 'is-invalid' : ''}`}>
-              <label className="form-check-label" htmlFor="female">
-                Female
-              </label>
-              <input
-                id="female"
-                className={`form-check-input ${errors.sex ? 'is-invalid' : ''}`}
-                type="radio"
-                value="female"
-                {...register('sex', { required: { value: true, message: 'Sex is required' } })}
-              />
-            </div>
-            {getFieldErrorMessage(errors.sex)}
+            <RadioButton
+              field={sex}
+              radios={[
+                { label: 'Male', value: 'male' },
+                { label: 'Female', value: 'female' },
+              ]}
+              isFormSubmitted={isFormSubmitted}
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="col mb-3">
-            <label className="form-label" htmlFor="favorite-color">
-              Favorite color
-            </label>
-            <select
-              id="favorite-color"
-              className={getFieldClass(errors.favoriteColor)}
-              aria-label="Favorite color"
-              defaultValue=""
-              {...register('favoriteColor', {
-                required: { value: true, message: 'Favorite color is required' },
-              })}
+            <Select
+              label="Favorite color"
+              className="`${
+            favoriteColorState.dirty && favoriteColorValue === 'select' ? 'is-invalid' : ''
+          }`"
+              field={favoriteColor}
+              isFormSubmitted={isFormSubmitted}
             >
-              <option value="" disabled>
+              <option value="select" disabled>
                 Select
               </option>
               {favoriteColors.map(({ text, value }) => (
@@ -189,41 +183,29 @@ const Form = () => {
                   {text}
                 </option>
               ))}
-            </select>
-            {getFieldErrorMessage(errors.favoriteColor)}
+            </Select>
           </div>
           <div className="col mt-4">
             <div className="form-check">
-              <label className="form-check-label" htmlFor="employed">
-                Employed
-              </label>
-              <input
-                id="employed"
-                className="form-check-input"
-                type="checkbox"
-                {...register('employed')}
+              <Checkbox
+                label="Employed"
+                trueValue={true}
+                falseValue={false}
+                field={employed}
+                isFormSubmitted={isFormSubmitted}
               />
             </div>
           </div>
         </div>
 
         <div className="mb-3">
-          <label className="form-label" htmlFor="message">
-            Message
-          </label>
-          <textarea
-            id="message"
-            className={getFieldClass(errors.message)}
-            rows={3}
-            {...register('message', { required: { value: true, message: 'Message is required' } })}
-          />
-          {getFieldErrorMessage(errors.message)}
+          <Textarea label="Message" field={message} isFormSubmitted={isFormSubmitted} />
         </div>
 
         <button className="btn btn-primary me-2" type="submit">
           Send
         </button>
-        <button className="btn btn-light" type="button" onClick={() => reset()}>
+        <button className="btn btn-light" type="button" onClick={reset}>
           Reset form
         </button>
       </form>
