@@ -25,7 +25,6 @@ const Form = () => {
   const email = useField({ name: 'email', validation: requiredEmail });
 
   const getUserData = () => {
-    console.log(user);
     setFields({ fields: [firstName], value: user.firstName });
     setFields({ fields: [lastName], value: user.lastName });
     setFields({ fields: [email], value: user.email });
@@ -62,7 +61,9 @@ const Form = () => {
         },
       });
     } else {
-      dispatch(setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }));
+      dispatch(
+        setUser({ firstName: firstName.value, lastName: lastName.value, email: email.value }),
+      );
       setState({ successMessages: ['Account saved successfully.'] });
     }
   };
@@ -74,7 +75,7 @@ const Form = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     getUserData();
-  }, []);
+  }, [user]);
 
   return (
     <div className="row" data-component="Form">

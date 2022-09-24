@@ -12,16 +12,14 @@ type SetFieldParams = {
   reset?: { required: boolean };
 };
 
-const { assign } = Object;
-
 const setFields = ({ fields, value, reset }: SetFieldParams) => {
   const { required } = reset || {};
 
-  if (value !== undefined) fields.forEach(field => (field.value = value));
+  if (value !== undefined) fields.forEach(({ onSetValue }) => onSetValue(value));
 
   if (reset) {
     setTimeout(() => {
-      fields.forEach(field => assign(field.state, getFieldState(field.state.name, required)));
+      fields.forEach(({ state, onSetState }) => onSetState(getFieldState(state.name, required)));
     });
   }
 };
