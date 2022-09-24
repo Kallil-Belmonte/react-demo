@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { NavLink } from 'react-router-dom';
 
 import { Post } from '@/core/services/news/types';
@@ -27,4 +29,4 @@ const PostItem = ({ post }: Props) => {
   );
 };
 
-export default React.memo(PostItem);
+export default memo(PostItem);

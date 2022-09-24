@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { ReactType } from '@/shared/files/types';
 import { Icons } from '../Icon/types';
 import Icon from '../Icon/Icon';
@@ -17,4 +19,4 @@ const PageHeader = ({ icon, children }: Props) => {
   );
 };
 
-export default React.memo(PageHeader);
+export default memo(PageHeader);
