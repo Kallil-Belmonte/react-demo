@@ -7,6 +7,8 @@ type Props = {
   labelClass?: string;
   label: string;
   className?: string;
+  trueValue: string | number | boolean;
+  falseValue: string | number | boolean;
   field: UseField<any>;
   isFormSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -15,7 +17,9 @@ type Props = {
 const Checkbox = ({
   labelClass = 'form-check-label',
   label,
-  className,
+  className = '',
+  trueValue,
+  falseValue,
   field,
   isFormSubmitted,
   onChange,
@@ -25,7 +29,7 @@ const Checkbox = ({
   const { errorMessages } = state;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
-    onSetValue(event.target.value);
+    onSetValue(event.target.checked ? trueValue : falseValue);
     onChange?.(event);
   };
 

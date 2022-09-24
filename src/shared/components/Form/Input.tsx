@@ -18,7 +18,7 @@ const Input = ({
   labelClass = 'form-label',
   label,
   baseClasses,
-  className,
+  className = '',
   type = 'text',
   field,
   isFormSubmitted,

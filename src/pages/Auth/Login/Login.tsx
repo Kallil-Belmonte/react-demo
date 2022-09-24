@@ -28,9 +28,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { register, formState, handleSubmit } = useForm<LoginUserPayload>();
-  const { errors } = formState;
-
   const [state, setState] = useCustomState<FormState>(initialState);
   const { isLoading, isFormSubmitted, serverErrors } = state;
 
@@ -38,7 +35,7 @@ const Login = () => {
   const password = useField({ name: 'password', validation: requiredMin(3) });
   const keepLogged = useField<boolean>({ name: 'keep-logged' });
 
-  const handleLogin = async (values: LoginUserPayload) => {
+  const handleSubmit = async () => {
     setState({ isFormSubmitted: true });
 
     const isValidFields = validateForm([
@@ -53,13 +50,19 @@ const Login = () => {
     });
 
     try {
-      const { token, expiresIn, firstName, lastName, email } = await loginUser(values);
+      const payload: LoginUserPayload = {
+        email: email.value,
+        password: password.value,
+        keepLogged: keepLogged.value,
+      };
+
+      const user = await loginUser(payload);
 
       const expirationDate = new Date(
-        new Date().getTime() + Number(expiresIn) * 1000,
+        new Date().getTime() + Number(user.expiresIn) * 1000,
       ).toISOString();
 
-      if (values.email === 'demo@demo.com') {
+      if (email.value === 'demo@demo.com') {
         setState({
           serverErrors: {
             email: ['This e-mail does not exists.'],
@@ -68,14 +71,16 @@ const Login = () => {
           },
         });
       } else {
-        if (values.keepLogged) {
-          localStorage.setItem(AUTH_TOKEN_KEY, token);
+        if (keepLogged.value) {
+          localStorage.setItem(AUTH_TOKEN_KEY, user.token);
           localStorage.setItem(AUTH_EXPIRATION_DATE_KEY, expirationDate);
         } else {
-          sessionStorage.setItem(AUTH_TOKEN_KEY, token);
+          sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
         }
 
-        dispatch(setUser({ firstName, lastName, email }));
+        dispatch(
+          setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }),
+        );
         navigate('/');
       }
     } catch (error: any) {
@@ -99,7 +104,7 @@ const Login = () => {
     <Auth>
       <Loader isLoading={isLoading} />
 
-      <form className="auth-form" onSubmit={handleSubmit(handleLogin)}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <h1 className="page-title">Login</h1>
 
         <div className="mb-3">
@@ -141,17 +146,13 @@ const Login = () => {
         ))}
 
         <div className="form-check">
-          <Checkbox label="Keep logged" field={keepLogged} isFormSubmitted={isFormSubmitted} />
-
-          {/* <label className="form-check-label" htmlFor="keep-logged">
-            Keep logged
-          </label>
-          <input
-            id="keep-logged"
-            className="form-check-input"
-            type="checkbox"
-            {...register('keepLogged')}
-          /> */}
+          <Checkbox
+            label="Keep logged"
+            trueValue={true}
+            falseValue={false}
+            field={keepLogged}
+            isFormSubmitted={isFormSubmitted}
+          />
         </div>
 
         {serverErrors.request.map((errorMessage, index) => (
