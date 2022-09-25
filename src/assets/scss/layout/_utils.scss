@@ -1,7 +1,15 @@
-// TEXT CONTINUED
+// GENERAL
 
 .text-continued {
   @extend %text-continued;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.disabled-cursor {
+  pointer-events: none;
 }
 
 // FLEX CENTER
@@ -52,16 +60,4 @@
 
 .bg-image-cover {
   @extend %background-image-cover;
-}
-
-// DISABLES CURSOR ACTIONS
-
-.disabled-cursor {
-  pointer-events: none;
-}
-
-// OVERFLOW
-
-.overflow-hidden {
-  overflow: hidden;
 }
