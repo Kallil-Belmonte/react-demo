@@ -1,6 +1,6 @@
 import { JSON_PLACEHOLDER_API } from './endpoints';
 
-const fetchInterceptor = async () => {
+const fetchInterceptor = () => {
   const { fetch: originalFetch } = window;
 
   window.fetch = async (input, init = {}) => {

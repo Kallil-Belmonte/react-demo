@@ -3,15 +3,15 @@ import { Category, Post } from './types';
 
 const { stringify } = JSON;
 
-export const getCategories = async (): Promise<Category[]> =>
+export const getCategories = (): Promise<Category[]> =>
   request(`bb4a0a50-d578-44e5-8d89-11ada2c96129`);
 
-export const getPosts = async (): Promise<Post[]> => request(`posts`, undefined, 'jsonPlaceholder');
+export const getPosts = (): Promise<Post[]> => request(`posts`, undefined, 'jsonPlaceholder');
 
-export const getPost = async (id: string): Promise<Post> =>
+export const getPost = (id: string): Promise<Post> =>
   request(`posts/${id}`, undefined, 'jsonPlaceholder');
 
-export const editPost = async (body: Post): Promise<Post> =>
+export const editPost = (body: Post): Promise<Post> =>
   request(
     `posts/${body.id}`,
     {
@@ -21,7 +21,7 @@ export const editPost = async (body: Post): Promise<Post> =>
     'jsonPlaceholder',
   );
 
-export const deletePost = async (id: string): Promise<Post> =>
+export const deletePost = (id: string): Promise<Post> =>
   request(
     `posts/${id}`,
     {
