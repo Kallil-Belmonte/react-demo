@@ -38,7 +38,7 @@ const Icon = (props: Props) => {
 
   const setComponent = useCallback(async () => {
     const moduleProps = {
-      className: `${iconClass} ${className} d-flex align-items-center justify-content-center`,
+      className: `${iconClass} ${className} flex-center`,
       style: size ? { width: size, height: size } : {},
       ariaLabel,
       fill: fill || 'currentColor',
