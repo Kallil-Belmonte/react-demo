@@ -18,13 +18,9 @@
   @extend %flex-center;
 }
 
-// Vertical center
-
 .flex-center-y {
   @extend %flex-center-y;
 }
-
-// Horizontal center
 
 .flex-center-x {
   @extend %flex-center-x;
@@ -36,13 +32,9 @@
   @extend %absolute-center;
 }
 
-// Vertical center
-
 .absolute-center-y {
   @extend %absolute-center-y;
 }
-
-// Horizontal center
 
 .absolute-center-x {
   @extend %absolute-center-x;
@@ -50,13 +42,9 @@
 
 // BACKGROUND IMAGE
 
-// Contain
-
 .bg-image-contain {
   @extend %background-image-contain;
 }
-
-// Cover
 
 .bg-image-cover {
   @extend %background-image-cover;
