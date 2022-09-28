@@ -7,6 +7,7 @@ type Props = {
   baseClasses?: string;
   className?: string;
   type?: string;
+  placeholder?: string;
   field: UseField<any>;
   isFormSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
