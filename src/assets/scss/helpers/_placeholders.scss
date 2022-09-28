@@ -1,8 +1,12 @@
+// GENERAL
+
 %text-continued {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+// FLEX CENTER
 
 %flex-center,
 %flex-center-y,
@@ -22,6 +26,8 @@
 %flex-center-x {
   justify-content: center;
 }
+
+// ABSOLUTE CENTER
 
 %absolute-center,
 %absolute-center-y,
@@ -44,6 +50,8 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+// BACKGROUND IMAGE
 
 %background-image-contain,
 %background-image-cover {
