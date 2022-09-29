@@ -5,6 +5,7 @@ export { default as removeItemsFromArray } from './array/removeItemsFromArray';
 // AUTH
 export { default as clearStorageData } from './auth/clearStorageData';
 export { default as getAuthToken } from './auth/getAuthToken';
+export { default as isExpiredSession } from './auth/isExpiredSession';
 export { default as redirectLoggedUser } from './auth/redirectLoggedUser';
 
 // FORM
