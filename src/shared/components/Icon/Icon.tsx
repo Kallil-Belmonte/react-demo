@@ -18,7 +18,7 @@ type Props = {
 };
 
 const Icon = (props: Props) => {
-  const { className = '', name, size, fill } = props;
+  const { className = '', name, size, fill = 'currentColor' } = props;
 
   const [iconComponent, setIconComponent] = useState(null);
 
@@ -41,7 +41,7 @@ const Icon = (props: Props) => {
       className: `${iconClass} ${className} flex-center`,
       style: size ? { width: size, height: size } : {},
       ariaLabel,
-      fill: fill || 'currentColor',
+      fill,
     };
 
     try {
