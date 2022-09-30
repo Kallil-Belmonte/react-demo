@@ -6,7 +6,7 @@ import getAuthToken from './getAuthToken';
  */
 
 const isExpiredSession = () => {
-  if (!getAuthToken()) return false;
+  if (!getAuthToken()) return true;
   return new Date().getTime() > Date.parse(localStorage.getItem(AUTH_EXPIRATION_DATE_KEY) || '');
 };
 
