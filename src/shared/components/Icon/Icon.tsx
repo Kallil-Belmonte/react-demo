@@ -38,7 +38,7 @@ const Icon = (props: Props) => {
 
   const setComponent = useCallback(async () => {
     const moduleProps = {
-      className: `${iconClass} ${className} flex-center`,
+      className: `${iconClass} flex-center ${className}`,
       style: size ? { width: size, height: size } : {},
       ariaLabel,
       fill,
