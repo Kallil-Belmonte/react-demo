@@ -8,14 +8,14 @@ import { clearFormMessage, validateForm, setFields } from '@/shared/helpers';
 import { AlertDismissible, Input } from '@/shared/components';
 
 const initialState: AccountFormState = {
-  isFormSubmitted: false,
+  formSubmitted: false,
   successMessages: [],
   serverErrors: { email: [], request: [] },
 };
 
 const Form = () => {
   const [state, setState] = useCustomState<AccountFormState>(initialState);
-  const { isFormSubmitted, successMessages, serverErrors } = state;
+  const { formSubmitted, successMessages, serverErrors } = state;
 
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Form = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ isFormSubmitted: true });
+    setState({ formSubmitted: true });
 
     const isValidForm = validateForm([
       { fields: [firstName, lastName], validation: requiredMin(2) },
@@ -102,11 +102,11 @@ const Form = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <Input label="First name" field={firstName} isFormSubmitted={isFormSubmitted} />
+            <Input label="First name" field={firstName} formSubmitted={formSubmitted} />
           </div>
 
           <div className="mb-3">
-            <Input label="Last name" field={lastName} isFormSubmitted={isFormSubmitted} />
+            <Input label="Last name" field={lastName} formSubmitted={formSubmitted} />
           </div>
 
           <div className="col mb-3">
@@ -114,7 +114,7 @@ const Form = () => {
               type="email"
               label="E-mail address"
               field={email}
-              isFormSubmitted={isFormSubmitted}
+              formSubmitted={formSubmitted}
             />
           </div>
 

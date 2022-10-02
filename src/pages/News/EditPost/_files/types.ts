@@ -1,4 +1,4 @@
 export type EditPostFormState = {
-  isLoading: boolean;
-  isFormSubmitted: boolean;
+  loading: boolean;
+  formSubmitted: boolean;
 };

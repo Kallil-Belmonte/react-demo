@@ -13,13 +13,13 @@ import { Loader, Input } from '@/shared/components';
 import './Form.scss';
 
 const initialState: EditPostFormState = {
-  isLoading: false,
-  isFormSubmitted: false,
+  loading: false,
+  formSubmitted: false,
 };
 
 const Form = () => {
   const [state, setState] = useCustomState<EditPostFormState>(initialState);
-  const { isLoading, isFormSubmitted } = state;
+  const { loading, formSubmitted } = state;
 
   const { currentPost } = useSelector(state => state.news);
   const dispatch = useDispatch();
@@ -42,19 +42,19 @@ const Form = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ isFormSubmitted: true });
+    setState({ formSubmitted: true });
 
     const isValidForm = validateForm([{ fields: [title, body], validation: requiredMin(2) }]);
     if (!isValidForm) return;
 
-    setState({ isLoading: true });
+    setState({ loading: true });
 
     try {
       const payload: Post = {
@@ -69,7 +69,7 @@ const Form = () => {
       navigate(`/post/${id}`);
     } catch (error) {
       console.error(error);
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
@@ -80,15 +80,15 @@ const Form = () => {
 
   return (
     <>
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
 
       <form data-component="EditPostForm" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <Input label="Title" field={title} isFormSubmitted={isFormSubmitted} />
+          <Input label="Title" field={title} formSubmitted={formSubmitted} />
         </div>
 
         <div className="mb-3">
-          <Input label="Body" field={body} isFormSubmitted={isFormSubmitted} />
+          <Input label="Body" field={body} formSubmitted={formSubmitted} />
         </div>
 
         <button className="btn btn-primary me-2" type="submit">

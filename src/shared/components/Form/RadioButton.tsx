@@ -6,7 +6,7 @@ type Props = {
   className?: string;
   field: UseField<any>;
   radios: { label: string; value: string }[];
-  isFormSubmitted: boolean;
+  formSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
@@ -15,7 +15,7 @@ const RadioButton = ({
   className = '',
   field,
   radios,
-  isFormSubmitted,
+  formSubmitted,
   onChange,
   ...otherProps
 }: Props) => {
@@ -33,7 +33,7 @@ const RadioButton = ({
         <div
           key={radio.value}
           className={`${getFieldClass(
-            isFormSubmitted,
+            formSubmitted,
             state,
             'form-check form-check-inline',
           )} ${className}`}
@@ -43,7 +43,7 @@ const RadioButton = ({
           </label>
           <input
             id={radio.value}
-            className={`${getFieldClass(isFormSubmitted, state, 'form-check-input')} ${className}`}
+            className={`${getFieldClass(formSubmitted, state, 'form-check-input')} ${className}`}
             type="radio"
             name={state.name}
             value={radio.value}

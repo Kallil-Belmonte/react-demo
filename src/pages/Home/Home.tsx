@@ -8,7 +8,7 @@ import { Loader } from '@/shared/components';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
 const initialState: HomeState = {
-  isLoading: false,
+  loading: false,
   featuredPosts: [],
 };
 
@@ -17,14 +17,14 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const [state, setState] = useCustomState<HomeState>(initialState);
-  const { isLoading, featuredPosts } = state;
+  const { loading, featuredPosts } = state;
 
   const getFeaturedPosts = async () => {
     if (posts.length) {
       const [firstPost, secondPost, thirdPost] = posts;
       setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
     } else {
-      setState({ isLoading: true });
+      setState({ loading: true });
 
       try {
         const posts = await getPosts();
@@ -34,7 +34,7 @@ const Home = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setState({ isLoading: false });
+        setState({ loading: false });
       }
     }
   };
@@ -46,7 +46,7 @@ const Home = () => {
 
   return (
     <main data-component="Home">
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
       <FeaturedPosts posts={featuredPosts} />
     </main>
   );

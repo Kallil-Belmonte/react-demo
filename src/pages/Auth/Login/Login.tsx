@@ -12,8 +12,8 @@ import { AlertDismissible, Loader, Input, Checkbox } from '@/shared/components';
 import Auth from '../Auth';
 
 const initialState: FormState = {
-  isLoading: false,
-  isFormSubmitted: false,
+  loading: false,
+  formSubmitted: false,
   serverErrors: {
     email: [],
     password: [],
@@ -23,7 +23,7 @@ const initialState: FormState = {
 
 const Login = () => {
   const [state, setState] = useCustomState<FormState>(initialState);
-  const { isLoading, isFormSubmitted, serverErrors } = state;
+  const { loading, formSubmitted, serverErrors } = state;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Login = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ isFormSubmitted: true });
+    setState({ formSubmitted: true });
 
     const isValidForm = validateForm([
       { fields: [email], validation: requiredEmail },
@@ -44,7 +44,7 @@ const Login = () => {
     if (!isValidForm) return;
 
     setState({
-      isLoading: true,
+      loading: true,
       serverErrors: { email: [], password: [], request: [] },
     });
 
@@ -91,7 +91,7 @@ const Login = () => {
         },
       });
     } finally {
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
@@ -101,18 +101,13 @@ const Login = () => {
 
   return (
     <Auth>
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <h1 className="page-title">Login</h1>
 
         <div className="mb-3">
-          <Input
-            type="email"
-            label="E-mail address"
-            field={email}
-            isFormSubmitted={isFormSubmitted}
-          />
+          <Input type="email" label="E-mail address" field={email} formSubmitted={formSubmitted} />
         </div>
 
         {serverErrors.email.map((errorMessage, index) => (
@@ -126,12 +121,7 @@ const Login = () => {
         ))}
 
         <div className="mb-3">
-          <Input
-            type="password"
-            label="Password"
-            field={password}
-            isFormSubmitted={isFormSubmitted}
-          />
+          <Input type="password" label="Password" field={password} formSubmitted={formSubmitted} />
         </div>
 
         {serverErrors.password.map((errorMessage, index) => (
@@ -150,7 +140,7 @@ const Login = () => {
             trueValue={true}
             falseValue={false}
             field={keepLogged}
-            isFormSubmitted={isFormSubmitted}
+            formSubmitted={formSubmitted}
           />
         </div>
 

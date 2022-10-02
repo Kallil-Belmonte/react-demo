@@ -1,11 +1,11 @@
 import './Loader.scss';
 
 type Props = {
-  isLoading: boolean;
+  loading: boolean;
 };
 
-const Loader = ({ isLoading }: Props) => {
-  if (!isLoading) return null;
+const Loader = ({ loading }: Props) => {
+  if (!loading) return null;
   return (
     <section data-component="Loader">
       <div className="atom-spinner">

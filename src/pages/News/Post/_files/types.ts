@@ -5,9 +5,9 @@ export type PostProps = {
 };
 
 export type PostState = {
-  isLoading: boolean;
+  loading: boolean;
 };
 
 export type DeletePostModalState = {
-  isLoading: boolean;
+  loading: boolean;
 };

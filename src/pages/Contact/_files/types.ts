@@ -1,8 +1,8 @@
 import { FavoriteColors } from '@/core/services/contact/types';
 
 export type ContactFormState = {
-  isLoading: boolean;
-  isFormSubmitted: boolean;
+  loading: boolean;
+  formSubmitted: boolean;
   favoriteColors: FavoriteColors[];
   successMessages: string[];
 };

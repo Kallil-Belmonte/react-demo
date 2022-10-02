@@ -28,7 +28,7 @@ export type PostsPerPageProps = {
 };
 
 export type BlogState = {
-  isLoading: boolean;
+  loading: boolean;
   pages: { [key: string]: Post[] };
   postsPerPage: number;
   firstPaginationItem: number;

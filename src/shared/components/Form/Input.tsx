@@ -9,7 +9,7 @@ type Props = {
   type?: string;
   placeholder?: string;
   field: UseField<any>;
-  isFormSubmitted: boolean;
+  formSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
@@ -20,7 +20,7 @@ const Input = ({
   className = '',
   type = 'text',
   field,
-  isFormSubmitted,
+  formSubmitted,
   onChange,
   ...otherProps
 }: Props) => {
@@ -39,7 +39,7 @@ const Input = ({
       </label>
       <input
         id={state.name}
-        className={`${getFieldClass(isFormSubmitted, state, baseClasses)} ${className}`}
+        className={`${getFieldClass(formSubmitted, state, baseClasses)} ${className}`}
         type={type}
         name={state.name}
         value={value}

@@ -16,15 +16,15 @@ import {
 } from '@/shared/components';
 
 const initialState: ContactFormState = {
-  isLoading: true,
-  isFormSubmitted: false,
+  loading: true,
+  formSubmitted: false,
   favoriteColors: [],
   successMessages: [],
 };
 
 const Form = () => {
   const [state, setState] = useCustomState<ContactFormState>(initialState);
-  const { isLoading, isFormSubmitted, favoriteColors, successMessages } = state;
+  const { loading, formSubmitted, favoriteColors, successMessages } = state;
 
   const firstName = useField({ name: 'first-name', validation: requiredMin(2) });
   const lastName = useField({ name: 'last-name', validation: requiredMin(2) });
@@ -47,12 +47,12 @@ const Form = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
   const reset = () => {
-    setState({ isFormSubmitted: false });
+    setState({ formSubmitted: false });
 
     setFields({
       fields: [firstName, lastName, email, telephone, sex, message],
@@ -74,7 +74,7 @@ const Form = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ isFormSubmitted: true });
+    setState({ formSubmitted: true });
 
     const isValidForm = validateForm([
       { fields: [firstName, lastName], validation: requiredMin(2) },
@@ -111,7 +111,7 @@ const Form = () => {
 
   return (
     <>
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
 
       <form data-component="Form" className="auth-form" onSubmit={handleSubmit}>
         {successMessages.map(successMessage => (
@@ -126,11 +126,11 @@ const Form = () => {
 
         <div className="row">
           <div className="col mb-3">
-            <Input label="First name" field={firstName} isFormSubmitted={isFormSubmitted} />
+            <Input label="First name" field={firstName} formSubmitted={formSubmitted} />
           </div>
 
           <div className="col mb-3">
-            <Input label="Last name" field={lastName} isFormSubmitted={isFormSubmitted} />
+            <Input label="Last name" field={lastName} formSubmitted={formSubmitted} />
           </div>
         </div>
 
@@ -140,12 +140,12 @@ const Form = () => {
               type="email"
               label="E-mail address"
               field={email}
-              isFormSubmitted={isFormSubmitted}
+              formSubmitted={formSubmitted}
             />
           </div>
 
           <div className="col mb-3">
-            <Input label="Telephone" field={telephone} isFormSubmitted={isFormSubmitted} />
+            <Input label="Telephone" field={telephone} formSubmitted={formSubmitted} />
           </div>
         </div>
 
@@ -157,7 +157,7 @@ const Form = () => {
                 { label: 'Male', value: 'male' },
                 { label: 'Female', value: 'female' },
               ]}
-              isFormSubmitted={isFormSubmitted}
+              formSubmitted={formSubmitted}
             />
           </div>
         </div>
@@ -170,7 +170,7 @@ const Form = () => {
                 favoriteColorState.touched && favoriteColorValue === 'select' ? 'is-invalid' : ''
               }`}
               field={favoriteColor}
-              isFormSubmitted={isFormSubmitted}
+              formSubmitted={formSubmitted}
             >
               <option value="select" disabled>
                 Select
@@ -189,14 +189,14 @@ const Form = () => {
                 trueValue
                 falseValue={false}
                 field={employed}
-                isFormSubmitted={isFormSubmitted}
+                formSubmitted={formSubmitted}
               />
             </div>
           </div>
         </div>
 
         <div className="mb-3">
-          <Textarea label="Message" field={message} isFormSubmitted={isFormSubmitted} />
+          <Textarea label="Message" field={message} formSubmitted={formSubmitted} />
         </div>
 
         <button className="btn btn-primary me-2" type="submit">

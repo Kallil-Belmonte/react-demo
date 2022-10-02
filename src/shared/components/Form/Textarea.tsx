@@ -8,7 +8,7 @@ type Props = {
   className?: string;
   rows?: number;
   field: UseField<any>;
-  isFormSubmitted: boolean;
+  formSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
@@ -19,7 +19,7 @@ const Input = ({
   className = '',
   rows = 3,
   field,
-  isFormSubmitted,
+  formSubmitted,
   onChange,
   ...otherProps
 }: Props) => {
@@ -38,7 +38,7 @@ const Input = ({
       </label>
       <textarea
         id={state.name}
-        className={`${getFieldClass(isFormSubmitted, state, baseClasses)} ${className}`}
+        className={`${getFieldClass(formSubmitted, state, baseClasses)} ${className}`}
         name={state.name}
         rows={rows}
         value={value}

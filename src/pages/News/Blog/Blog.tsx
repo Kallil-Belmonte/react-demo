@@ -16,7 +16,7 @@ import './Blog.scss';
 const { keys } = Object;
 
 const initialState: BlogState = {
-  isLoading: true,
+  loading: true,
   pages: {},
   postsPerPage: 9,
   firstPaginationItem: 1,
@@ -29,7 +29,7 @@ const Blog = () => {
   const dispatch = useDispatch();
 
   const [state, setState] = useCustomState<BlogState>(initialState);
-  const { isLoading, pages, postsPerPage, firstPaginationItem, maxPaginationItem, currentPage } =
+  const { loading, pages, postsPerPage, firstPaginationItem, maxPaginationItem, currentPage } =
     state;
 
   const setPaginationSettings = (posts: Post[], quantPostsPerPage = 9) => {
@@ -64,13 +64,13 @@ const Blog = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
   const handleSelectCategory = async (category: Category['name']) => {
     console.log(category);
-    setState({ isLoading: true });
+    setState({ loading: true });
 
     try {
       const response = await getPosts();
@@ -79,7 +79,7 @@ const Blog = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
@@ -105,7 +105,7 @@ const Blog = () => {
 
   return (
     <main data-component="Blog">
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
 
       <div className="container">
         <PageHeader icon="Newspaper">Blog</PageHeader>

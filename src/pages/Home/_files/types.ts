@@ -5,6 +5,6 @@ export type FeaturedPostsProps = {
 };
 
 export type HomeState = {
-  isLoading: boolean;
+  loading: boolean;
   featuredPosts: Post[];
 };

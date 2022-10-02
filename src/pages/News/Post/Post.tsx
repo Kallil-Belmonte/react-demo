@@ -11,7 +11,7 @@ import PostBody from './PostBody/PostBody';
 import DeletePostModal from './DeletePostModal/DeletePostModal';
 
 const initialState: PostState = {
-  isLoading: true,
+  loading: true,
 };
 
 const Post = () => {
@@ -21,7 +21,7 @@ const Post = () => {
   const { id = '' } = useParams<{ id?: string }>();
 
   const [state, setState] = useCustomState<PostState>(initialState);
-  const { isLoading } = state;
+  const { loading } = state;
 
   const getCurrentPost = async () => {
     try {
@@ -30,7 +30,7 @@ const Post = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
@@ -41,7 +41,7 @@ const Post = () => {
 
   return (
     <main data-component="Post">
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
 
       <div className="container">
         <div className="row">

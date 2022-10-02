@@ -8,7 +8,7 @@ type Props = {
   trueValue: string | number | boolean;
   falseValue: string | number | boolean;
   field: UseField<any>;
-  isFormSubmitted: boolean;
+  formSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
@@ -19,7 +19,7 @@ const Checkbox = ({
   trueValue,
   falseValue,
   field,
-  isFormSubmitted,
+  formSubmitted,
   onChange,
   ...otherProps
 }: Props) => {
@@ -38,7 +38,7 @@ const Checkbox = ({
       </label>
       <input
         id={state.name}
-        className={`${getFieldClass(isFormSubmitted, state, 'form-check-input')} ${className}`}
+        className={`${getFieldClass(formSubmitted, state, 'form-check-input')} ${className}`}
         type="checkbox"
         name={state.name}
         value={value}

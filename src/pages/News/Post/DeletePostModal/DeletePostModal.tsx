@@ -9,7 +9,7 @@ import { deletePost } from '@/core/services';
 import { Loader } from '@/shared/components';
 
 const initialState: DeletePostModalState = {
-  isLoading: false,
+  loading: false,
 };
 
 const DeletePostModal = () => {
@@ -19,7 +19,7 @@ const DeletePostModal = () => {
   const modalRef = useRef<any>(null);
 
   const [state, setState] = useCustomState<DeletePostModalState>(initialState);
-  const { isLoading } = state;
+  const { loading } = state;
 
   const setUpModal = () => {
     modalRef.current.value = new Modal(modalRef.current);
@@ -27,14 +27,14 @@ const DeletePostModal = () => {
 
   const handleConfirmDeletePost = async () => {
     modalRef.current.value.hide();
-    setState({ isLoading: true });
+    setState({ loading: true });
 
     try {
       await deletePost(id);
       navigate('/blog');
     } catch (error) {
       console.error(error);
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
@@ -45,7 +45,7 @@ const DeletePostModal = () => {
 
   return (
     <>
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
 
       <div id="delete-post-modal" className="modal fade" tabIndex={-1} ref={modalRef}>
         <div className="modal-dialog">

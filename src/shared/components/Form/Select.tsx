@@ -6,7 +6,7 @@ type Props = {
   label: string;
   className?: string;
   field: UseField<any>;
-  isFormSubmitted: boolean;
+  formSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   children: React.ReactNode;
 };
@@ -16,7 +16,7 @@ const Input = ({
   label,
   className = '',
   field,
-  isFormSubmitted,
+  formSubmitted,
   onChange,
   children,
   ...otherProps
@@ -36,7 +36,7 @@ const Input = ({
       </label>
       <select
         id={state.name}
-        className={`${getFieldClass(isFormSubmitted, state, 'form-select')} ${className}`}
+        className={`${getFieldClass(formSubmitted, state, 'form-select')} ${className}`}
         name={state.name}
         value={value}
         ref={ref as React.LegacyRef<HTMLSelectElement>}

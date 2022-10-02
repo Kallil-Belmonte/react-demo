@@ -12,8 +12,8 @@ import { AlertDismissible, Loader, Input } from '@/shared/components';
 import Auth from '../Auth';
 
 const initialState: FormState = {
-  isLoading: false,
-  isFormSubmitted: false,
+  loading: false,
+  formSubmitted: false,
   serverErrors: {
     email: [],
     password: [],
@@ -23,7 +23,7 @@ const initialState: FormState = {
 
 const Register = () => {
   const [state, setState] = useCustomState<FormState>(initialState);
-  const { isLoading, isFormSubmitted, serverErrors } = state;
+  const { loading, formSubmitted, serverErrors } = state;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const Register = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ isFormSubmitted: true });
+    setState({ formSubmitted: true });
 
     const isValidForm = validateForm([
       { fields: [firstName, lastName], validation: requiredMin(2) },
@@ -46,7 +46,7 @@ const Register = () => {
     if (!isValidForm) return;
 
     setState({
-      isLoading: true,
+      loading: true,
       serverErrors: { email: [], password: [], request: [] },
     });
 
@@ -84,7 +84,7 @@ const Register = () => {
         },
       });
     } finally {
-      setState({ isLoading: false });
+      setState({ loading: false });
     }
   };
 
@@ -94,26 +94,21 @@ const Register = () => {
 
   return (
     <Auth>
-      <Loader isLoading={isLoading} />
+      <Loader loading={loading} />
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <h1 className="page-title">Register</h1>
 
         <div className="mb-3">
-          <Input label="First name" field={firstName} isFormSubmitted={isFormSubmitted} />
+          <Input label="First name" field={firstName} formSubmitted={formSubmitted} />
         </div>
 
         <div className="mb-3">
-          <Input label="Last name" field={lastName} isFormSubmitted={isFormSubmitted} />
+          <Input label="Last name" field={lastName} formSubmitted={formSubmitted} />
         </div>
 
         <div className="mb-3">
-          <Input
-            type="email"
-            label="E-mail address"
-            field={email}
-            isFormSubmitted={isFormSubmitted}
-          />
+          <Input type="email" label="E-mail address" field={email} formSubmitted={formSubmitted} />
         </div>
 
         {serverErrors.email.map((errorMessage, index) => (
@@ -127,12 +122,7 @@ const Register = () => {
         ))}
 
         <div className="mb-3">
-          <Input
-            type="password"
-            label="Password"
-            field={password}
-            isFormSubmitted={isFormSubmitted}
-          />
+          <Input type="password" label="Password" field={password} formSubmitted={formSubmitted} />
         </div>
 
         {serverErrors.password.map((errorMessage, index) => (

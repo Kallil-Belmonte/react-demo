@@ -1,5 +1,5 @@
 export type AccountFormState = {
-  isFormSubmitted: boolean;
+  formSubmitted: boolean;
   successMessages: string[];
   serverErrors: {
     email: string[];
