@@ -4,7 +4,7 @@ import { UseField } from '@/shared/hooks';
 type Props = {
   labelClass?: string;
   label: string;
-  baseClasses?: string;
+  fieldClasses?: string;
   className?: string;
   rows?: number;
   field: UseField<any>;
@@ -15,8 +15,7 @@ type Props = {
 const Input = ({
   labelClass = 'form-label',
   label,
-  baseClasses,
-  className = '',
+  fieldClasses,
   rows = 3,
   field,
   formSubmitted,
@@ -38,7 +37,7 @@ const Input = ({
       </label>
       <textarea
         id={state.name}
-        className={`${getFieldClass(formSubmitted, state, baseClasses)} ${className}`}
+        className={`${getFieldClass(formSubmitted, state, fieldClasses)}`}
         name={state.name}
         rows={rows}
         value={value}

@@ -4,7 +4,7 @@ import { UseField } from '@/shared/hooks';
 type Props = {
   labelClass?: string;
   label: string;
-  baseClasses?: string;
+  fieldClasses?: string;
   className?: string;
   type?: string;
   placeholder?: string;
@@ -16,8 +16,7 @@ type Props = {
 const Input = ({
   labelClass = 'form-label',
   label,
-  baseClasses,
-  className = '',
+  fieldClasses,
   type = 'text',
   field,
   formSubmitted,
@@ -39,7 +38,7 @@ const Input = ({
       </label>
       <input
         id={state.name}
-        className={`${getFieldClass(formSubmitted, state, baseClasses)} ${className}`}
+        className={`${getFieldClass(formSubmitted, state, fieldClasses)}`}
         type={type}
         name={state.name}
         value={value}
