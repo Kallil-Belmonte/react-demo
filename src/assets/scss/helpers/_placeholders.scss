@@ -38,17 +38,17 @@
 %absolute-center {
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  translate: -50% -50%;
 }
 
 %absolute-center-y {
   top: 50%;
-  transform: translateY(-50%);
+  translate: 0 -50%;
 }
 
 %absolute-center-x {
   left: 50%;
-  transform: translateX(-50%);
+  translate: -50% 0;
 }
 
 // BACKGROUND IMAGE
