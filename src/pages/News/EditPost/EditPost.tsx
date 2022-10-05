@@ -1,6 +1,8 @@
+import { FunctionComponent } from 'react';
+
 import Form from '@/pages/News/EditPost/Form/Form';
 
-const EditPost = () => {
+const EditPost: FunctionComponent = () => {
   return (
     <main data-component="EditPost">
       <div className="container">

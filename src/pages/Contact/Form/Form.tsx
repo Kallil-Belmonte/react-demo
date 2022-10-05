@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { ContactFormState } from '@/pages/Contact/_files/types';
 import { required, requiredEmail, requiredMin, custom } from '@/shared/files/validations';
@@ -22,7 +22,7 @@ const initialState: ContactFormState = {
   successMessages: [],
 };
 
-const Form = () => {
+const Form: FunctionComponent = () => {
   const [state, setState] = useCustomState<ContactFormState>(initialState);
   const { loading, formSubmitted, favoriteColors, successMessages } = state;
 

@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 import { ReactType, BootstrapVariants } from '@/shared/files/types';
 
 type Props = {
@@ -6,7 +8,7 @@ type Props = {
   children: ReactType;
 };
 
-const AlertDismissible = ({ variant, onDismiss, children }: Props) => {
+const AlertDismissible: FunctionComponent<Props> = ({ variant, onDismiss, children }) => {
   return (
     <div className={`alert alert-${variant} alert-dismissible fade show`} role="alert">
       {children}

@@ -1,8 +1,10 @@
+import { FunctionComponent } from 'react';
+
 import { PageHeader } from '@/shared/components';
 import Form from '@/pages/Contact/Form/Form';
 import './Contact.scss';
 
-const Contact = () => {
+const Contact: FunctionComponent = () => {
   return (
     <main data-component="Contact">
       <div className="container">

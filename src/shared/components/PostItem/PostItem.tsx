@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { FunctionComponent, memo } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ type Props = {
   post: Post;
 };
 
-const PostItem = ({ post }: Props) => {
+const PostItem: FunctionComponent<Props> = ({ post }) => {
   return (
     <div data-component="PostItem">
       {post.image ? (

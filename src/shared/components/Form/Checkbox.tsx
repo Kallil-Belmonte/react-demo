@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
@@ -12,7 +14,7 @@ type Props = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-const Checkbox = ({
+const Checkbox: FunctionComponent<Props> = ({
   labelClass = 'form-check-label',
   label,
   className = '',
@@ -22,7 +24,7 @@ const Checkbox = ({
   formSubmitted,
   onChange,
   ...otherProps
-}: Props) => {
+}) => {
   const { value, ref, state, onSetValue } = field;
   const { errorMessages } = state;
 

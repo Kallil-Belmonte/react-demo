@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import { redirectLoggedUser } from '@/shared/helpers';
 import Logo from '@/assets/icons/brand/logo.svg';
 import './Auth.scss';
 
-const Auth = ({ children }: AuthProps) => {
+const Auth: FunctionComponent<AuthProps> = ({ children }) => {
   const navigate = useNavigate();
 
   // LIFECYCLE HOOKS

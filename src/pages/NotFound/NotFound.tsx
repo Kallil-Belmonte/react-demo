@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import { setPageTitle } from '@/shared/helpers';
 import './NotFound.scss';
 
-const NotFound = () => {
+const NotFound: FunctionComponent = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     setPageTitle('Error 404');

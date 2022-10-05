@@ -1,6 +1,8 @@
+import { FunctionComponent } from 'react';
+
 import { IconProps } from '../Icon';
 
-const AppUser = ({ className, style, ariaLabel, fill }: IconProps) => {
+const AppUser: FunctionComponent<IconProps> = ({ className, style, ariaLabel, fill }) => {
   return (
     <figure className={`icon ${className}`} style={style}>
       <svg

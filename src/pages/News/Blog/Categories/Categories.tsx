@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 import { Category } from '@/core/services/news/types';
 import { CategoriesProps, CategoriesState } from '@/pages/News/Blog/_files/types';
 import { useCustomState } from '@/shared/hooks';
@@ -7,7 +9,7 @@ const initialState: CategoriesState = {
   activeCategory: '',
 };
 
-const Categories = ({ categories, onSelectCategory }: CategoriesProps) => {
+const Categories: FunctionComponent<CategoriesProps> = ({ categories, onSelectCategory }) => {
   const [state, setState] = useCustomState<CategoriesState>(initialState);
   const { activeCategory } = state;
 

@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 import { useNavigate, NavLink } from 'react-router-dom';
 
 import { FormState } from '@/pages/Auth/_files/types';
@@ -21,7 +23,7 @@ const initialState: FormState = {
   },
 };
 
-const Login = () => {
+const Login: FunctionComponent = () => {
   const [state, setState] = useCustomState<FormState>(initialState);
   const { loading, formSubmitted, serverErrors } = state;
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const initialState: EditPostFormState = {
   formSubmitted: false,
 };
 
-const Form = () => {
+const Form: FunctionComponent = () => {
   const [state, setState] = useCustomState<EditPostFormState>(initialState);
   const { loading, formSubmitted } = state;
 

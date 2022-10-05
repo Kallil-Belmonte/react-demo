@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
@@ -13,7 +15,7 @@ type Props = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-const Input = ({
+const Input: FunctionComponent<Props> = ({
   labelClass = 'form-label',
   label,
   fieldClasses,
@@ -22,7 +24,7 @@ const Input = ({
   formSubmitted,
   onChange,
   ...otherProps
-}: Props) => {
+}) => {
   const { value = '', ref, state, onSetValue } = field;
   const { errorMessages } = state;
 

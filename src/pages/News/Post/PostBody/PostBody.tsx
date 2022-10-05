@@ -1,9 +1,11 @@
+import { FunctionComponent } from 'react';
+
 import { NavLink } from 'react-router-dom';
 
 import { PostProps } from '@/pages/News/Post/_files/types';
 import './PostBody.scss';
 
-const PostBody = ({ post }: PostProps) => {
+const PostBody: FunctionComponent<PostProps> = ({ post }) => {
   return (
     <section data-component="PostBody">
       <article>

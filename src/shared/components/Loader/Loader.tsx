@@ -1,10 +1,12 @@
+import { FunctionComponent } from 'react';
+
 import './Loader.scss';
 
 type Props = {
   loading: boolean;
 };
 
-const Loader = ({ loading }: Props) => {
+const Loader: FunctionComponent<Props> = ({ loading }) => {
   if (!loading) return null;
   return (
     <section data-component="Loader">

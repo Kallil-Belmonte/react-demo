@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { AccountFormState } from '@/pages/Account/_files/types';
 import { requiredEmail, requiredMin } from '@/shared/files/validations';
@@ -13,7 +13,7 @@ const initialState: AccountFormState = {
   serverErrors: { email: [], request: [] },
 };
 
-const Form = () => {
+const Form: FunctionComponent = () => {
   const [state, setState] = useCustomState<AccountFormState>(initialState);
   const { formSubmitted, successMessages, serverErrors } = state;
 

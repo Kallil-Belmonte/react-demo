@@ -1,9 +1,11 @@
+import { FunctionComponent } from 'react';
+
 import { PostsProps } from '@/pages/News/Blog/_files/types';
 import { PostItem } from '@/shared/components';
 
 const { keys } = Object;
 
-const Posts = ({ pages, currentPage }: PostsProps) => {
+const Posts: FunctionComponent<PostsProps> = ({ pages, currentPage }) => {
   return (
     <section data-component="Posts">
       <div className="row">

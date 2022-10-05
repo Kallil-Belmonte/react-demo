@@ -1,4 +1,4 @@
-import { CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
+import { FunctionComponent, CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
 
 import { firstLetterToUpperCase } from '@/shared/helpers';
 import { Icons } from './types';
@@ -17,7 +17,7 @@ type Props = {
   fill?: string;
 };
 
-const Icon = (props: Props) => {
+const Icon: FunctionComponent<Props> = props => {
   const { className = '', name, size, fill = 'currentColor' } = props;
 
   const [iconComponent, setIconComponent] = useState(null);

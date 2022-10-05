@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { FunctionComponent, useRef, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from 'bootstrap';
@@ -12,7 +12,7 @@ const initialState: DeletePostModalState = {
   loading: false,
 };
 
-const DeletePostModal = () => {
+const DeletePostModal: FunctionComponent = () => {
   const navigate = useNavigate();
   const { id = '' } = useParams<{ id?: string }>();
 

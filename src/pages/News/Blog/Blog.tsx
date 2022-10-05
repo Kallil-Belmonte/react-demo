@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { Category, Post } from '@/core/services/news/types';
 import { BlogState } from '@/pages/News/Blog/_files/types';
@@ -24,7 +24,7 @@ const initialState: BlogState = {
   currentPage: 1,
 };
 
-const Blog = () => {
+const Blog: FunctionComponent = () => {
   const { categories, posts } = useSelector(state => state.news);
   const dispatch = useDispatch();
 

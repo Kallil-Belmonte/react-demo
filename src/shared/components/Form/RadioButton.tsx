@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
@@ -10,7 +12,7 @@ type Props = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-const RadioButton = ({
+const RadioButton: FunctionComponent<Props> = ({
   labelClass = 'form-check-label',
   className = '',
   field,
@@ -18,7 +20,7 @@ const RadioButton = ({
   formSubmitted,
   onChange,
   ...otherProps
-}: Props) => {
+}) => {
   const { value, state, onSetValue } = field;
   const { errorMessages } = state;
 

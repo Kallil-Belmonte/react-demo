@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { HomeState } from '@/pages/Home/_files/types';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
@@ -12,7 +12,7 @@ const initialState: HomeState = {
   featuredPosts: [],
 };
 
-const Home = () => {
+const Home: FunctionComponent = () => {
   const { posts } = useSelector(state => state.news);
   const dispatch = useDispatch();
 

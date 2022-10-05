@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const initialState: PostState = {
   loading: true,
 };
 
-const Post = () => {
+const Post: FunctionComponent = () => {
   const { currentPost } = useSelector(state => state.news);
   const dispatch = useDispatch();
 

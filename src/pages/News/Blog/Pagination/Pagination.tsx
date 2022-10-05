@@ -1,6 +1,14 @@
+import { FunctionComponent } from 'react';
+
 import { PaginationProps } from '@/pages/News/Blog/_files/types';
 
-const Pagination = ({ pages, firstItem, maxItem, currentPage, onPaginate }: PaginationProps) => {
+const Pagination: FunctionComponent<PaginationProps> = ({
+  pages,
+  firstItem,
+  maxItem,
+  currentPage,
+  onPaginate,
+}) => {
   const startPages = firstItem - 1;
   const endPages = startPages + maxItem;
 

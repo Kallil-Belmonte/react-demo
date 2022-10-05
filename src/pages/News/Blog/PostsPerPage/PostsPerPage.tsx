@@ -1,7 +1,9 @@
+import { FunctionComponent } from 'react';
+
 import { PostsPerPageProps } from '@/pages/News/Blog/_files/types';
 import './PostsPerPage.scss';
 
-const PostsPerPage = ({ postsPerPage, onChange }: PostsPerPageProps) => {
+const PostsPerPage: FunctionComponent<PostsPerPageProps> = ({ postsPerPage, onChange }) => {
   return (
     <section data-component="PostsPerPage">
       <div className="container">
