@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect } from 'react';
 
 import { ContactFormState } from '@/pages/Contact/_files/types';
-import { required, requiredEmail, requiredMin, custom } from '@/shared/files/validations';
+import { required, requiredEmail, requiredSelect, requiredMin } from '@/shared/files/validations';
 import { validateForm, setFields } from '@/shared/helpers';
 import { useCustomState, useField } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
@@ -81,10 +81,7 @@ const Form: FunctionComponent = () => {
       { fields: [email], validation: requiredEmail },
       { fields: [telephone], validation: requiredMin(8) },
       { fields: [sex, message], validation: required },
-      {
-        fields: [favoriteColor],
-        validation: custom(favoriteColorValue !== 'select', 'Value required.'),
-      },
+      { fields: [favoriteColor], validation: requiredSelect(favoriteColorValue) },
     ]);
     if (!isValidForm) return;
 
