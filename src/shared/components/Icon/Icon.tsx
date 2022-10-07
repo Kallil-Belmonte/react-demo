@@ -7,18 +7,18 @@ export type IconProps = {
   className: string;
   style: CSSProperties;
   ariaLabel: string;
-  fill: string;
+  color: string;
 };
 
 type Props = {
   className?: string;
   name: Icons;
   size?: string;
-  fill?: string;
+  color?: string;
 };
 
 const Icon: FunctionComponent<Props> = props => {
-  const { className = '', name, size, fill = 'currentColor' } = props;
+  const { className = '', name, size, color = 'currentColor' } = props;
 
   const [iconComponent, setIconComponent] = useState(null);
 
@@ -41,7 +41,7 @@ const Icon: FunctionComponent<Props> = props => {
       className: `${iconClass} flex-center ${className}`,
       style: size ? { width: size, height: size } : {},
       ariaLabel,
-      fill,
+      color,
     };
 
     try {
