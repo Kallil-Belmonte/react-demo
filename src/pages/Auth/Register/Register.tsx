@@ -79,14 +79,13 @@ const Register: FunctionComponent = () => {
       }
     } catch (error: any) {
       setState({
+        loading: false,
         serverErrors: {
           email: [],
           password: [],
           request: [error.message],
         },
       });
-    } finally {
-      setState({ loading: false });
     }
   };
 
