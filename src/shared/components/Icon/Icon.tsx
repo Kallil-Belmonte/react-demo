@@ -28,7 +28,7 @@ const Icon: FunctionComponent<Props> = props => {
       return result.toLowerCase();
     };
     const iconName = name.split('').map(convertLetters).join('');
-    return `${iconName}-icon`;
+    return iconName;
   }, []);
 
   const ariaLabel = useMemo(() => {

@@ -2,9 +2,9 @@ import { FunctionComponent } from 'react';
 
 import { IconProps } from '../Icon';
 
-const AppHome: FunctionComponent<IconProps> = ({ className, style, ariaLabel, color }) => {
+const AppHome: FunctionComponent<IconProps> = ({ style, className, ariaLabel, color }) => {
   return (
-    <figure className={`icon ${className}`} style={style}>
+    <figure style={style} className={`icon ${className}`}>
       <svg
         role="img"
         aria-label={ariaLabel}
