@@ -1,4 +1,4 @@
-import { Category, Post } from '@/core/services/news/types';
+import type { Category, Post } from '@/core/services/news/types';
 
 export type CategoriesProps = {
   categories: Category[];

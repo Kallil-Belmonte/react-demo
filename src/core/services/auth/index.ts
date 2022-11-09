@@ -1,5 +1,5 @@
 import request from '@/core/services/_files/request';
-import { RegisterUserPayload, RegisterUser, LoginUserPayload, LoginUser, User } from './types';
+import type { RegisterUserPayload, RegisterUser, LoginUserPayload, LoginUser, User } from './types';
 
 const { stringify } = JSON;
 

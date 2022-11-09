@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from 'react';
 
-import { ContactFormState } from '@/pages/Contact/_files/types';
+import type { ContactFormState } from '@/pages/Contact/_files/types';
 import { required, requiredEmail, requiredSelect, requiredMin } from '@/shared/files/validations';
 import { validateForm, setFields } from '@/shared/helpers';
 import { useCustomState, useField } from '@/shared/hooks';

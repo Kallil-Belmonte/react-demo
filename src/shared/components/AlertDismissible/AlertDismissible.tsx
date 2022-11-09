@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-import { ReactType, BootstrapVariants } from '@/shared/files/types';
+import type { ReactType, BootstrapVariants } from '@/shared/files/types';
 
 type Props = {
   variant: BootstrapVariants;

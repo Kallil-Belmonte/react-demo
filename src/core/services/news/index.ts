@@ -1,5 +1,5 @@
 import request from '@/core/services/_files/request';
-import { Category, Post } from './types';
+import type { Category, Post } from './types';
 
 const { stringify } = JSON;
 

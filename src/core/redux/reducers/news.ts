@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Category, Post } from '@/core/services/news/types';
+import type { Category, Post } from '@/core/services/news/types';
 
 type NewsState = {
   categories: Category[];

@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect } from 'react';
 
-import { AccountFormState } from '@/pages/Account/_files/types';
+import type { AccountFormState } from '@/pages/Account/_files/types';
 import { requiredEmail, requiredMin } from '@/shared/files/validations';
 import { setUser } from '@/core/redux/reducers/auth';
 import { useSelector, useDispatch, useCustomState, useField } from '@/shared/hooks';

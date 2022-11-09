@@ -2,8 +2,8 @@ import { FunctionComponent, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Post } from '@/core/services/news/types';
-import { EditPostFormState } from '@/pages/News/EditPost/_files/types';
+import type { Post } from '@/core/services/news/types';
+import type { EditPostFormState } from '@/pages/News/EditPost/_files/types';
 import { requiredMin } from '@/shared/files/validations';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { validateForm, setFields } from '@/shared/helpers';

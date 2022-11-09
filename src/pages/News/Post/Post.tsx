@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { PostState } from '@/pages/News/Post/_files/types';
+import type { PostState } from '@/pages/News/Post/_files/types';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getPost } from '@/core/services';

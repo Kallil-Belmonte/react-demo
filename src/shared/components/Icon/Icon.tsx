@@ -1,7 +1,7 @@
 import { FunctionComponent, CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
 
 import { firstLetterToUpperCase } from '@/shared/helpers';
-import { Icons } from './types';
+import type { Icons } from './types';
 
 export type IconProps = {
   className: string;

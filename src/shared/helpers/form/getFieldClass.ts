@@ -1,4 +1,4 @@
-import { FieldState } from '@/shared/hooks';
+import type { FieldState } from '@/shared/hooks';
 
 /**
  * @name getFieldClass

@@ -1,4 +1,4 @@
-import { ReactType } from '@/shared/files/types';
+import type { ReactType } from '@/shared/files/types';
 
 export type AuthProps = {
   children: ReactType;

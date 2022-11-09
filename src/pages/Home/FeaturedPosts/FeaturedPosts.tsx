@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-import { FeaturedPostsProps } from '@/pages/Home/_files/types';
+import type { FeaturedPostsProps } from '@/pages/Home/_files/types';
 import { PostItem } from '@/shared/components';
 
 const FeaturedPosts: FunctionComponent<FeaturedPostsProps> = ({ posts }) => {

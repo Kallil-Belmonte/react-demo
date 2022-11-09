@@ -1,4 +1,4 @@
-import { FavoriteColors } from '@/core/services/contact/types';
+import type { FavoriteColors } from '@/core/services/contact/types';
 
 export type ContactFormState = {
   loading: boolean;

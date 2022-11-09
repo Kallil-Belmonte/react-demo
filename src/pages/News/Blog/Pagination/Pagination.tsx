@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-import { PaginationProps } from '@/pages/News/Blog/_files/types';
+import type { PaginationProps } from '@/pages/News/Blog/_files/types';
 
 const Pagination: FunctionComponent<PaginationProps> = ({
   pages,

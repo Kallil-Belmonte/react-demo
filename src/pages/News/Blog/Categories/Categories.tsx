@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 
-import { Category } from '@/core/services/news/types';
-import { CategoriesProps, CategoriesState } from '@/pages/News/Blog/_files/types';
+import type { Category } from '@/core/services/news/types';
+import type { CategoriesProps, CategoriesState } from '@/pages/News/Blog/_files/types';
 import { useCustomState } from '@/shared/hooks';
 import './Categories.scss';
 

@@ -1,7 +1,7 @@
 import { FunctionComponent, memo } from 'react';
 
-import { ReactType } from '@/shared/files/types';
-import { Icons } from '../Icon/types';
+import type { ReactType } from '@/shared/files/types';
+import type { Icons } from '../Icon/types';
 import Icon from '../Icon/Icon';
 import './PageHeader.scss';
 

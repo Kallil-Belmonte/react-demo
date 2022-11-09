@@ -2,8 +2,8 @@ import { FunctionComponent } from 'react';
 
 import { useNavigate, NavLink } from 'react-router-dom';
 
-import { FormState } from '@/pages/Auth/_files/types';
-import { LoginUserPayload } from '@/core/services/auth/types';
+import type { FormState } from '@/pages/Auth/_files/types';
+import type { LoginUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY, AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import { requiredEmail, requiredMin } from '@/shared/files/validations';
 import { clearFormMessage, validateForm } from '@/shared/helpers';

@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 
-import { ReactType } from '@/shared/files/types';
+import type { ReactType } from '@/shared/files/types';
 import { clearStorageData, isExpiredSession, setPageTitle } from '@/shared/helpers';
 import Dashboard from '@/core/layout/Dashboard/Dashboard';
 

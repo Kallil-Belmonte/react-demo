@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { PostProps } from '@/pages/News/Post/_files/types';
+import type { PostProps } from '@/pages/News/Post/_files/types';
 import './PostBody.scss';
 
 const PostBody: FunctionComponent<PostProps> = ({ post }) => {

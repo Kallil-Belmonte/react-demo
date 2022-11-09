@@ -3,7 +3,7 @@ import { FunctionComponent, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from 'bootstrap';
 
-import { DeletePostModalState } from '@/pages/News/Post/_files/types';
+import type { DeletePostModalState } from '@/pages/News/Post/_files/types';
 import { useCustomState } from '@/shared/hooks';
 import { deletePost } from '@/core/services';
 import { Loader } from '@/shared/components';

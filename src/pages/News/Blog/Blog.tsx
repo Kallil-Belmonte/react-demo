@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect } from 'react';
 
-import { Category, Post } from '@/core/services/news/types';
-import { BlogState } from '@/pages/News/Blog/_files/types';
+import type { Category, Post } from '@/core/services/news/types';
+import type { BlogState } from '@/pages/News/Blog/_files/types';
 import { groupArrayItemsInArrays } from '@/shared/helpers';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
 import { setCategories, setPosts } from '@/core/redux/reducers/news';

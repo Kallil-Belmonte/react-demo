@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-import { PostsPerPageProps } from '@/pages/News/Blog/_files/types';
+import type { PostsPerPageProps } from '@/pages/News/Blog/_files/types';
 import './PostsPerPage.scss';
 
 const PostsPerPage: FunctionComponent<PostsPerPageProps> = ({ postsPerPage, onChange }) => {
