@@ -42,7 +42,7 @@ export type Validations = {
   space?: ValidationItem;
 };
 
-const validate = (value: string, config: Config = {}) => {
+const validate = (value: string, config: Config) => {
   const { values } = Object;
   const {
     custom,
@@ -57,7 +57,7 @@ const validate = (value: string, config: Config = {}) => {
     uppercase,
     specialCharacter,
     space,
-  } = config;
+  } = config || {};
   const validations: Validations = {};
 
   const getValidation = (isValid: boolean, message: string): ValidationItem => ({
