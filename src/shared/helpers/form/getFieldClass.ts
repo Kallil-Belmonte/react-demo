@@ -1,7 +1,7 @@
 import type { FieldState } from '@/shared/hooks';
 
 /**
- * @name getFieldClass
+ * @function getFieldClass
  */
 
 const getFieldClass = (formSubmitted: boolean, state: FieldState, baseClasses = 'form-control') => {

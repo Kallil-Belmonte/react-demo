@@ -1,7 +1,7 @@
 import { AUTH_TOKEN_KEY, AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 
 /**
- * @name clearStorageData
+ * @function clearStorageData
  */
 
 const clearStorageData = () => {

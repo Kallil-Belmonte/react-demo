@@ -2,7 +2,7 @@ import { AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import getAuthToken from './getAuthToken';
 
 /**
- * @name isExpiredSession
+ * @function isExpiredSession
  */
 
 const isExpiredSession = () => {

@@ -1,7 +1,7 @@
 import { PROJECT_TITLE } from '@/shared/files/consts';
 
 /**
- * @name setPageTitle
+ * @function setPageTitle
  */
 
 const setPageTitle = (title: string) => {

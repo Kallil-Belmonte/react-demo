@@ -1,7 +1,7 @@
 import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
 
 /**
- * @name getAuthToken
+ * @function getAuthToken
  */
 
 const getAuthToken = () =>

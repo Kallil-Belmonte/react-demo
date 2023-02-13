@@ -2,7 +2,7 @@ import type { UseField } from '@/shared/hooks';
 import { getFieldState } from '@/shared/hooks';
 
 /**
- * @name setFields
+ * @function setFields
  */
 
 type Value = string | number | boolean;

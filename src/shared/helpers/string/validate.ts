@@ -1,6 +1,8 @@
 /**
- * @name validate
+ * @function validate
  * @description Validates a string with multiple options.
+ * @param { string } value - Text to be validated.
+ * @param { Object } config - Validation configuration.
  * @author Kallil Belmonte
  * @see CodePen { @link https://codepen.io/kallil-belmonte/full/OJpMRYp }
  */

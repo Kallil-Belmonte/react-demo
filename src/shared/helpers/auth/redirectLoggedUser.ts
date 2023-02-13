@@ -4,7 +4,7 @@ import { AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
 import isExpiredSession from './isExpiredSession';
 
 /**
- * @name redirectLoggedUser
+ * @function redirectLoggedUser
  */
 
 const redirectLoggedUser = (navigate: NavigateFunction) => {

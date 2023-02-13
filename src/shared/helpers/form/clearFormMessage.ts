@@ -1,7 +1,7 @@
 import { removeItemsFromArray } from '@/shared/helpers';
 
 /**
- * @name clearFormMessage
+ * @function clearFormMessage
  */
 
 const clearFormMessage = (field: string, index: number, state: any, setState: any) => {
