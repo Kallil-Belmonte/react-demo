@@ -7,7 +7,7 @@ import Account from '@/pages/Account/Account';
 import Login from '@/pages/Auth/Login/Login';
 import Register from '@/pages/Auth/Register/Register';
 import NotFound from '@/pages/NotFound/NotFound';
-import Guard from './Guard';
+import Guard from './guard';
 
 const ROUTES = [
   {
