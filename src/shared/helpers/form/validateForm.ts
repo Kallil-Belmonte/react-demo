@@ -5,7 +5,7 @@ import { UseField } from '@/shared/hooks';
  * @function validateForm
  */
 
-type ValidateFields = {
+type Config = {
   fields: UseField[];
   validation?: ValidationConfig;
   updateState?: boolean;
@@ -13,7 +13,7 @@ type ValidateFields = {
 
 const { keys } = Object;
 
-export const validateFields = ({ fields, validation = {}, updateState = true }: ValidateFields) => {
+export const validateFields = ({ fields, validation = {}, updateState = true }: Config) => {
   let isValidFields = fields.every(field => field.state.valid);
 
   if (keys(validation).length) {
@@ -39,7 +39,7 @@ export const validateFields = ({ fields, validation = {}, updateState = true }: 
   return isValidFields;
 };
 
-const validateForm = (formItems: ValidateFields[]) => {
+const validateForm = (formItems: Config[]) => {
   const isValidFields = formItems.map(item => validateFields(item));
   return isValidFields.every(isValid => isValid);
 };
