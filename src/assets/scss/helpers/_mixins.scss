@@ -31,7 +31,7 @@
   }
 }
 
-@mixin bg-image($url, $attachment: fixed, $size: cover) {
+@mixin bg-image($url, $attachment: scroll, $size: cover) {
   background: url($url) no-repeat center center $attachment;
   background-size: $size;
 }
