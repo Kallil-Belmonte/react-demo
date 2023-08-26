@@ -36,6 +36,10 @@
   background-size: $size;
 }
 
+@mixin transitionAll($time: 0.4s) {
+  transition: all $time ease;
+}
+
 @mixin position(
   $position: static,
   $top: auto,

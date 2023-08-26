@@ -1,5 +1,4 @@
 // GENERAL
-
 %text-continued {
   overflow: hidden;
   white-space: nowrap;
@@ -7,7 +6,6 @@
 }
 
 // FLEX CENTER
-
 %flex-center,
 %flex-center-y,
 %flex-center-x {
@@ -28,7 +26,6 @@
 }
 
 // ABSOLUTE CENTER
-
 %absolute-center,
 %absolute-center-y,
 %absolute-center-x {
@@ -52,7 +49,6 @@
 }
 
 // BACKGROUND IMAGE
-
 %background-image-contain,
 %background-image-cover {
   background-repeat: no-repeat;

@@ -1,5 +1,4 @@
 // GENERAL
-
 .text-continued {
   @extend %text-continued;
 }
@@ -13,7 +12,6 @@
 }
 
 // FLEX CENTER
-
 .flex-center {
   @extend %flex-center;
 }
@@ -27,7 +25,6 @@
 }
 
 // ABSOLUTE CENTER
-
 .absolute-center {
   @extend %absolute-center;
 }
@@ -41,7 +38,6 @@
 }
 
 // BACKGROUND IMAGE
-
 .bg-image-contain {
   @extend %background-image-contain;
 }

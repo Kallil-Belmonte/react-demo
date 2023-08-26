@@ -1,5 +1,4 @@
 // BUTTONS
-
 button,
 .btn {
   @include style-btn(btn-primary);
@@ -31,7 +30,6 @@ button,
 }
 
 // ALERTS
-
 .alert-primary,
 .alert-secondary,
 .alert-success,
@@ -44,61 +42,51 @@ button,
 }
 
 // Primary
-
 .alert-primary {
   background-color: $primary;
 }
 
 // Secondary
-
 .alert-secondary {
   background-color: $secondary;
 }
 
 // Success
-
 .alert-success {
   background-color: $success;
 }
 
 // Info
-
 .alert-info {
   background-color: $info;
 }
 
 // Warning
-
 .alert-warning {
   background-color: $warning;
 }
 
 // Danger
-
 .alert-danger {
   background-color: $danger;
 }
 
 // Light
-
 .alert-light {
   background-color: $light;
 }
 
 // Dark
-
 .alert-dark {
   background-color: $dark;
 }
 
 // BADGES
-
 .badge:not(.badge-light) {
   color: #fff;
 }
 
 // TOOLTIPS
-
 .tooltip-inner {
   background-color: $primary;
 }
@@ -126,13 +114,11 @@ button,
 // FORMS
 
 // Alert
-
 .form-group > .alert {
   margin-top: 1rem;
 }
 
 // Input
-
 .form-control {
   &,
   &:focus {
@@ -155,7 +141,6 @@ button,
 }
 
 // Invalid
-
 .invalid-feedback:first-letter {
   text-transform: uppercase;
 }
@@ -168,7 +153,6 @@ button,
 }
 
 // LIST GROUP
-
 .list-group {
   .list-group-item-action {
     cursor: pointer;
