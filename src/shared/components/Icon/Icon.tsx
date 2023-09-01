@@ -24,10 +24,10 @@ const Icon: FunctionComponent<Props> = props => {
 
   const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
-  const setImage = useCallback(() => {
-    fetch(`/images/icons/${category}/${name}.svg`)
-      .then(response => response.text())
-      .then(svgText => setSvg(svgText));
+  const setImage = useCallback(async () => {
+    const response = await fetch(`/images/icons/${category}/${name}.svg`);
+    const svgContent = await response.text();
+    setSvg(svgContent);
   }, []);
 
   // LIFECYCLE HOOKS

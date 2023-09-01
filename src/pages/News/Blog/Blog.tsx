@@ -69,7 +69,6 @@ const Blog: FunctionComponent = () => {
   };
 
   const handleSelectCategory = async (category: Category['name']) => {
-    console.log(category);
     setState({ loading: true });
 
     try {
@@ -119,7 +118,7 @@ const Blog: FunctionComponent = () => {
 
         <div className="row">
           <div className="col-md-9">
-            <Posts pages={pages} currentPage={currentPage} />
+            <Posts currentPage={currentPage} pages={pages} />
 
             <Pagination
               pages={keys(pages)}

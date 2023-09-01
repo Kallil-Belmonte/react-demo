@@ -1,11 +1,11 @@
-import type { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 
 import type { PostsProps } from '@/pages/News/Blog/_files/types';
 import { PostItem } from '@/shared/components';
 
 const { keys } = Object;
 
-const Posts: FunctionComponent<PostsProps> = ({ pages, currentPage }) => {
+const Posts: FunctionComponent<PostsProps> = ({ currentPage, pages }) => {
   return (
     <section data-component="Posts">
       <div className="row">
