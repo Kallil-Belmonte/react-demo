@@ -7,24 +7,24 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@popperjs/core": "2.11.6",
-    "@reduxjs/toolkit": "1.8.5",
-    "bootstrap": "5.2.0",
+    "@popperjs/core": "2.11.8",
+    "@reduxjs/toolkit": "1.9.5",
+    "bootstrap": "5.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-redux": "8.0.2",
-    "react-router-dom": "6.3.0"
+    "react-redux": "8.1.2",
+    "react-router-dom": "6.15.0"
   },
   "devDependencies": {
-    "@types/bootstrap": "5.2.3",
-    "@types/node": "18.7.14",
-    "@types/react": "18.0.18",
-    "@types/react-dom": "18.0.6",
+    "@types/bootstrap": "5.2.6",
+    "@types/node": "20.5.8",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
     "@types/react-router-dom": "5.3.3",
-    "@vitejs/plugin-react": "2.0.1",
+    "@vitejs/plugin-react": "4.0.4",
     "path": "0.12.7",
-    "sass": "1.54.7",
-    "typescript": "4.8.2",
-    "vite": "3.0.9"
+    "sass": "1.66.1",
+    "typescript": "5.2.2",
+    "vite": "4.4.9"
   }
 }
