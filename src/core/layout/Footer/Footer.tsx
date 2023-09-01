@@ -3,7 +3,7 @@ import './Footer.scss';
 
 const Footer = () => {
   return (
-    <footer data-component="Footer">
+    <footer data-layout="Footer">
       <div className="footer">
         <div className="d-flex justify-content-center">
           <ul className="social-networks list-inline">

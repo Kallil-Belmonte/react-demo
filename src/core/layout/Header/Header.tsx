@@ -41,7 +41,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header data-component="Header">
+    <header data-layout="Header">
       <Icon className="logo mx-auto" category="Brand" name="Logo" />
 
       <h1 className="title">{PROJECT_TITLE}</h1>
