@@ -11,22 +11,18 @@ type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElem
 };
 
 const Icon: FunctionComponent<Props> = props => {
-  const { style: propStyle = {}, category = 'UI', name, size, color, ...otherProps } = props;
+  const {
+    style: propStyle = {},
+    category = 'UI',
+    name,
+    size = '100%',
+    color,
+    ...otherProps
+  } = props;
 
   const [svg, setSvg] = useState('');
 
-  const style = useMemo(() => {
-    const result = { ...propStyle };
-
-    if (size) {
-      result.width = size;
-      result.height = size;
-    }
-
-    if (color) result.color = color;
-
-    return result;
-  }, []);
+  const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
   const setImage = useCallback(() => {
     fetch(`/images/icons/${category}/${name}.svg`)
