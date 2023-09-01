@@ -1,23 +1,17 @@
-import { FunctionComponent, CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
+import { type FunctionComponent, useState, useMemo, useCallback, useEffect } from 'react';
 
-import type { Icons } from './types';
+import type { Category, Icons } from './types';
 import './Icon.scss';
 
-export type IconProps = {
-  className: string;
-  style: CSSProperties;
-  ariaLabel: string;
-  color: string;
-};
-
 type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+  category?: Category;
   name: Icons;
   size?: string;
   color?: string;
 };
 
 const Icon: FunctionComponent<Props> = props => {
-  const { style: propStyle = {}, name, size, color, ...otherProps } = props;
+  const { style: propStyle = {}, category = 'UI', name, size, color, ...otherProps } = props;
 
   const [svg, setSvg] = useState('');
 
@@ -35,7 +29,7 @@ const Icon: FunctionComponent<Props> = props => {
   }, []);
 
   const setImage = useCallback(() => {
-    fetch(`/images/icons/${name}.svg`)
+    fetch(`/images/icons/${category}/${name}.svg`)
       .then(response => response.text())
       .then(svgText => setSvg(svgText));
   }, []);

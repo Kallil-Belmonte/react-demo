@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import type { PostsProps } from '@/pages/News/Blog/_files/types';
 import { PostItem } from '@/shared/components';

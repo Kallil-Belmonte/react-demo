@@ -1,10 +1,10 @@
-import { FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
 import type { AuthProps } from '@/pages/Auth/_files/types';
 import { redirectLoggedUser } from '@/shared/helpers';
-import Logo from '@/assets/icons/brand/logo.svg';
+import { Icon } from '@/shared/components';
 import './Auth.scss';
 
 const Auth: FunctionComponent<AuthProps> = ({ children }) => {
@@ -18,7 +18,7 @@ const Auth: FunctionComponent<AuthProps> = ({ children }) => {
   return (
     <main data-component="Auth">
       <div className="container">
-        <img src={Logo} className="logo d-block mx-auto" alt="React" />
+        <Icon className="logo mx-auto" category="Brand" name="Logo" />
 
         <div className="row">
           <div className="col-md-6 offset-md-3">

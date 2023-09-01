@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import type { Category } from '@/core/services/news/types';
 import type { CategoriesProps, CategoriesState } from '@/pages/News/Blog/_files/types';

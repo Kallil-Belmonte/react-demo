@@ -1,8 +1,6 @@
 [data-component='Footer'] {
   padding: 30px 0;
 
-  /* SOCIAL NETWORKS */
-
   .social-networks {
     li {
       &:not(:last-child) {
@@ -11,38 +9,11 @@
 
       a {
         font-size: 0px;
-        @include square(25px);
+        color: $dark;
         display: inline-block;
 
-        &::before {
-          content: '';
-          display: block;
-          @include square(100%);
-          @extend %background-image-cover;
-        }
-
-        /* Facebook */
-
-        &[href*='facebook.com']::before {
-          background-image: url('@/assets/icons/social-networks/facebook.svg');
-        }
-
-        // /* Twitter */
-
-        &[href*='twitter.com']::before {
-          background-image: url('@/assets/icons/social-networks/twitter.svg');
-        }
-
-        /* Instagram */
-
-        &[href*='instagram.com']::before {
-          background-image: url('@/assets/icons/social-networks/instagram.svg');
-        }
-
-        /* Linkedin */
-
-        &[href*='linkedin.com']::before {
-          background-image: url('@/assets/icons/social-networks/linkedin.svg');
+        figure {
+          @include square(25px);
         }
       }
     }

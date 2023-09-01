@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import Logo from '@/assets/icons/brand/logo.svg';
 import { PROJECT_TITLE } from '@/shared/files/consts';
 import { clearStorageData } from '@/shared/helpers';
 import { useSelector, useDispatch } from '@/shared/hooks';
@@ -43,7 +42,7 @@ const Header = () => {
 
   return (
     <header data-component="Header">
-      <img src={Logo} className="logo" alt="logo" />
+      <Icon className="logo mx-auto" category="Brand" name="Logo" />
 
       <h1 className="title">{PROJECT_TITLE}</h1>
 

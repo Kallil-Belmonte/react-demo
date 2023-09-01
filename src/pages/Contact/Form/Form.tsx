@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useEffect } from 'react';
 
 import type { ContactFormState } from '@/pages/Contact/_files/types';
 import { required, requiredEmail, requiredSelect, requiredMin } from '@/shared/files/validations';

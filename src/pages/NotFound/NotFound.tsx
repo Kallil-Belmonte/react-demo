@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 

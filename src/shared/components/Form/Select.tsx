@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';

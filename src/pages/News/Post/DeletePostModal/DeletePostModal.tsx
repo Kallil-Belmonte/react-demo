@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useEffect } from 'react';
+import { type FunctionComponent, useRef, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal } from 'bootstrap';

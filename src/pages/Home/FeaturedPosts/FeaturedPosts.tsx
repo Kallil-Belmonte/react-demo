@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import type { FeaturedPostsProps } from '@/pages/Home/_files/types';
 import { PostItem } from '@/shared/components';

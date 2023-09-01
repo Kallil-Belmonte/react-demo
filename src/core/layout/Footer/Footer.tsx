@@ -1,3 +1,4 @@
+import { Icon } from '@/shared/components';
 import './Footer.scss';
 
 const Footer = () => {
@@ -8,22 +9,22 @@ const Footer = () => {
           <ul className="social-networks list-inline">
             <li className="list-inline-item">
               <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-                Facebook
+                <Icon name="Facebook" />
               </a>
             </li>
             <li className="list-inline-item">
               <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-                Twitter
+                <Icon name="Twitter" />
               </a>
             </li>
             <li className="list-inline-item">
               <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                Instagram
+                <Icon name="Instagram" />
               </a>
             </li>
             <li className="list-inline-item">
               <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-                Linkedin
+                <Icon name="Linkedin" />
               </a>
             </li>
           </ul>

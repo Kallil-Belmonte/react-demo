@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import type { ReactType, BootstrapVariants } from '@/shared/files/types';
 

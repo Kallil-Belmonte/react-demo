@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import { useNavigate, NavLink } from 'react-router-dom';
 

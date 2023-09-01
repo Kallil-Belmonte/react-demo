@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useEffect } from 'react';
 
 import type { Category, Post } from '@/core/services/news/types';
 import type { BlogState } from '@/pages/News/Blog/_files/types';

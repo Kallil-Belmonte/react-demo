@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useEffect } from 'react';
 
 import type { HomeState } from '@/pages/Home/_files/types';
 import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';

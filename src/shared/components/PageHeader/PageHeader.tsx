@@ -1,4 +1,4 @@
-import { FunctionComponent, memo } from 'react';
+import { type FunctionComponent, memo } from 'react';
 
 import type { ReactType } from '@/shared/files/types';
 import type { Icons } from '../Icon/types';
@@ -13,7 +13,7 @@ type Props = {
 const PageHeader: FunctionComponent<Props> = ({ icon, children }) => {
   return (
     <section data-component="PageHeader">
-      {icon && <Icon className="d-block mx-auto" name={icon} size="32px" />}
+      {icon && <Icon className="mx-auto" name={icon} size="32px" />}
       <h1 className="title">{children}</h1>
     </section>
   );
