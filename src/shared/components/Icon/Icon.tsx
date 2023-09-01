@@ -1,7 +1,7 @@
 import { FunctionComponent, CSSProperties, useState, useMemo, useCallback, useEffect } from 'react';
 
-import { firstLetterToUpperCase } from '@/shared/helpers';
 import type { Icons } from './types';
+import './Icon.scss';
 
 export type IconProps = {
   className: string;
@@ -10,54 +10,50 @@ export type IconProps = {
   color: string;
 };
 
-type Props = {
-  className?: string;
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
   name: Icons;
   size?: string;
   color?: string;
 };
 
 const Icon: FunctionComponent<Props> = props => {
-  const { className = '', name, size, color = 'currentColor' } = props;
+  const { style: propStyle = {}, name, size, color, ...otherProps } = props;
 
-  const [iconComponent, setIconComponent] = useState(null);
+  const [svg, setSvg] = useState('');
 
-  const iconClass = useMemo(() => {
-    const convertLetters = (letter: string, index: number) => {
-      const result = index && letter.match(/[A-Z]/) ? `-${letter}` : letter;
-      return result.toLowerCase();
-    };
-    const iconName = name.split('').map(convertLetters).join('');
-    return iconName;
+  const style = useMemo(() => {
+    const result = { ...propStyle };
+
+    if (size) {
+      result.width = size;
+      result.height = size;
+    }
+
+    if (color) result.color = color;
+
+    return result;
   }, []);
 
-  const ariaLabel = useMemo(() => {
-    const className = iconClass.replaceAll('-', ' ');
-    return firstLetterToUpperCase(className);
-  }, [iconClass]);
-
-  const setComponent = useCallback(async () => {
-    const moduleProps = {
-      className: `${iconClass} flex-center ${className}`,
-      style: size ? { width: size, height: size } : {},
-      ariaLabel,
-      color,
-    };
-
-    try {
-      const module = await import(`./Icons/${name}Icon.tsx`);
-      setIconComponent(module.default(moduleProps));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [props]);
+  const setImage = useCallback(() => {
+    fetch(`/images/icons/${name}.svg`)
+      .then(response => response.text())
+      .then(svgText => setSvg(svgText));
+  }, []);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    setComponent();
-  }, [name]);
+    setImage();
+  }, []);
 
-  return iconComponent;
+  return (
+    <figure
+      data-component="Icon"
+      data-name={name}
+      style={style}
+      dangerouslySetInnerHTML={{ __html: svg }}
+      {...otherProps}
+    ></figure>
+  );
 };
 
 export default Icon;
