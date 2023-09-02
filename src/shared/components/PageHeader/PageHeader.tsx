@@ -12,7 +12,7 @@ type Props = {
 
 const PageHeader: FunctionComponent<Props> = ({ icon, children }) => {
   return (
-    <section data-component="PageHeader">
+    <section data-component="page-header">
       {icon && <Icon className="mx-auto" name={icon} size="32px" />}
       <h1 className="title">{children}</h1>
     </section>

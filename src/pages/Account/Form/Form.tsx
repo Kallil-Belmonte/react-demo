@@ -78,7 +78,7 @@ const Form: FunctionComponent = () => {
   }, [user]);
 
   return (
-    <div className="row" data-component="Form">
+    <div data-component="form" className="row">
       <div className="col-md-6 offset-md-3">
         {successMessages.map(successMessage => (
           <AlertDismissible

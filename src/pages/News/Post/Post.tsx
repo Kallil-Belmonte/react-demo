@@ -40,7 +40,7 @@ const Post: FunctionComponent = () => {
   }, []);
 
   return (
-    <main data-component="Post">
+    <main data-page="post">
       <Loader loading={loading} />
 
       <div className="container">

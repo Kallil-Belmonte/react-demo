@@ -6,7 +6,7 @@ import './Contact.scss';
 
 const Contact: FunctionComponent = () => {
   return (
-    <main data-component="Contact">
+    <main data-page="contact">
       <div className="container">
         <PageHeader icon="Envelope">Contact</PageHeader>
         <Form />

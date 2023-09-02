@@ -5,7 +5,7 @@ import './PostsPerPage.scss';
 
 const PostsPerPage: FunctionComponent<PostsPerPageProps> = ({ postsPerPage, onChange }) => {
   return (
-    <section data-component="PostsPerPage">
+    <section data-component="posts-per-page">
       <div className="container">
         <div className="row">
           <div className="col-md-2">

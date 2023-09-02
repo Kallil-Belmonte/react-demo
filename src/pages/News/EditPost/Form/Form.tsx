@@ -82,7 +82,7 @@ const Form: FunctionComponent = () => {
     <>
       <Loader loading={loading} />
 
-      <form data-component="EditPostForm" onSubmit={handleSubmit}>
+      <form className="edit-post-form" onSubmit={handleSubmit}>
         <div className="mb-3">
           <Input label="Title" field={title} formSubmitted={formSubmitted} />
         </div>

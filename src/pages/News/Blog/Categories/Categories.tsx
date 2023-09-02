@@ -23,7 +23,7 @@ const Categories: FunctionComponent<CategoriesProps> = ({ categories, onSelectCa
   };
 
   return (
-    <aside data-component="Categories">
+    <aside data-component="categories">
       <ul className="list-group">
         {categories.map(({ name, posts }) => (
           <li

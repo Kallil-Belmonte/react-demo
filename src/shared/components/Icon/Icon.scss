@@ -1,4 +1,4 @@
-[data-component='Icon'] {
+[data-component='icon'] {
   @extend %flex-center;
   @include square(var(--size));
   color: var(--color);

@@ -110,7 +110,7 @@ const Form: FunctionComponent = () => {
     <>
       <Loader loading={loading} />
 
-      <form data-component="Form" className="auth-form" onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         {successMessages.map(successMessage => (
           <AlertDismissible
             key={successMessage}

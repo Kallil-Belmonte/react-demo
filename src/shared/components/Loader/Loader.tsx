@@ -9,7 +9,7 @@ type Props = {
 const Loader: FunctionComponent<Props> = ({ loading }) => {
   if (!loading) return null;
   return (
-    <section data-component="Loader">
+    <section data-component="loader">
       <div className="atom-spinner">
         <div className="spinner-inner">
           <div className="spinner-line"></div>

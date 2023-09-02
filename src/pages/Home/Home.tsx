@@ -45,7 +45,7 @@ const Home: FunctionComponent = () => {
   }, []);
 
   return (
-    <main data-component="Home">
+    <main data-page="home">
       <Loader loading={loading} />
       <FeaturedPosts posts={featuredPosts} />
     </main>

@@ -10,7 +10,11 @@ type Props = {
 
 const AlertDismissible: FunctionComponent<Props> = ({ variant, onDismiss, children }) => {
   return (
-    <div className={`alert alert-${variant} alert-dismissible fade show`} role="alert">
+    <div
+      data-component="alert-dismissible"
+      className={`alert alert-${variant} fade show`}
+      role="alert"
+    >
       {children}
       <button
         type="button"

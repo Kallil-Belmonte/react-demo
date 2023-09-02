@@ -12,7 +12,7 @@ type Props = {
 
 const PostItem: FunctionComponent<Props> = ({ post }) => {
   return (
-    <div data-component="PostItem">
+    <div data-component="post-item">
       {post.image ? (
         <img className="img-fluid" src={post.image} alt="Capa" />
       ) : (
