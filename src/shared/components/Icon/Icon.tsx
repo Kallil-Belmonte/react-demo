@@ -38,6 +38,7 @@ const Icon: FunctionComponent<Props> = props => {
   return (
     <figure
       data-component="icon"
+      data-category={category}
       data-name={name}
       style={style}
       dangerouslySetInnerHTML={{ __html: svg }}
