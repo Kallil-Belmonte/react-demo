@@ -25,7 +25,7 @@ const Icon: FunctionComponent<Props> = props => {
   const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
   const setImage = useCallback(async () => {
-    const response = await fetch(`/images/icons/${category}/${name}.svg`);
+    const response = await fetch(`/icons/${category}/${name}.svg`);
     const svgContent = await response.text();
     setSvg(svgContent);
   }, []);
