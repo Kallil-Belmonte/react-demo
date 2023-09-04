@@ -24,7 +24,7 @@ const Icon: FunctionComponent<Props> = props => {
 
   const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
-  const setImage = useCallback(async () => {
+  const setIcon = useCallback(async () => {
     const response = await fetch(`/icons/${category}/${name}.svg`);
     const svgContent = await response.text();
     setSvg(svgContent);
@@ -32,8 +32,8 @@ const Icon: FunctionComponent<Props> = props => {
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    setImage();
-  }, [setImage]);
+    setIcon();
+  }, [setIcon]);
 
   return (
     <figure
