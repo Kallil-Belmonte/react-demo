@@ -28,12 +28,12 @@ const Icon: FunctionComponent<Props> = props => {
     const response = await fetch(`/icons/${category}/${name}.svg`);
     const svgContent = await response.text();
     setSvg(svgContent);
-  }, []);
+  }, [category, name]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     setImage();
-  }, []);
+  }, [setImage]);
 
   return (
     <figure
