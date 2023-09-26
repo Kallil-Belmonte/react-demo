@@ -102,7 +102,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
   // LIFECYCLE HOOKS
   useEffect(() => {
     controlUpdate(value);
-  }, [value]);
+  }, [value, controlUpdate]);
 
   useEffect(() => {
     controlTouching();
