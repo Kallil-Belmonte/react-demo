@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState, useRef, useEffect } from 'react';
+import { Dispatch, SetStateAction, useState, useRef, useCallback, useEffect } from 'react';
 
 import { ValidationConfig, Validations, validate } from '@/shared/helpers';
 import useCustomState from '@/shared/hooks/state/useCustomState';
@@ -37,7 +37,7 @@ export type UseField<Value = any> = {
 
 const { keys } = Object;
 
-export const getFieldState = (name: string, required: boolean = false): FieldState => ({
+export const getFieldState = (name: string, required = false): FieldState => ({
   name,
   untouched: true,
   touched: false,
@@ -57,30 +57,33 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
   const { touched, pristine, dirty } = state;
 
-  const controlUpdate = (value: Value) => {
-    if (value === undefined) return;
-    if (pristine) setState({ pristine: false });
-    if (!dirty) setState({ dirty: true });
+  const controlUpdate = useCallback(
+    (val: Value) => {
+      if (val === undefined) return;
+      if (pristine) setState({ pristine: false });
+      if (!dirty) setState({ dirty: true });
 
-    if (keys(validation).length) {
-      const { isValid, errorMessages, ...otherValidationProps } = validate(
-        value as string,
-        validation,
-      );
+      if (keys(validation).length) {
+        const { isValid, errorMessages, ...otherValidationProps } = validate(
+          val as string,
+          validation,
+        );
 
-      setState({
-        valid: isValid,
-        invalid: !isValid,
-        errorMessages: errorMessages,
-      });
-      keys(otherValidationProps).forEach((validationKey: string) => {
-        const key = validationKey as keyof Validations;
-        setState({ [key]: otherValidationProps[key] });
-      });
-    }
-  };
+        setState({
+          valid: isValid,
+          invalid: !isValid,
+          errorMessages,
+        });
+        keys(otherValidationProps).forEach((validationKey: string) => {
+          const key = validationKey as keyof Validations;
+          setState({ [key]: otherValidationProps[key] });
+        });
+      }
+    },
+    [pristine, dirty, validation, setState],
+  );
 
-  const controlTouching = () => {
+  const controlTouching = useCallback(() => {
     if (!fieldRef.current || touched) return;
 
     const setUntouched = () => {
@@ -94,7 +97,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
       fieldRef.current?.removeEventListener('focusout', setTouched);
     };
     fieldRef.current.addEventListener('focusout', setTouched);
-  };
+  }, [touched, setState]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
