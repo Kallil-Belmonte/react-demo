@@ -1,5 +1,4 @@
-import type { UseField } from '@/shared/hooks';
-import { getFieldState } from '@/shared/hooks';
+import { type UseField, getFieldState } from '@/shared/hooks';
 
 /**
  * @function setFields
