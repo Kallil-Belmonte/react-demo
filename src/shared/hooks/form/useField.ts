@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, MutableRefObject, useState, useRef, useEffect } from 'react';
+import { Dispatch, SetStateAction, useState, useRef, useEffect } from 'react';
 
 import { ValidationConfig, Validations, validate } from '@/shared/helpers';
 import useCustomState from '@/shared/hooks/state/useCustomState';
