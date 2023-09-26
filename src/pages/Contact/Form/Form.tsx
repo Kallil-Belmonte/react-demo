@@ -81,7 +81,7 @@ const Form: FunctionComponent = () => {
       { fields: [email], validation: requiredEmail },
       { fields: [telephone], validation: requiredMin(8) },
       { fields: [sex, message], validation: required },
-      { fields: [favoriteColor], validation: requiredSelect(favoriteColorValue) },
+      { fields: [favoriteColor], validation: requiredSelect },
     ]);
     if (!isValidForm) return;
 
