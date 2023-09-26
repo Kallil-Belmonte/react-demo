@@ -8,4 +8,7 @@ export const requiredSelect = (value: string) => ({
   custom: { isValid: value !== 'select', message: 'Required value.' },
 });
 
-export const requiredMin = (min: number): ValidationConfig => ({ ...required, min: { check: min } });
+export const requiredMin = (min: number): ValidationConfig => ({
+  ...required,
+  min: { check: min },
+});
