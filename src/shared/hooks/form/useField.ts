@@ -52,7 +52,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
   const { name, defaultValue, validation = {} } = config;
 
   const [value, setValue] = useState(defaultValue as Value);
-  const fieldRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const fieldRef = useRef<any>();
 
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
   const { touched, pristine, dirty } = state;
@@ -80,7 +80,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
         });
       }
     },
-    [pristine, dirty, validation, setState],
+    [pristine, dirty, keys(validation).length, setState],
   );
 
   const controlTouching = useCallback(() => {
@@ -102,7 +102,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
   // LIFECYCLE HOOKS
   useEffect(() => {
     controlUpdate(value);
-  }, [value, controlUpdate]);
+  }, [value]);
 
   useEffect(() => {
     controlTouching();
