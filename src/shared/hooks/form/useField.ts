@@ -58,7 +58,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
   const { touched, pristine, dirty } = state;
 
   const controlUpdate = useCallback(
-    (val: Value) => {
+    (val: Value | undefined) => {
       if (val === undefined) return;
       if (pristine) setState({ pristine: false });
       if (!dirty) setState({ dirty: true });
