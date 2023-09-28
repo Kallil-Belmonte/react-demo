@@ -52,7 +52,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
   const { name, defaultValue, validation = {} } = config;
 
   const [value, setValue] = useState(defaultValue as Value);
-  const fieldRef: any = useRef();
+  const fieldRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const [state, setState] = useCustomState(getFieldState(name, validation.required?.check));
   const { touched, pristine, dirty } = state;
@@ -88,7 +88,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
 
     const setUntouched = () => {
       setState({ untouched: false });
-      fieldRef.current.removeEventListener('focus', setUntouched);
+      fieldRef.current?.removeEventListener('focus', setUntouched);
     };
     fieldRef.current.addEventListener('focus', setUntouched);
 
