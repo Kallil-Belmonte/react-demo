@@ -108,10 +108,6 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
     controlTouching();
   }, [touched]);
 
-  useEffect(() => {
-    controlTouching();
-  }, []);
-
   return { value, ref: fieldRef, state, onSetValue: setValue, onSetState: setState };
 };
 
