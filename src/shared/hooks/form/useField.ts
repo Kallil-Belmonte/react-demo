@@ -31,8 +31,8 @@ export type UseField<Value = any> = {
   value: Value;
   ref: React.LegacyRef<HTMLInputElement>;
   state: FieldState;
-  onSetValue: Dispatch<SetStateAction<Value>>;
-  onSetState: (modifiedProps: Partial<FieldState>) => void;
+  setValue: Dispatch<SetStateAction<Value>>;
+  setState: (modifiedProps: Partial<FieldState>) => void;
 };
 
 const { keys } = Object;
@@ -105,7 +105,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
     controlTouching();
   }, [touched]);
 
-  return { value, ref: fieldRef, state, onSetValue: setValue, onSetState: setState };
+  return { value, ref: fieldRef, state, setValue, setState };
 };
 
 export default useField;

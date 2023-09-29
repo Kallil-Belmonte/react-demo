@@ -25,11 +25,11 @@ const Checkbox: FunctionComponent<Props> = ({
   onChange,
   ...otherProps
 }) => {
-  const { value, ref, state, onSetValue } = field;
+  const { value, ref, state, setValue } = field;
   const { errorMessages } = state;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
-    onSetValue(event.target.checked ? trueValue : falseValue);
+    setValue(event.target.checked ? trueValue : falseValue);
     onChange?.(event);
   };
 

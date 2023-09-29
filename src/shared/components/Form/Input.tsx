@@ -25,11 +25,11 @@ const Input: FunctionComponent<Props> = ({
   onChange,
   ...otherProps
 }) => {
-  const { value = '', ref, state, onSetValue } = field;
+  const { value = '', ref, state, setValue } = field;
   const { errorMessages } = state;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
-    onSetValue(event.target.value);
+    setValue(event.target.value);
     onChange?.(event);
   };
 

@@ -15,11 +15,11 @@ type Config = {
 const setFields = ({ fields, value, reset }: Config) => {
   const { required } = reset || {};
 
-  if (value !== undefined) fields.forEach(({ onSetValue }) => onSetValue(value));
+  if (value !== undefined) fields.forEach(({ setValue }) => setValue(value));
 
   if (reset) {
     setTimeout(() => {
-      fields.forEach(({ state, onSetState }) => onSetState(getFieldState(state.name, required)));
+      fields.forEach(({ state, setState }) => setState(getFieldState(state.name, required)));
     });
   }
 };

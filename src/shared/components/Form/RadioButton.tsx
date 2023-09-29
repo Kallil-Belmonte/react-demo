@@ -21,11 +21,11 @@ const RadioButton: FunctionComponent<Props> = ({
   onChange,
   ...otherProps
 }) => {
-  const { value, state, onSetValue } = field;
+  const { value, state, setValue } = field;
   const { errorMessages } = state;
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
-    onSetValue(event.target.value);
+    setValue(event.target.value);
     onChange?.(event);
   };
 
