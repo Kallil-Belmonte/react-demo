@@ -58,24 +58,37 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
   const { touched, pristine, dirty } = state;
 
   const controlUpdate = useCallback(
-    (val: Value | undefined) => {
-      if (val === undefined) return;
-      if (pristine) setState({ pristine: false });
-      if (!dirty) setState({ dirty: true });
+    (updatedValue: Value | undefined) => {
+      if (updatedValue === undefined) return;
 
-      if (typeof val === 'string' && keys(validation).length) {
-        const { isValid, errorMessages, ...otherValidationProps } = validate(val, validation);
+      let updatedState: Partial<FieldState> = {};
+      if (pristine) updatedState.pristine = false;
+      if (!dirty) updatedState.dirty = true;
 
-        setState({
+      if (typeof updatedValue === 'string' && keys(validation).length) {
+        const { isValid, errorMessages, ...otherValidationProps } = validate(
+          updatedValue,
+          validation,
+        );
+
+        const validations = keys(otherValidationProps).reduce((accumulator, currentValue) => {
+          const key = currentValue as keyof Validations;
+          return {
+            ...accumulator,
+            [key]: otherValidationProps[key],
+          };
+        }, {});
+
+        updatedState = {
+          ...updatedState,
           valid: isValid,
           invalid: !isValid,
           errorMessages,
-        });
-        keys(otherValidationProps).forEach((validationKey: string) => {
-          const key = validationKey as keyof Validations;
-          setState({ [key]: otherValidationProps[key] });
-        });
+          ...validations,
+        };
       }
+
+      setState(updatedState);
     },
     [pristine, dirty, keys(validation).length, setState],
   );
