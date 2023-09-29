@@ -61,7 +61,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
     (updatedValue: Value | undefined) => {
       if (updatedValue === undefined) return;
 
-      let updatedState: Partial<FieldState> = {};
+      const updatedState: Partial<FieldState> = {};
       if (pristine) updatedState.pristine = false;
       if (!dirty) updatedState.dirty = true;
 
@@ -71,21 +71,14 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
           validation,
         );
 
-        const validations = keys(otherValidationProps).reduce((accumulator, currentValue) => {
-          const key = currentValue as keyof Validations;
-          return {
-            ...accumulator,
-            [key]: otherValidationProps[key],
-          };
-        }, {});
+        keys(otherValidationProps).forEach((validationKey: string) => {
+          const key = validationKey as keyof Validations;
+          updatedState[key] = otherValidationProps[key];
+        });
 
-        updatedState = {
-          ...updatedState,
-          valid: isValid,
-          invalid: !isValid,
-          errorMessages,
-          ...validations,
-        };
+        updatedState.valid = isValid;
+        updatedState.invalid = !isValid;
+        updatedState.errorMessages = errorMessages;
       }
 
       setState(updatedState);

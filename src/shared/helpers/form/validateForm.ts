@@ -1,5 +1,5 @@
 import { Validations, ValidationConfig, validate } from '@/shared/helpers';
-import { UseField } from '@/shared/hooks';
+import { type FieldState, UseField } from '@/shared/hooks';
 
 /**
  * @function validateForm
@@ -23,12 +23,18 @@ export const validateFields = ({ fields, validation = {}, updateState = true }: 
         const { isValid, errorMessages, ...otherValidationProps } = validate(value, validation);
 
         if (updateState) {
-          setState({ valid: isValid, invalid: !isValid, errorMessages });
+          const updatedState: Partial<FieldState> = {
+            valid: isValid,
+            invalid: !isValid,
+            errorMessages,
+          };
 
           keys(otherValidationProps).forEach((validationKey: string) => {
             const key = validationKey as keyof Validations;
-            setState({ [key]: otherValidationProps[key] });
+            updatedState[key] = otherValidationProps[key];
           });
+
+          setState(updatedState);
         }
 
         return isValid;
