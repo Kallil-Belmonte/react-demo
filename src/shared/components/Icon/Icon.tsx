@@ -1,5 +1,6 @@
 import { type FunctionComponent, useState, useMemo, useCallback, useEffect } from 'react';
 
+import type { ObjectType } from '@/shared/files/types';
 import type { Category, Icons } from './types';
 import './Icon.scss';
 
@@ -20,19 +21,25 @@ const Icon: FunctionComponent<Props> = props => {
     ...otherProps
   } = props;
 
-  const [svg, setSvg] = useState('');
+  const [svgs, setSvgs] = useState<ObjectType>({});
+  const [mounted, setMounted] = useState(true);
 
   const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
   const setIcon = useCallback(async () => {
     const response = await fetch(`/icons/${category}/${name}.svg`);
     const svgContent = await response.text();
-    setSvg(svgContent);
-  }, [category, name]);
+    if (mounted) setSvgs(prevValue => ({ ...prevValue, [name]: svgContent }));
+  }, [category, name, mounted]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     setIcon();
+
+    // Unmount
+    return () => {
+      setMounted(false);
+    };
   }, [setIcon]);
 
   return (
@@ -41,7 +48,7 @@ const Icon: FunctionComponent<Props> = props => {
       data-category={category}
       data-name={name}
       style={style}
-      dangerouslySetInnerHTML={{ __html: svg }}
+      dangerouslySetInnerHTML={{ __html: svgs[name] }}
       {...otherProps}
     ></figure>
   );
