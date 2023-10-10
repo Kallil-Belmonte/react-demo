@@ -28,9 +28,9 @@ const Icon: FunctionComponent<Props> = props => {
 
   const setIcon = useCallback(async () => {
     const response = await fetch(`/icons/${category}/${name}.svg`);
-    const svgContent = await response.text();
-    if (mounted) setSvgs(prevValue => ({ ...prevValue, [name]: svgContent }));
-  }, [category, name, mounted]);
+    const svgHTML = await response.text();
+    if (mounted && !svgs[name]) setSvgs(prevValue => ({ ...prevValue, [name]: svgHTML }));
+  }, [category, name, mounted, svgs]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
