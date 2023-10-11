@@ -15,7 +15,6 @@ const request = async <Type>(
     };
     const authToken = getAuthToken();
     const requestInit = { ...init, Authorization: `Bearer ${authToken}` };
-
     const response = await fetch(`${apis[api]}/${url}`, requestInit);
     return await response.json();
   } catch (error: any) {
