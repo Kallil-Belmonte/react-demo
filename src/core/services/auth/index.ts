@@ -4,13 +4,13 @@ import type { RegisterUserPayload, RegisterUser, LoginUserPayload, LoginUser, Us
 const { stringify } = JSON;
 
 export const registerUser = (body: RegisterUserPayload): Promise<RegisterUser> =>
-  request(`addea4ca-7665-43ba-a4b3-5f6e660dba7b`, {
+  request(`01051ce0-738b-4a05-972a-24a0be715d9d`, {
     method: 'POST',
     body: stringify(body),
   });
 
 export const loginUser = (body: LoginUserPayload): Promise<LoginUser> =>
-  request(`2e116a57-776c-46e2-9114-48cdb18e0965`, {
+  request(`01051ce0-738b-4a05-972a-24a0be715d9d`, {
     method: 'POST',
     body: stringify(body),
   });

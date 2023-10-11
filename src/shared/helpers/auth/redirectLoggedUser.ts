@@ -1,14 +1,15 @@
 import { NavigateFunction } from 'react-router';
 
-import { AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
-import isExpiredSession from './isExpiredSession';
+import isValidAuthToken from './isValidAuthToken';
 
 /**
  * @function redirectLoggedUser
  */
 
-const redirectLoggedUser = (navigate: NavigateFunction) => {
-  if (!isExpiredSession()) {
+const redirectLoggedUser = async (navigate: NavigateFunction) => {
+  const isLoggedUser = await isValidAuthToken();
+
+  if (isLoggedUser) {
     navigate('/');
   }
 };

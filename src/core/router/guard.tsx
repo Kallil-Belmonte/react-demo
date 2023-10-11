@@ -1,19 +1,22 @@
+import { useEffect } from 'react';
+
 import { Navigate } from 'react-router-dom';
 
 import type { ReactType } from '@/shared/files/types';
-import { clearStorageData, isExpiredSession, setPageTitle } from '@/shared/helpers';
+import { isValidAuthToken, setPageTitle } from '@/shared/helpers';
 import Dashboard from '@/core/layout/Dashboard/Dashboard';
 
 type Props = { pageTitle: string; component: ReactType };
 
 const Guard = ({ pageTitle, component }: Props) => {
-  if (isExpiredSession()) {
-    clearStorageData();
-    return <Navigate to="/login" />;
-  }
+  const isValid = isValidAuthToken();
 
-  setPageTitle(pageTitle);
-  return <Dashboard>{component}</Dashboard>;
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    setPageTitle(pageTitle);
+  }, [pageTitle]);
+
+  return isValid ? <Dashboard>{component}</Dashboard> : <Navigate to="/login" />;
 };
 
 export default Guard;

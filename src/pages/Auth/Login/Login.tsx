@@ -4,7 +4,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 
 import type { FormState } from '@/pages/Auth/_files/types';
 import type { LoginUserPayload } from '@/core/services/auth/types';
-import { AUTH_TOKEN_KEY, AUTH_EXPIRATION_DATE_KEY } from '@/shared/files/consts';
+import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
 import { requiredEmail, requiredMin } from '@/shared/files/validations';
 import { clearFormMessage, validateForm } from '@/shared/helpers';
 import { useDispatch, useCustomState, useField } from '@/shared/hooks';
@@ -59,10 +59,6 @@ const Login: FunctionComponent = () => {
 
       const user = await loginUser(payload);
 
-      const expirationDate = new Date(
-        new Date().getTime() + Number(user.expiresIn) * 1000,
-      ).toISOString();
-
       if (email.value === 'demo@demo.com') {
         setState({
           serverErrors: {
@@ -74,7 +70,6 @@ const Login: FunctionComponent = () => {
       } else {
         if (keepLogged.value) {
           localStorage.setItem(AUTH_TOKEN_KEY, user.token);
-          localStorage.setItem(AUTH_EXPIRATION_DATE_KEY, expirationDate);
         } else {
           sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
         }
