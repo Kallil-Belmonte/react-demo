@@ -1,5 +1,6 @@
 import { type FunctionComponent, useState, useMemo, useCallback, useEffect } from 'react';
 
+import { PROJECT_DOMAIN } from '@/shared/files/consts';
 import type { Category, Icons } from './types';
 import './Icon.scss';
 
@@ -26,9 +27,9 @@ const Icon: FunctionComponent<Props> = props => {
   const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
   const setIcon = useCallback(async () => {
-    const module = await import(`/icons/${category}/${name}.svg`);
+    const module = await import(`./icons/${category}/${name}.svg`);
     const request = new Request(module.default);
-    const cache = await caches.open('react-demo-icons');
+    const cache = await caches.open(`${PROJECT_DOMAIN}-icons`);
     let response = await cache.match(request);
     let svgHTML = '';
 
