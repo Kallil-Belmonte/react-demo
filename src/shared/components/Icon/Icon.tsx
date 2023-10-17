@@ -1,6 +1,5 @@
 import { type FunctionComponent, useState, useMemo, useCallback, useEffect } from 'react';
 
-import type { ObjectType } from '@/shared/files/types';
 import type { Category, Icons } from './types';
 import './Icon.scss';
 
@@ -21,16 +20,28 @@ const Icon: FunctionComponent<Props> = props => {
     ...otherProps
   } = props;
 
-  const [svgs, setSvgs] = useState<ObjectType>({});
+  const [svg, setSvg] = useState('');
   const [mounted, setMounted] = useState(true);
 
   const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
   const setIcon = useCallback(async () => {
-    const response = await fetch(`/icons/${category}/${name}.svg`);
-    const svgHTML = await response.text();
-    if (mounted && !svgs[name]) setSvgs(prevValue => ({ ...prevValue, [name]: svgHTML }));
-  }, [category, name, mounted, svgs]);
+    const module = await import(`/icons/${category}/${name}.svg`);
+    const request = new Request(module.default);
+    const cache = await caches.open('react-demo-icons');
+    let response = await cache.match(request);
+    let svgHTML = '';
+
+    if (response) {
+      svgHTML = await response.text();
+    } else {
+      await cache.add(request);
+      response = await cache.match(request);
+      svgHTML = (await response?.text()) || '';
+    }
+
+    if (mounted) setSvg(svgHTML);
+  }, [category, name, mounted]);
 
   // LIFECYCLE HOOKS
   useEffect(() => {
@@ -48,7 +59,7 @@ const Icon: FunctionComponent<Props> = props => {
       data-category={category}
       data-name={name}
       style={style}
-      dangerouslySetInnerHTML={{ __html: svgs[name] }}
+      dangerouslySetInnerHTML={{ __html: svg }}
       {...otherProps}
     ></figure>
   );
