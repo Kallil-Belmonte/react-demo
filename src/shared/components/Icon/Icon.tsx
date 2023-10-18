@@ -1,5 +1,6 @@
 import { type FunctionComponent, useState, useMemo, useCallback, useEffect } from 'react';
 
+import type { ObjectType } from '@/shared/files/types';
 import { PROJECT_DOMAIN } from '@/shared/files/consts';
 import type { Category, Icons } from './types';
 import './Icon.scss';
@@ -21,27 +22,34 @@ const Icon: FunctionComponent<Props> = props => {
     ...otherProps
   } = props;
 
-  const [svg, setSvg] = useState('');
+  const [svgs, setSvgs] = useState<ObjectType>({});
   const [mounted, setMounted] = useState(true);
 
   const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
 
   const setIcon = useCallback(async () => {
-    const module = await import(`./icons/${category}/${name}.svg`);
-    const request = new Request(module.default);
-    const cache = await caches.open(`${PROJECT_DOMAIN}-icons`);
-    let response = await cache.match(request);
+    const request = new Request(`/icons/${category}/${name}.svg`);
     let svgHTML = '';
 
-    if (response) {
+    if ('caches' in window) {
+      const cache = await caches.open(`${PROJECT_DOMAIN}-icons`);
+      let response = await cache.match(request);
+
+      if (response) {
+        svgHTML = await response.text();
+      } else {
+        await cache.add(request);
+        response = await cache.match(request);
+        svgHTML = (await response?.text()) || '';
+      }
+    } else if (!svgs[name]) {
+      const response = await fetch(request);
       svgHTML = await response.text();
-    } else {
-      await cache.add(request);
-      response = await cache.match(request);
-      svgHTML = (await response?.text()) || '';
     }
 
-    if (mounted) setSvg(svgHTML);
+    if (svgHTML && mounted) {
+      setSvgs(prevValue => ({ ...prevValue, [name]: svgHTML }));
+    }
   }, [category, name, mounted]);
 
   // LIFECYCLE HOOKS
@@ -60,7 +68,7 @@ const Icon: FunctionComponent<Props> = props => {
       data-category={category}
       data-name={name}
       style={style}
-      dangerouslySetInnerHTML={{ __html: svg }}
+      dangerouslySetInnerHTML={{ __html: svgs[name] }}
       {...otherProps}
     ></figure>
   );
