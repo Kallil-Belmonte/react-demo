@@ -19,8 +19,11 @@ export const validateFields = ({ fields, validation = {}, updateState = true }: 
   if (keys(validation).length) {
     isValidFields = fields
       .map(field => {
-        const { value, setState } = field;
-        const { isValid, errorMessages, ...otherValidationProps } = validate(value, validation);
+        const { ref, setState } = field;
+        const { isValid, errorMessages, ...otherValidationProps } = validate(
+          ref.current.value,
+          validation,
+        );
 
         if (updateState) {
           const updatedState: Partial<FieldState> = {
