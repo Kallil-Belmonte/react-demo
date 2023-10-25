@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import { type FunctionComponent, useRef, useEffect } from 'react';
 
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
@@ -28,10 +28,17 @@ const Checkbox: FunctionComponent<Props> = ({
   const { value, ref, state, setValue } = field;
   const { errorMessages } = state;
 
+  const changeEventRef = useRef<React.ChangeEvent<HTMLInputElement>>();
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+    changeEventRef.current = event;
     setValue(event.target.checked ? trueValue : falseValue);
-    onChange?.(event);
   };
+
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    if (changeEventRef.current) onChange?.(changeEventRef.current);
+  }, [value]);
 
   return (
     <>
@@ -45,7 +52,7 @@ const Checkbox: FunctionComponent<Props> = ({
         name={state.name}
         value={value}
         checked={!!value}
-        ref={ref}
+        ref={ref as React.MutableRefObject<HTMLInputElement>}
         onChange={handleChange}
         {...otherProps}
       />

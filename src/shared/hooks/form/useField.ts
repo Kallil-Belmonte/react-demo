@@ -1,5 +1,4 @@
 import {
-  type MutableRefObject,
   type Dispatch,
   type SetStateAction,
   useState,
@@ -37,7 +36,7 @@ type UseFieldConfig<Value> = {
 
 export type UseField<Value = any> = {
   value: Value;
-  ref: MutableRefObject<HTMLInputElement>;
+  ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   state: FieldState;
   setValue: Dispatch<SetStateAction<Value>>;
   setState: (modifiedProps: Partial<FieldState>) => void;

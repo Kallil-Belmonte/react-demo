@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import { type FunctionComponent, useRef, useEffect } from 'react';
 
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
@@ -26,10 +26,17 @@ const Input: FunctionComponent<Props> = ({
   const { value = '', ref, state, setValue } = field;
   const { errorMessages } = state;
 
+  const changeEventRef = useRef<React.ChangeEvent<HTMLSelectElement>>();
+
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = event => {
+    changeEventRef.current = event;
     setValue(event.target.value);
-    onChange?.(event);
   };
+
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    if (changeEventRef.current) onChange?.(changeEventRef.current);
+  }, [value]);
 
   return (
     <>
@@ -41,7 +48,7 @@ const Input: FunctionComponent<Props> = ({
         className={`${getFieldClass(formSubmitted, state, 'form-select')} ${className}`}
         name={state.name}
         value={value}
-        ref={ref as React.LegacyRef<HTMLSelectElement>}
+        ref={ref as React.MutableRefObject<HTMLSelectElement>}
         onChange={handleChange}
         {...otherProps}
       >

@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import { type FunctionComponent, useRef, useEffect } from 'react';
 
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
@@ -27,10 +27,17 @@ const Input: FunctionComponent<Props> = ({
   const { value = '', ref, state, setValue } = field;
   const { errorMessages } = state;
 
+  const changeEventRef = useRef<React.ChangeEvent<HTMLTextAreaElement>>();
+
   const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = event => {
+    changeEventRef.current = event;
     setValue(event.target.value);
-    onChange?.(event);
   };
+
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    if (changeEventRef.current) onChange?.(changeEventRef.current);
+  }, [value]);
 
   return (
     <>
@@ -43,7 +50,7 @@ const Input: FunctionComponent<Props> = ({
         name={state.name}
         rows={rows}
         value={value}
-        ref={ref as React.LegacyRef<HTMLTextAreaElement>}
+        ref={ref as React.MutableRefObject<HTMLTextAreaElement>}
         onChange={handleChange}
         {...otherProps}
       ></textarea>

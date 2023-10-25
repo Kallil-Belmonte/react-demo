@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import { type FunctionComponent, useRef, useEffect } from 'react';
 
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
@@ -24,10 +24,17 @@ const RadioButton: FunctionComponent<Props> = ({
   const { value, state, setValue } = field;
   const { errorMessages } = state;
 
+  const changeEventRef = useRef<React.ChangeEvent<HTMLInputElement>>();
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+    changeEventRef.current = event;
     setValue(event.target.value);
-    onChange?.(event);
   };
+
+  // LIFECYCLE HOOKS
+  useEffect(() => {
+    if (changeEventRef.current) onChange?.(changeEventRef.current);
+  }, [value]);
 
   return (
     <>
