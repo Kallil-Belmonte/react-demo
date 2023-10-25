@@ -1,7 +1,7 @@
 import {
-  MutableRefObject,
-  Dispatch,
-  SetStateAction,
+  type MutableRefObject,
+  type Dispatch,
+  type SetStateAction,
   useState,
   useRef,
   useCallback,
