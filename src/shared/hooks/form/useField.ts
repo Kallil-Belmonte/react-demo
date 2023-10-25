@@ -1,4 +1,12 @@
-import { Dispatch, SetStateAction, useState, useRef, useCallback, useEffect } from 'react';
+import {
+  MutableRefObject,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+} from 'react';
 
 import { ValidationConfig, Validations, validate } from '@/shared/helpers';
 import useCustomState from '@/shared/hooks/state/useCustomState';
@@ -29,7 +37,7 @@ type UseFieldConfig<Value> = {
 
 export type UseField<Value = any> = {
   value: Value;
-  ref: React.LegacyRef<HTMLInputElement>;
+  ref: MutableRefObject<HTMLInputElement>;
   state: FieldState;
   setValue: Dispatch<SetStateAction<Value>>;
   setState: (modifiedProps: Partial<FieldState>) => void;
