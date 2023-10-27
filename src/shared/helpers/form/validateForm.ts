@@ -49,8 +49,8 @@ export const validateFields = ({ fields, validation = {}, updateState = true }: 
 
 /**
  * @function validateForm
- * @description Validates the form.
- * @param { Config[] } formItems - Form items.
+ * @description Validates a form.
+ * @param { Config[] } formItems - Configuration properties array.
  */
 
 const validateForm = (formItems: Config[]) => {
