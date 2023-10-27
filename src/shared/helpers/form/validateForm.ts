@@ -10,7 +10,9 @@ type Config = {
 const { keys } = Object;
 
 /**
- * @function validateForm
+ * @function validateFields
+ * @description Validates the fields.
+ * @param { Config } config - Configuration properties.
  */
 
 export const validateFields = ({ fields, validation = {}, updateState = true }: Config) => {
@@ -44,6 +46,12 @@ export const validateFields = ({ fields, validation = {}, updateState = true }: 
 
   return isValidFields;
 };
+
+/**
+ * @function validateForm
+ * @description Validates the form.
+ * @param { Config[] } formItems - Form items.
+ */
 
 const validateForm = (formItems: Config[]) => {
   const isValidFields = formItems.map(item => validateFields(item));

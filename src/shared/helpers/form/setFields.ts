@@ -10,6 +10,8 @@ type Config = {
 
 /**
  * @function setFields
+ * @description Sets a value to the fields.
+ * @param { Config } config - Configuration properties.
  */
 
 const setFields = ({ fields, value, reset }: Config) => {
