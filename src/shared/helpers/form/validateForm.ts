@@ -1,10 +1,6 @@
 import { Validations, ValidationConfig, validate } from '@/shared/helpers';
 import { type FieldState, UseField } from '@/shared/hooks';
 
-/**
- * @function validateForm
- */
-
 type Config = {
   fields: UseField[];
   validation?: ValidationConfig;
@@ -12,6 +8,10 @@ type Config = {
 };
 
 const { keys } = Object;
+
+/**
+ * @function validateForm
+ */
 
 export const validateFields = ({ fields, validation = {}, updateState = true }: Config) => {
   let isValidFields = fields.every(field => field.state.valid);

@@ -1,9 +1,5 @@
 import { type UseField, getFieldState } from '@/shared/hooks';
 
-/**
- * @function setFields
- */
-
 type Value = string | number | boolean;
 
 type Config = {
@@ -11,6 +7,10 @@ type Config = {
   value?: Value;
   reset?: { required: boolean };
 };
+
+/**
+ * @function setFields
+ */
 
 const setFields = ({ fields, value, reset }: Config) => {
   const { required } = reset || {};
