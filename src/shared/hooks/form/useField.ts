@@ -72,14 +72,10 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
       if (pristine) updatedState.pristine = false;
       if (!dirty) updatedState.dirty = true;
 
-      const getConvertedValue = () => {
-        if (updatedValue === null) return '';
-        return typeof updatedValue === 'string' || typeof updatedValue === 'number'
+      const convertedValue =
+        typeof updatedValue === 'string' || typeof updatedValue === 'number'
           ? String(updatedValue)
           : null;
-      };
-
-      const convertedValue = getConvertedValue();
 
       if (typeof convertedValue === 'string' && keys(validation).length) {
         const { isValid, errorMessages, ...otherValidationProps } = validate(
