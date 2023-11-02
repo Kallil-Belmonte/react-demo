@@ -4,7 +4,7 @@ import type { Category, Post } from './types';
 const { stringify } = JSON;
 
 export const getCategories = (): Promise<Category[]> =>
-  request(`bb4a0a50-d578-44e5-8d89-11ada2c96129`);
+  request(`697df6c0-f63e-4d91-baec-e5209c24cb64`);
 
 export const getPosts = (): Promise<Post[]> => request(`posts`, undefined, 'jsonPlaceholder');
 

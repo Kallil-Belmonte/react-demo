@@ -16,4 +16,4 @@ export const loginUser = (body: LoginUserPayload): Promise<LoggedUser> =>
   });
 
 export const getUser = (id: string): Promise<User> =>
-  request(`f11a346c-0685-40e7-829d-5a4322850c35?${new URLSearchParams({ id })}`);
+  request(`23e90d18-0bb4-476b-b048-eef9a0cf7887?${new URLSearchParams({ id })}`);
