@@ -38,6 +38,7 @@ export type UseField<Value = any> = {
   value: Value;
   ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   state: FieldState;
+  validation: ValidationConfig;
   setValue: Dispatch<SetStateAction<Value>>;
   setState: (modifiedProps: Partial<FieldState>) => void;
 };
@@ -123,7 +124,7 @@ const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value
     controlTouching();
   }, [touched]);
 
-  return { value, ref: fieldRef, state, setValue, setState };
+  return { value, ref: fieldRef, state, validation, setValue, setState };
 };
 
 export default useField;
