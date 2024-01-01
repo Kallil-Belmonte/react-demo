@@ -5,7 +5,7 @@ import { PROJECT_TITLE } from '@/shared/files/consts';
  */
 
 const setPageTitle = (title: string) => {
-  document.title = `${PROJECT_TITLE} | ${title}`;
+  document.title = `${title} | ${PROJECT_TITLE}`;
 };
 
 export default setPageTitle;
