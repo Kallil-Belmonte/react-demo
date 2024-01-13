@@ -24,8 +24,8 @@ const request = async <Type>(
     };
     const response = await fetch(`${apis[api]}/${url}`, requestInit);
     const jsonResponse: Type = await response.json();
-    if (!response.ok) throw new Error(stringify(jsonResponse));
-    return jsonResponse;
+    if (response.ok) return jsonResponse;
+    throw new Error(stringify(jsonResponse));
   } catch (error: any) {
     throw error;
   }
