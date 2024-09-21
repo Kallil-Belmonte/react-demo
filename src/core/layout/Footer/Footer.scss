@@ -12,7 +12,7 @@
         color: $dark;
         display: inline-block;
 
-        figure {
+        [data-component='icon'] {
           @include square(25px);
         }
       }

@@ -5,7 +5,7 @@ import { PROJECT_DOMAIN } from '@/shared/files/consts';
 import type { Category, Icons } from './types';
 import './Icon.scss';
 
-type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   category?: Category;
   name: Icons;
   size?: string;
@@ -62,14 +62,14 @@ const Icon: FunctionComponent<Props> = props => {
   }, [setIcon]);
 
   return (
-    <figure
+    <div
       data-component="icon"
       data-category={category}
       data-name={name}
       style={style}
       dangerouslySetInnerHTML={{ __html: svgs[name] }}
       {...otherProps}
-    ></figure>
+    ></div>
   );
 };
 
