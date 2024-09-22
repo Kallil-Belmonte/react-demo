@@ -1,0 +1,41 @@
+[data-component='Select'].form-field {
+  input {
+    padding: 0 35px 0 $field-spacing-x;
+  }
+
+  [data-component='IconButton'] {
+    transition: rotate 0.3s ease;
+    @include position(absolute, 40px, 15px);
+
+    &:has(+ [role='listbox'][aria-hidden='false']) {
+      rotate: 180deg;
+    }
+  }
+
+  [role='listbox'] {
+    max-height: 202px;
+    border-radius: 4px;
+    border: 1px solid $field-border-color;
+    overflow-y: auto;
+    @include position(absolute, calc(100% + 1px), 0, auto, 0, 1);
+
+    [role='option'] {
+      @extend %flex-center-y;
+      height: 40px;
+      padding: 5px;
+      background-color: #fff;
+      cursor: pointer;
+      @include transitionAll();
+
+      &:hover,
+      &[aria-selected='true'] {
+        background-color: $field-border-color;
+      }
+
+      &[aria-disabled='true'] {
+        pointer-events: none;
+        background-color: #fafafa;
+      }
+    }
+  }
+}

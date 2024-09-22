@@ -1,71 +1,67 @@
-import { type FunctionComponent, useRef, useEffect } from 'react';
+import type { FunctionComponent } from 'react';
 
-import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
+import './RadioButton.scss';
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & {
-  labelClass?: string;
-  field: UseField<any>;
-  radios: { label: string; value: string }[];
-  formSubmitted: boolean;
-};
-
-const RadioButton: FunctionComponent<Props> = ({
-  labelClass = 'form-check-label',
-  className = '',
-  field,
-  radios,
-  formSubmitted,
-  onChange,
-  ...otherProps
-}) => {
-  const { value, state, setValue } = field;
-  const { errorMessages } = state;
-
-  const changeEventRef = useRef<React.ChangeEvent<HTMLInputElement>>();
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
-    changeEventRef.current = event;
-    setValue(event.target.value);
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+  Pick<
+    React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+    'name' | 'required' | 'disabled' | 'onChange'
+  > & {
+    title: string;
+    radios: { label: string; value: string }[];
+    field: UseField<any>;
   };
 
-  // LIFECYCLE HOOKS
-  useEffect(() => {
-    if (changeEventRef.current) onChange?.(changeEventRef.current);
-  }, [value]);
+const RadioButton: FunctionComponent<Props> = ({
+  title,
+  name,
+  required,
+  disabled,
+  radios,
+  onChange,
+  field,
+  ...otherProps
+}) => {
+  const { ref, value, setValue } = field;
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+    setValue(event.target.value);
+    onChange?.(event);
+  };
 
   return (
-    <>
-      {radios.map(radio => (
-        <div
-          key={radio.value}
-          className={`${getFieldClass(
-            formSubmitted,
-            state,
-            'form-check form-check-inline',
-          )} ${className}`}
-        >
-          <label className={labelClass} htmlFor={radio.value}>
-            {radio.label}
-          </label>
-          <input
-            id={radio.value}
-            className={`${getFieldClass(formSubmitted, state, 'form-check-input')} ${className}`}
-            type="radio"
-            name={state.name}
-            value={radio.value}
-            checked={value === radio.value}
-            onChange={handleChange}
-            {...otherProps}
-          />
-        </div>
-      ))}
-      {errorMessages.map(errorMessage => (
-        <div key={errorMessage} className="invalid-feedback">
-          {errorMessage}
-        </div>
-      ))}
-    </>
+    <div data-component="RadioButton" {...otherProps}>
+      <div className="title-wrapper">
+        <p className="title">{title}</p>
+      </div>
+
+      <div className="d-flex align-items-center items">
+        {radios.map(radio => (
+          <div key={radio.label} className="d-flex item">
+            <label htmlFor={radio.value}>{radio.label}</label>
+            <input
+              ref={ref as React.MutableRefObject<HTMLInputElement>}
+              id={radio.value}
+              type="radio"
+              name={name}
+              value={radio.value}
+              checked={value === radio.value}
+              required={required}
+              disabled={disabled}
+              onChange={handleChange}
+            />
+            <div className="radio"></div>
+          </div>
+        ))}
+      </div>
+
+      {ref.current.validationMessage && (
+        <p className="validation-message">
+          <strong>{ref.current.validationMessage}</strong>
+        </p>
+      )}
+    </div>
   );
 };
 

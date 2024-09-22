@@ -1,63 +1,73 @@
 import { type FunctionComponent, useRef, useEffect } from 'react';
 
-import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
-type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  labelClass?: string;
-  label: string;
-  fieldClasses?: string;
-  field: UseField<any>;
-  formSubmitted: boolean;
-  onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
-};
-
-const Input: FunctionComponent<Props> = ({
-  labelClass = 'form-label',
-  label,
-  fieldClasses,
-  rows = 3,
-  field,
-  formSubmitted,
-  onChange,
-  ...otherProps
-}) => {
-  const { value = '', ref, state, setValue } = field;
-  const { errorMessages } = state;
-
-  const changeEventRef = useRef<React.ChangeEvent<HTMLTextAreaElement>>();
-
-  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = event => {
-    changeEventRef.current = event;
-    setValue(event.target.value);
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+  Pick<
+    React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>,
+    | 'name'
+    | 'required'
+    | 'minLength'
+    | 'maxLength'
+    | 'placeholder'
+    | 'rows'
+    | 'cols'
+    | 'disabled'
+    | 'onChange'
+  > & {
+    label: string;
+    field: UseField<any>;
   };
 
-  // LIFECYCLE HOOKS
-  useEffect(() => {
-    if (changeEventRef.current) onChange?.(changeEventRef.current);
-  }, [value]);
+const Input: FunctionComponent<Props> = ({
+  label,
+  name,
+  required,
+  minLength,
+  maxLength,
+  placeholder,
+  rows = 4,
+  cols,
+  disabled,
+  onChange,
+  field,
+  ...otherProps
+}) => {
+  const { ref, value = '', setValue } = field;
+
+  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = event => {
+    setValue(event.target.value);
+    onChange?.(event);
+  };
 
   return (
-    <>
-      <label className={labelClass} htmlFor={state.name}>
-        {label}
-      </label>
+    <div data-component="Textarea" className="form-field" {...otherProps}>
+      <div className="label-wrapper">
+        <label htmlFor={name}>{label}</label>
+      </div>
+
       <textarea
-        id={state.name}
-        className={`${getFieldClass(formSubmitted, state, fieldClasses)}`}
-        name={state.name}
+        ref="field"
+        v-model="model"
+        name={name}
+        id={name}
         rows={rows}
+        cols={cols}
+        required={required}
+        minLength={minLength}
+        maxLength={maxLength}
+        placeholder={placeholder}
+        disabled={disabled}
         value={value}
-        ref={ref as React.MutableRefObject<HTMLTextAreaElement>}
         onChange={handleChange}
-        {...otherProps}
       ></textarea>
-      {errorMessages.map(errorMessage => (
-        <div key={errorMessage} className="invalid-feedback">
-          {errorMessage}
-        </div>
-      ))}
-    </>
+
+      {ref.current.validationMessage && (
+        <p className="validation-message">
+          <strong>{ref.current.validationMessage}</strong>
+        </p>
+      )}
+    </div>
   );
 };
 

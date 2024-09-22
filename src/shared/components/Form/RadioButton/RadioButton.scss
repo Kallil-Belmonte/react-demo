@@ -1,0 +1,82 @@
+[data-component='RadioButton'] {
+  .title-wrapper {
+    @extend %flex-center-y;
+    margin-bottom: 8px;
+
+    .title {
+      font-weight: 700;
+      margin: 0;
+    }
+
+    [data-component='Tooltip'] {
+      margin-left: 5px;
+    }
+  }
+
+  .items {
+    gap: 10px;
+
+    .item {
+      gap: 5px;
+      position: relative;
+
+      &:not(:has(input:disabled)) {
+        label,
+        input {
+          cursor: pointer;
+        }
+      }
+
+      input {
+        @include square(18px);
+        opacity: 0;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+      }
+
+      .radio {
+        @include square(18px, 50%);
+        border: 2px solid $field-border-color;
+        position: relative;
+
+        &::after {
+          content: '';
+          @include square(0, 50%);
+          background-color: $primary;
+          @extend %absolute-center;
+          @include transitionAll(0.2s);
+        }
+      }
+
+      &:has(input:user-invalid) {
+        .radio {
+          border-color: $danger;
+        }
+      }
+
+      &:has(input:checked) {
+        .radio {
+          border-color: $primary;
+
+          &::after {
+            @include square(70%);
+          }
+        }
+      }
+
+      &:has(input:disabled) {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .validation-message {
+    color: $danger;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+}

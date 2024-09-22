@@ -1,64 +1,133 @@
-import { type FunctionComponent, useRef, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
-import { getFieldClass } from '@/shared/helpers';
+import { removeAccent } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
+import IconButton from '@/shared/components/IconButton/IconButton';
+import './Select.scss';
 
-type Props = React.InputHTMLAttributes<HTMLSelectElement> & {
-  labelClass?: string;
-  label: string;
-  field: UseField<any>;
-  formSubmitted: boolean;
-  children: React.ReactNode;
+type Option = {
+  text: string;
+  value: string;
+  disabled?: boolean;
 };
 
-const Input: FunctionComponent<Props> = ({
-  labelClass = 'form-label',
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+  Pick<
+    React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
+    'name' | 'required' | 'disabled'
+  > & {
+    label: string;
+    options: Option[];
+    onChange?: (value: string, event: React.FocusEvent<HTMLInputElement, Element>) => void;
+    field: UseField<any>;
+  };
+
+const Select: FunctionComponent<Props> = ({
   label,
-  className = '',
+  name,
+  required,
+  options,
+  disabled,
   field,
-  formSubmitted,
   onChange,
-  children,
   ...otherProps
 }) => {
-  const { value = '', ref, state, setValue } = field;
-  const { errorMessages } = state;
+  const { ref, value = '', setValue } = field;
 
-  const changeEventRef = useRef<React.ChangeEvent<HTMLSelectElement>>();
+  const [openned, setOpenned] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [filteredOptions, setFilteredOptions] = useState<Props['options']>([]);
 
-  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = event => {
-    changeEventRef.current = event;
-    setValue(event.target.value);
+  const isSelected = (valueParam: string) => valueParam === value;
+
+  const format = (text: string) => removeAccent(text.toLowerCase());
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+    const target = event.target as HTMLInputElement;
+    setFilteredOptions(
+      options.filter(option => format(option.text).includes(format(target.value))),
+    );
+  };
+
+  const handleFocus = () => {
+    setOpenned(true);
+  };
+
+  const handleBlur: React.FocusEventHandler<HTMLInputElement> = event => {
+    const target = event.target as HTMLInputElement;
+
+    setTimeout(() => {
+      const option = options.find(option => format(option.text) === format(target.value));
+
+      if (option) {
+        setValue(option.value);
+        onChange?.(option.value, event);
+      }
+
+      setOpenned(false);
+    }, 100);
+  };
+
+  const triggerInputFocus = () => {
+    ref.current.focus();
+  };
+
+  const select = (option: Option) => {
+    if (option.disabled) return;
+    setValue(option.value);
+  };
+
+  const setData = () => {
+    setInputValue(options.find(option => option.value === value)?.text || '');
+    setFilteredOptions(options);
   };
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    if (changeEventRef.current) onChange?.(changeEventRef.current);
-  }, [value]);
+    setData();
+  }, []);
 
   return (
-    <>
-      <label className={labelClass} htmlFor={state.name}>
-        {label}
-      </label>
-      <select
-        id={state.name}
-        className={`${getFieldClass(formSubmitted, state, 'form-select')} ${className}`}
-        name={state.name}
-        value={value}
-        ref={ref as React.MutableRefObject<HTMLSelectElement>}
+    <div data-component="Select" className="form-field" {...otherProps}>
+      <div className="label-wrapper">
+        <label htmlFor={name}>{label}</label>
+      </div>
+
+      <input
+        ref={ref as React.MutableRefObject<HTMLInputElement>}
+        type="text"
+        name={name}
+        id={name}
+        required={required}
+        placeholder="Select"
+        disabled={disabled}
+        value={inputValue}
         onChange={handleChange}
-        {...otherProps}
-      >
-        {children}
-      </select>
-      {errorMessages.map(errorMessage => (
-        <div key={errorMessage} className="invalid-feedback">
-          {errorMessage}
-        </div>
-      ))}
-    </>
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+      <IconButton icon="ArrowDown" size="15px" onClick={triggerInputFocus} />
+      <div role="listbox" tabIndex={0} aria-label="Options" aria-hidden={!openned}>
+        {filteredOptions.map(option => (
+          <div
+            key={option.value}
+            role="option"
+            aria-selected={isSelected(option.value)}
+            aria-disabled={option.disabled}
+            onClick={() => select(option)}
+          >
+            {option.text}
+          </div>
+        ))}
+      </div>
+
+      {ref.current.validationMessage && (
+        <p className="validation-message">
+          <strong>{ref.current.validationMessage}</strong>
+        </p>
+      )}
+    </div>
   );
 };
 
-export default Input;
+export default Select;
