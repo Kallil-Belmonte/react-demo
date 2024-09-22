@@ -3,15 +3,13 @@ import { type FunctionComponent, useRef, useEffect } from 'react';
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
-type Props = {
+type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   labelClass?: string;
   label: string;
-  className?: string;
   trueValue: string | number | boolean;
   falseValue: string | number | boolean;
   field: UseField<any>;
   formSubmitted: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 const Checkbox: FunctionComponent<Props> = ({

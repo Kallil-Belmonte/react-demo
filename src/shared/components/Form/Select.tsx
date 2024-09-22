@@ -3,13 +3,11 @@ import { type FunctionComponent, useRef, useEffect } from 'react';
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
-type Props = {
+type Props = React.InputHTMLAttributes<HTMLSelectElement> & {
   labelClass?: string;
   label: string;
-  className?: string;
   field: UseField<any>;
   formSubmitted: boolean;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   children: React.ReactNode;
 };
 

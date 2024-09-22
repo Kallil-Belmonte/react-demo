@@ -3,12 +3,10 @@ import { type FunctionComponent, useRef, useEffect } from 'react';
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
-type Props = {
+type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   labelClass?: string;
   label: string;
   fieldClasses?: string;
-  className?: string;
-  rows?: number;
   field: UseField<any>;
   formSubmitted: boolean;
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;

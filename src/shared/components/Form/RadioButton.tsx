@@ -3,13 +3,11 @@ import { type FunctionComponent, useRef, useEffect } from 'react';
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
-type Props = {
+type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   labelClass?: string;
-  className?: string;
   field: UseField<any>;
   radios: { label: string; value: string }[];
   formSubmitted: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 const RadioButton: FunctionComponent<Props> = ({

@@ -3,16 +3,12 @@ import { type FunctionComponent, useRef, useEffect } from 'react';
 import { getFieldClass } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
 
-type Props = {
+type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   labelClass?: string;
   label: string;
   fieldClasses?: string;
-  className?: string;
-  type?: string;
-  placeholder?: string;
   field: UseField<any>;
   formSubmitted: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 const Input: FunctionComponent<Props> = ({
@@ -55,11 +51,11 @@ const Input: FunctionComponent<Props> = ({
         onChange={handleChange}
         {...otherProps}
       />
-      {errorMessages.map(errorMessage => (
-        <div key={errorMessage} className="invalid-feedback">
-          {errorMessage}
-        </div>
-      ))}
+      {ref.current?.validationMessage && (
+        <p className="validation-message invalid-feedback">
+          <strong>{ref.current.validationMessage}</strong>
+        </p>
+      )}
     </>
   );
 };
