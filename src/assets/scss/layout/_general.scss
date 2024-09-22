@@ -1,6 +1,6 @@
 // FONTS
 
-// NOME DA FONTE
+// FONT NAME
 // @font-face {
 //   font-family: 'Nome da Fonte';
 //   font-display: swap;
@@ -12,7 +12,7 @@
 //   url('../fonts/nome-da-fonte/webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
 // }
 
-// NOME DA FONTE
+// FONT NAME
 
 // Ultra Light
 // @font-face {
@@ -62,6 +62,27 @@
 //   src: url('../fonts/nome-da-fonte/nome-da-fonte-bold-webfont.woff');
 // }
 
+// ATTRIBUTES
+[aria-hidden='true'] {
+  display: none !important;
+}
+
+// BODY
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-size;
+  font-weight: 400;
+  color: $text-color;
+  box-sizing: border-box;
+  margin: 0;
+}
+
 // SCROLLBAR
 ::-webkit-scrollbar-track {
   border-radius: 10px;
@@ -69,12 +90,23 @@
 
 ::-webkit-scrollbar {
   @include square(8px);
-  background-color: transparent;
+  background-color: #e1e3e4;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #c1c8cc;
+
+  &:active {
+    background-color: $primary;
+  }
+}
+
+// HR
+hr {
+  height: 1px;
+  border-width: 0;
+  background-color: $grey-4;
 }
 
 // HEADINGS
@@ -84,7 +116,9 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: $font-primary;
   font-weight: 700;
+  line-height: 100%;
   margin: 0;
 }
 
@@ -103,12 +137,194 @@ figure {
 // LINK
 a {
   text-decoration: none;
+  color: $secondary;
+  @include transitionAll();
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $primary;
+  }
 }
 
 // BUTTON
 button {
   font: inherit;
+  font-family: $font-primary;
+  font-size: $font-size;
+  color: $text-color;
+  text-align: center;
+  padding: $button-padding;
+  height: $button-height;
   border: none;
   cursor: pointer;
   background-color: transparent;
+
+  &[disabled] {
+    font-weight: 400;
+    color: $text-color !important;
+    background-color: $grey-4 !important;
+    pointer-events: none;
+  }
+}
+
+// FORM
+fieldset {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border: 1px solid $field-border-color;
+  border-radius: 8px;
+
+  legend {
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+.form-field {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: $field-spacing-y;
+  }
+
+  .label-wrapper {
+    @extend %flex-center-y;
+    margin-bottom: 8px;
+
+    label {
+      font-weight: 700;
+    }
+
+    [data-component='Tooltip'] {
+      margin-left: 5px;
+    }
+
+    + [data-component='Icon'] {
+      color: $grey-4;
+    }
+  }
+
+  > [data-component='Icon'] {
+    @include square($field-icon-size);
+    position: absolute;
+    top: 38px;
+
+    svg {
+      @include transitionAll();
+    }
+  }
+
+  .label-wrapper + [data-component='Icon'] {
+    left: $field-spacing-x;
+
+    + input {
+      padding-left: calc($field-spacing-x + $field-icon-size + 10px);
+    }
+  }
+
+  &:has(:user-invalid) {
+    .label-wrapper + [data-component='Icon'] {
+      color: $danger;
+    }
+  }
+
+  &:has(:focus:not(:user-invalid)) {
+    .label-wrapper + [data-component='Icon'] {
+      color: $primary;
+    }
+  }
+
+  input + [data-component='Icon'] {
+    right: $field-spacing-x;
+    cursor: pointer;
+  }
+
+  input,
+  select {
+    height: $field-height;
+    padding: 0 $field-spacing-x;
+  }
+
+  textarea {
+    padding: $field-spacing-x;
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: $font-primary;
+    font-size: $font-size;
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid $field-border-color;
+    box-sizing: border-box;
+    transition: border-color 0.4s ease;
+
+    &:focus {
+      border-color: $field-active-border-color;
+      outline: none;
+    }
+
+    &::-webkit-input-placeholder,
+    &::-webkit-input-placeholder,
+    &::-webkit-input-placeholder {
+      color: $grey-5;
+    }
+
+    &::-moz-placeholder,
+    &::-moz-placeholder,
+    &::-moz-placeholder {
+      color: $grey-5;
+    }
+
+    &:user-invalid {
+      &,
+      &:focus {
+        border-color: $danger;
+      }
+    }
+  }
+
+  .validation-message {
+    color: $danger;
+    margin: 5px 0 0 5px;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &:not(:has(:user-invalid)) {
+    .validation-message {
+      display: none;
+    }
+  }
+}
+
+// TITLE
+.section-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+// SECTION
+.page-section {
+  padding: 100px 0;
+}
+
+// PAGINATION
+.page-link {
+  color: $primary;
+
+  &:hover {
+    color: color.adjust($primary, $lightness: -5%);
+  }
+}
+
+.page-item.active .page-link {
+  background-color: $primary;
+  border-color: $primary;
 }

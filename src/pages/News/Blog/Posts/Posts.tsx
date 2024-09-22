@@ -7,7 +7,7 @@ const { keys } = Object;
 
 const Posts: FunctionComponent<PostsProps> = ({ currentPage, pages }) => {
   return (
-    <section data-component="posts">
+    <section data-component="Posts">
       <div className="row">
         {!!keys(pages).length &&
           pages[currentPage].map(post => (

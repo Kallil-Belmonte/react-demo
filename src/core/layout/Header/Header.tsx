@@ -7,7 +7,7 @@ import { clearStorageData } from '@/shared/helpers';
 import { useSelector, useDispatch } from '@/shared/hooks';
 import { setUser, resetUser } from '@/core/redux/reducers/auth';
 import { getUser } from '@/core/services';
-import { Icon } from '@/shared/components';
+import { Button, Icon } from '@/shared/components';
 import './Header.scss';
 
 const Header = () => {
@@ -87,11 +87,9 @@ const Header = () => {
         </ul>
       </nav>
 
-      <div className="welcome-box d-flex align-items-center position-absolute">
-        <p className="mb-0 me-3">Hello {fullName}!</p>
-        <button className="btn btn-dark" type="button" onClick={handleLogOut}>
-          Log out
-        </button>
+      <div className="welcome-box d-flex align-items-center">
+        <p className="me-3">Hello {fullName}!</p>
+        <Button onClick={handleLogOut}>Log out</Button>
       </div>
     </header>
   );

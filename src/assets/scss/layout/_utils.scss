@@ -1,4 +1,8 @@
 // GENERAL
+.text-center {
+  text-align: center;
+}
+
 .text-continued {
   @extend %text-continued;
 }
@@ -11,17 +15,14 @@
   pointer-events: none;
 }
 
-// FLEX CENTER
-.flex-center {
-  @extend %flex-center;
+.w-full {
+  width: calc($layout-spacing-x + 100% + $layout-spacing-x);
+  margin-left: -$layout-spacing-x !important;
+  margin-right: -$layout-spacing-x !important;
 }
 
-.flex-center-y {
-  @extend %flex-center-y;
-}
-
-.flex-center-x {
-  @extend %flex-center-x;
+.h-full {
+  height: 100%;
 }
 
 // ABSOLUTE CENTER

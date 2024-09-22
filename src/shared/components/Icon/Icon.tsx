@@ -63,7 +63,7 @@ const Icon: FunctionComponent<Props> = props => {
 
   return (
     <div
-      data-component="icon"
+      data-component="Icon"
       data-category={category}
       data-name={name}
       style={style}

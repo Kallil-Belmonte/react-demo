@@ -6,7 +6,7 @@ import './Account.scss';
 
 const Account: FunctionComponent = () => {
   return (
-    <main data-page="account">
+    <main data-page="Account">
       <div className="container">
         <PageHeader icon="User">Account</PageHeader>
         <Form />

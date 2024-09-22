@@ -1,7 +1,7 @@
 import { type FunctionComponent, useRef, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { Modal } from 'bootstrap';
+// import { Modal } from 'bootstrap';
 
 import type { DeletePostModalState } from '@/pages/News/Post/_files/types';
 import { useCustomState } from '@/shared/hooks';
@@ -22,7 +22,7 @@ const DeletePostModal: FunctionComponent = () => {
   const { loading } = state;
 
   const setUpModal = () => {
-    modalRef.current.value = new Modal(modalRef.current);
+    // modalRef.current.value = new Modal(modalRef.current);
   };
 
   const handleConfirmDeletePost = async () => {

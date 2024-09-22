@@ -7,7 +7,7 @@ import './PostBody.scss';
 
 const PostBody: FunctionComponent<PostProps> = ({ post }) => {
   return (
-    <section data-component="post-body">
+    <section data-component="PostBody">
       <article>
         <h1 className="title text-center">{post.title}</h1>
         <p>{post.body}</p>

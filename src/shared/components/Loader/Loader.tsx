@@ -2,14 +2,14 @@ import type { FunctionComponent } from 'react';
 
 import './Loader.scss';
 
-type Props = {
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
   loading: boolean;
 };
 
-const Loader: FunctionComponent<Props> = ({ loading }) => {
+const Loader: FunctionComponent<Props> = ({ loading, ...otherProps }) => {
   if (!loading) return null;
   return (
-    <section data-component="loader">
+    <section data-component="Loader" {...otherProps}>
       <div className="atom-spinner">
         <div className="spinner-inner">
           <div className="spinner-line"></div>

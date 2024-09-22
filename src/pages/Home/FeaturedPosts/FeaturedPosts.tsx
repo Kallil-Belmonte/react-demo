@@ -5,7 +5,7 @@ import { PostItem } from '@/shared/components';
 
 const FeaturedPosts: FunctionComponent<FeaturedPostsProps> = ({ posts }) => {
   return (
-    <section data-component="featured-posts" className="page-section">
+    <section data-component="FeaturedPosts" className="page-section">
       <div className="container">
         <h2 className="section-title">Featured posts</h2>
 

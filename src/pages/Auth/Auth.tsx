@@ -16,7 +16,7 @@ const Auth: FunctionComponent<AuthProps> = ({ children }) => {
   }, []);
 
   return (
-    <main data-page="auth">
+    <main data-page="Auth">
       <div className="container">
         <Icon className="logo mx-auto" category="Brand" name="Logo" />
 

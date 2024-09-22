@@ -1,50 +1,49 @@
-//==============================
-// BOOTSTRAP
-//==============================
+@use 'sass:color';
 
 // COLORS
-$gray-100: #f8f9fa;
-$gray-200: #e9ecef;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #6c757d;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
-
-$blue: #628ee5;
-$indigo: #8980f5;
-$purple: #9b69b8;
-$pink: #ea5d9d;
-$red: #ff6a79;
-$orange: #ffb23e;
-$yellow: #fbdb62;
-$green: #37c991;
-$teal: #2cd5ce;
-$cyan: #5dd7ea;
-
 $primary: #61dafb;
+$primary-light: color.adjust($primary, $lightness: 5%);
+$primary-darker: color.adjust($primary, $lightness: -5%);
 $secondary: #628ee5;
-$success: $green;
-$info: $cyan;
-$warning: $orange;
-$danger: $red;
-$light: #eff3f6;
-$dark: #343a40;
+$secondary-light: color.adjust($secondary, $lightness: 5%);
+$secondary-darker: color.adjust($secondary, $lightness: -5%);
+$info: #14d5f3;
+$success: #37c991;
+$warning: #ffb23e;
+$danger: #fd6e64;
+$grey-1: #f9f9f9;
+$grey-2: #f1f1f1;
+$grey-3: #eef4fb;
+$grey-4: #e0e0e0;
+$grey-5: #cbcbcb;
+$grey-6: #c0c0c0;
+$grey-7: #aeb2bf;
+$dark-1: #616161;
+$dark-2: #3d464d;
+$gradient-primary: linear-gradient(90deg, rgb(143, 161, 254) 0%, rgb(160, 160, 241) 100%);
+$gradient-secondary: linear-gradient(90deg, rgb(160, 160, 241) 0%, rgb(143, 161, 254) 100%);
+$shadow-primary: 0 0 15px 5px rgba(143, 161, 254, 0.4);
 
-// BODY
-$body-bg: #f9f9f9;
-$body-color: $gray-700;
+$text-color: $dark-2;
 
 // FONTS
-$font-family-base: 'Roboto', Arial, sans-serif;
-$font-size-base: 1rem;
+$font-primary: 'Roboto', Arial, sans-serif;
+$font-size: 16px;
 
-$text-muted: $gray-600;
+// LAYOUT
+$header-size: 80px;
+$footer-size: 80px;
+$layout-spacing-y: 15px;
+$layout-spacing-x: 15px;
 
-//==============================
-// CUSTOM
-//==============================
+// FORM
+$field-spacing-y: 15px;
+$field-spacing-x: 15px;
+$field-icon-size: 20px;
+$field-height: 40px;
+$field-border-color: #dae8f7;
+$field-active-border-color: $primary;
 
-// ELEMENTS
+// BUTTON
+$button-height: 35px;
+$button-padding: 0 15px;

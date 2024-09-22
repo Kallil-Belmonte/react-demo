@@ -15,7 +15,7 @@ const Pagination: FunctionComponent<PaginationProps> = ({
   const isItemActive = (page: string) => Number(page) === currentPage;
 
   return (
-    <nav data-component="pagination" className="d-inline-block" aria-label="Pagination">
+    <nav data-component="Pagination" className="d-inline-block" aria-label="Pagination">
       <ul className="pagination mb-0">
         {firstItem > 1 && (
           <li className="page-item" v-if="firstItem > 1">

@@ -2,17 +2,15 @@
   padding: 30px 0;
 
   .social-networks {
-    li {
-      &:not(:last-child) {
-        margin-right: 40px;
-      }
+    gap: 40px;
 
+    li {
       a {
         font-size: 0;
-        color: $dark;
+        color: $dark-2;
         display: inline-block;
 
-        [data-component='icon'] {
+        [data-component='Icon'] {
           @include square(25px);
         }
       }

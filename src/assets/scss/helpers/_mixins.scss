@@ -1,20 +1,3 @@
-@mixin style-btn($btn-class) {
-  &.#{$btn-class},
-  &.#{$btn-class}:hover,
-  &.#{$btn-class}:not(:disabled):not(.disabled):active,
-  &.#{$btn-class}:not(:disabled):not(.disabled).active {
-    color: #fff;
-  }
-}
-
-@mixin style-btn-outline($btn-outline-class) {
-  &.#{$btn-outline-class}:hover,
-  &.#{$btn-outline-class}:not(:disabled):not(.disabled):active,
-  &.#{$btn-outline-class}:not(:disabled):not(.disabled).active {
-    color: #fff;
-  }
-}
-
 @mixin size($width, $height, $radius: '') {
   width: $width;
   height: $height;
@@ -31,7 +14,7 @@
   }
 }
 
-@mixin bg-image($url, $attachment: scroll, $size: cover) {
+@mixin bg-image($url, $attachment: fixed, $size: cover) {
   background: url($url) no-repeat center center $attachment;
   background-size: $size;
 }

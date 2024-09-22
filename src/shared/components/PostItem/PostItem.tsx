@@ -1,32 +1,31 @@
-import { type FunctionComponent, memo } from 'react';
-
-import { NavLink } from 'react-router-dom';
+import type { FunctionComponent } from 'react';
 
 import type { Post } from '@/core/services/news/types';
 import { limitWords } from '@/shared/helpers';
+import Button from '../Button/Button';
 import './PostItem.scss';
 
-type Props = {
+type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   post: Post;
 };
 
-const PostItem: FunctionComponent<Props> = ({ post }) => {
+const PostItem: FunctionComponent<Props> = ({ post, ...otherProps }) => {
   return (
-    <div data-component="post-item">
+    <div data-component="PostItem" {...otherProps}>
       {post.image ? (
         <img className="img-fluid" src={post.image} alt="Capa" />
       ) : (
-        <div className="img-placeholder">Não há imagem para esse post</div>
+        <div className="img-placeholder">No image for this post</div>
       )}
       <article>
         <h3 className="title">{post.title}</h3>
         <p className="mb-0">{post.body ? limitWords(post.body, 8) : null}</p>
-        <NavLink className="btn btn-primary mt-3" to={`/post/${post.id}`}>
+        <Button className="mt-3" route={`/post/${post.id}`}>
           Read more
-        </NavLink>
+        </Button>
       </article>
     </div>
   );
 };
 
-export default memo(PostItem);
+export default PostItem;

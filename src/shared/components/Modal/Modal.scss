@@ -1,0 +1,51 @@
+[data-component='Modal'] {
+  display: grid;
+  grid-template-rows: 60px 1fr 80px;
+  max-width: 500px;
+  max-height: 500px;
+  @include size(calc(100% - 40px), max-content, 20px);
+  padding: 0;
+  border: none;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  header {
+    @extend %flex-center-y;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid $grey-1;
+
+    .title {
+      @extend %flex-center-y;
+
+      [data-component='Icon'] {
+        color: $primary;
+        margin-right: 10px;
+      }
+
+      h3 {
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 1px;
+        margin: 0;
+      }
+    }
+  }
+
+  .body {
+    padding: 15px 15px 0 15px;
+    overflow-y: auto;
+
+    p {
+      margin: 0 0 5px;
+    }
+  }
+
+  footer {
+    @extend %flex-center-y;
+    column-gap: 20px;
+    padding: 0 15px;
+  }
+}

@@ -103,7 +103,7 @@ const Blog: FunctionComponent = () => {
   }, []);
 
   return (
-    <main data-page="blog">
+    <main data-page="Blog">
       <Loader loading={loading} />
 
       <div className="container">

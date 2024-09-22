@@ -12,16 +12,25 @@
   display: flex;
 }
 
-%flex-center {
+%inline-flex-center,
+%inline-flex-center-y,
+%inline-flex-center-x {
+  display: inline-flex;
+}
+
+%flex-center,
+%inline-flex-center {
   align-items: center;
   justify-content: center;
 }
 
-%flex-center-y {
+%flex-center-y,
+%inline-flex-center-y {
   align-items: center;
 }
 
-%flex-center-x {
+%flex-center-x,
+%inline-flex-center-x {
   justify-content: center;
 }
 

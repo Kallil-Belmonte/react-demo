@@ -7,7 +7,7 @@ const { keys } = Object;
  * @description Checks if the auth token is valid.
  */
 
-const isValidAuthToken = () => {
+const isValidAuthToken = async () => {
   const authToken = getAuthToken() as AuthToken | null;
   if (!authToken) return false;
 

@@ -4,7 +4,7 @@ import Form from '@/pages/News/EditPost/Form/Form';
 
 const EditPost: FunctionComponent = () => {
   return (
-    <main data-page="edit-post">
+    <main data-page="EditPost">
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2">

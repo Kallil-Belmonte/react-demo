@@ -1,0 +1,14 @@
+[data-component='IconButton'] {
+  padding: 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $primary;
+  }
+
+  &[disabled] {
+    color: $grey-4 !important;
+    background-color: transparent !important;
+  }
+}

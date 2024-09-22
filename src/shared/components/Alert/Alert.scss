@@ -1,0 +1,50 @@
+[data-component='Alert'] {
+  @extend %flex-center-y;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid #eee;
+  box-shadow: 0 0 8px 5px rgb(0, 0, 0, 3%);
+
+  > [data-component='Icon'] {
+    margin-right: 10px;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  [data-component='IconButton'] {
+    color: $grey-6;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $dark-2;
+    }
+  }
+
+  &.info {
+    > [data-component='Icon'] {
+      color: $info;
+    }
+  }
+
+  &.success {
+    > [data-component='Icon'] {
+      color: $success;
+    }
+  }
+
+  &.warning {
+    > [data-component='Icon'] {
+      color: $warning;
+    }
+  }
+
+  &.danger {
+    > [data-component='Icon'] {
+      color: $danger;
+    }
+  }
+}

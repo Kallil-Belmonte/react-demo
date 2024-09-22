@@ -1,0 +1,45 @@
+[data-component='Button'] {
+  width: max-content;
+  border-radius: 50px;
+  box-shadow: none;
+  @include transitionAll();
+
+  /* Primary */
+
+  &.primary {
+    color: #fff;
+    background-color: $primary;
+  }
+
+  &.primary:hover,
+  &.primary:focus,
+  &.primary:active {
+    background-color: $primary-darker;
+  }
+
+  /* Secondary */
+
+  &.secondary {
+    color: #fff;
+    background-color: $secondary;
+  }
+
+  &.secondary:hover,
+  &.secondary:focus,
+  &.secondary:active {
+    background-color: $secondary-darker;
+  }
+
+  /* Base */
+
+  &.base {
+    background-color: #fff;
+    border: 1px solid $grey-4;
+  }
+
+  &.base:hover,
+  &.base:focus,
+  &.base:active {
+    background-color: color.adjust(#fff, $lightness: -1%);
+  }
+}

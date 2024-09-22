@@ -12,7 +12,7 @@ const NotFound: FunctionComponent = () => {
   }, []);
 
   return (
-    <main data-page="not-found">
+    <main data-page="NotFound">
       <div className="atom-wrapper">
         <p className="number">4</p>
         <div className="atom">
