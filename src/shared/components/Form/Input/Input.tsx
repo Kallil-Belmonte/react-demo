@@ -4,11 +4,13 @@ import type { UseField } from '@/shared/hooks';
 import type { Icons } from '@/shared/components/Icon/types';
 import Icon from '@/shared/components/Icon/Icon';
 
-type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+type Props = Omit<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  'onChange'
+> &
   Pick<
     React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
     | 'type'
-    | 'name'
     | 'required'
     | 'pattern'
     | 'min'
@@ -21,6 +23,7 @@ type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLD
   > & {
     icon?: Icons;
     label: string;
+    name: string;
     field: UseField<any>;
   };
 

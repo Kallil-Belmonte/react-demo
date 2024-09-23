@@ -1,9 +1,8 @@
-import type { ReactType } from '@/shared/files/types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 type Props = {
-  children: ReactType;
+  children: React.ReactNode;
 };
 
 const Dashboard = ({ children }: Props) => {

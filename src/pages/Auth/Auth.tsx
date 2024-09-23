@@ -2,12 +2,15 @@ import { type FunctionComponent, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import type { AuthProps } from '@/pages/Auth/_files/types';
 import { redirectLoggedUser } from '@/shared/helpers';
 import { Icon } from '@/shared/components';
 import './Auth.scss';
 
-const Auth: FunctionComponent<AuthProps> = ({ children }) => {
+type Props = {
+  children: React.ReactNode;
+};
+
+const Auth: FunctionComponent<Props> = ({ children }) => {
   const navigate = useNavigate();
 
   // LIFECYCLE HOOKS

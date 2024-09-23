@@ -1,11 +1,13 @@
-import { type FunctionComponent, useRef, useEffect } from 'react';
+import type { FunctionComponent } from 'react';
 
 import { UseField } from '@/shared/hooks';
 
-type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+type Props = Omit<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  'onChange'
+> &
   Pick<
     React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>,
-    | 'name'
     | 'required'
     | 'minLength'
     | 'maxLength'
@@ -16,6 +18,7 @@ type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLD
     | 'onChange'
   > & {
     label: string;
+    name: string;
     field: UseField<any>;
   };
 

@@ -11,12 +11,16 @@ type Option = {
   disabled?: boolean;
 };
 
-type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+type Props = Omit<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  'onChange'
+> &
   Pick<
     React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
-    'name' | 'required' | 'disabled'
+    'required' | 'disabled'
   > & {
     label: string;
+    name: string;
     options: Option[];
     onChange?: (value: string, event: React.FocusEvent<HTMLInputElement, Element>) => void;
     field: UseField<any>;

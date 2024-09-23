@@ -1,10 +1,5 @@
 // FORM
-export {
-  type FieldState,
-  type UseField,
-  getFieldState,
-  default as useField,
-} from './form/useField';
+export { type UseField, default as useField } from './form/useField';
 
 // REDUX
 export { default as useDispatch } from './redux/useDispatch';

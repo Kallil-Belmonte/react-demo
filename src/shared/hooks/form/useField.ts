@@ -10,8 +10,8 @@ export type UseField<Value = any> = {
   setValue: Dispatch<SetStateAction<Value>>;
 };
 
-const useField = <Value = string>(config: UseFieldConfig<Value>): UseField<Value> => {
-  const { defaultValue } = config;
+const useField = <Value = string>(config?: UseFieldConfig<Value>): UseField<Value> => {
+  const { defaultValue } = config || {};
 
   const fieldRef = useRef<any>();
   const [value, setValue] = useState(defaultValue as Value);

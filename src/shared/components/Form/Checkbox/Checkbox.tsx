@@ -3,12 +3,16 @@ import type { FunctionComponent } from 'react';
 import { UseField } from '@/shared/hooks';
 import './Checkbox.scss';
 
-type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+type Props = Omit<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  'onChange'
+> &
   Pick<
     React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    'name' | 'required' | 'disabled' | 'onChange'
+    'required' | 'disabled' | 'onChange'
   > & {
     label: string;
+    name: string;
     field: UseField<any>;
   };
 

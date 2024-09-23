@@ -1,13 +1,12 @@
 import type { FunctionComponent } from 'react';
 
-import type { ReactType } from '@/shared/files/types';
 import type { Icons } from '../Icon/types';
 import Icon from '../Icon/Icon';
 import './PageHeader.scss';
 
 type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
   icon?: Icons;
-  children: ReactType;
+  children: React.ReactNode;
 };
 
 const PageHeader: FunctionComponent<Props> = ({ icon, children, ...otherProps }) => {

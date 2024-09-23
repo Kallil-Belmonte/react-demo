@@ -2,14 +2,13 @@ import { useEffect } from 'react';
 
 import { Navigate } from 'react-router-dom';
 
-import type { ReactType } from '@/shared/files/types';
 import { isValidAuthToken, setPageTitle } from '@/shared/helpers';
 import Dashboard from '@/core/layout/Dashboard/Dashboard';
 
-type Props = { pageTitle: string; component: ReactType };
+type Props = { pageTitle: string; component: React.ReactNode };
 
-const Guard = ({ pageTitle, component }: Props) => {
-  const isValid = isValidAuthToken();
+const Guard = async ({ pageTitle, component }: Props) => {
+  const isValid = await isValidAuthToken();
 
   // LIFECYCLE HOOKS
   useEffect(() => {

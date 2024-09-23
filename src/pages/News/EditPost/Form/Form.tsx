@@ -4,9 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import type { Post } from '@/core/services/news/types';
 import type { EditPostFormState } from '@/pages/News/EditPost/_files/types';
-import { requiredMin } from '@/shared/files/validations';
 import { setCurrentPost } from '@/core/redux/reducers/news';
-import { validateForm, setFields } from '@/shared/helpers';
+// import { validateForm, setFields } from '@/shared/helpers';
 import { useSelector, useDispatch, useCustomState, useField } from '@/shared/hooks';
 import { getPost, editPost } from '@/core/services';
 import { Loader, Input } from '@/shared/components';
@@ -26,12 +25,12 @@ const Form: FunctionComponent = () => {
   const navigate = useNavigate();
   const { id = '' } = useParams<{ id?: string }>();
 
-  const title = useField({ name: 'title', validation: requiredMin(2) });
-  const body = useField({ name: 'body', validation: requiredMin(2) });
+  const title = useField();
+  const body = useField();
 
   const setFormData = (data: Post) => {
-    setFields({ fields: [title], value: data.title });
-    setFields({ fields: [body], value: data.body });
+    // setFields({ fields: [title], value: data.title });
+    // setFields({ fields: [body], value: data.body });
   };
 
   const getCurrentPost = async () => {
@@ -51,8 +50,8 @@ const Form: FunctionComponent = () => {
 
     setState({ formSubmitted: true });
 
-    const isValidForm = validateForm([{ fields: [title, body], validation: requiredMin(2) }]);
-    if (!isValidForm) return;
+    // const isValidForm = validateForm([{ fields: [title, body], validation: requiredMin(2) }]);
+    // if (!isValidForm) return;
 
     setState({ loading: true });
 
@@ -84,11 +83,11 @@ const Form: FunctionComponent = () => {
 
       <form className="edit-post-form" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <Input label="Title" field={title} formSubmitted={formSubmitted} />
+          {/* <Input label="Title" field={title} formSubmitted={formSubmitted} /> */}
         </div>
 
         <div className="mb-3">
-          <Input label="Body" field={body} formSubmitted={formSubmitted} />
+          {/* <Input label="Body" field={body} formSubmitted={formSubmitted} /> */}
         </div>
 
         <button className="btn btn-primary me-2" type="submit">

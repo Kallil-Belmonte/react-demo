@@ -3,12 +3,16 @@ import type { FunctionComponent } from 'react';
 import { UseField } from '@/shared/hooks';
 import './RadioButton.scss';
 
-type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> &
+type Props = Omit<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  'onChange'
+> &
   Pick<
     React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    'name' | 'required' | 'disabled' | 'onChange'
+    'required' | 'disabled' | 'onChange'
   > & {
     title: string;
+    name: string;
     radios: { label: string; value: string }[];
     field: UseField<any>;
   };

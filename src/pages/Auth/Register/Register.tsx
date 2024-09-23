@@ -1,56 +1,38 @@
-import type { FunctionComponent } from 'react';
+import { type FunctionComponent, useState } from 'react';
 
 import { useNavigate, NavLink } from 'react-router-dom';
 
-import type { FormState } from '@/pages/Auth/_files/types';
 import type { RegisterUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
-import { requiredEmail, requiredMin } from '@/shared/files/validations';
-import { clearFormMessage, validateForm } from '@/shared/helpers';
-import { useDispatch, useCustomState, useField } from '@/shared/hooks';
+import { useDispatch, useField } from '@/shared/hooks';
 import { registerUser } from '@/core/services';
 import { setUser } from '@/core/redux/reducers/auth';
-import { AlertDismissible, Loader, Input } from '@/shared/components';
+import { Loader, Input, Button } from '@/shared/components';
 import Auth from '../Auth';
 
-const initialState: FormState = {
-  loading: false,
-  formSubmitted: false,
-  serverErrors: {
-    email: [],
-    password: [],
-    request: [],
-  },
-};
-
 const Register: FunctionComponent = () => {
-  const [state, setState] = useCustomState<FormState>(initialState);
-  const { loading, formSubmitted, serverErrors } = state;
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const firstName = useField({ name: 'first-name', validation: requiredMin(2) });
-  const lastName = useField({ name: 'last-name', validation: requiredMin(2) });
-  const email = useField({ name: 'email', validation: requiredEmail });
-  const password = useField({ name: 'password', validation: requiredMin(3) });
+  const firstName = useField();
+  const lastName = useField();
+  const email = useField();
+  const password = useField();
+
+  const handleChangeEmail: React.ChangeEventHandler<HTMLInputElement> = event => {
+    const { value } = event.target as HTMLInputElement;
+
+    email.ref.current.setCustomValidity(
+      value === 'demo@demo.com' ? 'This e-mail does not exists.' : '',
+    );
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ formSubmitted: true });
-
-    const isValidForm = validateForm([
-      { fields: [firstName, lastName], validation: requiredMin(2) },
-      { fields: [email], validation: requiredEmail },
-      { fields: [password], validation: requiredMin(3) },
-    ]);
-    if (!isValidForm) return;
-
-    setState({
-      loading: true,
-      serverErrors: { email: [], password: [], request: [] },
-    });
+    setLoading(true);
 
     try {
       const payload: RegisterUserPayload = {
@@ -62,35 +44,12 @@ const Register: FunctionComponent = () => {
 
       const user = await registerUser(payload);
 
-      if (email.value === 'demo@demo.com') {
-        setState({
-          serverErrors: {
-            email: ['This e-mail already exists.'],
-            password: ['Your password is too weak.'],
-            request: [],
-          },
-        });
-      } else {
-        sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
-        dispatch(
-          setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }),
-        );
-        navigate('/');
-      }
+      sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
+      dispatch(setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }));
+      navigate('/');
     } catch (error: any) {
-      setState({
-        loading: false,
-        serverErrors: {
-          email: [],
-          password: [],
-          request: [error.message],
-        },
-      });
+      setLoading(false);
     }
-  };
-
-  const handleClearFormMessage = (field: string, index: number) => {
-    clearFormMessage(field, index, state, setState);
   };
 
   return (
@@ -101,54 +60,57 @@ const Register: FunctionComponent = () => {
         <h1 className="page-title">Register</h1>
 
         <div className="mb-3">
-          <Input label="First name" field={firstName} formSubmitted={formSubmitted} />
+          <Input
+            label="Name"
+            name="first-name"
+            required
+            minLength={2}
+            maxLength={150}
+            placeholder="First name"
+            field={firstName}
+          />
         </div>
 
         <div className="mb-3">
-          <Input label="Last name" field={lastName} formSubmitted={formSubmitted} />
+          <Input
+            label="Last name"
+            name="last-name"
+            required
+            minLength={2}
+            maxLength={150}
+            placeholder="Full last name"
+            field={lastName}
+          />
         </div>
 
         <div className="mb-3">
-          <Input type="email" label="E-mail address" field={email} formSubmitted={formSubmitted} />
+          <Input
+            icon="Email"
+            label="E-mail"
+            type="email"
+            name="email"
+            required
+            placeholder="Enter your e-mail"
+            onChange={handleChangeEmail}
+            field={email}
+          />
         </div>
-
-        {serverErrors.email.map((errorMessage, index) => (
-          <AlertDismissible
-            key={errorMessage}
-            variant="danger"
-            onDismiss={() => handleClearFormMessage('email', index)}
-          >
-            {errorMessage}
-          </AlertDismissible>
-        ))}
 
         <div className="mb-3">
-          <Input type="password" label="Password" field={password} formSubmitted={formSubmitted} />
+          <Input
+            label="Password"
+            type="password"
+            name="password"
+            required
+            minLength={3}
+            placeholder="Enter your password"
+            field={password}
+          />
         </div>
 
-        {serverErrors.password.map((errorMessage, index) => (
-          <AlertDismissible
-            key={errorMessage}
-            variant="danger"
-            onDismiss={() => handleClearFormMessage('password', index)}
-          >
-            {errorMessage}
-          </AlertDismissible>
-        ))}
-
-        {serverErrors.request.map((errorMessage, index) => (
-          <AlertDismissible
-            key={errorMessage}
-            variant="danger"
-            onDismiss={() => handleClearFormMessage('request', index)}
-          >
-            {errorMessage}
-          </AlertDismissible>
-        ))}
-
-        <button className="btn btn-primary d-block mx-auto" type="submit">
+        <Button className="d-block mx-auto" type="submit">
           Register
-        </button>
+        </Button>
 
         <div className="text-center">
           <hr className="mt-4" />
