@@ -1,20 +1,12 @@
-import { type FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
-import type { AccountFormState } from '@/pages/Account/_files/types';
 import { setUser } from '@/core/redux/reducers/auth';
-import { useSelector, useDispatch, useCustomState, useField } from '@/shared/hooks';
-// import { clearFormMessage, validateForm, setFields } from '@/shared/helpers';
-import { Alert, Input } from '@/shared/components';
-
-const initialState: AccountFormState = {
-  formSubmitted: false,
-  successMessages: [],
-  serverErrors: { email: [], request: [] },
-};
+import { useSelector, useDispatch, useField } from '@/shared/hooks';
+import { clearMessage } from '@/shared/helpers';
+import { Alert, Input, Button } from '@/shared/components';
 
 const Form: FunctionComponent = () => {
-  const [state, setState] = useCustomState<AccountFormState>(initialState);
-  const { formSubmitted, successMessages, serverErrors } = state;
+  const [successMessages, setSuccessMessages] = useState<string[]>([]);
 
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
@@ -24,51 +16,28 @@ const Form: FunctionComponent = () => {
   const email = useField();
 
   const setFormData = () => {
-    // setFields({ fields: [firstName], value: user.firstName });
-    // setFields({ fields: [lastName], value: user.lastName });
-    // setFields({ fields: [email], value: user.email });
+    firstName.setValue(user.firstName);
+    lastName.setValue(user.lastName);
+    email.setValue(user.email);
+  };
+
+  const handleChangeEmail: React.ChangeEventHandler<HTMLInputElement> = event => {
+    const { value } = event.target as HTMLInputElement;
+
+    if (value === 'john.doe@gmail.com') {
+      email.ref.current.setCustomValidity('This e-mail already exists.');
+    } else if (value === 'demo@demo.com') {
+      email.ref.current.setCustomValidity('An error occurred, please try again later.');
+    } else {
+      email.ref.current.setCustomValidity('');
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ formSubmitted: true });
-
-    // const isValidForm = validateForm([
-    //   { fields: [firstName, lastName], validation: requiredMin(2) },
-    //   { fields: [email], validation: requiredEmail },
-    // ]);
-    // if (!isValidForm) return;
-
-    setState({
-      successMessages: initialState.successMessages,
-      serverErrors: initialState.serverErrors,
-    });
-
-    if (email.value === 'john.doe@email.com') {
-      setState({
-        serverErrors: {
-          email: ['This e-mail already exists.'],
-          request: [],
-        },
-      });
-    } else if (email.value === 'demo@demo.com') {
-      setState({
-        serverErrors: {
-          email: [],
-          request: ['An error occurred, please try again later.'],
-        },
-      });
-    } else {
-      dispatch(
-        setUser({ firstName: firstName.value, lastName: lastName.value, email: email.value }),
-      );
-      setState({ successMessages: ['Account saved successfully.'] });
-    }
-  };
-
-  const handleClearFormMessage = (field: string, index: number) => {
-    // clearFormMessage(field, index, state, setState);
+    dispatch(setUser({ firstName: firstName.value, lastName: lastName.value, email: email.value }));
+    setSuccessMessages(['Account saved successfully.']);
   };
 
   // LIFECYCLE HOOKS
@@ -79,60 +48,60 @@ const Form: FunctionComponent = () => {
   return (
     <div data-component="Form" className="row">
       <div className="col-md-6 offset-md-3">
-        {/* {successMessages.map(successMessage => (
-          <Alert
-            key={successMessage}
-            variant="success"
-            onDismiss={() => setState({ successMessages: [] })}
-          >
-            {successMessage}
-          </Alert>
-        ))} */}
-
-        {/* {serverErrors.request.map((errorMessage, index) => (
-          <Alert
-            key={errorMessage}
-            variant="danger"
-            onDismiss={() => handleClearFormMessage('request', index)}
-          >
-            {errorMessage}
-          </Alert>
-        ))} */}
-
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            {/* <Input label="First name" field={firstName} formSubmitted={formSubmitted} /> */}
+            <Input
+              label="Name"
+              name="first-name"
+              required
+              minLength={2}
+              maxLength={150}
+              placeholder="First name"
+              field={firstName}
+            />
           </div>
 
           <div className="mb-3">
-            {/* <Input label="Last name" field={lastName} formSubmitted={formSubmitted} /> */}
+            <Input
+              label="Last name"
+              name="last-name"
+              required
+              minLength={2}
+              maxLength={150}
+              placeholder="Full last name"
+              field={lastName}
+            />
           </div>
 
           <div className="col mb-3">
-            {/* <Input
+            <Input
+              icon="Email"
+              label="E-mail"
               type="email"
-              label="E-mail address"
+              name="email"
+              required
+              placeholder="Enter your e-mail"
               field={email}
-              formSubmitted={formSubmitted}
-            /> */}
+              onChange={handleChangeEmail}
+            />
           </div>
 
-          {/* {serverErrors.email.map((errorMessage, index) => ( 
-             <Alert
-               key={errorMessage}
-               variant="danger"
-               onDismiss={() => handleClearFormMessage('email', index)}
-             >
-               {errorMessage}
-             </Alert>
-          ))} */}
+          {successMessages.map((errorMessage, index) => (
+            <Alert
+              key={errorMessage}
+              status="success"
+              onClose={() => clearMessage(setSuccessMessages, index)}
+            >
+              {errorMessage}
+            </Alert>
+          ))}
 
-          <button className="btn btn-primary me-2" type="submit">
+          <Button className="btn btn-primary me-2" type="submit">
             Save
-          </button>
-          <button className="btn btn-light" type="button" onClick={setFormData}>
+          </Button>
+          <Button variant="base" onClick={setFormData}>
             Reset form
-          </button>
+          </Button>
         </form>
       </div>
     </div>
