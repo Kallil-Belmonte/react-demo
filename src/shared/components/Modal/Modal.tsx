@@ -5,16 +5,17 @@ import Icon from '../Icon/Icon';
 import IconButton from '../IconButton/IconButton';
 import './Modal.scss';
 
-type Props = React.DetailedHTMLProps<
-  React.DialogHTMLAttributes<HTMLDialogElement>,
-  HTMLDialogElement
+type Props = Omit<
+  React.DetailedHTMLProps<React.DialogHTMLAttributes<HTMLDialogElement>, HTMLDialogElement>,
+  'onClose'
 > & {
-  open: boolean;
   icon?: Icons;
-  onClose: React.MouseEventHandler<HTMLButtonElement>;
+  open: boolean;
+  footer: React.ReactNode;
+  onClose: React.MouseEventHandler<HTMLButtonElement | HTMLDialogElement>;
 };
 
-const Modal: FunctionComponent<Props> = ({ open, icon, title, onClose }) => {
+const Modal: FunctionComponent<Props> = ({ icon, open, title, footer, children, onClose }) => {
   const dialog = useRef<HTMLDialogElement>();
 
   const handleClick: React.MouseEventHandler<HTMLDialogElement> = event => {
@@ -48,12 +49,8 @@ const Modal: FunctionComponent<Props> = ({ open, icon, title, onClose }) => {
         </div>
         <IconButton icon="Close" onClick={onClose} />
       </header>
-      <section className="body">
-        <slot></slot>
-      </section>
-      <footer>
-        <slot name="footer"></slot>
-      </footer>
+      <section className="body">{children}</section>
+      <footer>{footer}</footer>
     </dialog>
   );
 };

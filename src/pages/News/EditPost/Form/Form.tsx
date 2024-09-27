@@ -6,7 +6,7 @@ import type { Post } from '@/core/services/news/types';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { useSelector, useDispatch, useField } from '@/shared/hooks';
 import { getPost, editPost } from '@/core/services';
-import { Loader, Input } from '@/shared/components';
+import { Loader, Input, Textarea, Button } from '@/shared/components';
 import './Form.scss';
 
 const Form: FunctionComponent = () => {
@@ -20,16 +20,16 @@ const Form: FunctionComponent = () => {
   const title = useField();
   const body = useField();
 
-  const setFormData = (data: Post) => {
-    // setFields({ fields: [title], value: data.title });
-    // setFields({ fields: [body], value: data.body });
+  const setFormData = () => {
+    title.setValue(currentPost.title);
+    body.setValue(currentPost.body);
   };
 
   const getCurrentPost = async () => {
     try {
       const post = await getPost(id);
       dispatch(setCurrentPost(post));
-      setFormData(post);
+      setFormData();
     } catch (error) {
       console.error(error);
     } finally {
@@ -39,9 +39,6 @@ const Form: FunctionComponent = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    // const isValidForm = validateForm([{ fields: [title, body], validation: requiredMin(2) }]);
-    // if (!isValidForm) return;
 
     setLoading(true);
 
@@ -73,19 +70,19 @@ const Form: FunctionComponent = () => {
 
       <form className="edit-post-form" onSubmit={handleSubmit}>
         <div className="mb-3">
-          {/* <Input label="Title" field={title} formSubmitted={formSubmitted} /> */}
+          <Input label="Title" name="title" required minLength={2} field={title} />
         </div>
 
         <div className="mb-3">
-          {/* <Input label="Body" field={body} formSubmitted={formSubmitted} /> */}
+          <Textarea label="Body" name="body" required minLength={2} field={body} />
         </div>
 
-        <button className="btn btn-primary me-2" type="submit">
+        <Button className="me-2" type="submit">
           Edit
-        </button>
-        <button className="btn btn-light" type="button" onClick={() => setFormData(currentPost)}>
+        </Button>
+        <Button variant="base" onClick={setFormData}>
           Reset form
-        </button>
+        </Button>
       </form>
     </>
   );

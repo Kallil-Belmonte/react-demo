@@ -60,7 +60,7 @@ const RadioButton: FunctionComponent<Props> = ({
         ))}
       </div>
 
-      {ref.current.validationMessage && (
+      {ref.current?.validationMessage && (
         <p className="validation-message">
           <strong>{ref.current.validationMessage}</strong>
         </p>

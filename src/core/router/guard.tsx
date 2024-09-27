@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
 import { Navigate } from 'react-router-dom';
 
@@ -7,10 +7,19 @@ import Dashboard from '@/core/layout/Dashboard/Dashboard';
 
 type Props = { pageTitle: string; component: React.ReactNode };
 
-const Guard = async ({ pageTitle, component }: Props) => {
-  const isValid = await isValidAuthToken();
+const Guard: FunctionComponent<Props> = ({ pageTitle, component }) => {
+  const [isValid, setIsValid] = useState(false);
+
+  const validate = async () => {
+    const result = await isValidAuthToken();
+    setIsValid(result);
+  };
 
   // LIFECYCLE HOOKS
+  useEffect(() => {
+    validate();
+  }, []);
+
   useEffect(() => {
     setPageTitle(pageTitle);
   }, [pageTitle]);

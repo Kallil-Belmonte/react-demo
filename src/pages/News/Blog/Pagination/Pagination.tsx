@@ -1,5 +1,7 @@
 import type { FunctionComponent } from 'react';
 
+import './Pagination.scss';
+
 type Props = {
   pages: string[];
   firstItem: number;

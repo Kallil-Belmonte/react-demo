@@ -76,7 +76,7 @@ const Input: FunctionComponent<Props> = ({
         onChange={handleChange}
       />
 
-      {ref.current.validationMessage && (
+      {ref.current?.validationMessage && (
         <p className="validation-message">
           <strong>{ref.current.validationMessage}</strong>
         </p>
