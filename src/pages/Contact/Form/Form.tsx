@@ -1,21 +1,24 @@
-import { type FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
-import type { ContactFormState } from '@/pages/Contact/_files/types';
-// import { validateForm, setFields } from '@/shared/helpers';
-import { useCustomState, useField } from '@/shared/hooks';
+import type { FavoriteColor } from '@/core/services/contact/types';
+import { clearMessage } from '@/shared/helpers';
+import { useField } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
-import { Alert, Loader, Input, Checkbox, RadioButton, Select, Textarea } from '@/shared/components';
-
-const initialState: ContactFormState = {
-  loading: true,
-  formSubmitted: false,
-  favoriteColors: [],
-  successMessages: [],
-};
+import {
+  Alert,
+  Loader,
+  Input,
+  Checkbox,
+  RadioButton,
+  Select,
+  Textarea,
+  Button,
+} from '@/shared/components';
 
 const Form: FunctionComponent = () => {
-  const [state, setState] = useCustomState<ContactFormState>(initialState);
-  const { loading, formSubmitted, favoriteColors, successMessages } = state;
+  const [loading, setLoading] = useState(true);
+  const [favoriteColors, setFavoriteColors] = useState<FavoriteColor[]>([]);
+  const [successMessages, setSuccessMessages] = useState<string[]>([]);
 
   const firstName = useField();
   const lastName = useField();
@@ -26,50 +29,30 @@ const Form: FunctionComponent = () => {
   const employed = useField<boolean>();
   const message = useField();
 
-  const setFavoriteColors = async () => {
+  const setInitialData = async () => {
     try {
       const response = await getFavoriteColors();
-      setState({ favoriteColors: response });
+      setFavoriteColors(response);
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setLoading(false);
     }
   };
 
   const reset = () => {
-    setState({ formSubmitted: false });
-
-    // setFields({
-    //   fields: [firstName, lastName, email, telephone, sex, message],
-    //   value: '',
-    //   reset: { required: true },
-    // });
-    // setFields({
-    //   fields: [favoriteColor],
-    //   value: 'select',
-    //   reset: { required: true },
-    // });
-    // setFields({
-    //   fields: [employed],
-    //   value: false,
-    //   reset: { required: false },
-    // });
+    firstName.setValue('');
+    lastName.setValue('');
+    email.setValue('');
+    telephone.setValue('');
+    sex.setValue('');
+    favoriteColor.setValue('');
+    employed.setValue(false);
+    message.setValue('');
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    setState({ formSubmitted: true });
-
-    // const isValidForm = validateForm([
-    //   { fields: [firstName, lastName], validation: requiredMin(2) },
-    //   { fields: [email], validation: requiredEmail },
-    //   { fields: [telephone], validation: requiredMin(8) },
-    //   { fields: [sex, message], validation: required },
-    //   { fields: [favoriteColor], validation: requiredSelect },
-    // ]);
-    // if (!isValidForm) return;
 
     console.log('Form submitted:', {
       firstName: firstName.value,
@@ -82,112 +65,136 @@ const Form: FunctionComponent = () => {
       message: message.value,
     });
 
-    setState({ successMessages: ['Message sent successfully.'] });
+    setSuccessMessages(['Message sent successfully.']);
+    setTimeout(() => {
+      setSuccessMessages([]);
+    }, 3000);
 
     reset();
   };
 
   // LIFECYCLE HOOKS
   useEffect(() => {
-    setFavoriteColors();
+    setInitialData();
   }, []);
 
   return (
     <>
       <Loader loading={loading} />
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        {/* {successMessages.map(successMessage => (
-          <Alert
-            key={successMessage}
-            variant="success"
-            onDismiss={() => setState({ successMessages: [] })}
-          >
-            {successMessage}
-          </Alert>
-        ))} */}
-
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <div className="col mb-3">
-            {/* <Input label="First name" field={firstName} formSubmitted={formSubmitted} /> */}
+            <Input
+              label="Name"
+              name="first-name"
+              required
+              minLength={2}
+              maxLength={150}
+              placeholder="First name"
+              field={firstName}
+            />
           </div>
 
           <div className="col mb-3">
-            {/* <Input label="Last name" field={lastName} formSubmitted={formSubmitted} /> */}
+            <Input
+              label="Last name"
+              name="last-name"
+              required
+              minLength={2}
+              maxLength={150}
+              placeholder="Full last name"
+              field={lastName}
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="col mb-3">
-            {/* <Input
+            <Input
+              icon="Email"
+              label="E-mail"
               type="email"
-              label="E-mail address"
+              name="email"
+              required
+              placeholder="Enter your e-mail"
               field={email}
-              formSubmitted={formSubmitted}
-            /> */}
+            />
           </div>
 
           <div className="col mb-3">
-            {/* <Input label="Telephone" field={telephone} formSubmitted={formSubmitted} /> */}
+            <Input
+              icon="Cellphone"
+              label="Telephone"
+              type="tel"
+              name="telephone"
+              required
+              placeholder="Enter your telephone"
+              field={telephone}
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="col mb-3">
-            {/* <RadioButton
-              field={sex}
+            <RadioButton
+              title="Sex"
+              name="sex"
+              required
               radios={[
                 { label: 'Male', value: 'male' },
                 { label: 'Female', value: 'female' },
               ]}
-              formSubmitted={formSubmitted}
-            /> */}
+              field={sex}
+            />
           </div>
         </div>
 
         <div className="row">
           <div className="col mb-3">
-            {/* <Select
+            <Select
               label="Favorite color"
-              className={`${
-                favoriteColorState.touched && favoriteColorValue === 'select' ? 'is-invalid' : ''
-              }`}
+              name="favorite-color"
+              required
+              options={favoriteColors}
               field={favoriteColor}
-              formSubmitted={formSubmitted}
-            >
-              <option value="select" disabled>
-                Select
-              </option>
-              {favoriteColors.map(({ text, value }) => (
-                <option key={value} value={value}>
-                  {text}
-                </option>
-              ))}
-            </Select> */}
+            />
           </div>
           <div className="col mt-4">
             <div className="form-check">
-              {/* <Checkbox
-                label="Employed"
-                trueValue
-                falseValue={false}
-                field={employed}
-                formSubmitted={formSubmitted}
-              /> */}
+              <Checkbox label="Employed" name="employed" field={employed} />
             </div>
           </div>
         </div>
 
         <div className="mb-3">
-          {/* <Textarea label="Message" field={message} formSubmitted={formSubmitted} /> */}
+          <Textarea
+            label="Message"
+            name="message"
+            required
+            minLength={3}
+            maxLength={3000}
+            placeholder="Write your message"
+            field={message}
+          />
         </div>
 
-        <button className="btn btn-primary me-2" type="submit">
+        {successMessages.map((errorMessage, index) => (
+          <Alert
+            key={errorMessage}
+            status="success"
+            onClose={() => clearMessage(setSuccessMessages, index)}
+          >
+            {errorMessage}
+          </Alert>
+        ))}
+
+        <Button className="me-2" type="submit">
           Send
-        </button>
-        <button className="btn btn-light" type="button" onClick={reset}>
+        </Button>
+        <Button variant="base" onClick={reset}>
           Reset form
-        </button>
+        </Button>
       </form>
     </>
   );

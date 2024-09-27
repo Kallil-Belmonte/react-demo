@@ -1,4 +1,4 @@
-export type FavoriteColors = {
+export type FavoriteColor = {
   value: string;
   text: string;
 };

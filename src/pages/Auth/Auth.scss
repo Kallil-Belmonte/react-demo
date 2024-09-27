@@ -7,6 +7,10 @@
   }
 }
 
+body:has([data-page='Auth']) {
+  background-color: $grey-1;
+}
+
 [data-page='Auth'] {
   .logo {
     @include square(100px);

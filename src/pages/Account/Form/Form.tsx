@@ -1,8 +1,8 @@
 import { type FunctionComponent, useState, useEffect } from 'react';
 
 import { setUser } from '@/core/redux/reducers/auth';
-import { useSelector, useDispatch, useField } from '@/shared/hooks';
 import { clearMessage } from '@/shared/helpers';
+import { useSelector, useDispatch, useField } from '@/shared/hooks';
 import { Alert, Input, Button } from '@/shared/components';
 
 const Form: FunctionComponent = () => {
@@ -96,7 +96,7 @@ const Form: FunctionComponent = () => {
             </Alert>
           ))}
 
-          <Button className="btn btn-primary me-2" type="submit">
+          <Button className="me-2" type="submit">
             Save
           </Button>
           <Button variant="base" onClick={setFormData}>
