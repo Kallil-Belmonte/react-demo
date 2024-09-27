@@ -1,11 +1,16 @@
 import { FunctionComponent } from 'react';
 
-import type { PostsProps } from '@/pages/News/Blog/_files/types';
+import type { Post } from '@/core/services/news/types';
 import { PostItem } from '@/shared/components';
 
 const { keys } = Object;
 
-const Posts: FunctionComponent<PostsProps> = ({ currentPage, pages }) => {
+type Props = {
+  pages: { [key: string]: Post[] };
+  currentPage: number;
+};
+
+const Posts: FunctionComponent<Props> = ({ currentPage, pages }) => {
   return (
     <section data-component="Posts">
       <div className="row">

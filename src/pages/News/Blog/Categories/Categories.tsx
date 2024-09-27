@@ -1,24 +1,22 @@
-import type { FunctionComponent } from 'react';
+import { type FunctionComponent, useState } from 'react';
 
 import type { Category } from '@/core/services/news/types';
-import type { CategoriesProps, CategoriesState } from '@/pages/News/Blog/_files/types';
-import { useCustomState } from '@/shared/hooks';
 import './Categories.scss';
 
-const initialState: CategoriesState = {
-  activeCategory: '',
+type Props = {
+  categories: Category[];
+  onSelectCategory: (category: Category['name']) => void;
 };
 
-const Categories: FunctionComponent<CategoriesProps> = ({ categories, onSelectCategory }) => {
-  const [state, setState] = useCustomState<CategoriesState>(initialState);
-  const { activeCategory } = state;
+const Categories: FunctionComponent<Props> = ({ categories, onSelectCategory }) => {
+  const [activeCategory, setActiveCategory] = useState<Category['name']>('');
 
   const isActive = (category: Category['name']) => {
     return category === activeCategory;
   };
 
   const handleSelectCategory = (category: Category['name']) => {
-    setState({ activeCategory: category === activeCategory ? undefined : category });
+    setActiveCategory(category === activeCategory ? '' : category);
     onSelectCategory(category);
   };
 

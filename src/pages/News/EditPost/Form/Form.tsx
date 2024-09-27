@@ -1,24 +1,16 @@
-import { type FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import type { Post } from '@/core/services/news/types';
-import type { EditPostFormState } from '@/pages/News/EditPost/_files/types';
 import { setCurrentPost } from '@/core/redux/reducers/news';
-// import { validateForm, setFields } from '@/shared/helpers';
-import { useSelector, useDispatch, useCustomState, useField } from '@/shared/hooks';
+import { useSelector, useDispatch, useField } from '@/shared/hooks';
 import { getPost, editPost } from '@/core/services';
 import { Loader, Input } from '@/shared/components';
 import './Form.scss';
 
-const initialState: EditPostFormState = {
-  loading: false,
-  formSubmitted: false,
-};
-
 const Form: FunctionComponent = () => {
-  const [state, setState] = useCustomState<EditPostFormState>(initialState);
-  const { loading, formSubmitted } = state;
+  const [loading, setLoading] = useState(false);
 
   const { currentPost } = useSelector(state => state.news);
   const dispatch = useDispatch();
@@ -41,19 +33,17 @@ const Form: FunctionComponent = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setLoading(false);
     }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setState({ formSubmitted: true });
-
     // const isValidForm = validateForm([{ fields: [title, body], validation: requiredMin(2) }]);
     // if (!isValidForm) return;
 
-    setState({ loading: true });
+    setLoading(true);
 
     try {
       const payload: Post = {
@@ -68,7 +58,7 @@ const Form: FunctionComponent = () => {
       navigate(`/post/${id}`);
     } catch (error) {
       console.error(error);
-      setState({ loading: false });
+      setLoading(false);
     }
   };
 

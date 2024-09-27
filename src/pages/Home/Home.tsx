@@ -1,40 +1,35 @@
-import { type FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
-import type { HomeState } from '@/pages/Home/_files/types';
-import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
+import type { Post } from '@/core/services/news/types';
+import { useSelector, useDispatch } from '@/shared/hooks';
 import { setPosts } from '@/core/redux/reducers/news';
 import { getPosts } from '@/core/services';
 import { Loader } from '@/shared/components';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
-const initialState: HomeState = {
-  loading: false,
-  featuredPosts: [],
-};
-
 const Home: FunctionComponent = () => {
   const { posts } = useSelector(state => state.news);
   const dispatch = useDispatch();
 
-  const [state, setState] = useCustomState<HomeState>(initialState);
-  const { loading, featuredPosts } = state;
+  const [loading, setLoading] = useState(false);
+  const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
 
   const getFeaturedPosts = async () => {
     if (posts.length) {
       const [firstPost, secondPost, thirdPost] = posts;
-      setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
+      setFeaturedPosts([firstPost, secondPost, thirdPost]);
     } else {
-      setState({ loading: true });
+      setLoading(true);
 
       try {
         const posts = await getPosts();
         const [firstPost, secondPost, thirdPost] = posts;
-        setState({ featuredPosts: [firstPost, secondPost, thirdPost] });
+        setFeaturedPosts([firstPost, secondPost, thirdPost]);
         dispatch(setPosts(posts));
       } catch (error) {
         console.error(error);
       } finally {
-        setState({ loading: false });
+        setLoading(false);
       }
     }
   };

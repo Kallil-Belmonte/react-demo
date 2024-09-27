@@ -1,18 +1,13 @@
-import { type FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import type { PostState } from '@/pages/News/Post/_files/types';
-import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
+import { useSelector, useDispatch } from '@/shared/hooks';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getPost } from '@/core/services';
 import { Loader } from '@/shared/components';
 import PostBody from './PostBody/PostBody';
 import DeletePostModal from './DeletePostModal/DeletePostModal';
-
-const initialState: PostState = {
-  loading: true,
-};
 
 const Post: FunctionComponent = () => {
   const { currentPost } = useSelector(state => state.news);
@@ -20,8 +15,7 @@ const Post: FunctionComponent = () => {
 
   const { id = '' } = useParams<{ id?: string }>();
 
-  const [state, setState] = useCustomState<PostState>(initialState);
-  const { loading } = state;
+  const [loading, setLoading] = useState(false);
 
   const getCurrentPost = async () => {
     try {
@@ -30,7 +24,7 @@ const Post: FunctionComponent = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setLoading(false);
     }
   };
 

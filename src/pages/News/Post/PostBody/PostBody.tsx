@@ -2,10 +2,14 @@ import type { FunctionComponent } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import type { PostProps } from '@/pages/News/Post/_files/types';
+import type { Post } from '@/core/services/news/types';
 import './PostBody.scss';
 
-const PostBody: FunctionComponent<PostProps> = ({ post }) => {
+type Props = {
+  post: Post;
+};
+
+const PostBody: FunctionComponent<Props> = ({ post }) => {
   return (
     <section data-component="PostBody">
       <article>

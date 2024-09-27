@@ -1,16 +1,9 @@
-import { type FunctionComponent, useRef, useEffect } from 'react';
+import { type FunctionComponent, useRef, useState, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
-// import { Modal } from 'bootstrap';
 
-import type { DeletePostModalState } from '@/pages/News/Post/_files/types';
-import { useCustomState } from '@/shared/hooks';
 import { deletePost } from '@/core/services';
 import { Loader } from '@/shared/components';
-
-const initialState: DeletePostModalState = {
-  loading: false,
-};
 
 const DeletePostModal: FunctionComponent = () => {
   const navigate = useNavigate();
@@ -18,8 +11,7 @@ const DeletePostModal: FunctionComponent = () => {
 
   const modalRef = useRef<any>(null);
 
-  const [state, setState] = useCustomState<DeletePostModalState>(initialState);
-  const { loading } = state;
+  const [loading, setLoading] = useState(false);
 
   const setUpModal = () => {
     // modalRef.current.value = new Modal(modalRef.current);
@@ -27,14 +19,14 @@ const DeletePostModal: FunctionComponent = () => {
 
   const handleConfirmDeletePost = async () => {
     modalRef.current.value.hide();
-    setState({ loading: true });
+    setLoading(true);
 
     try {
       await deletePost(id);
       navigate('/blog');
     } catch (error) {
       console.error(error);
-      setState({ loading: false });
+      setLoading(false);
     }
   };
 

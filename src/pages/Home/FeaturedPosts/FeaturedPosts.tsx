@@ -1,9 +1,13 @@
 import type { FunctionComponent } from 'react';
 
-import type { FeaturedPostsProps } from '@/pages/Home/_files/types';
+import type { Post } from '@/core/services/news/types';
 import { PostItem } from '@/shared/components';
 
-const FeaturedPosts: FunctionComponent<FeaturedPostsProps> = ({ posts }) => {
+type Props = {
+  posts: Post[];
+};
+
+const FeaturedPosts: FunctionComponent<Props> = ({ posts }) => {
   return (
     <section data-component="FeaturedPosts" className="page-section">
       <div className="container">

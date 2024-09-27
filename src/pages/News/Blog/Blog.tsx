@@ -1,9 +1,8 @@
-import { type FunctionComponent, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
 import type { Category, Post } from '@/core/services/news/types';
-import type { BlogState } from '@/pages/News/Blog/_files/types';
 import { groupArrayItemsInArrays } from '@/shared/helpers';
-import { useSelector, useDispatch, useCustomState } from '@/shared/hooks';
+import { useSelector, useDispatch } from '@/shared/hooks';
 import { setCategories, setPosts } from '@/core/redux/reducers/news';
 import { getCategories, getPosts } from '@/core/services';
 import { Loader, PageHeader } from '@/shared/components';
@@ -15,37 +14,31 @@ import './Blog.scss';
 
 const { keys } = Object;
 
-const initialState: BlogState = {
-  loading: true,
-  pages: {},
-  postsPerPage: 9,
-  firstPaginationItem: 1,
-  maxPaginationItem: 5,
-  currentPage: 1,
-};
+type Pages = { [key: string]: Post[] };
 
 const Blog: FunctionComponent = () => {
   const { categories, posts } = useSelector(state => state.news);
   const dispatch = useDispatch();
 
-  const [state, setState] = useCustomState<BlogState>(initialState);
-  const { loading, pages, postsPerPage, firstPaginationItem, maxPaginationItem, currentPage } =
-    state;
+  const [loading, setLoading] = useState(true);
+  const [pages, setPages] = useState<Pages>({});
+  const [postsPerPage, setPostsPerPage] = useState(9);
+  const [firstPaginationItem, setFirstPaginationItem] = useState(1);
+  const [maxPaginationItem, setMaxPaginationItem] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const setPaginationSettings = (posts: Post[], quantPostsPerPage = 9) => {
-    const pages: BlogState['pages'] = {};
+    const pages: Pages = {};
 
     groupArrayItemsInArrays(posts, quantPostsPerPage).forEach((item, index) => {
       pages[index + 1] = item;
     });
 
-    setState({
-      pages,
-      postsPerPage: quantPostsPerPage,
-      firstPaginationItem: 1,
-      maxPaginationItem: 5,
-      currentPage: 1,
-    });
+    setPages(pages);
+    setPostsPerPage(quantPostsPerPage);
+    setFirstPaginationItem(1);
+    setMaxPaginationItem(5);
+    setCurrentPage(1);
   };
 
   const getAllData = async () => {
@@ -64,12 +57,12 @@ const Blog: FunctionComponent = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setLoading(false);
     }
   };
 
   const handleSelectCategory = async (category: Category['name']) => {
-    setState({ loading: true });
+    setLoading(true);
 
     try {
       const response = await getPosts();
@@ -78,22 +71,22 @@ const Blog: FunctionComponent = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setState({ loading: false });
+      setLoading(false);
     }
   };
 
   const handlePaginate = (target: string) => {
     switch (target) {
       case 'previous':
-        setState({ firstPaginationItem: firstPaginationItem - 1 });
+        setFirstPaginationItem(firstPaginationItem - 1);
         break;
 
       case 'next':
-        setState({ firstPaginationItem: firstPaginationItem + 1 });
+        setFirstPaginationItem(firstPaginationItem + 1);
         break;
 
       default:
-        setState({ currentPage: Number(target) });
+        setCurrentPage(Number(target));
     }
   };
 
