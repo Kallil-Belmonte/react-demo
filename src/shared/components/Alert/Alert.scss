@@ -24,11 +24,17 @@
     }
   }
 
+  // COLOR
+
+  // Info
+
   &.info {
     > [data-component='Icon'] {
       color: $info;
     }
   }
+
+  // Success
 
   &.success {
     > [data-component='Icon'] {
@@ -36,11 +42,15 @@
     }
   }
 
+  // Warning
+
   &.warning {
     > [data-component='Icon'] {
       color: $warning;
     }
   }
+
+  // Danger
 
   &.danger {
     > [data-component='Icon'] {
