@@ -47,10 +47,9 @@ const Select: FunctionComponent<Props> = ({
   const format = (text: string) => removeAccent(text.toLowerCase());
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
-    const target = event.target as HTMLInputElement;
-    setFilteredOptions(
-      options.filter(option => format(option.text).includes(format(target.value))),
-    );
+    const { value } = event.target as HTMLInputElement;
+    setValue(value);
+    setFilteredOptions(options.filter(option => format(option.text).includes(format(value))));
   };
 
   const handleFocus = () => {
@@ -65,6 +64,7 @@ const Select: FunctionComponent<Props> = ({
 
       if (option) {
         setValue(option.value);
+        setInputValue(option.text);
         onChange?.(option.value, event);
       }
 
@@ -79,6 +79,7 @@ const Select: FunctionComponent<Props> = ({
   const select = (option: Option) => {
     if (option.disabled) return;
     setValue(option.value);
+    setInputValue(option.text);
   };
 
   const setData = () => {
@@ -89,7 +90,7 @@ const Select: FunctionComponent<Props> = ({
   // LIFECYCLE HOOKS
   useEffect(() => {
     setData();
-  }, []);
+  }, [options]);
 
   return (
     <div data-component="Select" className="form-field" {...otherProps}>

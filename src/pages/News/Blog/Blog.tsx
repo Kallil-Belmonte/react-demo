@@ -2,11 +2,10 @@ import { type FunctionComponent, useState, useEffect } from 'react';
 
 import type { Category, Post } from '@/core/services/news/types';
 import { groupArrayItemsInArrays } from '@/shared/helpers';
-import { useSelector, useDispatch } from '@/shared/hooks';
+import { useSelector, useDispatch, useField } from '@/shared/hooks';
 import { setCategories, setPosts } from '@/core/redux/reducers/news';
 import { getCategories, getPosts } from '@/core/services';
-import { Loader, PageHeader } from '@/shared/components';
-import PostsPerPage from './PostsPerPage/PostsPerPage';
+import { Loader, PageHeader, Select } from '@/shared/components';
 import Posts from './Posts/Posts';
 import Pagination from './Pagination/Pagination';
 import Categories from './Categories/Categories';
@@ -17,15 +16,16 @@ const { keys } = Object;
 type Pages = { [key: string]: Post[] };
 
 const Blog: FunctionComponent = () => {
-  const { categories, posts } = useSelector(state => state.news);
-  const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(true);
   const [pages, setPages] = useState<Pages>({});
-  const [postsPerPage, setPostsPerPage] = useState(9);
   const [firstPaginationItem, setFirstPaginationItem] = useState(1);
   const [maxPaginationItem, setMaxPaginationItem] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const { categories, posts } = useSelector(state => state.news);
+  const dispatch = useDispatch();
+
+  const postsPerPage = useField({ defaultValue: '9' });
 
   const setPaginationSettings = (posts: Post[], quantPostsPerPage = 9) => {
     const pages: Pages = {};
@@ -35,10 +35,10 @@ const Blog: FunctionComponent = () => {
     });
 
     setPages(pages);
-    setPostsPerPage(quantPostsPerPage);
     setFirstPaginationItem(1);
     setMaxPaginationItem(5);
     setCurrentPage(1);
+    postsPerPage.setValue(String(quantPostsPerPage));
   };
 
   const getAllData = async () => {
@@ -102,11 +102,17 @@ const Blog: FunctionComponent = () => {
       <div className="container">
         <PageHeader icon="Newspaper">Blog</PageHeader>
 
-        <PostsPerPage
-          postsPerPage={postsPerPage}
-          onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-            setPaginationSettings(posts, Number(event.target.value))
-          }
+        <Select
+          label="Posts per page:"
+          name="posts-per-page"
+          field={postsPerPage}
+          options={[
+            { text: '9', value: '9' },
+            { text: '18', value: '18' },
+            { text: '27', value: '27' },
+            { text: '36', value: '36' },
+          ]}
+          onChange={(value: string) => setPaginationSettings(posts, Number(value))}
         />
 
         <div className="row">

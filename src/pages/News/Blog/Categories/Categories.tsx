@@ -11,27 +11,25 @@ type Props = {
 const Categories: FunctionComponent<Props> = ({ categories, onSelectCategory }) => {
   const [activeCategory, setActiveCategory] = useState<Category['name']>('');
 
-  const isActive = (category: Category['name']) => {
-    return category === activeCategory;
-  };
+  const isActive = (category: Category['name']) => category === activeCategory;
 
-  const handleSelectCategory = (category: Category['name']) => {
+  const handleSelect = (category: Category['name']) => {
     setActiveCategory(category === activeCategory ? '' : category);
     onSelectCategory(category);
   };
 
   return (
     <aside data-component="Categories">
-      <ul className="list-group">
-        {categories.map(({ name, posts }) => (
-          <li
-            key={name}
-            className={`list-group-item d-flex align-items-center justify-content-between ${
-              isActive(name) ? 'active' : ''
-            }`}
-            onClick={() => handleSelectCategory(name)}
-          >
-            {name}
+      <ul>
+        {categories.map(({ name }) => (
+          <li v-for="category in categories" key={name}>
+            <button
+              className={isActive(name) ? 'active' : ''}
+              type="button"
+              onClick={isActive(name) ? undefined : () => handleSelect(name)}
+            >
+              {name}
+            </button>
           </li>
         ))}
       </ul>

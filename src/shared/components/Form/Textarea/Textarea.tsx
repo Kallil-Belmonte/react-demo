@@ -22,7 +22,7 @@ type Props = Omit<
     field: UseField<any>;
   };
 
-const Input: FunctionComponent<Props> = ({
+const Textarea: FunctionComponent<Props> = ({
   label,
   name,
   required,
@@ -50,7 +50,7 @@ const Input: FunctionComponent<Props> = ({
       </div>
 
       <textarea
-        ref="field"
+        ref={ref as React.MutableRefObject<HTMLTextAreaElement>}
         v-model="model"
         name={name}
         id={name}
@@ -74,4 +74,4 @@ const Input: FunctionComponent<Props> = ({
   );
 };
 
-export default Input;
+export default Textarea;

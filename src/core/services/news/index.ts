@@ -3,29 +3,41 @@ import type { Category, Post } from './types';
 
 const { stringify } = JSON;
 
-export const getCategories = (): Promise<Category[]> =>
-  request(`697df6c0-f63e-4d91-baec-e5209c24cb64`);
+export const getCategories = async (): Promise<Category[]> => [
+  {
+    name: 'HTML',
+    posts: 5,
+  },
+  {
+    name: 'CSS',
+    posts: 5,
+  },
+  {
+    name: 'JavaScript',
+    posts: 5,
+  },
+];
 
-export const getPosts = (): Promise<Post[]> => request(`posts`, undefined, 'jsonPlaceholder');
+export const getPosts = (): Promise<Post[]> => request({ url: `posts`, api: 'jsonPlaceholder' });
 
 export const getPost = (id: string): Promise<Post> =>
-  request(`posts/${id}`, undefined, 'jsonPlaceholder');
+  request({ url: `posts/${id}`, api: 'jsonPlaceholder' });
 
 export const editPost = (body: Post): Promise<Post> =>
-  request(
-    `posts/${body.id}`,
-    {
+  request({
+    url: `posts/${body.id}`,
+    init: {
       method: 'PUT',
       body: stringify(body),
     },
-    'jsonPlaceholder',
-  );
+    api: 'jsonPlaceholder',
+  });
 
 export const deletePost = (id: string): Promise<Post> =>
-  request(
-    `posts/${id}`,
-    {
+  request({
+    url: `posts/${id}`,
+    init: {
       method: 'DELETE',
     },
-    'jsonPlaceholder',
-  );
+    api: 'jsonPlaceholder',
+  });

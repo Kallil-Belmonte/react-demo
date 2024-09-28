@@ -314,17 +314,3 @@ fieldset {
 .page-section {
   padding: 100px 0;
 }
-
-// PAGINATION
-.page-link {
-  color: $primary;
-
-  &:hover {
-    color: color.adjust($primary, $lightness: -5%);
-  }
-}
-
-.page-item.active .page-link {
-  background-color: $primary;
-  border-color: $primary;
-}

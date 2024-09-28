@@ -13,11 +13,11 @@ type Props = {
 };
 
 const PostBody: FunctionComponent<Props> = ({ post }) => {
-  const navigate = useNavigate();
-  const { id = '' } = useParams<{ id?: string }>();
-
   const [loading, setLoading] = useState(false);
   const [openDeletePostModal, setOpenDeletePostModal] = useState(false);
+
+  const navigate = useNavigate();
+  const { id = '' } = useParams<{ id?: string }>();
 
   const handleToggleDeletePostModal = () => {
     setOpenDeletePostModal(prevValue => !prevValue);

@@ -8,11 +8,11 @@ import { Loader } from '@/shared/components';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
 const Home: FunctionComponent = () => {
-  const { posts } = useSelector(state => state.news);
-  const dispatch = useDispatch();
-
   const [loading, setLoading] = useState(false);
   const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
+
+  const { posts } = useSelector(state => state.news);
+  const dispatch = useDispatch();
 
   const getFeaturedPosts = async () => {
     if (posts.length) {

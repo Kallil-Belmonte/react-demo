@@ -14,6 +14,7 @@ const Form: FunctionComponent = () => {
 
   const { currentPost } = useSelector(state => state.news);
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const { id = '' } = useParams<{ id?: string }>();
 

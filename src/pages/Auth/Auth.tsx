@@ -1,8 +1,5 @@
-import { type FunctionComponent, useEffect } from 'react';
+import type { FunctionComponent } from 'react';
 
-import { useNavigate } from 'react-router-dom';
-
-import { redirectLoggedUser } from '@/shared/helpers';
 import { Icon } from '@/shared/components';
 import './Auth.scss';
 
@@ -11,13 +8,6 @@ type Props = {
 };
 
 const Auth: FunctionComponent<Props> = ({ children }) => {
-  const navigate = useNavigate();
-
-  // LIFECYCLE HOOKS
-  useEffect(() => {
-    redirectLoggedUser(navigate);
-  }, []);
-
   return (
     <main data-page="Auth">
       <div className="container">

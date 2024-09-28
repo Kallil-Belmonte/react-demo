@@ -14,6 +14,7 @@ const Register: FunctionComponent = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const firstName = useField();
