@@ -16,7 +16,7 @@ type Props = Omit<
 };
 
 const Modal: FunctionComponent<Props> = ({ icon, open, title, footer, children, onClose }) => {
-  const dialog = useRef<HTMLDialogElement>();
+  const dialog = useRef<HTMLDialogElement>(null);
 
   const handleClick: React.MouseEventHandler<HTMLDialogElement> = event => {
     if (event.target === dialog.current) onClose(event);
@@ -41,7 +41,7 @@ const Modal: FunctionComponent<Props> = ({ icon, open, title, footer, children, 
   if (!open) return null;
 
   return (
-    <dialog data-component="Modal" aria-modal="true" onClick={handleClick}>
+    <dialog ref={dialog} data-component="Modal" aria-modal="true" onClick={handleClick}>
       <header>
         <div className="title">
           {icon && <Icon name={icon} size="30px" />}

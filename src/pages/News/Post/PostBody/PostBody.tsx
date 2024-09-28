@@ -1,6 +1,6 @@
 import { type FunctionComponent, useState } from 'react';
 
-import { useNavigate, useParams, NavLink } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import type { Post } from '@/core/services/news/types';
 import { deletePost } from '@/core/services';
@@ -47,9 +47,9 @@ const PostBody: FunctionComponent<Props> = ({ post }) => {
         </article>
         <hr className="mt-4" />
         <div className="d-flex justify-content-end">
-          <NavLink className="me-3" to={`/edit-post/${post.id}`}>
+          <Button className="me-3" onClick={() => navigate(`/edit-post/${post.id}`)}>
             Edit
-          </NavLink>
+          </Button>
           <Button variant="base" onClick={handleToggleDeletePostModal}>
             Delete
           </Button>

@@ -13,7 +13,7 @@ const PostItem: FunctionComponent<Props> = ({ post, ...otherProps }) => {
   return (
     <div data-component="PostItem" {...otherProps}>
       {post.image ? (
-        <img className="img-fluid" src={post.image} alt="Capa" />
+        <img className="img-fluid" src={post.image} alt="Cover" />
       ) : (
         <div className="img-placeholder">No image for this post</div>
       )}

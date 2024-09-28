@@ -69,7 +69,7 @@ const Form: FunctionComponent = () => {
     <>
       <Loader loading={loading} />
 
-      <form className="edit-post-form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <Input label="Title" name="title" required minLength={2} field={title} />
         </div>
