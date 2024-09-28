@@ -34,12 +34,10 @@ const Pagination: FunctionComponent<Props> = ({
         )}
 
         {pages.slice(startPages, endPages).map(page => (
-          <li
-            key={page}
-            className={isItemActive(page) ? 'active' : ''}
-            onClick={() => (isItemActive(page) ? undefined : onPaginate(page))}
-          >
-            <button type="button">{page}</button>
+          <li key={page} onClick={() => (isItemActive(page) ? undefined : onPaginate(page))}>
+            <button className={isItemActive(page) ? 'active' : ''} type="button">
+              {page}
+            </button>
           </li>
         ))}
 

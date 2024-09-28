@@ -48,7 +48,7 @@ const Select: FunctionComponent<Props> = ({
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = event => {
     const { value } = event.target as HTMLInputElement;
-    setValue(value);
+    setInputValue(value);
     setFilteredOptions(options.filter(option => format(option.text).includes(format(value))));
   };
 
