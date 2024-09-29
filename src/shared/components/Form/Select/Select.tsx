@@ -38,7 +38,7 @@ const Select: FunctionComponent<Props> = ({
 }) => {
   const { ref, value = '', setValue } = field;
 
-  const [openned, setOpenned] = useState(false);
+  const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [filteredOptions, setFilteredOptions] = useState<Props['options']>([]);
 
@@ -52,8 +52,8 @@ const Select: FunctionComponent<Props> = ({
     setFilteredOptions(options.filter(option => format(option.text).includes(format(value))));
   };
 
-  const handleFocus = () => {
-    setOpenned(true);
+  const handleOpenSelect = () => {
+    setOpen(true);
   };
 
   const handleBlur: React.FocusEventHandler<HTMLInputElement> = event => {
@@ -71,12 +71,8 @@ const Select: FunctionComponent<Props> = ({
         setInputValue('');
       }
 
-      setOpenned(false);
+      setOpen(false);
     }, 100);
-  };
-
-  const triggerInputFocus = () => {
-    ref.current.focus();
   };
 
   const select = (option: Option) => {
@@ -111,11 +107,11 @@ const Select: FunctionComponent<Props> = ({
         disabled={disabled}
         value={inputValue}
         onChange={handleChange}
-        onFocus={handleFocus}
+        onFocus={handleOpenSelect}
         onBlur={handleBlur}
       />
-      <IconButton icon="ArrowDown" size="15px" onClick={triggerInputFocus} />
-      <div role="listbox" tabIndex={0} aria-label="Options" aria-hidden={!openned}>
+      <IconButton icon="ArrowDown" size="15px" onClick={handleOpenSelect} />
+      <div role="listbox" tabIndex={0} aria-label="Options" aria-hidden={!open}>
         {filteredOptions.map(option => (
           <div
             key={option.value}
