@@ -66,6 +66,9 @@ const Select: FunctionComponent<Props> = ({
         setValue(option.value);
         setInputValue(option.text);
         onChange?.(option.value, event);
+      } else {
+        setValue('');
+        setInputValue('');
       }
 
       setOpenned(false);
