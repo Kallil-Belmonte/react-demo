@@ -14,6 +14,7 @@ import {
   Textarea,
   Button,
 } from '@/shared/components';
+import './Form.scss';
 
 const Form: FunctionComponent = () => {
   const [loading, setLoading] = useState(true);
@@ -189,12 +190,12 @@ const Form: FunctionComponent = () => {
           </Alert>
         ))}
 
-        <Button className="me-2" type="submit">
-          Send
-        </Button>
-        <Button variant="base" onClick={reset}>
-          Reset form
-        </Button>
+        <footer>
+          <Button type="submit">Send</Button>
+          <Button variant="base" onClick={reset}>
+            Reset form
+          </Button>
+        </footer>
       </form>
     </>
   );

@@ -4,6 +4,7 @@ import { setUser } from '@/core/redux/reducers/auth';
 import { clearMessage } from '@/shared/helpers';
 import { useSelector, useDispatch, useField } from '@/shared/hooks';
 import { Alert, Input, Button } from '@/shared/components';
+import './Form.scss';
 
 const Form: FunctionComponent = () => {
   const [successMessages, setSuccessMessages] = useState<string[]>([]);
@@ -96,12 +97,12 @@ const Form: FunctionComponent = () => {
             </Alert>
           ))}
 
-          <Button className="me-2" type="submit">
-            Save
-          </Button>
-          <Button variant="base" onClick={setFormData}>
-            Reset form
-          </Button>
+          <footer>
+            <Button type="submit">Save</Button>
+            <Button variant="base" onClick={setFormData}>
+              Reset form
+            </Button>
+          </footer>
         </form>
       </div>
     </div>

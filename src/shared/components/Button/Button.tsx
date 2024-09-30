@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import type { CSSProperties, FunctionComponent } from 'react';
 
 import { type To, useNavigate } from 'react-router-dom';
 
@@ -41,6 +41,7 @@ const Button: FunctionComponent<Props> = ({
   return (
     <button
       data-component="Button"
+      style={{ '--button-size': size } as CSSProperties}
       className={`${variant} ${className}`}
       type={type}
       disabled={disabled || loading}

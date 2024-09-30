@@ -52,7 +52,7 @@ const Select: FunctionComponent<Props> = ({
     setFilteredOptions(options.filter(option => format(option.text).includes(format(value))));
   };
 
-  const handleOpenSelect = () => {
+  const handleFocus = () => {
     setOpen(true);
   };
 
@@ -73,6 +73,10 @@ const Select: FunctionComponent<Props> = ({
 
       setOpen(false);
     }, 100);
+  };
+
+  const triggerInputFocus = () => {
+    ref.current.focus();
   };
 
   const select = (option: Option) => {
@@ -107,10 +111,14 @@ const Select: FunctionComponent<Props> = ({
         disabled={disabled}
         value={inputValue}
         onChange={handleChange}
-        onFocus={handleOpenSelect}
+        onFocus={handleFocus}
         onBlur={handleBlur}
       />
-      <Button icon={{ name: 'ArrowDown', size: '15px' }} onClick={handleOpenSelect} />
+      <Button
+        variant="icon"
+        icon={{ name: 'ArrowDown', size: '15px' }}
+        onClick={triggerInputFocus}
+      />
       <div role="listbox" tabIndex={0} aria-label="Options" aria-hidden={!open}>
         {filteredOptions.map(option => (
           <div
