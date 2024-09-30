@@ -5,10 +5,6 @@
   box-shadow: none;
   transition: background-color 0.4s ease;
 
-  [data-component='Icon'] {
-    @include square(60%);
-  }
-
   // VARIANT
 
   // Primary
@@ -74,6 +70,10 @@
     color: #fff;
     padding: 0;
     border-radius: 25%;
+
+    [data-component='Icon'] {
+      @include square(60%);
+    }
   }
 
   // Icon Primary
@@ -91,15 +91,6 @@
 
     @include active-style {
       background-color: $secondary-darker;
-    }
-  }
-
-  // Icon Primary
-  &.icon-primary {
-    background-color: $primary;
-
-    @include active-style {
-      background-color: $primary-darker;
     }
   }
 }
