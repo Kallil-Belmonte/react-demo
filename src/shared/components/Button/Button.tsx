@@ -18,6 +18,7 @@ type Props = React.DetailedHTMLProps<
 };
 
 const Button: FunctionComponent<Props> = ({
+  style = {},
   className = '',
   type = 'button',
   variant = 'primary',
@@ -41,7 +42,7 @@ const Button: FunctionComponent<Props> = ({
   return (
     <button
       data-component="Button"
-      style={{ '--button-size': size } as CSSProperties}
+      style={{ '--icon-size': size, ...style } as CSSProperties}
       className={`${variant} ${className}`}
       type={type}
       disabled={disabled || loading}
