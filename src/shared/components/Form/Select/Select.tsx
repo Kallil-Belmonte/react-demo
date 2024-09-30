@@ -2,7 +2,7 @@ import { type FunctionComponent, useState, useEffect } from 'react';
 
 import { removeAccent } from '@/shared/helpers';
 import { UseField } from '@/shared/hooks';
-import IconButton from '@/shared/components/IconButton/IconButton';
+import Button from '@/shared/components/Button/Button';
 import './Select.scss';
 
 type Option = {
@@ -110,7 +110,7 @@ const Select: FunctionComponent<Props> = ({
         onFocus={handleOpenSelect}
         onBlur={handleBlur}
       />
-      <IconButton icon="ArrowDown" size="15px" onClick={handleOpenSelect} />
+      <Button icon={{ name: 'ArrowDown', size: '15px' }} onClick={handleOpenSelect} />
       <div role="listbox" tabIndex={0} aria-label="Options" aria-hidden={!open}>
         {filteredOptions.map(option => (
           <div

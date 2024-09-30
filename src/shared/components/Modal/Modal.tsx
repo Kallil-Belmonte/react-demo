@@ -2,7 +2,7 @@ import { type FunctionComponent, useRef, useEffect } from 'react';
 
 import type { Icons } from '../Icon/types';
 import Icon from '../Icon/Icon';
-import IconButton from '../IconButton/IconButton';
+import Button from '../Button/Button';
 import './Modal.scss';
 
 type Props = Omit<
@@ -47,7 +47,7 @@ const Modal: FunctionComponent<Props> = ({ icon, open, title, footer, children, 
           {icon && <Icon name={icon} size="30px" />}
           <h3>{title}</h3>
         </div>
-        <IconButton icon="Close" onClick={onClose} />
+        <Button icon={{ name: 'Close' }} onClick={onClose} />
       </header>
       <section className="body">{children}</section>
       <footer>{footer}</footer>

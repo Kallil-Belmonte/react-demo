@@ -3,7 +3,7 @@ import type { FunctionComponent } from 'react';
 import type { Status } from '@/shared/files/types';
 import { getIcon } from '@/shared/helpers';
 import Icon from '../Icon/Icon';
-import IconButton from '../IconButton/IconButton';
+import Button from '../Button/Button';
 import './Alert.scss';
 
 type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
@@ -23,7 +23,7 @@ const Alert: FunctionComponent<Props> = ({
     <div data-component="Alert" role="alert" className={`${status} ${className}`} {...otherProps}>
       <Icon name={getIcon(status)} size="25px" />
       <div className="content">{children}</div>
-      <IconButton v-if="close" icon="Close" size="15px" onClick={onClose} />
+      {onClose && <Button icon={{ name: 'Close', size: '15px' }} onClick={onClose} />}
     </div>
   );
 };

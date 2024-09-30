@@ -3,6 +3,7 @@ import type { FunctionComponent } from 'react';
 import { type To, useNavigate } from 'react-router-dom';
 
 import type { Variant } from '@/shared/files/types';
+import type { Icons } from '../Icon/types';
 import Icon from '../Icon/Icon';
 import './Button.scss';
 
@@ -10,8 +11,9 @@ type Props = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
-  variant?: Variant;
+  variant?: Variant | 'icon' | 'icon-primary' | 'icon-secondary';
   route?: To;
+  icon?: { name: Icons; color?: string; size?: string };
   loading?: boolean;
 };
 
@@ -20,12 +22,15 @@ const Button: FunctionComponent<Props> = ({
   type = 'button',
   variant = 'primary',
   route,
+  icon,
   loading,
   disabled,
   onClick,
   children,
   ...otherProps
 }) => {
+  const { name, color, size = '20px' } = icon || {};
+
   const navigate = useNavigate();
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = event => {
@@ -42,7 +47,9 @@ const Button: FunctionComponent<Props> = ({
       onClick={handleClick}
       {...otherProps}
     >
-      {loading ? <Icon className="mx-auto" name="Loading" color="#fff" size="30px" /> : children}
+      {loading && <Icon name="Loading" color="#fff" />}
+      {!loading && name && <Icon name={name} color={color} size={size} />}
+      {!loading && children}
     </button>
   );
 };

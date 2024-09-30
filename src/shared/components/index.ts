@@ -2,7 +2,6 @@ export { default as Alert } from './Alert/Alert';
 export { default as Button } from './Button/Button';
 export { default as Checkbox } from './Form/Checkbox/Checkbox';
 export { default as Icon } from './Icon/Icon';
-export { default as IconButton } from './IconButton/IconButton';
 export { default as Input } from './Form/Input/Input';
 export { default as Loader } from './Loader/Loader';
 export { default as Modal } from './Modal/Modal';
