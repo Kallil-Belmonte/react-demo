@@ -11,7 +11,7 @@ type Props = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
-  variant?: Variant | 'icon' | 'icon-primary' | 'icon-secondary';
+  variant?: Variant | 'icon' | 'icon-base' | 'icon-primary' | 'icon-secondary';
   route?: To;
   icon?: { name: Icons; color?: string; size?: string };
   loading?: boolean;

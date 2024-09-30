@@ -1,20 +1,37 @@
+$icon-size: 60%;
+
 [data-component='Button'] {
   @extend %flex-center;
   gap: 10px;
   font-weight: 700;
   box-shadow: none;
   transition: background-color 0.4s ease;
+  overflow: hidden;
+
+  [data-component='Icon'][data-name='Loading'] {
+    @include square($icon-size);
+  }
 
   // VARIANT
 
+  // Base
   // Primary
   // Secondary
-  // Base
+  &.base,
   &.primary,
-  &.secondary,
-  &.base {
+  &.secondary {
     width: 100%;
     border-radius: 50px;
+  }
+
+  // Base
+  &.base {
+    background-color: #fff;
+    border: 1px solid $grey-4;
+
+    @include active-style {
+      background-color: color.adjust(#fff, $lightness: -1%);
+    }
   }
 
   // Primary
@@ -37,21 +54,41 @@
     }
   }
 
-  // Base
-  &.base {
-    background-color: #fff;
-    border: 1px solid $grey-4;
+  // Icon
+  // Icon Base
+  // Icon Primary
+  // Icon Secondary
+  &.icon,
+  &.icon-base,
+  &.icon-primary,
+  &.icon-secondary {
+    @include square(var(--icon-size));
+    padding: 0;
+  }
 
-    @include active-style {
-      background-color: color.adjust(#fff, $lightness: -1%);
+  // Icon Base
+  // Icon Primary
+  // Icon Secondary
+  &.icon-base,
+  &.icon-primary,
+  &.icon-secondary {
+    border-radius: 25%;
+
+    [data-component='Icon'] {
+      @include square($icon-size);
     }
+  }
+
+  // Icon Primary
+  // Icon Secondary
+  &.icon-primary,
+  &.icon-secondary {
+    color: #fff;
   }
 
   // Icon
   &.icon {
-    @include square(var(--icon-size));
     color: $grey-7;
-    padding: 0;
 
     @include active-style {
       color: $dark-1;
@@ -62,17 +99,13 @@
     }
   }
 
-  // Icon Primary
-  // Icon Secondary
-  &.icon-primary,
-  &.icon-secondary {
-    @include square(var(--icon-size));
-    color: #fff;
-    padding: 0;
-    border-radius: 25%;
+  // Icon Base
+  &.icon-base {
+    background-color: #fff;
+    border: 1px solid $grey-4;
 
-    [data-component='Icon'] {
-      @include square(60%);
+    @include active-style {
+      background-color: color.adjust(#fff, $lightness: -1%);
     }
   }
 
