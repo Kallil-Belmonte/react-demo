@@ -61,7 +61,7 @@ const Blog: FunctionComponent = () => {
     }
   };
 
-  const handleSelectCategory = async (category: Category['name']) => {
+  const handleSelectCategory = async (_category: Category['name']) => {
     setLoading(true);
 
     try {

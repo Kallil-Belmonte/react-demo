@@ -7,7 +7,6 @@ import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getPost } from '@/core/services';
 import { Loader } from '@/shared/components';
 import PostBody from './PostBody/PostBody';
-import DeletePostModal from './DeletePostModal/DeletePostModal';
 
 const Post: FunctionComponent = () => {
   const { currentPost } = useSelector(state => state.news);
@@ -44,8 +43,6 @@ const Post: FunctionComponent = () => {
           </div>
         </div>
       </div>
-
-      <DeletePostModal />
     </main>
   );
 };
