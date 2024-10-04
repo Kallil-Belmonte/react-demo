@@ -1,3 +1,5 @@
+@import '@/assets/scss/helpers/_helpers.scss';
+
 @keyframes atom-spinner-animation-1 {
   100% {
     transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg);

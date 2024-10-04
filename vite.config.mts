@@ -6,10 +6,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `
-          @use 'sass:color';
-          @import "src/assets/scss/helpers/_helpers.scss";
-        `,
+        api: 'modern-compiler',
       },
     },
   },
