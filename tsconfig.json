@@ -15,7 +15,7 @@
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
     /* Linting https://www.typescriptlang.org/tsconfig/#Type_Checking_6248 */
