@@ -2,7 +2,7 @@ import { getAuthToken, isValidJSONString } from '@/shared/helpers';
 import { MOCKY_API, JSON_PLACEHOLDER_API } from '@/core/services/_files/endpoints';
 import type { RequestError } from './types';
 
-type Config = {
+type Params = {
   url: RequestInfo | URL;
   init?: RequestInit | undefined;
   api?: 'mocky' | 'jsonPlaceholder';
@@ -18,8 +18,8 @@ const { stringify, parse } = JSON;
 const INIT = { method: 'GET' };
 const HEADERS = { 'Content-Type': 'application/json' };
 
-const request = async <Type>(config: Config): Promise<Type> => {
-  const { url, init = INIT, api = 'mocky' } = config;
+const request = async <Type>(params: Params): Promise<Type> => {
+  const { url, init = INIT, api = 'mocky' } = params;
 
   try {
     const apis = {
