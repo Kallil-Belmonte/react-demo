@@ -8,7 +8,6 @@
     "npm:@types/react@18.3.11": "18.3.11",
     "npm:@vitejs/plugin-react@4.3.2": "4.3.2_vite@5.4.8__@types+node@22.7.4__sass-embedded@1.79.4_@babel+core@7.25.7_@types+node@22.7.4_sass-embedded@1.79.4",
     "npm:jwt-decode@4.0.0": "4.0.0",
-    "npm:path@0.12.7": "0.12.7",
     "npm:react-dom@18.3.1": "18.3.1_react@18.3.1",
     "npm:react-redux@9.1.2": "9.1.2_@types+react@18.3.11_react@18.3.1_redux@5.0.1",
     "npm:react-router-dom@6.26.2": "6.26.2_react@18.3.1_react-dom@18.3.1__react@18.3.1",
@@ -529,9 +528,6 @@
     "immutable@4.3.7": {
       "integrity": "sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw=="
     },
-    "inherits@2.0.3": {
-      "integrity": "sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw=="
-    },
     "js-tokens@4.0.0": {
       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
     },
@@ -565,13 +561,6 @@
     "node-releases@2.0.18": {
       "integrity": "sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g=="
     },
-    "path@0.12.7": {
-      "integrity": "sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==",
-      "dependencies": [
-        "process",
-        "util"
-      ]
-    },
     "picocolors@1.1.0": {
       "integrity": "sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw=="
     },
@@ -582,9 +571,6 @@
         "picocolors",
         "source-map-js"
       ]
-    },
-    "process@0.11.10": {
-      "integrity": "sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A=="
     },
     "react-dom@18.3.1_react@18.3.1": {
       "integrity": "sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==",
@@ -812,12 +798,6 @@
         "react"
       ]
     },
-    "util@0.10.4": {
-      "integrity": "sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==",
-      "dependencies": [
-        "inherits"
-      ]
-    },
     "varint@6.0.0": {
       "integrity": "sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg=="
     },
@@ -846,7 +826,6 @@
         "npm:@types/react@18.3.11",
         "npm:@vitejs/plugin-react@4.3.2",
         "npm:jwt-decode@4.0.0",
-        "npm:path@0.12.7",
         "npm:react-dom@18.3.1",
         "npm:react-redux@9.1.2",
         "npm:react-router-dom@6.26.2",
