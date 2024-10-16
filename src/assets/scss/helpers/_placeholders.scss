@@ -42,9 +42,8 @@
 }
 
 %absolute-center {
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
+  inset: 0;
+  margin: auto;
 }
 
 %absolute-center-y {
