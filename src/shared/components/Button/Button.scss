@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '@/assets/scss/helpers/_helpers.scss';
+@use '@/assets/scss/helpers' as *;
 
 $icon-size: 60%;
 
