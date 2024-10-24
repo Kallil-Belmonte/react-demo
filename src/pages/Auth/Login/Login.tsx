@@ -1,6 +1,7 @@
 import { type FunctionComponent, useState } from 'react';
 
 import { useNavigate, NavLink } from 'react-router-dom';
+import { signal, useSignal } from '@preact/signals-react';
 
 import type { LoginUserPayload } from '@/core/services/auth/types';
 import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
@@ -11,7 +12,8 @@ import { Loader, Input, Checkbox, Button } from '@/shared/components';
 import Auth from '../Auth';
 
 const Login: FunctionComponent = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const loading = signal(false);
 
   const dispatch = useDispatch();
 
@@ -32,30 +34,34 @@ const Login: FunctionComponent = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setLoading(true);
+    // setLoading(true);
+    loading.value = true;
 
-    try {
-      const payload: LoginUserPayload = {
-        email: email.value,
-        password: password.value,
-        keepLogged: keepLogged.value,
-      };
+    // try {
+    //   const payload: LoginUserPayload = {
+    //     email: email.value,
+    //     password: password.value,
+    //     keepLogged: keepLogged.value,
+    //   };
 
-      const user = await loginUser(payload);
+    //   const user = await loginUser(payload);
 
-      if (keepLogged.value) localStorage.setItem(AUTH_TOKEN_KEY, user.token);
-      else sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
+    //   if (keepLogged.value) localStorage.setItem(AUTH_TOKEN_KEY, user.token);
+    //   else sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
 
-      dispatch(setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }));
-      navigate('/');
-    } catch (error: any) {
-      setLoading(false);
-    }
+    //   dispatch(setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }));
+    //   navigate('/');
+    // } catch (error: any) {
+    //   // setLoading(false);
+    //   loading.value = false;
+    // }
   };
+
+  console.log(loading.value);
 
   return (
     <Auth>
-      <Loader loading={loading} />
+      <Loader loading={loading.value} />
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <h1 className="page-title">Login</h1>
