@@ -18,9 +18,6 @@ const Auth: FunctionComponent<Props> = ({ children }) => {
             {children}
 
             <p className="disclaimer text-center mt-2 mb-0">Use any e-mail and password</p>
-            <p className="disclaimer text-center mb-0">
-              To see the error alerts use the e-mail: demo@demo.com
-            </p>
           </div>
         </div>
       </div>

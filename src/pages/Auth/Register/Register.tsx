@@ -22,14 +22,6 @@ const Register: FunctionComponent = () => {
   const email = useField();
   const password = useField();
 
-  const handleChangeEmail: React.ChangeEventHandler<HTMLInputElement> = event => {
-    const { value } = event.target as HTMLInputElement;
-
-    email.ref.current.setCustomValidity(
-      value === 'demo@demo.com' ? 'This e-mail does not exists.' : '',
-    );
-  };
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -92,7 +84,6 @@ const Register: FunctionComponent = () => {
             name="email"
             required
             placeholder="Enter your e-mail"
-            onChange={handleChangeEmail}
             field={email}
           />
         </div>

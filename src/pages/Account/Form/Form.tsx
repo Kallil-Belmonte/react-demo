@@ -27,8 +27,6 @@ const Form: FunctionComponent = () => {
 
     if (value === 'john.doe@gmail.com') {
       email.ref.current.setCustomValidity('This e-mail already exists.');
-    } else if (value === 'demo@demo.com') {
-      email.ref.current.setCustomValidity('An error occurred, please try again later.');
     } else {
       email.ref.current.setCustomValidity('');
     }
