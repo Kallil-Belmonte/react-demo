@@ -87,6 +87,7 @@ const Form: FunctionComponent = () => {
 
           {successMessages.map((errorMessage, index) => (
             <Alert
+              className="mb-3"
               key={errorMessage}
               status="success"
               onClose={() => clearMessage(setSuccessMessages, index)}

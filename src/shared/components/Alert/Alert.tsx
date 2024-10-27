@@ -23,7 +23,9 @@ const Alert: FunctionComponent<Props> = ({
     <div data-component="Alert" role="alert" className={`${status} ${className}`} {...otherProps}>
       <Icon name={getIcon(status)} size="25px" />
       <div className="content">{children}</div>
-      {onClose && <Button icon={{ name: 'Close', size: '15px' }} onClick={onClose} />}
+      {onClose && (
+        <Button variant="icon" icon={{ name: 'Close', size: '15px' }} onClick={onClose} />
+      )}
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import * as path from 'node:path';
 
+import deno from '@deno/vite-plugin';
+import react from '@vitejs/plugin-react-swc';
+
+// https://vite.dev/config/
 export default defineConfig({
   server: {
     host: true,
@@ -9,7 +11,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': '/src',
     },
   },
   css: {
@@ -19,5 +21,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react()],
+  plugins: [deno(), react()],
 });
