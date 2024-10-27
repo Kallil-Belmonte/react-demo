@@ -1,0 +1,62 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": ["./*.json"]
+  },
+  "formatter": {
+    "enabled": true,
+    "attributePosition": "auto",
+    "bracketSpacing": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100,
+    "useEditorconfig": true
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "useSemanticElements": "off"
+      },
+      "complexity": {
+        "noForEach": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "asNeeded",
+      "attributePosition": "auto",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "lineWidth": 100,
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
+  }
+}

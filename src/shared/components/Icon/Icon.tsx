@@ -69,7 +69,7 @@ const Icon: FunctionComponent<Props> = props => {
       style={style}
       dangerouslySetInnerHTML={{ __html: svgs[name] }}
       {...otherProps}
-    ></div>
+    />
   );
 };
 

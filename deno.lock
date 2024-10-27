@@ -1,28 +1,66 @@
 {
   "version": "4",
   "specifiers": {
-    "npm:@deno/vite-plugin@1.0.0": "1.0.0_vite@5.4.9",
-    "npm:@reduxjs/toolkit@2.3.0": "2.3.0_react@18.3.1_redux@5.0.1",
+    "npm:@biomejs/biome@1.9.4": "1.9.4",
+    "npm:@deno/vite-plugin@1.0.0": "1.0.0_vite@5.4.9__sass-embedded@1.80.3_sass-embedded@1.80.3",
+    "npm:@reduxjs/toolkit@2.3.0": "2.3.0_react@18.3.1_react-redux@9.1.2__@types+react@18.3.12__react@18.3.1__redux@5.0.1_@types+react@18.3.12_redux@5.0.1",
     "npm:@types/react-dom@18.3.1": "18.3.1",
     "npm:@types/react-router-dom@5.3.3": "5.3.3",
-    "npm:@types/react@18.3.11": "18.3.11",
     "npm:@types/react@18.3.12": "18.3.12",
-    "npm:@vitejs/plugin-react-swc@3.7.1": "3.7.1_vite@5.4.9",
+    "npm:@vitejs/plugin-react-swc@3.7.1": "3.7.1_vite@5.4.9__sass-embedded@1.80.3_sass-embedded@1.80.3",
     "npm:jwt-decode@4.0.0": "4.0.0",
     "npm:react-dom@18.3.1": "18.3.1_react@18.3.1",
-    "npm:react-redux@9.1.2": "9.1.2_@types+react@18.3.11_react@18.3.1",
+    "npm:react-redux@9.1.2": "9.1.2_@types+react@18.3.12_react@18.3.1_redux@5.0.1",
     "npm:react-router-dom@6.27.0": "6.27.0_react@18.3.1_react-dom@18.3.1__react@18.3.1",
     "npm:react@18.3.1": "18.3.1",
     "npm:sass-embedded@1.80.3": "1.80.3",
     "npm:typescript@5.6.3": "5.6.3",
-    "npm:vite@*": "5.4.9",
-    "npm:vite@5.4.9": "5.4.9"
+    "npm:vite-plugin-biome@1.0.12": "1.0.12_@biomejs+biome@1.9.4",
+    "npm:vite@*": "5.4.9_sass-embedded@1.80.3",
+    "npm:vite@5.4.9": "5.4.9_sass-embedded@1.80.3"
   },
   "npm": {
+    "@biomejs/biome@1.9.4": {
+      "integrity": "sha512-1rkd7G70+o9KkTn5KLmDYXihGoTaIGO9PIIN2ZB7UJxFrWw04CZHPYiMRjYsaDvVV7hP1dYNRLxSANLaBFGpog==",
+      "dependencies": [
+        "@biomejs/cli-darwin-arm64",
+        "@biomejs/cli-darwin-x64",
+        "@biomejs/cli-linux-arm64",
+        "@biomejs/cli-linux-arm64-musl",
+        "@biomejs/cli-linux-x64",
+        "@biomejs/cli-linux-x64-musl",
+        "@biomejs/cli-win32-arm64",
+        "@biomejs/cli-win32-x64"
+      ]
+    },
+    "@biomejs/cli-darwin-arm64@1.9.4": {
+      "integrity": "sha512-bFBsPWrNvkdKrNCYeAp+xo2HecOGPAy9WyNyB/jKnnedgzl4W4Hb9ZMzYNbf8dMCGmUdSavlYHiR01QaYR58cw=="
+    },
+    "@biomejs/cli-darwin-x64@1.9.4": {
+      "integrity": "sha512-ngYBh/+bEedqkSevPVhLP4QfVPCpb+4BBe2p7Xs32dBgs7rh9nY2AIYUL6BgLw1JVXV8GlpKmb/hNiuIxfPfZg=="
+    },
+    "@biomejs/cli-linux-arm64-musl@1.9.4": {
+      "integrity": "sha512-v665Ct9WCRjGa8+kTr0CzApU0+XXtRgwmzIf1SeKSGAv+2scAlW6JR5PMFo6FzqqZ64Po79cKODKf3/AAmECqA=="
+    },
+    "@biomejs/cli-linux-arm64@1.9.4": {
+      "integrity": "sha512-fJIW0+LYujdjUgJJuwesP4EjIBl/N/TcOX3IvIHJQNsAqvV2CHIogsmA94BPG6jZATS4Hi+xv4SkBBQSt1N4/g=="
+    },
+    "@biomejs/cli-linux-x64-musl@1.9.4": {
+      "integrity": "sha512-gEhi/jSBhZ2m6wjV530Yy8+fNqG8PAinM3oV7CyO+6c3CEh16Eizm21uHVsyVBEB6RIM8JHIl6AGYCv6Q6Q9Tg=="
+    },
+    "@biomejs/cli-linux-x64@1.9.4": {
+      "integrity": "sha512-lRCJv/Vi3Vlwmbd6K+oQ0KhLHMAysN8lXoCI7XeHlxaajk06u7G+UsFSO01NAs5iYuWKmVZjmiOzJ0OJmGsMwg=="
+    },
+    "@biomejs/cli-win32-arm64@1.9.4": {
+      "integrity": "sha512-tlbhLk+WXZmgwoIKwHIHEBZUwxml7bRJgk0X2sPyNR3S93cdRq6XulAZRQJ17FYGGzWne0fgrXBKpl7l4M87Hg=="
+    },
+    "@biomejs/cli-win32-x64@1.9.4": {
+      "integrity": "sha512-8Y5wMhVIPaWe6jw2H+KlEm4wP/f7EW3810ZLmDlrEEy5KvBsb9ECEfu/kMWD484ijfQ8+nIi0giMgu9g1UAuuA=="
+    },
     "@bufbuild/protobuf@2.2.0": {
       "integrity": "sha512-+imAQkHf7U/Rwvu0wk1XWgsP3WnpCWmK7B48f0XqSNzgk64+grljTKC7pnO/xBiEMUziF7vKRfbBnOQhg126qQ=="
     },
-    "@deno/vite-plugin@1.0.0_vite@5.4.9": {
+    "@deno/vite-plugin@1.0.0_vite@5.4.9__sass-embedded@1.80.3_sass-embedded@1.80.3": {
       "integrity": "sha512-Q9UeWqs3s7B5lqzu1Z5QrzYAzqTj3+F9YW17tWobGRbT2G40ihwis6zK/+QgMgcG4fm3IqdIfXmpQYhkZpdMfw==",
       "dependencies": [
         "vite"
@@ -97,11 +135,12 @@
     "@esbuild/win32-x64@0.21.5": {
       "integrity": "sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw=="
     },
-    "@reduxjs/toolkit@2.3.0_react@18.3.1_redux@5.0.1": {
+    "@reduxjs/toolkit@2.3.0_react@18.3.1_react-redux@9.1.2__@types+react@18.3.12__react@18.3.1__redux@5.0.1_@types+react@18.3.12_redux@5.0.1": {
       "integrity": "sha512-WC7Yd6cNGfHx8zf+iu+Q1UPTfEcXhQ+ATi7CV1hlrSAaQBdlPzg7Ww/wJHNQem7qG9rxmWoFCDCPubSvFObGzA==",
       "dependencies": [
         "immer",
         "react",
+        "react-redux",
         "redux",
         "redux-thunk",
         "reselect"
@@ -226,14 +265,14 @@
     "@types/react-dom@18.3.1": {
       "integrity": "sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==",
       "dependencies": [
-        "@types/react@18.3.11"
+        "@types/react"
       ]
     },
     "@types/react-router-dom@5.3.3": {
       "integrity": "sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==",
       "dependencies": [
         "@types/history",
-        "@types/react@18.3.12",
+        "@types/react",
         "@types/react-router"
       ]
     },
@@ -241,14 +280,7 @@
       "integrity": "sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==",
       "dependencies": [
         "@types/history",
-        "@types/react@18.3.12"
-      ]
-    },
-    "@types/react@18.3.11": {
-      "integrity": "sha512-r6QZ069rFTjrEYgFdOck1gK7FLVsgJE7tTz0pQBczlBNUhBNk0MQH4UbnFSwjpQLMkLzgqvBBa+qGpLje16eTQ==",
-      "dependencies": [
-        "@types/prop-types",
-        "csstype"
+        "@types/react"
       ]
     },
     "@types/react@18.3.12": {
@@ -261,7 +293,7 @@
     "@types/use-sync-external-store@0.0.3": {
       "integrity": "sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA=="
     },
-    "@vitejs/plugin-react-swc@3.7.1_vite@5.4.9": {
+    "@vitejs/plugin-react-swc@3.7.1_vite@5.4.9__sass-embedded@1.80.3_sass-embedded@1.80.3": {
       "integrity": "sha512-vgWOY0i1EROUK0Ctg1hwhtC3SdcDjZcdit4Ups4aPkDcB1jYhmo+RMYWY87cmXMhvtD5uf8lV89j2w16vkdSVg==",
       "dependencies": [
         "@swc/core",
@@ -351,12 +383,13 @@
         "scheduler"
       ]
     },
-    "react-redux@9.1.2_@types+react@18.3.11_react@18.3.1": {
+    "react-redux@9.1.2_@types+react@18.3.12_react@18.3.1_redux@5.0.1": {
       "integrity": "sha512-0OA4dhM1W48l3uzmv6B7TXPCGmokUU4p1M44DGN2/D9a1FjVPukVjER1PcPX97jIg6aUeLq1XJo1IpfbgULn0w==",
       "dependencies": [
-        "@types/react@18.3.11",
+        "@types/react",
         "@types/use-sync-external-store",
         "react",
+        "redux",
         "use-sync-external-store"
       ]
     },
@@ -545,18 +578,26 @@
     "varint@6.0.0": {
       "integrity": "sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg=="
     },
-    "vite@5.4.9": {
+    "vite-plugin-biome@1.0.12_@biomejs+biome@1.9.4": {
+      "integrity": "sha512-/+fBi1S+UEYtTu361IXQLZB8cSV/z4WoyK9cp/Dd1hHT6wGnFb+4Wcjwog3Y7HSUqNJbCdFWTYTyX4hwyO2iBg==",
+      "dependencies": [
+        "@biomejs/biome"
+      ]
+    },
+    "vite@5.4.9_sass-embedded@1.80.3": {
       "integrity": "sha512-20OVpJHh0PAM0oSOELa5GaZNWeDjcAvQjGXy2Uyr+Tp+/D2/Hdz6NLgpJLsarPTA2QJ6v8mX2P1ZfbsSKvdMkg==",
       "dependencies": [
         "esbuild",
         "fsevents",
         "postcss",
-        "rollup"
+        "rollup",
+        "sass-embedded"
       ]
     }
   },
   "workspace": {
     "dependencies": [
+      "npm:@biomejs/biome@1.9.4",
       "npm:@deno/vite-plugin@1.0.0",
       "npm:@reduxjs/toolkit@2.3.0",
       "npm:@types/react-dom@18.3.1",
@@ -570,6 +611,7 @@
       "npm:react@18.3.1",
       "npm:sass-embedded@1.80.3",
       "npm:typescript@5.6.3",
+      "npm:vite-plugin-biome@1.0.12",
       "npm:vite@5.4.9"
     ]
   }

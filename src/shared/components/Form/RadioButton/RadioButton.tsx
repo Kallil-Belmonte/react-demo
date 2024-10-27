@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 
-import { UseField } from '@/shared/hooks';
+import type { UseField } from '@/shared/hooks';
 import './RadioButton.scss';
 
 type Props = Omit<
@@ -55,7 +55,7 @@ const RadioButton: FunctionComponent<Props> = ({
               disabled={disabled}
               onChange={handleChange}
             />
-            <div className="radio"></div>
+            <div className="radio" />
           </div>
         ))}
       </div>

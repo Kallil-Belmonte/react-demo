@@ -10,7 +10,7 @@ const isValidAuthToken = async () => {
   if (!authToken) return false;
 
   const { iss, exp } = authToken;
-  const isValidIssuer = iss === `api.app-demo.com`;
+  const isValidIssuer = iss === 'api.app-demo.com';
   const isExpired = new Date().getTime() > exp;
 
   return isValidIssuer && !isExpired;

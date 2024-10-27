@@ -18,22 +18,26 @@ const NotFound: FunctionComponent = () => {
         <div className="atom">
           <div className="particle">
             <svg>
-              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
+              <title>Circle</title>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5" />
             </svg>
           </div>
           <div className="particle">
             <svg>
-              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
+              <title>Circle</title>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5" />
             </svg>
           </div>
           <div className="particle">
             <svg>
-              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
+              <title>Circle</title>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5" />
             </svg>
           </div>
           <div className="particle">
             <svg>
-              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5"></circle>
+              <title>Circle</title>
+              <circle cx="100" cy="100" fill="none" r="80" strokeWidth="5" />
             </svg>
           </div>
         </div>

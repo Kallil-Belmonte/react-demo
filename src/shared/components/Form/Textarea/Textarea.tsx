@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 
-import { UseField } from '@/shared/hooks';
+import type { UseField } from '@/shared/hooks';
 
 type Props = Omit<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
@@ -63,7 +63,7 @@ const Textarea: FunctionComponent<Props> = ({
         disabled={disabled}
         value={value}
         onChange={handleChange}
-      ></textarea>
+      />
 
       {ref.current?.validationMessage && (
         <p className="validation-message">

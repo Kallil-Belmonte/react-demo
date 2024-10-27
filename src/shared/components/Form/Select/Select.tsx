@@ -1,7 +1,7 @@
 import { type FunctionComponent, useState, useEffect } from 'react';
 
 import { removeAccent } from '@/shared/helpers';
-import { UseField } from '@/shared/hooks';
+import type { UseField } from '@/shared/hooks';
 import Button from '@/shared/components/Button/Button';
 import './Select.scss';
 
@@ -124,6 +124,7 @@ const Select: FunctionComponent<Props> = ({
           <div
             key={option.value}
             role="option"
+            tabIndex={0}
             aria-selected={isSelected(option.value)}
             aria-disabled={option.disabled}
             onClick={() => select(option)}

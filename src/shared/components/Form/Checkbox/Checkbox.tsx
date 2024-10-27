@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 
-import { UseField } from '@/shared/hooks';
+import type { UseField } from '@/shared/hooks';
 import './Checkbox.scss';
 
 type Props = Omit<
@@ -45,7 +45,7 @@ const Checkbox: FunctionComponent<Props> = ({
         disabled={disabled}
         onChange={handleChange}
       />
-      <div className="box"></div>
+      <div className="box" />
 
       {ref.current?.validationMessage && (
         <p className="validation-message">

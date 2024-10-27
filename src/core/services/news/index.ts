@@ -18,7 +18,7 @@ export const getCategories = async (): Promise<Category[]> => [
   },
 ];
 
-export const getPosts = (): Promise<Post[]> => request({ url: `posts`, api: 'jsonPlaceholder' });
+export const getPosts = (): Promise<Post[]> => request({ url: 'posts', api: 'jsonPlaceholder' });
 
 export const getPost = (id: string): Promise<Post> =>
   request({ url: `posts/${id}`, api: 'jsonPlaceholder' });
