@@ -1,4 +1,4 @@
-@use '@/assets/scss/helpers' as *;
+@use "@/assets/scss/helpers" as *;
 
 // FONTS
 
@@ -65,7 +65,7 @@
 // }
 
 // ATTRIBUTES
-[aria-hidden='true'] {
+[aria-hidden="true"] {
   display: none !important;
 }
 
@@ -162,11 +162,11 @@ button {
   cursor: pointer;
   background-color: transparent;
 
-  &[disabled] {
+  &:disabled {
     font-weight: 400;
     color: $text-color !important;
     background-color: $grey-4 !important;
-    pointer-events: none;
+    cursor: not-allowed;
   }
 }
 
@@ -198,16 +198,16 @@ fieldset {
       font-weight: 700;
     }
 
-    [data-component='Tooltip'] {
+    [data-component="Tooltip"] {
       margin-left: 5px;
     }
 
-    + [data-component='Icon'] {
+    + [data-component="Icon"] {
       color: $grey-4;
     }
   }
 
-  > [data-component='Icon'] {
+  > [data-component="Icon"] {
     @include square($field-icon-size);
     position: absolute;
     top: 38px;
@@ -217,7 +217,7 @@ fieldset {
     }
   }
 
-  .label-wrapper + [data-component='Icon'] {
+  .label-wrapper + [data-component="Icon"] {
     left: $field-spacing-x;
 
     + input {
@@ -226,18 +226,18 @@ fieldset {
   }
 
   &:has(:user-invalid) {
-    .label-wrapper + [data-component='Icon'] {
+    .label-wrapper + [data-component="Icon"] {
       color: $danger;
     }
   }
 
   &:has(:focus:not(:user-invalid)) {
-    .label-wrapper + [data-component='Icon'] {
+    .label-wrapper + [data-component="Icon"] {
       color: $primary;
     }
   }
 
-  input + [data-component='Icon'] {
+  input + [data-component="Icon"] {
     right: $field-spacing-x;
     cursor: pointer;
   }
@@ -264,11 +264,6 @@ fieldset {
     box-sizing: border-box;
     transition: border-color 0.4s ease;
 
-    &:focus {
-      border-color: $field-active-border-color;
-      outline: none;
-    }
-
     &::-webkit-input-placeholder,
     &::-webkit-input-placeholder,
     &::-webkit-input-placeholder {
@@ -279,6 +274,15 @@ fieldset {
     &::-moz-placeholder,
     &::-moz-placeholder {
       color: $grey-5;
+    }
+
+    &:focus {
+      border-color: $field-active-border-color;
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
     }
 
     &:user-invalid {
