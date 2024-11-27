@@ -24,21 +24,13 @@ const Modal: FunctionComponent<Props> = ({ icon, open, title, footer, children, 
 
   const toggleModal = () => {
     if (!dialog.current) return;
-
-    if (open) {
-      dialog.current.showModal();
-      dialog.current.querySelector<HTMLButtonElement>('button')?.blur();
-    } else {
-      dialog.current.close();
-    }
+    open ? dialog.current.showModal() : dialog.current.close();
   };
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     toggleModal();
   }, [open]);
-
-  if (!open) return null;
 
   return (
     <dialog ref={dialog} data-component="Modal" aria-modal="true" onClick={handleClick}>

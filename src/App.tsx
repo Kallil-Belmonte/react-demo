@@ -1,11 +1,12 @@
-import { RouterProvider } from 'react-router-dom';
+import type { FunctionComponent } from 'react';
 
+import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from '@/core/redux/store';
 import router from '@/core/router';
 
-const App = () => {
+const App: FunctionComponent = () => {
   return (
     <Provider store={store}>
       <RouterProvider router={router} />

@@ -1,16 +1,29 @@
-@use '@/assets/scss/helpers' as *;
+@use "@/assets/scss/helpers" as *;
 
-[data-component='Modal'] {
-  display: grid;
-  grid-template-rows: 60px 1fr 80px;
+[data-component="Modal"] {
   max-width: 500px;
   max-height: 500px;
   @include size(calc(100% - 40px), max-content, 20px);
   padding: 0;
   border: none;
 
+  &[open] {
+    display: grid;
+    grid-template-rows: 60px 1fr 80px;
+  }
+
   &::backdrop {
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.4s ease;
+  }
+
+  @starting-style {
+    opacity: 0;
+    scale: 0.8;
+
+    &::backdrop {
+      background-color: transparent;
+    }
   }
 
   header {
@@ -22,7 +35,7 @@
     .title {
       @extend %flex-center-y;
 
-      [data-component='Icon'] {
+      [data-component="Icon"] {
         color: $primary;
         margin-right: 10px;
       }
