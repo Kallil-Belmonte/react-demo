@@ -55,7 +55,6 @@ const RadioButton: FunctionComponent<Props> = ({
               disabled={disabled}
               onChange={handleChange}
             />
-            <div className="radio" />
           </div>
         ))}
       </div>

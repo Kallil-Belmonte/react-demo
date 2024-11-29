@@ -45,7 +45,6 @@ const Checkbox: FunctionComponent<Props> = ({
         disabled={disabled}
         onChange={handleChange}
       />
-      <div className="box" />
 
       {ref.current?.validationMessage && (
         <p className="validation-message">

@@ -1,6 +1,6 @@
-@use '@/assets/scss/helpers' as *;
+@use "@/assets/scss/helpers" as *;
 
-[data-component='RadioButton'] {
+[data-component="RadioButton"] {
   .title-wrapper {
     @extend %flex-center-y;
     margin-bottom: 8px;
@@ -10,7 +10,7 @@
       margin: 0;
     }
 
-    [data-component='Tooltip'] {
+    [data-component="Tooltip"] {
       margin-left: 5px;
     }
   }
@@ -30,46 +30,35 @@
       }
 
       input {
-        @include square(18px);
-        opacity: 0;
-        margin: 0;
-        position: absolute;
-        right: 0;
-        z-index: 1;
-      }
-
-      .radio {
+        appearance: none;
         @include square(18px, 50%);
         border: 2px solid $field-border-color;
+        margin: 0;
         position: relative;
 
         &::after {
-          content: '';
+          content: "";
           @include square(0, 50%);
           background-color: $primary;
           @extend %absolute-center;
           @include transitionAll(0.2s);
         }
-      }
 
-      &:has(input:user-invalid) {
-        .radio {
-          border-color: $danger;
-        }
-      }
-
-      &:has(input:checked) {
-        .radio {
+        &:checked {
           border-color: $primary;
 
           &::after {
             @include square(70%);
           }
         }
-      }
 
-      &:has(input:disabled) {
-        opacity: 0.5;
+        &:user-invalid {
+          border-color: $danger;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+        }
       }
     }
   }
