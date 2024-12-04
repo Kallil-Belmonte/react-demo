@@ -40,7 +40,8 @@ const Login: FunctionComponent = () => {
 
       dispatch(setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }));
       navigate('/');
-    } catch (error: any) {
+    } catch (error) {
+      console.error(error);
       setLoading(false);
     }
   };

@@ -11,7 +11,6 @@
     "jsxImportSourceTypes": "@types/react"
   },
   "imports": {
-    "@biomejs/biome": "npm:@biomejs/biome@1.9.4",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@1.0.1",
     "@reduxjs/toolkit": "npm:@reduxjs/toolkit@2.3.0",
     "@types/react": "npm:@types/react@18.3.12",
@@ -19,6 +18,7 @@
     "@types/react-router-dom": "npm:@types/react-router-dom@5.3.3",
     "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@3.7.2",
     "jwt-decode": "npm:jwt-decode@4.0.0",
+    "oxlint": "npm:oxlint@0.14.0",
     "react": "npm:react@18.3.1",
     "react-dom": "npm:react-dom@18.3.1",
     "react-redux": "npm:react-redux@9.1.2",
@@ -26,6 +26,6 @@
     "sass-embedded": "npm:sass-embedded@1.81.0",
     "typescript": "npm:typescript@5.7.2",
     "vite": "npm:vite@6.0.1",
-    "vite-plugin-biome": "npm:vite-plugin-biome@1.0.12"
+    "vite-plugin-oxlint": "npm:vite-plugin-oxlint@1.1.0"
   }
 }

@@ -40,7 +40,8 @@ const Register: FunctionComponent = () => {
       sessionStorage.setItem(AUTH_TOKEN_KEY, user.token);
       dispatch(setUser({ firstName: user.firstName, lastName: user.lastName, email: user.email }));
       navigate('/');
-    } catch (error: any) {
+    } catch (error) {
+      console.error(error);
       setLoading(false);
     }
   };

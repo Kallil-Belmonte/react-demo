@@ -1,7 +1,6 @@
 {
   "version": "4",
   "specifiers": {
-    "npm:@biomejs/biome@1.9.4": "1.9.4",
     "npm:@deno/vite-plugin@1.0.1": "1.0.1_vite@5.4.11__sass-embedded@1.81.0_sass-embedded@1.81.0",
     "npm:@reduxjs/toolkit@2.3.0": "2.3.0_react@18.3.1_react-redux@9.1.2__@types+react@18.3.12__react@18.3.1__redux@5.0.1_@types+react@18.3.12_redux@5.0.1",
     "npm:@types/react-dom@18.3.1": "18.3.1",
@@ -9,54 +8,18 @@
     "npm:@types/react@18.3.12": "18.3.12",
     "npm:@vitejs/plugin-react-swc@3.7.2": "3.7.2_vite@6.0.1__sass-embedded@1.81.0_sass-embedded@1.81.0",
     "npm:jwt-decode@4.0.0": "4.0.0",
+    "npm:oxlint@0.14.0": "0.14.0",
     "npm:react-dom@18.3.1": "18.3.1_react@18.3.1",
     "npm:react-redux@9.1.2": "9.1.2_@types+react@18.3.12_react@18.3.1_redux@5.0.1",
     "npm:react-router-dom@7.0.1": "7.0.1_react@18.3.1_react-dom@18.3.1__react@18.3.1",
     "npm:react@18.3.1": "18.3.1",
     "npm:sass-embedded@1.81.0": "1.81.0",
     "npm:typescript@5.7.2": "5.7.2",
-    "npm:vite-plugin-biome@1.0.12": "1.0.12_@biomejs+biome@1.9.4",
+    "npm:vite-plugin-oxlint@1.1.0": "1.1.0_oxlint@0.10.3",
     "npm:vite@*": "6.0.1_sass-embedded@1.81.0",
     "npm:vite@6.0.1": "6.0.1_sass-embedded@1.81.0"
   },
   "npm": {
-    "@biomejs/biome@1.9.4": {
-      "integrity": "sha512-1rkd7G70+o9KkTn5KLmDYXihGoTaIGO9PIIN2ZB7UJxFrWw04CZHPYiMRjYsaDvVV7hP1dYNRLxSANLaBFGpog==",
-      "dependencies": [
-        "@biomejs/cli-darwin-arm64",
-        "@biomejs/cli-darwin-x64",
-        "@biomejs/cli-linux-arm64",
-        "@biomejs/cli-linux-arm64-musl",
-        "@biomejs/cli-linux-x64",
-        "@biomejs/cli-linux-x64-musl",
-        "@biomejs/cli-win32-arm64",
-        "@biomejs/cli-win32-x64"
-      ]
-    },
-    "@biomejs/cli-darwin-arm64@1.9.4": {
-      "integrity": "sha512-bFBsPWrNvkdKrNCYeAp+xo2HecOGPAy9WyNyB/jKnnedgzl4W4Hb9ZMzYNbf8dMCGmUdSavlYHiR01QaYR58cw=="
-    },
-    "@biomejs/cli-darwin-x64@1.9.4": {
-      "integrity": "sha512-ngYBh/+bEedqkSevPVhLP4QfVPCpb+4BBe2p7Xs32dBgs7rh9nY2AIYUL6BgLw1JVXV8GlpKmb/hNiuIxfPfZg=="
-    },
-    "@biomejs/cli-linux-arm64-musl@1.9.4": {
-      "integrity": "sha512-v665Ct9WCRjGa8+kTr0CzApU0+XXtRgwmzIf1SeKSGAv+2scAlW6JR5PMFo6FzqqZ64Po79cKODKf3/AAmECqA=="
-    },
-    "@biomejs/cli-linux-arm64@1.9.4": {
-      "integrity": "sha512-fJIW0+LYujdjUgJJuwesP4EjIBl/N/TcOX3IvIHJQNsAqvV2CHIogsmA94BPG6jZATS4Hi+xv4SkBBQSt1N4/g=="
-    },
-    "@biomejs/cli-linux-x64-musl@1.9.4": {
-      "integrity": "sha512-gEhi/jSBhZ2m6wjV530Yy8+fNqG8PAinM3oV7CyO+6c3CEh16Eizm21uHVsyVBEB6RIM8JHIl6AGYCv6Q6Q9Tg=="
-    },
-    "@biomejs/cli-linux-x64@1.9.4": {
-      "integrity": "sha512-lRCJv/Vi3Vlwmbd6K+oQ0KhLHMAysN8lXoCI7XeHlxaajk06u7G+UsFSO01NAs5iYuWKmVZjmiOzJ0OJmGsMwg=="
-    },
-    "@biomejs/cli-win32-arm64@1.9.4": {
-      "integrity": "sha512-tlbhLk+WXZmgwoIKwHIHEBZUwxml7bRJgk0X2sPyNR3S93cdRq6XulAZRQJ17FYGGzWne0fgrXBKpl7l4M87Hg=="
-    },
-    "@biomejs/cli-win32-x64@1.9.4": {
-      "integrity": "sha512-8Y5wMhVIPaWe6jw2H+KlEm4wP/f7EW3810ZLmDlrEEy5KvBsb9ECEfu/kMWD484ijfQ8+nIi0giMgu9g1UAuuA=="
-    },
     "@bufbuild/protobuf@2.2.2": {
       "integrity": "sha512-UNtPCbrwrenpmrXuRwn9jYpPoweNXj8X5sMvYgsqYyaH8jQ6LfUJSk3dJLnBK+6sfYPrF4iAIo5sd5HQ+tg75A=="
     },
@@ -206,6 +169,54 @@
     },
     "@esbuild/win32-x64@0.24.0": {
       "integrity": "sha512-7IAFPrjSQIJrGsK6flwg7NFmwBoSTyF3rl7If0hNUFQU4ilTsEPL6GuMuU9BfIWVVGuRnuIidkSMC+c0Otu8IA=="
+    },
+    "@oxlint/darwin-arm64@0.10.3": {
+      "integrity": "sha512-1zcWSqr9DmhbSrV1SEZRywp81CNq8ZidIcFGB8tGUMnlBNYiHnxyHHh2GIZsr1C2exmkBUGXruM1P8eQ9BWGuQ=="
+    },
+    "@oxlint/darwin-arm64@0.14.0": {
+      "integrity": "sha512-TnGzzJ5BWfj4d3GYdtiMNrCswr00i/f3UwUL5gD71J67nyMAagYwyJI5atCV8LKoa9DJnuc7//HfuPHhQoNKdA=="
+    },
+    "@oxlint/darwin-x64@0.10.3": {
+      "integrity": "sha512-lPAXCwYb+wZgjWAMhtPjGn7n1h8HvTulj6XCRyIgUu/aTGDRtnsae9IPXsJ9LJwYu5wyzkcWow0nhlIxkDaZ+w=="
+    },
+    "@oxlint/darwin-x64@0.14.0": {
+      "integrity": "sha512-MUbf9R2CjTuPQD+HOk9V+Aq05aWlzr2jj8cnIMUDiiwX2hTkprJKcoXyAIJp/OCDd1ufHpo9n7fKTyYtpJUFzA=="
+    },
+    "@oxlint/linux-arm64-gnu@0.10.3": {
+      "integrity": "sha512-OmzpNVRwhjuI/RtoG4ROrwxRICTLoBB3ua4/Mh2iC3RelOog2xhlAAJHenKtzgQXNmebWof/0EckFpMfID7fMw=="
+    },
+    "@oxlint/linux-arm64-gnu@0.14.0": {
+      "integrity": "sha512-ofWwFpdD8to59cjOVE+fgIS+uJLX5VbJkkYB2MCpahdzffiWTTvZCVU2TSDJxVr8VpXrF1E8SWDnmHNHzke4bg=="
+    },
+    "@oxlint/linux-arm64-musl@0.10.3": {
+      "integrity": "sha512-QQzlIW6rKOoGZK19gz/kbAbIFROJEV6ER0smcoBA7FzwsQ/ji796qx3TdITelgJwJt5x+OG5ZHztIjyzC871ZQ=="
+    },
+    "@oxlint/linux-arm64-musl@0.14.0": {
+      "integrity": "sha512-yypOsNETNE/8DQELHbw34It1Ab0HxfIooNjmK4YrJBCbVYqr6HOl/oHHb/KauZrAAfoABOMPu5G1igyXNgPvlg=="
+    },
+    "@oxlint/linux-x64-gnu@0.10.3": {
+      "integrity": "sha512-m4ZUKsQNXxXmHUYBEaO7KN83DPVsLTq8KaRO4qj0Cs1RgD8O3YYCCDewVe8x/9yskQrCCTP4mL0G4IZgDJ3Gpg=="
+    },
+    "@oxlint/linux-x64-gnu@0.14.0": {
+      "integrity": "sha512-E9ZSFo+phvUKM9+pjKCxx6GeT+DfWK8fPxupCpFljWD0zgZQKiXv1FY5+TOPjJqI7aMjLfGuC5VfGjVRgs87Ug=="
+    },
+    "@oxlint/linux-x64-musl@0.10.3": {
+      "integrity": "sha512-XKvAUYxE9bHjvWE4wmOlIdaVQN7pzZAH3Rx1EFg0MfGBVjyDm+uf0P3so+gx2PowqvBnBneL9tth2AS3Bcjl6g=="
+    },
+    "@oxlint/linux-x64-musl@0.14.0": {
+      "integrity": "sha512-MmtNF/g0u15smzyYJd5QGlyhAU8V6ZMQrFAXGhoRo5AfWzbNyOOUFmJVNLa/yvs4F+1m7oEfaegxk3BeVyufPQ=="
+    },
+    "@oxlint/win32-arm64@0.10.3": {
+      "integrity": "sha512-8xhYVvnwrveMHyXAgQAaDjJWFij4mZP6jtMlBIjk6pZSrjUzX+9o7Wh1zgH6kYApmcPDAzomYJLSYvyF5PzluA=="
+    },
+    "@oxlint/win32-arm64@0.14.0": {
+      "integrity": "sha512-67dJ57QImulc8qu9xuF5NsQAHvwr1N3Fpy1j/gaGZE973pEVoW9fFO88tnmY2L5SjWf9o3nHwti1tlU99JuOlw=="
+    },
+    "@oxlint/win32-x64@0.10.3": {
+      "integrity": "sha512-dQiHruLd42aock1WHp5BFvRvaz+Pe436dQkcmlCVmInhmOjRpDEVKPUUWamrImV6S8VM63bn4Jp60vpprjJQdQ=="
+    },
+    "@oxlint/win32-x64@0.14.0": {
+      "integrity": "sha512-fw8IEW7osGYIgfEMEW4AqPg1q8/kZd0cpO51ixvekVOuhZNC8PX8Wdx97U+XTowOFrkCcr3+szR9PZEjKyR1FQ=="
     },
     "@reduxjs/toolkit@2.3.0_react@18.3.1_react-redux@9.1.2__@types+react@18.3.12__react@18.3.1__redux@5.0.1_@types+react@18.3.12_redux@5.0.1": {
       "integrity": "sha512-WC7Yd6cNGfHx8zf+iu+Q1UPTfEcXhQ+ATi7CV1hlrSAaQBdlPzg7Ww/wJHNQem7qG9rxmWoFCDCPubSvFObGzA==",
@@ -474,6 +485,32 @@
     "nanoid@3.3.8": {
       "integrity": "sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w=="
     },
+    "oxlint@0.10.3": {
+      "integrity": "sha512-af5u5+s4adyszujeILPDRGwix0o5M1+qR1eqxNSmJhTKVRX7xdrT9s2rpNpMYxQmPyWRhC/+5Gqyb+f/PtbK9A==",
+      "dependencies": [
+        "@oxlint/darwin-arm64@0.10.3",
+        "@oxlint/darwin-x64@0.10.3",
+        "@oxlint/linux-arm64-gnu@0.10.3",
+        "@oxlint/linux-arm64-musl@0.10.3",
+        "@oxlint/linux-x64-gnu@0.10.3",
+        "@oxlint/linux-x64-musl@0.10.3",
+        "@oxlint/win32-arm64@0.10.3",
+        "@oxlint/win32-x64@0.10.3"
+      ]
+    },
+    "oxlint@0.14.0": {
+      "integrity": "sha512-S0jZRxWPwgDEtLbpJfCVaMeK5/E7wvp6lYJdukwrmeLMRelgh9DjQzl2RBrSjHfmm2R6IcUwzpQ9h8BvqDH7ww==",
+      "dependencies": [
+        "@oxlint/darwin-arm64@0.14.0",
+        "@oxlint/darwin-x64@0.14.0",
+        "@oxlint/linux-arm64-gnu@0.14.0",
+        "@oxlint/linux-arm64-musl@0.14.0",
+        "@oxlint/linux-x64-gnu@0.14.0",
+        "@oxlint/linux-x64-musl@0.14.0",
+        "@oxlint/win32-arm64@0.14.0",
+        "@oxlint/win32-x64@0.14.0"
+      ]
+    },
     "picocolors@1.1.1": {
       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
     },
@@ -709,10 +746,10 @@
     "varint@6.0.0": {
       "integrity": "sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg=="
     },
-    "vite-plugin-biome@1.0.12_@biomejs+biome@1.9.4": {
-      "integrity": "sha512-/+fBi1S+UEYtTu361IXQLZB8cSV/z4WoyK9cp/Dd1hHT6wGnFb+4Wcjwog3Y7HSUqNJbCdFWTYTyX4hwyO2iBg==",
+    "vite-plugin-oxlint@1.1.0_oxlint@0.10.3": {
+      "integrity": "sha512-b+KgDGEM7a7c+jExQ8JuoZMomjj2dtV8rkb0PSKcdWrMKjTdBNg0/7l+Mkg71OJbyF8SCBXRYgaw8CnstU3rlw==",
       "dependencies": [
-        "@biomejs/biome"
+        "oxlint@0.10.3"
       ]
     },
     "vite@5.4.11_sass-embedded@1.81.0": {
@@ -738,7 +775,6 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@biomejs/biome@1.9.4",
       "npm:@deno/vite-plugin@1.0.1",
       "npm:@reduxjs/toolkit@2.3.0",
       "npm:@types/react-dom@18.3.1",
@@ -746,13 +782,14 @@
       "npm:@types/react@18.3.12",
       "npm:@vitejs/plugin-react-swc@3.7.2",
       "npm:jwt-decode@4.0.0",
+      "npm:oxlint@0.14.0",
       "npm:react-dom@18.3.1",
       "npm:react-redux@9.1.2",
       "npm:react-router-dom@7.0.1",
       "npm:react@18.3.1",
       "npm:sass-embedded@1.81.0",
       "npm:typescript@5.7.2",
-      "npm:vite-plugin-biome@1.0.12",
+      "npm:vite-plugin-oxlint@1.1.0",
       "npm:vite@6.0.1"
     ]
   }
