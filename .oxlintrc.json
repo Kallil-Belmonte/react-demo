@@ -1,20 +1,13 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["import", "typescript", "unicorn"],
+  "plugins": ["import", "react", "react-hooks", "typescript", "unicorn"],
   "env": {
     "browser": true
   },
   "rules": {
+    "@typescript-eslint/consistent-type-imports": "error",
     "eqeqeq": "warn",
     "no-unsafe-optional-chaining": "warn",
     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
-  },
-  "overrides": [
-    {
-      "files": ["*.test.ts", "*.spec.ts"],
-      "rules": {
-        "@typescript-eslint/no-explicit-any": "off"
-      }
-    }
-  ]
+  }
 }
