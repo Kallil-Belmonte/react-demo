@@ -1,4 +1,4 @@
-import { type FunctionComponent, useState, useMemo, useCallback, useEffect } from 'react';
+import { type FunctionComponent, useState, useEffect } from 'react';
 
 import type { ObjectType } from '@/shared/files/types';
 import { PROJECT_DOMAIN } from '@/shared/files/consts';
@@ -25,9 +25,9 @@ const Icon: FunctionComponent<Props> = props => {
   const [svgs, setSvgs] = useState<ObjectType>({});
   const [mounted, setMounted] = useState(true);
 
-  const style = useMemo(() => ({ '--size': size, '--color': color, ...propStyle }), []);
+  const style = { '--size': size, '--color': color, ...propStyle };
 
-  const setIcon = useCallback(async () => {
+  const setIcon = async () => {
     const request = new Request(`/icons/${category}/${name}.svg`);
     let svgHTML = '';
 
@@ -49,7 +49,7 @@ const Icon: FunctionComponent<Props> = props => {
     if (svgHTML && mounted) {
       setSvgs(prevValue => ({ ...prevValue, [name]: svgHTML }));
     }
-  }, [category, name, mounted]);
+  };
 
   // LIFECYCLE HOOKS
   useEffect(() => {

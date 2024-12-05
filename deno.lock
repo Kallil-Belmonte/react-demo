@@ -3,15 +3,16 @@
   "specifiers": {
     "npm:@deno/vite-plugin@1.0.1": "1.0.1_vite@5.4.11__sass-embedded@1.82.0_sass-embedded@1.82.0",
     "npm:@reduxjs/toolkit@2.3.0": "2.3.0_react@18.3.1_react-redux@9.1.2__@types+react@18.3.12__react@18.3.1__redux@5.0.1_@types+react@18.3.12_redux@5.0.1",
-    "npm:@types/react-dom@18.3.1": "18.3.1",
+    "npm:@types/react-dom@19.0.0": "19.0.0",
     "npm:@types/react-router-dom@5.3.3": "5.3.3",
     "npm:@types/react@18.3.12": "18.3.12",
+    "npm:@types/react@19.0.0": "19.0.0",
     "npm:@vitejs/plugin-react-swc@3.7.2": "3.7.2_vite@6.0.3__sass-embedded@1.82.0_sass-embedded@1.82.0",
     "npm:jwt-decode@4.0.0": "4.0.0",
     "npm:oxlint@0.14.0": "0.14.0",
-    "npm:react-dom@18.3.1": "18.3.1_react@18.3.1",
+    "npm:react-dom@19.0.0": "19.0.0_react@19.0.0",
     "npm:react-redux@9.1.2": "9.1.2_@types+react@18.3.12_react@18.3.1_redux@5.0.1",
-    "npm:react-router-dom@7.0.1": "7.0.1_react@18.3.1_react-dom@18.3.1__react@18.3.1",
+    "npm:react-router-dom@7.0.2": "7.0.2_react@18.3.1_react-dom@19.0.0__react@19.0.0",
     "npm:react@18.3.1": "18.3.1",
     "npm:sass-embedded@1.82.0": "1.82.0",
     "npm:typescript@5.7.2": "5.7.2",
@@ -222,7 +223,7 @@
       "integrity": "sha512-WC7Yd6cNGfHx8zf+iu+Q1UPTfEcXhQ+ATi7CV1hlrSAaQBdlPzg7Ww/wJHNQem7qG9rxmWoFCDCPubSvFObGzA==",
       "dependencies": [
         "immer",
-        "react",
+        "react@18.3.1",
         "react-redux",
         "redux",
         "redux-thunk",
@@ -351,17 +352,17 @@
     "@types/prop-types@15.7.13": {
       "integrity": "sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA=="
     },
-    "@types/react-dom@18.3.1": {
-      "integrity": "sha512-qW1Mfv8taImTthu4KoXgDfLuk4bydU6Q/TkADnDWWHwi4NX4BR+LWfTp2sVmTqRrsHvyDDTelgelxJ+SsejKKQ==",
+    "@types/react-dom@19.0.0": {
+      "integrity": "sha512-1KfiQKsH1o00p9m5ag12axHQSb3FOU9H20UTrujVSkNhuCrRHiQWFqgEnTNK5ZNfnzZv8UWrnXVqCmCF9fgY3w==",
       "dependencies": [
-        "@types/react"
+        "@types/react@19.0.0"
       ]
     },
     "@types/react-router-dom@5.3.3": {
       "integrity": "sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==",
       "dependencies": [
         "@types/history",
-        "@types/react",
+        "@types/react@18.3.12",
         "@types/react-router"
       ]
     },
@@ -369,13 +370,19 @@
       "integrity": "sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==",
       "dependencies": [
         "@types/history",
-        "@types/react"
+        "@types/react@18.3.12"
       ]
     },
     "@types/react@18.3.12": {
       "integrity": "sha512-D2wOSq/d6Agt28q7rSI3jhU7G6aiuzljDGZ2hTZHIkrTLUI+AF3WMeKkEZ9nN2fkBAlcktT6vcZjDFiIhMYEQw==",
       "dependencies": [
         "@types/prop-types",
+        "csstype"
+      ]
+    },
+    "@types/react@19.0.0": {
+      "integrity": "sha512-MY3oPudxvMYyesqs/kW1Bh8y9VqSmf+tzqw3ae8a9DZW68pUe3zAdHeI1jc6iAysuRdACnVknHP8AhwD4/dxtg==",
+      "dependencies": [
         "csstype"
       ]
     },
@@ -522,38 +529,37 @@
         "source-map-js"
       ]
     },
-    "react-dom@18.3.1_react@18.3.1": {
-      "integrity": "sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==",
+    "react-dom@19.0.0_react@19.0.0": {
+      "integrity": "sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==",
       "dependencies": [
-        "loose-envify",
-        "react",
+        "react@19.0.0",
         "scheduler"
       ]
     },
     "react-redux@9.1.2_@types+react@18.3.12_react@18.3.1_redux@5.0.1": {
       "integrity": "sha512-0OA4dhM1W48l3uzmv6B7TXPCGmokUU4p1M44DGN2/D9a1FjVPukVjER1PcPX97jIg6aUeLq1XJo1IpfbgULn0w==",
       "dependencies": [
-        "@types/react",
+        "@types/react@18.3.12",
         "@types/use-sync-external-store",
-        "react",
+        "react@18.3.1",
         "redux",
         "use-sync-external-store"
       ]
     },
-    "react-router-dom@7.0.1_react@18.3.1_react-dom@18.3.1__react@18.3.1": {
-      "integrity": "sha512-duBzwAAiIabhFPZfDjcYpJ+f08TMbPMETgq254GWne2NW1ZwRHhZLj7tpSp8KGb7JvZzlLcjGUnqLxpZQVEPng==",
+    "react-router-dom@7.0.2_react@18.3.1_react-dom@19.0.0__react@19.0.0": {
+      "integrity": "sha512-VJOQ+CDWFDGaWdrG12Nl+d7yHtLaurNgAQZVgaIy7/Xd+DojgmYLosFfZdGz1wpxmjJIAkAMVTKWcvkx1oggAw==",
       "dependencies": [
-        "react",
+        "react@18.3.1",
         "react-dom",
         "react-router"
       ]
     },
-    "react-router@7.0.1_react@18.3.1_react-dom@18.3.1__react@18.3.1": {
-      "integrity": "sha512-WVAhv9oWCNsja5AkK6KLpXJDSJCQizOIyOd4vvB/+eHGbYx5vkhcmcmwWjQ9yqkRClogi+xjEg9fNEOd5EX/tw==",
+    "react-router@7.0.2_react@18.3.1_react-dom@19.0.0__react@19.0.0": {
+      "integrity": "sha512-m5AcPfTRUcjwmhBzOJGEl6Y7+Crqyju0+TgTQxoS4SO+BkWbhOrcfZNq6wSWdl2BBbJbsAoBUb8ZacOFT+/JlA==",
       "dependencies": [
         "@types/cookie",
         "cookie",
-        "react",
+        "react@18.3.1",
         "react-dom",
         "set-cookie-parser",
         "turbo-stream"
@@ -564,6 +570,9 @@
       "dependencies": [
         "loose-envify"
       ]
+    },
+    "react@19.0.0": {
+      "integrity": "sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ=="
     },
     "redux-thunk@3.1.0_redux@5.0.1": {
       "integrity": "sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==",
@@ -701,11 +710,8 @@
         "varint"
       ]
     },
-    "scheduler@0.23.2": {
-      "integrity": "sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==",
-      "dependencies": [
-        "loose-envify"
-      ]
+    "scheduler@0.25.0": {
+      "integrity": "sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA=="
     },
     "set-cookie-parser@2.7.1": {
       "integrity": "sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ=="
@@ -740,7 +746,7 @@
     "use-sync-external-store@1.2.2_react@18.3.1": {
       "integrity": "sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==",
       "dependencies": [
-        "react"
+        "react@18.3.1"
       ]
     },
     "varint@6.0.0": {
@@ -777,15 +783,15 @@
     "dependencies": [
       "npm:@deno/vite-plugin@1.0.1",
       "npm:@reduxjs/toolkit@2.3.0",
-      "npm:@types/react-dom@18.3.1",
+      "npm:@types/react-dom@19.0.0",
       "npm:@types/react-router-dom@5.3.3",
-      "npm:@types/react@18.3.12",
+      "npm:@types/react@19.0.0",
       "npm:@vitejs/plugin-react-swc@3.7.2",
       "npm:jwt-decode@4.0.0",
       "npm:oxlint@0.14.0",
-      "npm:react-dom@18.3.1",
+      "npm:react-dom@19.0.0",
       "npm:react-redux@9.1.2",
-      "npm:react-router-dom@7.0.1",
+      "npm:react-router-dom@7.0.2",
       "npm:react@18.3.1",
       "npm:sass-embedded@1.82.0",
       "npm:typescript@5.7.2",
