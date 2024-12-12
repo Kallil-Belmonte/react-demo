@@ -1,9 +1,23 @@
 {
   "tasks": {
-    "dev": "deno run -A --node-modules-dir npm:vite --host",
-    "build": "deno run -A --node-modules-dir npm:vite build",
-    "preview": "deno run -A --node-modules-dir npm:vite preview",
-    "serve": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/"
+    "dev": {
+      "command": "deno run -A --node-modules-dir npm:vite --host",
+      "description": "Start the server"
+    },
+    "build": {
+      "command": "deno run -A --node-modules-dir npm:vite build",
+      "description": "Build the app"
+    },
+    "preview": {
+      "command": "deno run -A --node-modules-dir npm:vite preview",
+      "description": "Preview the built app",
+      "dependencies": ["build"]
+    },
+    "serve": {
+      "command": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
+      "description": "Serve the built app using Deno file server",
+      "dependencies": ["build"]
+    }
   },
   "compilerOptions": {
     "jsx": "react-jsx",
@@ -11,17 +25,17 @@
     "jsxImportSourceTypes": "@types/react"
   },
   "imports": {
-    "@deno/vite-plugin": "npm:@deno/vite-plugin@1.0.1",
-    "@reduxjs/toolkit": "npm:@reduxjs/toolkit@2.3.0",
-    "@types/react": "npm:@types/react@19.0.0",
-    "@types/react-dom": "npm:@types/react-dom@19.0.0",
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@1.0.2",
+    "@reduxjs/toolkit": "npm:@reduxjs/toolkit@2.5.0",
+    "@types/react": "npm:@types/react@19.0.1",
+    "@types/react-dom": "npm:@types/react-dom@19.0.2",
     "@types/react-router-dom": "npm:@types/react-router-dom@5.3.3",
     "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@3.7.2",
     "jwt-decode": "npm:jwt-decode@4.0.0",
-    "oxlint": "npm:oxlint@0.14.0",
-    "react": "npm:react@18.3.1",
+    "oxlint": "npm:oxlint@0.15.0",
+    "react": "npm:react@19.0.0",
     "react-dom": "npm:react-dom@19.0.0",
-    "react-redux": "npm:react-redux@9.1.2",
+    "react-redux": "npm:react-redux@9.2.0",
     "react-router-dom": "npm:react-router-dom@7.0.2",
     "sass-embedded": "npm:sass-embedded@1.82.0",
     "typescript": "npm:typescript@5.7.2",
