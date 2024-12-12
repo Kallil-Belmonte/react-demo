@@ -15,7 +15,7 @@
     },
     "serve": {
       "command": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
-      "description": "Serve the built app using Deno file server",
+      "description": "Serve the build using Deno file server",
       "dependencies": ["build"]
     }
   },
