@@ -10,7 +10,7 @@
     },
     "preview": {
       "command": "deno run -A --node-modules-dir npm:vite preview",
-      "description": "Preview the built app",
+      "description": "Preview the build locally",
       "dependencies": ["build"]
     },
     "serve": {
