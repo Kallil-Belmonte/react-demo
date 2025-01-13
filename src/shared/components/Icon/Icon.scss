@@ -1,5 +1,3 @@
-@use '@/assets/scss/helpers' as *;
-
 [data-component='Icon'] {
   @extend %flex-center;
   @include square(var(--size));

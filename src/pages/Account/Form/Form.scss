@@ -1,5 +1,3 @@
-@use '@/assets/scss/helpers' as *;
-
 [data-page='Account'] form {
   footer {
     @extend %flex-center-y;

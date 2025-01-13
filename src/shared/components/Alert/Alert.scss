@@ -1,5 +1,3 @@
-@use '@/assets/scss/helpers' as *;
-
 [data-component='Alert'] {
   @extend %flex-center-y;
   justify-content: space-between;
