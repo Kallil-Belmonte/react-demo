@@ -32,14 +32,14 @@
     "@types/react-router-dom": "npm:@types/react-router-dom@5.3.3",
     "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@3.7.2",
     "jwt-decode": "npm:jwt-decode@4.0.0",
-    "oxlint": "npm:oxlint@0.15.0",
+    "oxlint": "npm:oxlint@0.15.6",
     "react": "npm:react@19.0.0",
     "react-dom": "npm:react-dom@19.0.0",
     "react-redux": "npm:react-redux@9.2.0",
     "react-router-dom": "npm:react-router-dom@7.0.2",
     "sass-embedded": "npm:sass-embedded@1.82.0",
-    "typescript": "npm:typescript@5.7.2",
+    "typescript": "npm:typescript@5.7.3",
     "vite": "npm:vite@6.0.3",
-    "vite-plugin-oxlint": "npm:vite-plugin-oxlint@1.1.0"
+    "vite-plugin-oxlint": "npm:vite-plugin-oxlint@1.1.3"
   }
 }
