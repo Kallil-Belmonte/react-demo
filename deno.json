@@ -1,15 +1,16 @@
 {
+  "nodeModulesDir": "auto",
   "tasks": {
     "dev": {
-      "command": "deno run -A --node-modules-dir npm:vite --host",
+      "command": "deno run -A npm:vite --host",
       "description": "Start the server"
     },
     "build": {
-      "command": "deno run -A --node-modules-dir npm:vite build",
+      "command": "deno run -A npm:vite build",
       "description": "Build the app"
     },
     "preview": {
-      "command": "deno run -A --node-modules-dir npm:vite preview",
+      "command": "deno run -A npm:vite preview",
       "description": "Preview the build locally",
       "dependencies": ["build"]
     },
