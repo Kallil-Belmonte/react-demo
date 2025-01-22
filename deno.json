@@ -18,6 +18,10 @@
       "command": "deno run --allow-net --allow-read jsr:@std/http@1/file-server dist/",
       "description": "Serve the build using Deno file server",
       "dependencies": ["build"]
+    },
+    "update": {
+      "command": "deno outdated --update --latest",
+      "description": "Update all packages"
     }
   },
   "compilerOptions": {
