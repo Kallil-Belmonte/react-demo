@@ -1,14 +1,12 @@
-@use "@/assets/scss/helpers" as *;
+@use '@/assets/scss/helpers' as *;
 
-[data-component="Modal"] {
+[data-component='Modal'] {
   max-width: 500px;
   max-height: 500px;
   @include size(calc(100% - 40px), max-content, 20px);
   padding: 0;
   border: none;
-  opacity: 1;
-  scale: 1;
-  @include transitionAll();
+  transition: opacity 300ms ease, scale 300ms ease;
 
   &[open] {
     display: grid;
@@ -17,7 +15,7 @@
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
-    @include transitionAll();
+    transition: background-color 300ms ease;
   }
 
   @starting-style {
@@ -38,7 +36,7 @@
     .title {
       @extend %flex-center-y;
 
-      [data-component="Icon"] {
+      [data-component='Icon'] {
         color: $primary;
         margin-right: 10px;
       }

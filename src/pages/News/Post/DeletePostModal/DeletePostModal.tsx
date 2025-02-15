@@ -1,18 +1,18 @@
 import type { FunctionComponent } from 'react';
 
-import { Modal, Button } from '@/shared/components';
+import { Button, Modal } from '@/shared/components';
 
 type Props = {
-  open: boolean;
+  isOpen: boolean;
   onConfirm: React.MouseEventHandler<HTMLButtonElement>;
   onCancel: React.MouseEventHandler<HTMLButtonElement | HTMLDialogElement>;
 };
 
-const DeletePostModal: FunctionComponent<Props> = ({ open, onConfirm, onCancel }) => {
+const DeletePostModal: FunctionComponent<Props> = ({ isOpen, onConfirm, onCancel }) => {
   return (
     <section data-component="DeletePostModal">
       <Modal
-        open={open}
+        isOpen={isOpen}
         title="Delete Confirmation"
         footer={
           <>

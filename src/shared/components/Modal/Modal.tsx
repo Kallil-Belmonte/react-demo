@@ -1,8 +1,8 @@
-import { type FunctionComponent, useRef, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useRef } from 'react';
 
-import type { Icons } from '../Icon/types';
-import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
+import type { Icons } from '../Icon/types';
 import './Modal.scss';
 
 type Props = Omit<
@@ -10,12 +10,12 @@ type Props = Omit<
   'onClose'
 > & {
   icon?: Icons;
-  open: boolean;
+  isOpen: boolean;
   footer: React.ReactNode;
   onClose: React.MouseEventHandler<HTMLButtonElement | HTMLDialogElement>;
 };
 
-const Modal: FunctionComponent<Props> = ({ icon, open, title, footer, children, onClose }) => {
+const Modal: FunctionComponent<Props> = ({ icon, isOpen, title, footer, children, onClose }) => {
   const dialog = useRef<HTMLDialogElement>(null);
 
   const handleClick: React.MouseEventHandler<HTMLDialogElement> = event => {
@@ -23,14 +23,14 @@ const Modal: FunctionComponent<Props> = ({ icon, open, title, footer, children, 
   };
 
   const toggleModal = () => {
-    if (!dialog.current) return;
-    open ? dialog.current.showModal() : dialog.current.close();
+    if (isOpen) dialog.current?.showModal();
+    else dialog.current?.close();
   };
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     toggleModal();
-  }, [open]);
+  }, [isOpen]); // eslint-disable-line
 
   return (
     <dialog ref={dialog} data-component="Modal" aria-modal="true" onClick={handleClick}>

@@ -2,9 +2,9 @@ import { type FunctionComponent, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-import type { Post } from '@/core/services/news/types';
 import { deletePost } from '@/core/services';
-import { Loader, Button } from '@/shared/components';
+import type { Post } from '@/core/services/news/types';
+import { Button, Loader } from '@/shared/components';
 import DeletePostModal from '../DeletePostModal/DeletePostModal';
 import './PostBody.scss';
 
@@ -14,13 +14,13 @@ type Props = {
 
 const PostBody: FunctionComponent<Props> = ({ post }) => {
   const [loading, setLoading] = useState(false);
-  const [openDeletePostModal, setOpenDeletePostModal] = useState(false);
+  const [isDeletePostModalOpen, setIsDeletePostModalOpen] = useState(false);
 
   const navigate = useNavigate();
   const { id = '' } = useParams<{ id?: string }>();
 
   const handleToggleDeletePostModal = () => {
-    setOpenDeletePostModal(prevValue => !prevValue);
+    setIsDeletePostModalOpen(prevValue => !prevValue);
   };
 
   const handleDeletePost = async () => {
@@ -57,7 +57,7 @@ const PostBody: FunctionComponent<Props> = ({ post }) => {
       </section>
 
       <DeletePostModal
-        open={openDeletePostModal}
+        isOpen={isDeletePostModalOpen}
         onConfirm={handleDeletePost}
         onCancel={handleToggleDeletePostModal}
       />
