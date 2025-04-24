@@ -28,13 +28,13 @@
   }
 
   header {
-    @extend %flex-center-y;
+    @extend %flex-vertical-center;
     justify-content: space-between;
     padding: 0 20px;
     border-bottom: 1px solid $grey-1;
 
     .title {
-      @extend %flex-center-y;
+      @extend %flex-vertical-center;
 
       [data-component='Icon'] {
         color: $primary;
@@ -60,7 +60,7 @@
   }
 
   footer {
-    @extend %flex-center-y;
+    @extend %flex-vertical-center;
     column-gap: 20px;
     padding: 0 15px;
   }

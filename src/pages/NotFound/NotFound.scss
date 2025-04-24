@@ -45,7 +45,7 @@
       font-weight: 700;
       color: #00d7fe;
       margin: 0;
-      @extend %absolute-center-y;
+      @extend %absolute-vertical-center;
 
       &:first-child {
         left: -50%;

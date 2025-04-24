@@ -1,8 +1,8 @@
-@use "@/assets/scss/helpers" as *;
+@use '@/assets/scss/helpers' as *;
 
-[data-component="RadioButton"] {
+[data-component='RadioButton'] {
   .title-wrapper {
-    @extend %flex-center-y;
+    @extend %flex-vertical-center;
     margin-bottom: 8px;
 
     .title {
@@ -10,7 +10,7 @@
       margin: 0;
     }
 
-    [data-component="Tooltip"] {
+    [data-component='Tooltip'] {
       margin-left: 5px;
     }
   }
@@ -37,7 +37,7 @@
         position: relative;
 
         &::after {
-          content: "";
+          content: '';
           @include square(0, 50%);
           background-color: $primary;
           @extend %absolute-center;

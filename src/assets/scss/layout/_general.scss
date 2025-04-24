@@ -191,7 +191,7 @@ fieldset {
   }
 
   .label-wrapper {
-    @extend %flex-center-y;
+    @extend %flex-vertical-center;
     margin-bottom: 8px;
 
     label {

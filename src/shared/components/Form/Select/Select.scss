@@ -20,7 +20,7 @@
     @include position(absolute, calc(100% + 1px), 0, auto, 0, 1);
 
     [role='option'] {
-      @extend %flex-center-y;
+      @extend %flex-vertical-center;
       height: 40px;
       padding: 5px;
       background-color: #fff;

@@ -32,12 +32,12 @@
   @extend %absolute-center;
 }
 
-.absolute-center-y {
-  @extend %absolute-center-y;
+.absolute-vertical-center {
+  @extend %absolute-vertical-center;
 }
 
-.absolute-center-x {
-  @extend %absolute-center-x;
+.absolute-horizontal-center {
+  @extend %absolute-horizontal-center;
 }
 
 // BACKGROUND IMAGE

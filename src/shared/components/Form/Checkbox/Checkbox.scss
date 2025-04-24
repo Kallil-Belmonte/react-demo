@@ -1,7 +1,7 @@
-@use "@/assets/scss/helpers" as *;
+@use '@/assets/scss/helpers' as *;
 
-[data-component="Checkbox"] {
-  @extend %flex-center-y;
+[data-component='Checkbox'] {
+  @extend %flex-vertical-center;
   gap: 10px;
   @include size(max-content, $field-height);
   position: relative;
@@ -25,7 +25,7 @@
     position: relative;
 
     &::after {
-      content: "";
+      content: '';
       @include square(0, 2px);
       background-color: $primary;
       @extend %absolute-center;

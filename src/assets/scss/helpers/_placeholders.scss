@@ -1,20 +1,35 @@
-// GENERAL
+// General
 %text-continued {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-// FLEX CENTER
+%infinite-spin {
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  & {
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+// Flex
 %flex-center,
-%flex-center-y,
-%flex-center-x {
+%flex-vertical-center,
+%flex-horizontal-center {
   display: flex;
 }
 
 %inline-flex-center,
-%inline-flex-center-y,
-%inline-flex-center-x {
+%inline-flex-vertical-center,
+%inline-flex-horizontal-center {
   display: inline-flex;
 }
 
@@ -24,40 +39,40 @@
   justify-content: center;
 }
 
-%flex-center-y,
-%inline-flex-center-y {
+%flex-vertical-center,
+%inline-flex-vertical-center {
   align-items: center;
 }
 
-%flex-center-x,
-%inline-flex-center-x {
+%flex-horizontal-center,
+%inline-flex-horizontal-center {
   justify-content: center;
 }
 
-// ABSOLUTE CENTER
+// Absolute center
 %absolute-center,
-%absolute-center-y,
-%absolute-center-x {
+%absolute-vertical-center,
+%absolute-horizontal-center {
   position: absolute;
 }
 
 %absolute-center {
   top: 50%;
   left: 50%;
-  translate: -50% -50%;
+  transform: translate(-50%, -50%);
 }
 
-%absolute-center-y {
+%absolute-vertical-center {
   top: 50%;
-  translate: 0 -50%;
+  transform: translate(0, -50%);
 }
 
-%absolute-center-x {
+%absolute-horizontal-center {
   left: 50%;
-  translate: -50% 0;
+  transform: translate(-50%, 0);
 }
 
-// BACKGROUND IMAGE
+// Background image
 %background-image-contain,
 %background-image-cover {
   background-repeat: no-repeat;
