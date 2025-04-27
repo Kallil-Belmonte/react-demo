@@ -1,11 +1,325 @@
-/*==============================
-FRAMEWORKS
-==============================*/
+@use 'helpers' as *;
 
 @forward 'frameworks';
+@forward 'utils';
 
-/*==============================
-LAYOUT
-==============================*/
+// FONTS
 
-@forward 'layout';
+// FONT NAME
+// @font-face {
+//   font-family: 'Nome da Fonte';
+//   font-display: swap;
+//   src: url('../fonts/nome-da-fonte/webfont.eot'); /* IE9 Compat Modes */
+//   src: url('../fonts/nome-da-fonte/webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//   url('../fonts/nome-da-fonte/webfont.woff2') format('woff2'), /* Super Modern Browsers */
+//   url('../fonts/nome-da-fonte/webfont.woff') format('woff'), /* Pretty Modern Browsers */
+//   url('../fonts/nome-da-fonte/webfont.ttf') format('truetype'), /* Safari, Android, iOS */
+//   url('../fonts/nome-da-fonte/webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+// }
+
+// FONT NAME
+
+// Ultra Light
+// @font-face {
+//   font-family: 'San Francisco';
+//   font-weight: 100;
+//   font-display: swap;
+//   src: url('../fonts/nome-da-fonte/nome-da-fonte-ultralight-webfont.woff');
+// }
+
+// Thin
+// @font-face {
+//   font-family: 'San Francisco';
+//   font-weight: 200;
+//   font-display: swap;
+//   src: url('../fonts/nome-da-fonte/nome-da-fonte-thin-webfont.woff');
+// }
+
+// Regular
+// @font-face {
+//   font-family: 'San Francisco';
+//   font-weight: 400;
+//   font-display: swap;
+//   src: url('../fonts/nome-da-fonte/nome-da-fonte-regular-webfont.woff');
+// }
+
+// Medium
+// @font-face {
+//   font-family: 'San Francisco';
+//   font-weight: 500;
+//   font-display: swap;
+//   src: url('../fonts/nome-da-fonte/nome-da-fonte-medium-webfont.woff');
+// }
+
+// Semi Bold
+// @font-face {
+//   font-family: 'San Francisco';
+//   font-weight: 600;
+//   font-display: swap;
+//   src: url('../fonts/nome-da-fonte/nome-da-fonte-semibold-webfont.woff');
+// }
+
+// Bold
+// @font-face {
+//   font-family: 'San Francisco';
+//   font-weight: 700;
+//   font-display: swap;
+//   src: url('../fonts/nome-da-fonte/nome-da-fonte-bold-webfont.woff');
+// }
+
+// ATTRIBUTES
+[aria-hidden='true'] {
+  display: none !important;
+}
+
+// BODY
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size);
+  font-weight: 400;
+  color: var(--text-color);
+  box-sizing: border-box;
+  margin: 0;
+}
+
+// SCROLLBAR
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  @include square(8px);
+  background-color: #e1e3e4;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #c1c8cc;
+
+  &:active {
+    background-color: var(--primary);
+  }
+}
+
+// HR
+hr {
+  height: 1px;
+  border-width: 0;
+  background-color: var(--grey-4);
+}
+
+// HEADINGS
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  line-height: 100%;
+  margin: 0;
+}
+
+// LIST
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+// FIGURE
+figure {
+  margin: 0;
+}
+
+// LINK
+a {
+  text-decoration: none;
+  color: var(--secondary);
+  @include transitionAll();
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--primary);
+  }
+}
+
+// BUTTON
+button {
+  font: inherit;
+  font-family: var(--font-primary);
+  font-size: var(--font-size);
+  color: var(--text-color);
+  text-align: center;
+  padding: var(--button-padding);
+  height: var(--button-height);
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  &:disabled {
+    font-weight: 400;
+    color: var(--text-color) !important;
+    background-color: var(--grey-4) !important;
+    cursor: not-allowed;
+  }
+}
+
+// FORM
+fieldset {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border: 1px solid var(--field-border-color);
+  border-radius: 8px;
+
+  legend {
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+.form-field {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: var(--field-spacing-y);
+  }
+
+  .label-wrapper {
+    @extend %flex-vertical-center;
+    margin-bottom: 8px;
+
+    label {
+      font-weight: 700;
+    }
+
+    [data-component='Tooltip'] {
+      margin-left: 5px;
+    }
+
+    + [data-component='Icon'] {
+      color: var(--grey-4);
+    }
+  }
+
+  > [data-component='Icon'] {
+    @include square(var(--field-icon-size));
+    position: absolute;
+    top: 38px;
+
+    svg {
+      @include transitionAll();
+    }
+  }
+
+  .label-wrapper + [data-component='Icon'] {
+    left: var(--field-spacing-x);
+
+    + input {
+      padding-left: calc(var(--field-spacing-x) + var(--field-icon-size) + 10px);
+    }
+  }
+
+  &:has(:user-invalid) {
+    .label-wrapper + [data-component='Icon'] {
+      color: var(--danger);
+    }
+  }
+
+  &:has(:focus:not(:user-invalid)) {
+    .label-wrapper + [data-component='Icon'] {
+      color: var(--primary);
+    }
+  }
+
+  input + [data-component='Icon'] {
+    right: var(--field-spacing-x);
+    cursor: pointer;
+  }
+
+  input,
+  select {
+    height: var(--field-height);
+    padding: 0 var(--field-spacing-x);
+  }
+
+  textarea {
+    padding: var(--field-spacing-x);
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: var(--font-primary);
+    font-size: var(--font-size);
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--field-border-color);
+    box-sizing: border-box;
+    transition: border-color 0.4s ease;
+
+    &::-webkit-input-placeholder,
+    &::-webkit-input-placeholder,
+    &::-webkit-input-placeholder {
+      color: var(--grey-5);
+    }
+
+    &::-moz-placeholder,
+    &::-moz-placeholder,
+    &::-moz-placeholder {
+      color: var(--grey-5);
+    }
+
+    &:focus {
+      border-color: var(--field-active-border-color);
+      outline: none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &:user-invalid {
+      &,
+      &:focus {
+        border-color: var(--danger);
+      }
+    }
+  }
+
+  .validation-message {
+    color: var(--danger);
+    margin: 5px 0 0 5px;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &:not(:has(:user-invalid)) {
+    .validation-message {
+      display: none;
+    }
+  }
+}
+
+// TITLE
+.section-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+// SECTION
+.page-section {
+  padding: 100px 0;
+}

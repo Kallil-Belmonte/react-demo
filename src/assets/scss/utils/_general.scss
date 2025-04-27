@@ -1,0 +1,5 @@
+@use '@/assets/scss/helpers' as *;
+
+.infinite-spin {
+  @extend %infinite-spin;
+}

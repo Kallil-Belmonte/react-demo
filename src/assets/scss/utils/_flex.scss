@@ -1,0 +1,27 @@
+@use '@/assets/scss/helpers' as *;
+
+.flex-row {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.flex-column {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.flex-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.flex-vertical-center {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.flex-horizontal-center {
+  display: flex !important;
+  justify-content: center !important;
+}

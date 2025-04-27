@@ -19,28 +19,28 @@
   // Info
   &.info {
     > [data-component='Icon'] {
-      color: $info;
+      color: var(--info);
     }
   }
 
   // Success
   &.success {
     > [data-component='Icon'] {
-      color: $success;
+      color: var(--success);
     }
   }
 
   // Warning
   &.warning {
     > [data-component='Icon'] {
-      color: $warning;
+      color: var(--warning);
     }
   }
 
   // Danger
   &.danger {
     > [data-component='Icon'] {
-      color: $danger;
+      color: var(--danger);
     }
   }
 }

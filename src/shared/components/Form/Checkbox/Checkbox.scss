@@ -3,7 +3,7 @@
 [data-component='Checkbox'] {
   @extend %flex-vertical-center;
   gap: 10px;
-  @include size(max-content, $field-height);
+  @include size(max-content, var(--field-height));
   position: relative;
 
   &:not(:has(input:disabled)) {
@@ -20,20 +20,20 @@
   input {
     appearance: none;
     @include square(20px, 6px);
-    border: 2px solid $field-border-color;
+    border: 2px solid var(--field-border-color);
     margin: 0;
     position: relative;
 
     &::after {
       content: '';
       @include square(0, 2px);
-      background-color: $primary;
+      background-color: var(--primary);
       @extend %absolute-center;
       @include transitionAll(0.2s);
     }
 
     &:checked {
-      border-color: $primary;
+      border-color: var(--primary);
 
       &::after {
         @include square(70%);
@@ -41,7 +41,7 @@
     }
 
     &:user-invalid {
-      border-color: $danger;
+      border-color: var(--danger);
     }
 
     &:disabled {

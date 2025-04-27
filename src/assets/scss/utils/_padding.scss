@@ -1,0 +1,35 @@
+@use '@/assets/scss/helpers' as *;
+
+// Styles from 0 to 30 jumping from 5 to 5:
+// 0, 5, 10, 15, 20, 25, 30
+@for $i from 0 through 6 {
+  .pt-#{$i * 5} {
+    padding-top: $i * 5px !important;
+  }
+
+  .pr-#{$i * 5} {
+    padding-right: $i * 5px !important;
+  }
+
+  .pb-#{$i * 5} {
+    padding-bottom: $i * 5px !important;
+  }
+
+  .pl-#{$i * 5} {
+    padding-left: $i * 5px !important;
+  }
+
+  .py-#{$i * 5} {
+    padding-top: $i * 5px !important;
+    padding-bottom: $i * 5px !important;
+  }
+
+  .px-#{$i * 5} {
+    padding-left: $i * 5px !important;
+    padding-right: $i * 5px !important;
+  }
+
+  .p-#{$i * 5} {
+    padding: $i * 5px !important;
+  }
+}

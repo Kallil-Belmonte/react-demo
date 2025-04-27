@@ -1,0 +1,48 @@
+@use 'sass:color';
+
+:root {
+  // Colors
+  --primary: #61dafb;
+  --primary-light: color.adjust(#61dafb, $lightness: 5%);
+  --primary-darker: color.adjust(#61dafb, $lightness: -5%);
+  --secondary: #628ee5;
+  --secondary-light: color.adjust(#628ee5, $lightness: 5%);
+  --secondary-darker: color.adjust(#628ee5, $lightness: -5%);
+  --info: #14d5f3;
+  --success: #37c991;
+  --warning: #ffb23e;
+  --danger: #fd6e64;
+  --grey-1: #f9f9f9;
+  --grey-2: #f1f1f1;
+  --grey-3: #eef4fb;
+  --grey-4: #e0e0e0;
+  --grey-5: #cbcbcb;
+  --grey-6: #c0c0c0;
+  --grey-7: #aeb2bf;
+  --dark-1: #616161;
+  --dark-2: #3d464d;
+
+  --text-color: var(--dark-2);
+
+  // Fonts
+  --font-primary: 'Roboto', Arial, sans-serif;
+  --font-size: 16px;
+
+  // Layout
+  --header-size: 80px;
+  --footer-size: 80px;
+  --layout-spacing-y: 15px;
+  --layout-spacing-x: 15px;
+
+  // Form
+  --field-spacing-y: 15px;
+  --field-spacing-x: 15px;
+  --field-icon-size: 20px;
+  --field-height: 40px;
+  --field-border-color: #dae8f7;
+  --field-active-border-color: var(--primary);
+
+  // Button
+  --button-height: 40px;
+  --button-padding: 0 15px;
+}

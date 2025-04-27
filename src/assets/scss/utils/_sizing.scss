@@ -1,0 +1,9 @@
+.w-full {
+  width: calc(var(--layout-spacing-x) + 100% + var(--layout-spacing-x));
+  margin-left: -var(--layout-spacing-x) !important;
+  margin-right: -var(--layout-spacing-x) !important;
+}
+
+.h-full {
+  height: 100%;
+}

@@ -1,0 +1,49 @@
+@use '@/assets/scss/helpers' as *;
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+// Styles from 0 to 30 jumping from 5 to 5:
+// 0, 5, 10, 15, 20, 25, 30
+@for $i from 0 through 6 {
+  .mt-#{$i * 5} {
+    margin-top: $i * 5px !important;
+  }
+
+  .mr-#{$i * 5} {
+    margin-right: $i * 5px !important;
+  }
+
+  .mb-#{$i * 5} {
+    margin-bottom: $i * 5px !important;
+  }
+
+  .ml-#{$i * 5} {
+    margin-left: $i * 5px !important;
+  }
+
+  .my-#{$i * 5} {
+    margin-top: $i * 5px !important;
+    margin-bottom: $i * 5px !important;
+  }
+
+  .mx-#{$i * 5} {
+    margin-left: $i * 5px !important;
+    margin-right: $i * 5px !important;
+  }
+
+  .m-#{$i * 5} {
+    margin: $i * 5px !important;
+  }
+}
