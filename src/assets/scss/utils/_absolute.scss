@@ -1,0 +1,15 @@
+.absolute-center {
+  top: 50% !important;
+  left: 50% !important;
+  translate: -50% -50% !important;
+}
+
+.absolute-vertical-center {
+  top: 50% !important;
+  translate: 0 -50% !important;
+}
+
+.absolute-horizontal-center {
+  left: 50% !important;
+  translate: -50% 0 !important;
+}
