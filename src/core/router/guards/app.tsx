@@ -1,9 +1,9 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { isValidAuthToken, setPageTitle } from '@/shared/helpers';
 import Dashboard from '@/core/layout/Dashboard/Dashboard';
+import { isValidAuthToken, setPageTitle } from '@/shared/helpers';
 
 type Props = { pageTitle: string; component: React.ReactNode };
 
@@ -26,7 +26,7 @@ const AppGuard: FunctionComponent<Props> = ({ pageTitle, component }) => {
 
   useEffect(() => {
     validateAuth();
-  }, [location.pathname]);
+  }, [location.pathname]); // eslint-disable-line
 
   return render ? <Dashboard>{component}</Dashboard> : null;
 };

@@ -1,11 +1,11 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { useSelector, useDispatch } from '@/shared/hooks';
 import { setCurrentPost } from '@/core/redux/reducers/news';
 import { getPost } from '@/core/services';
 import { Loader } from '@/shared/components';
+import { useDispatch, useSelector } from '@/shared/hooks';
 import PostBody from './PostBody/PostBody';
 
 const Post: FunctionComponent = () => {
@@ -30,7 +30,7 @@ const Post: FunctionComponent = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     getCurrentPost();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <main data-page="Post">

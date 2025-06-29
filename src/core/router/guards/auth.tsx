@@ -1,4 +1,4 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ const AuthGuard: FunctionComponent<Props> = ({ pageTitle, component }) => {
 
   useEffect(() => {
     validateAuth();
-  }, [location.pathname]);
+  }, [location.pathname]); // eslint-disable-line
 
   return render ? component : null;
 };

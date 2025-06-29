@@ -1,10 +1,10 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
-import type { Post } from '@/core/services/news/types';
-import { useSelector, useDispatch } from '@/shared/hooks';
 import { setPosts } from '@/core/redux/reducers/news';
 import { getPosts } from '@/core/services';
+import type { Post } from '@/core/services/news/types';
 import { Loader } from '@/shared/components';
+import { useDispatch, useSelector } from '@/shared/hooks';
 import FeaturedPosts from './FeaturedPosts/FeaturedPosts';
 
 const Home: FunctionComponent = () => {
@@ -37,7 +37,7 @@ const Home: FunctionComponent = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     getFeaturedPosts();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <main data-page="Home">

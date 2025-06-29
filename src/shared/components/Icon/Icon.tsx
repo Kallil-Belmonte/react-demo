@@ -1,9 +1,9 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
-import type { ObjectType } from '@/shared/files/types';
 import { PROJECT_DOMAIN } from '@/shared/files/consts';
-import type { Category, Icons } from './types';
+import type { ObjectType } from '@/shared/files/types';
 import './Icon.scss';
+import type { Category, Icons } from './types';
 
 type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   category?: Category;
@@ -59,7 +59,7 @@ const Icon: FunctionComponent<Props> = props => {
     return () => {
       setMounted(false);
     };
-  }, [setIcon]);
+  }, [setIcon]); // eslint-disable-line
 
   return (
     <div

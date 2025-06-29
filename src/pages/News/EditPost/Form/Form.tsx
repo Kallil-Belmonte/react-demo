@@ -1,12 +1,12 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-import type { Post } from '@/core/services/news/types';
 import { setCurrentPost } from '@/core/redux/reducers/news';
-import { useSelector, useDispatch, useField } from '@/shared/hooks';
-import { getPost, editPost } from '@/core/services';
-import { Loader, Input, Textarea, Button } from '@/shared/components';
+import { editPost, getPost } from '@/core/services';
+import type { Post } from '@/core/services/news/types';
+import { Button, Input, Loader, Textarea } from '@/shared/components';
+import { useDispatch, useField, useSelector } from '@/shared/hooks';
 import './Form.scss';
 
 const Form: FunctionComponent = () => {
@@ -63,7 +63,7 @@ const Form: FunctionComponent = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     getCurrentPost();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <>

@@ -1,9 +1,9 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
 import { setUser } from '@/core/redux/reducers/auth';
+import { Alert, Button, Input } from '@/shared/components';
 import { clearMessage } from '@/shared/helpers';
-import { useSelector, useDispatch, useField } from '@/shared/hooks';
-import { Alert, Input, Button } from '@/shared/components';
+import { useDispatch, useField, useSelector } from '@/shared/hooks';
 import './Form.scss';
 
 const Form: FunctionComponent = () => {
@@ -42,7 +42,7 @@ const Form: FunctionComponent = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     setFormData();
-  }, [user]);
+  }, [user]); // eslint-disable-line
 
   return (
     <div data-component="Form" className="row">

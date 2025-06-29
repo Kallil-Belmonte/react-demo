@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { PROJECT_TITLE } from '@/shared/files/consts';
-import { clearStorageData } from '@/shared/helpers';
-import { useSelector, useDispatch } from '@/shared/hooks';
-import { setUser, resetUser } from '@/core/redux/reducers/auth';
+import { resetUser, setUser } from '@/core/redux/reducers/auth';
 import { getUser } from '@/core/services';
 import { Button, Icon } from '@/shared/components';
+import { PROJECT_TITLE } from '@/shared/files/consts';
+import { clearStorageData } from '@/shared/helpers';
+import { useDispatch, useSelector } from '@/shared/hooks';
 import './Header.scss';
 
 const Header = () => {
@@ -38,7 +38,7 @@ const Header = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     getUserData();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <header data-layout="Header">

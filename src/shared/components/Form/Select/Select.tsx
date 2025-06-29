@@ -1,8 +1,8 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
+import Button from '@/shared/components/Button/Button';
 import { removeAccent } from '@/shared/helpers';
 import type { UseField } from '@/shared/hooks';
-import Button from '@/shared/components/Button/Button';
 import './Select.scss';
 
 type Option = {
@@ -93,7 +93,7 @@ const Select: FunctionComponent<Props> = ({
   // LIFECYCLE HOOKS
   useEffect(() => {
     setData();
-  }, [options]);
+  }, [options]); // eslint-disable-line
 
   return (
     <div data-component="Select" className="form-field" {...otherProps}>

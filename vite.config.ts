@@ -16,10 +16,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler',
         additionalData: `@use '@/assets/scss/helpers' as *;`,
       },
     },
   },
-  plugins: [oxlintPlugin({ path: 'src' }), deno(), react()],
+  plugins: [oxlintPlugin({ path: 'src' }), react(), deno()],
 });

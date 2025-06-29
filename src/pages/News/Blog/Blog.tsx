@@ -1,15 +1,15 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
-import type { Category, Post } from '@/core/services/news/types';
-import { groupArrayItemsInArrays } from '@/shared/helpers';
-import { useSelector, useDispatch, useField } from '@/shared/hooks';
 import { setCategories, setPosts } from '@/core/redux/reducers/news';
 import { getCategories, getPosts } from '@/core/services';
+import type { Category, Post } from '@/core/services/news/types';
 import { Loader, PageHeader, Select } from '@/shared/components';
-import Posts from './Posts/Posts';
-import Pagination from './Pagination/Pagination';
-import Categories from './Categories/Categories';
+import { groupArrayItemsInArrays } from '@/shared/helpers';
+import { useDispatch, useField, useSelector } from '@/shared/hooks';
 import './Blog.scss';
+import Categories from './Categories/Categories';
+import Pagination from './Pagination/Pagination';
+import Posts from './Posts/Posts';
 
 const { keys } = Object;
 
@@ -93,7 +93,7 @@ const Blog: FunctionComponent = () => {
   // LIFECYCLE HOOKS
   useEffect(() => {
     getAllData();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <main data-page="Blog">
