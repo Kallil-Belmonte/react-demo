@@ -1,20 +1,5 @@
-.my-auto {
-  margin-top: auto !important;
-  margin-bottom: auto !important;
-}
-
-.mx-auto {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-.m-auto {
-  margin: auto !important;
-}
-
-// Styles from 0 to 30 jumping from 5 to 5:
-// 0, 5, 10, 15, 20, 25, 30
-@for $i from 0 through 6 {
+// Styles from 0 to 100 jumping from 5 to 5:
+@for $i from 0 through 20 {
   .mt-#{$i * 5} {
     margin-top: $i * 5px !important;
   }
@@ -44,4 +29,34 @@
   .m-#{$i * 5} {
     margin: $i * 5px !important;
   }
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.m-auto {
+  margin: auto !important;
 }
