@@ -1,9 +1,5 @@
 @use '@/assets/scss/helpers' as *;
 
-.text-continued {
-  @extend %text-continued;
-}
-
 .text-left {
   text-align: left !important;
 }
@@ -17,13 +13,19 @@
 }
 
 .text-justify {
-  text-align: justify;
+  text-align: justify !important;
 }
 
 .text-start {
-  text-align: start;
+  text-align: start !important;
 }
 
 .text-end {
-  text-align: end;
+  text-align: end !important;
+}
+
+.text-continued {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
 }
