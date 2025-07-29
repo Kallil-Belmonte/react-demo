@@ -1,13 +1,13 @@
 import { type FunctionComponent, useState } from 'react';
 
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
+import { setUser } from '@/core/redux/reducers/auth';
+import { registerUser } from '@/core/services';
 import type { RegisterUserPayload } from '@/core/services/auth/types';
+import { Button, Input, Loader } from '@/shared/components';
 import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
 import { useDispatch, useField } from '@/shared/hooks';
-import { registerUser } from '@/core/services';
-import { setUser } from '@/core/redux/reducers/auth';
-import { Loader, Input, Button } from '@/shared/components';
 import Auth from '../Auth';
 
 const Register: FunctionComponent = () => {
@@ -53,7 +53,7 @@ const Register: FunctionComponent = () => {
       <form className="auth-form" onSubmit={handleSubmit}>
         <h1 className="page-title">Register</h1>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Input
             label="Name"
             name="first-name"
@@ -65,7 +65,7 @@ const Register: FunctionComponent = () => {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Input
             label="Last name"
             name="last-name"
@@ -77,7 +77,7 @@ const Register: FunctionComponent = () => {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Input
             icon="Email"
             label="E-mail"
@@ -89,7 +89,7 @@ const Register: FunctionComponent = () => {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Input
             label="Password"
             type="password"
@@ -106,7 +106,7 @@ const Register: FunctionComponent = () => {
         </Button>
 
         <div className="text-center">
-          <hr className="mt-4" />
+          <hr className="my-15" />
           Aleady have an account? <NavLink to="/login">Login</NavLink>
         </div>
       </form>

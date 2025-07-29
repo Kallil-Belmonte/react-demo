@@ -17,7 +17,7 @@ const Auth: FunctionComponent<Props> = ({ children }) => {
           <div className="col-md-6 offset-md-3">
             {children}
 
-            <p className="disclaimer text-center mt-2 mb-0">Use any e-mail and password</p>
+            <p className="disclaimer text-center mt-15 mb-0">Use any e-mail and password</p>
           </div>
         </div>
       </div>

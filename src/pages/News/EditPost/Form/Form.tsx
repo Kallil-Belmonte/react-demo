@@ -70,11 +70,11 @@ const Form: FunctionComponent = () => {
       <Loader loading={loading} />
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="mb-15">
           <Input label="Title" name="title" required minLength={2} field={title} />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Textarea label="Body" name="body" required minLength={2} field={body} />
         </div>
 

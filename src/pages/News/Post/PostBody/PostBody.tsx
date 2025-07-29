@@ -45,7 +45,7 @@ const PostBody: FunctionComponent<Props> = ({ post }) => {
           <h1 className="title text-center">{post.title}</h1>
           <p>{post.body}</p>
         </article>
-        <hr className="mt-4" />
+        <hr className="my-15" />
         <div className="d-flex justify-content-end">
           <Button className="me-3" onClick={() => navigate(`/edit-post/${post.id}`)}>
             Edit

@@ -20,7 +20,7 @@ const PostItem: FunctionComponent<Props> = ({ post, ...otherProps }) => {
       <article>
         <h3 className="title">{post.title}</h3>
         <p className="mb-0">{post.body ? limitWords(post.body, 8) : null}</p>
-        <Button className="mt-3" route={`/post/${post.id}`}>
+        <Button className="mt-15" route={`/post/${post.id}`}>
           Read more
         </Button>
       </article>

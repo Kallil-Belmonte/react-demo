@@ -1,19 +1,19 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useEffect, useState } from 'react';
 
-import type { FavoriteColor } from '@/core/services/contact/types';
-import { clearMessage } from '@/shared/helpers';
-import { useField } from '@/shared/hooks';
 import { getFavoriteColors } from '@/core/services';
+import type { FavoriteColor } from '@/core/services/contact/types';
 import {
   Alert,
-  Loader,
-  Input,
+  Button,
   Checkbox,
+  Input,
+  Loader,
   RadioButton,
   Select,
   Textarea,
-  Button,
 } from '@/shared/components';
+import { clearMessage } from '@/shared/helpers';
+import { useField } from '@/shared/hooks';
 import './Form.scss';
 
 const Form: FunctionComponent = () => {
@@ -85,7 +85,7 @@ const Form: FunctionComponent = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col mb-3">
+          <div className="col mb-15">
             <Input
               label="Name"
               name="first-name"
@@ -97,7 +97,7 @@ const Form: FunctionComponent = () => {
             />
           </div>
 
-          <div className="col mb-3">
+          <div className="col mb-15">
             <Input
               label="Last name"
               name="last-name"
@@ -111,7 +111,7 @@ const Form: FunctionComponent = () => {
         </div>
 
         <div className="row">
-          <div className="col mb-3">
+          <div className="col mb-15">
             <Input
               icon="Email"
               label="E-mail"
@@ -123,7 +123,7 @@ const Form: FunctionComponent = () => {
             />
           </div>
 
-          <div className="col mb-3">
+          <div className="col mb-15">
             <Input
               icon="Cellphone"
               label="Telephone"
@@ -137,7 +137,7 @@ const Form: FunctionComponent = () => {
         </div>
 
         <div className="row">
-          <div className="col mb-3">
+          <div className="col mb-15">
             <RadioButton
               title="Sex"
               name="sex"
@@ -152,7 +152,7 @@ const Form: FunctionComponent = () => {
         </div>
 
         <div className="row">
-          <div className="col mb-3">
+          <div className="col mb-15">
             <Select
               label="Favorite color"
               name="favorite-color"
@@ -161,14 +161,14 @@ const Form: FunctionComponent = () => {
               field={favoriteColor}
             />
           </div>
-          <div className="col mt-4">
+          <div className="col mt-25">
             <div className="form-check">
               <Checkbox label="Employed" name="employed" field={employed} />
             </div>
           </div>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Textarea
             label="Message"
             name="message"

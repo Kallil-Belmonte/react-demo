@@ -46,7 +46,7 @@ const NotFound: FunctionComponent = () => {
 
       <h1 className="page-title text-center">Page not found</h1>
       <div className="d-flex justify-content-center">
-        <Link to="/" className="btn btn-primary mt-4">
+        <Link to="/" className="btn btn-primary mt-15">
           Go back to the home page
         </Link>
       </div>

@@ -48,7 +48,7 @@ const Form: FunctionComponent = () => {
     <div data-component="Form" className="row">
       <div className="col-md-6 offset-md-3">
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+          <div className="mb-15">
             <Input
               label="Name"
               name="first-name"
@@ -60,7 +60,7 @@ const Form: FunctionComponent = () => {
             />
           </div>
 
-          <div className="mb-3">
+          <div className="mb-15">
             <Input
               label="Last name"
               name="last-name"
@@ -72,7 +72,7 @@ const Form: FunctionComponent = () => {
             />
           </div>
 
-          <div className="col mb-3">
+          <div className="col mb-15">
             <Input
               icon="Email"
               label="E-mail"

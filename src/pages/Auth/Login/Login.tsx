@@ -1,13 +1,13 @@
 import { type FunctionComponent, useState } from 'react';
 
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
+import { setUser } from '@/core/redux/reducers/auth';
+import { loginUser } from '@/core/services';
 import type { LoginUserPayload } from '@/core/services/auth/types';
+import { Button, Checkbox, Input, Loader } from '@/shared/components';
 import { AUTH_TOKEN_KEY } from '@/shared/files/consts';
 import { useDispatch, useField } from '@/shared/hooks';
-import { loginUser } from '@/core/services';
-import { setUser } from '@/core/redux/reducers/auth';
-import { Loader, Input, Checkbox, Button } from '@/shared/components';
 import Auth from '../Auth';
 
 const Login: FunctionComponent = () => {
@@ -53,7 +53,7 @@ const Login: FunctionComponent = () => {
       <form className="auth-form" onSubmit={handleSubmit}>
         <h1 className="page-title">Login</h1>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Input
             icon="Email"
             label="E-mail"
@@ -65,7 +65,7 @@ const Login: FunctionComponent = () => {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="mb-15">
           <Input
             label="Password"
             type="password"
@@ -84,7 +84,7 @@ const Login: FunctionComponent = () => {
         </Button>
 
         <div className="text-center">
-          <hr className="mt-4" />
+          <hr className="my-15" />
           Don't have an account? <NavLink to="/register">Register</NavLink>
         </div>
       </form>
