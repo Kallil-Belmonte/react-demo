@@ -1,5 +1,5 @@
+import { JSON_PLACEHOLDER_API, MOCKY_API } from '@/core/services/_files/endpoints';
 import { getAuthToken, isValidJSONString } from '@/shared/helpers';
-import { MOCKY_API, JSON_PLACEHOLDER_API } from '@/core/services/_files/endpoints';
 import type { RequestError } from './types';
 
 type Params = {
@@ -15,8 +15,10 @@ type Error = {
 
 const { stringify, parse } = JSON;
 
-const INIT = { method: 'GET' };
-const HEADERS = { 'Content-Type': 'application/json' };
+const INIT: RequestInit = {
+  headers: { 'Content-Type': 'application/json' },
+  method: 'GET',
+};
 
 const request = async <Type>(params: Params): Promise<Type> => {
   const { url, init = INIT, api = 'mocky' } = params;
@@ -29,7 +31,11 @@ const request = async <Type>(params: Params): Promise<Type> => {
     const authToken = getAuthToken(true);
     const requestInit: RequestInit = {
       ...init,
-      headers: { ...HEADERS, Authorization: `Bearer ${authToken}` },
+      headers: {
+        ...INIT.headers,
+        ...init.headers,
+        Authorization: `Bearer ${authToken}`,
+      },
     };
 
     const response = await fetch(`${apis[api]}/${url}`, requestInit);
