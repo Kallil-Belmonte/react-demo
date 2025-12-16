@@ -1,6 +1,5 @@
-// Styles from 0 to 30 jumping from 5 to 5:
-// 0, 5, 10, 15, 20, 25, 30
-@for $i from 0 through 6 {
+// Styles from 0 to 100px jumping from 5 to 5:
+@for $i from 0 through 20 {
   .pt-#{$i * 5} {
     padding-top: $i * 5px !important;
   }
