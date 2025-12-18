@@ -5,7 +5,7 @@ type UseFieldConfig<Value> = {
 };
 
 export type UseField<Value = any> = {
-  ref: React.MutableRefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
+  ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   value: Value;
   setValue: Dispatch<SetStateAction<Value>>;
 };
@@ -13,7 +13,7 @@ export type UseField<Value = any> = {
 const useField = <Value = string>(config?: UseFieldConfig<Value>): UseField<Value> => {
   const { defaultValue } = config || {};
 
-  const fieldRef = useRef<any>();
+  const fieldRef = useRef<any>(null);
   const [value, setValue] = useState(defaultValue as Value);
 
   return { ref: fieldRef, value, setValue };

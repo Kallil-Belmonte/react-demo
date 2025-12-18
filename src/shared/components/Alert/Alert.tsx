@@ -2,8 +2,8 @@ import type { FunctionComponent } from 'react';
 
 import type { Status } from '@/shared/files/types';
 import { getIcon } from '@/shared/helpers';
-import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 import './Alert.scss';
 
 type Props = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {

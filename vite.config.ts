@@ -1,6 +1,7 @@
 import deno from '@deno/vite-plugin';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
+import vitePluginChecker from 'vite-plugin-checker';
 import oxlintPlugin from 'vite-plugin-oxlint';
 
 export default defineConfig({
@@ -20,5 +21,15 @@ export default defineConfig({
       },
     },
   },
-  plugins: [oxlintPlugin({ path: 'src' }), react(), deno()],
+  plugins: [
+    deno(),
+    react(),
+    vitePluginChecker({
+      typescript: {
+        tsconfigPath: './tsconfig.json',
+        buildMode: true,
+      },
+    }),
+    oxlintPlugin({ path: 'src' }),
+  ],
 });
