@@ -1,26 +1,24 @@
-# Logs
-logs
-*.log
-
-# Directories and files
-node_modules
+# Folders
+.cache
+.idea
+.vite
+.vscode
+blob-report
 dist
 dist-ssr
-
-blob-report
+logs
+node_modules
 playwright-report
 playwright/.cache
 test-results
 
-.cache
-.vite
-.vscode
-!.vscode/extensions.json
+# Files
 *.local
-.idea
-.DS_Store
-*.suo
-*.ntvs*
+*.log
 *.njsproj
+*.ntvs*
 *.sln
+*.suo
 *.sw?
+.DS_Store
+!.vscode/extensions.json
