@@ -3,7 +3,7 @@ import type { Status } from '@/shared/files/types';
 /**
  * @function getIcon
  * @description Gets the status icon name.
- * @param { Status } status - The status to get the icon name from.
+ * @param status - The status to get the icon name from.
  */
 
 const getIcon = (status: Status) => {
