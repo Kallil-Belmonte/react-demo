@@ -37,6 +37,7 @@
     "@types/react-router-dom": "npm:@types/react-router-dom@5.3.3",
     "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@4.2.2",
     "jwt-decode": "npm:jwt-decode@4.0.0",
+    "oxfmt": "npm:oxfmt@0.26.0",
     "oxlint": "npm:oxlint@1.29.0",
     "react": "npm:react@19.2.0",
     "react-dom": "npm:react-dom@19.2.0",
