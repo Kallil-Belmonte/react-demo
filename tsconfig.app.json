@@ -6,14 +6,14 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "module": "ESNext",
+    "module": "esnext",
     "noEmit": true,
     "paths": {
       "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "target": "ESNext",
+    "target": "esnext",
     "tsBuildInfoFile": "./.vite/tsconfig.app.tsbuildinfo",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
