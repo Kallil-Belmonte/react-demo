@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["import", "react", "react-hooks", "typescript", "unicorn"],
+  "plugins": ["import", "react", "typescript", "unicorn"],
   "env": {
     "browser": true
   },
