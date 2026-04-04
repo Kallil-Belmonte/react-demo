@@ -21,4 +21,6 @@ test-results
 *.suo
 *.sw?
 .DS_Store
+.env
+.env.*
 !.vscode/extensions.json
