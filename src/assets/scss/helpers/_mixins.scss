@@ -34,11 +34,6 @@
   }
 }
 
-@mixin bg-image($url, $attachment: fixed, $size: cover) {
-  background: url($url) no-repeat center center $attachment;
-  background-size: $size;
-}
-
 @mixin transitionAll($time: 0.4s) {
   transition: all $time ease;
 }
