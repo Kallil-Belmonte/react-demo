@@ -10,6 +10,7 @@
     "no-duplicate-imports": "error",
     "no-unsafe-optional-chaining": "warn",
     "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "object-shorthand": "error",
     "react/jsx-key": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error"
