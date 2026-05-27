@@ -30,23 +30,27 @@
     "jsxImportSourceTypes": "@types/react"
   },
   "imports": {
-    "@deno/vite-plugin": "npm:@deno/vite-plugin@1.0.6",
-    "@reduxjs/toolkit": "npm:@reduxjs/toolkit@2.11.2",
-    "@types/react": "npm:@types/react@19.2.14",
+    "@reduxjs/toolkit": "npm:@reduxjs/toolkit@2.12.0",
+    "@types/react": "npm:@types/react@19.2.15",
     "@types/react-dom": "npm:@types/react-dom@19.2.3",
     "@types/react-router-dom": "npm:@types/react-router-dom@5.3.3",
-    "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@4.3.0",
+    "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@4.3.1",
     "jwt-decode": "npm:jwt-decode@4.0.0",
-    "oxfmt": "npm:oxfmt@0.42.0",
-    "oxlint": "npm:oxlint@1.57.0",
-    "react": "npm:react@19.2.4",
-    "react-dom": "npm:react-dom@19.2.4",
-    "react-redux": "npm:react-redux@9.2.0",
-    "react-router-dom": "npm:react-router-dom@7.13.2",
-    "sass-embedded": "npm:sass-embedded@1.98.0",
-    "typescript": "npm:typescript@6.0.2",
-    "vite": "npm:vite@8.0.2",
-    "vite-plugin-checker": "npm:vite-plugin-checker@0.12.0",
-    "vite-plugin-oxlint": "npm:vite-plugin-oxlint@2.0.1"
+    "oxfmt": "npm:oxfmt@0.52.0",
+    "oxlint": "npm:oxlint@1.67.0",
+    "react": "npm:react@19.2.6",
+    "react-dom": "npm:react-dom@19.2.6",
+    "react-redux": "npm:react-redux@9.3.0",
+    "react-router-dom": "npm:react-router-dom@7.15.1",
+    "sass-embedded": "npm:sass-embedded@1.100.0",
+    "typescript": "npm:typescript@6.0.3",
+    "vite": "npm:vite@8.0.14",
+    "vite-plugin-checker": "npm:vite-plugin-checker@0.14.1",
+    "vite-plugin-oxlint": "npm:vite-plugin-oxlint@2.1.1"
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["no-sloppy-imports"]
+    }
   }
 }
