@@ -11,7 +11,7 @@
     "npm:oxlint@1.67.0": "1.67.0",
     "npm:react-dom@19.2.6": "19.2.6_react@19.2.6",
     "npm:react-redux@9.3.0": "9.3.0_@types+react@19.2.15_react@19.2.6_redux@5.0.1",
-    "npm:react-router-dom@7.15.1": "7.15.1_react@19.2.6_react-dom@19.2.6__react@19.2.6",
+    "npm:react-router-dom@7.16.0": "7.16.0_react@19.2.6_react-dom@19.2.6__react@19.2.6",
     "npm:react@19.2.6": "19.2.6",
     "npm:sass-embedded@1.100.0": "1.100.0",
     "npm:typescript@6.0.3": "6.0.3",
@@ -851,16 +851,16 @@
         "redux"
       ]
     },
-    "react-router-dom@7.15.1_react@19.2.6_react-dom@19.2.6__react@19.2.6": {
-      "integrity": "sha512-AzF62gjY6U9rkMq4RfP/r2EVtQ7DMfNMjyOp/flLTCrtRylLiK4wT4pSq6O8rOXZ2eXdZYJPEYe+ifomiv+Igg==",
+    "react-router-dom@7.16.0_react@19.2.6_react-dom@19.2.6__react@19.2.6": {
+      "integrity": "sha512-kMUAbimWB5FVbF4Bce4bJsiKJWLIUHq/mEG8+CFDnCSgltptBiG5nguducmsJeGKytlCvQud9Qhzpn49iduTlA==",
       "dependencies": [
         "react",
         "react-dom",
         "react-router"
       ]
     },
-    "react-router@7.15.1_react@19.2.6_react-dom@19.2.6__react@19.2.6": {
-      "integrity": "sha512-R8rl9HhgikFYoPJymnUtPXWbnDb3oget6lQnfIoupbt61aT9aOhRkDsY2XRhZRyX1Z/8a5sL74fXmFNm3NRK5A==",
+    "react-router@7.16.0_react@19.2.6_react-dom@19.2.6__react@19.2.6": {
+      "integrity": "sha512-wArC8lVyJb3+jM9OpDyW6hLCizACWkvQR/sSGqSs+o5uEXEtGlqdZ4v8hENR3Jad6i+LRkK93q/+bQAcvl6V1A==",
       "dependencies": [
         "cookie",
         "react",
@@ -1196,7 +1196,7 @@
       "npm:oxlint@1.67.0",
       "npm:react-dom@19.2.6",
       "npm:react-redux@9.3.0",
-      "npm:react-router-dom@7.15.1",
+      "npm:react-router-dom@7.16.0",
       "npm:react@19.2.6",
       "npm:sass-embedded@1.100.0",
       "npm:typescript@6.0.3",
