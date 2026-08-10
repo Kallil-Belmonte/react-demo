@@ -1,4 +1,9 @@
 {
+  "name": "react-demo",
+  "version": "1.0.0",
+  "description": "React demo project.",
+  "repository": "https://github.com/Kallil-Belmonte/react-demo",
+  "type": "module",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
