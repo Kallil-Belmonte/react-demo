@@ -1,6 +1,5 @@
 import { type FunctionComponent, useEffect, useState } from 'react';
 
-import { PROJECT_DOMAIN } from '@/shared/files/consts';
 import type { ObjectType } from '@/shared/files/types';
 import './Icon.scss';
 import type { Category, Icons } from './types';
@@ -18,48 +17,39 @@ const Icon: FunctionComponent<Props> = props => {
     category = 'UI',
     name,
     size = '100%',
-    color,
+    color = 'inherit',
     ...otherProps
   } = props;
 
-  const [svgs, setSvgs] = useState<ObjectType>({});
-  const [mounted, setMounted] = useState(true);
+  const [icons, setIcons] = useState<ObjectType>({});
 
   const style = { '--size': size, '--color': color, ...propStyle };
 
+  let controller: null | AbortController = null;
+
   const setIcon = async () => {
-    const request = new Request(`/icons/${category}/${name}.svg`);
-    let svgHTML = '';
+    if (icons[category]?.[name]) return;
 
-    if ('caches' in window) {
-      const cache = await caches.open(`${PROJECT_DOMAIN}-icons`);
-      let response = await cache.match(request);
-
-      if (!response) {
-        await cache.add(request);
-        response = await cache.match(request);
-      }
-
-      svgHTML = (await response?.text()) || '';
-    } else if (!svgs[name]) {
-      const response = await fetch(request);
-      svgHTML = await response.text();
-    }
-
-    if (svgHTML && mounted) {
-      setSvgs(prevValue => ({ ...prevValue, [name]: svgHTML }));
-    }
+    controller = new AbortController();
+    const response = await fetch(`/icons/${category}/${name}.svg`, { signal: controller.signal });
+    const svgHTML = await response.text();
+    setIcons((prevValue: ObjectType) => ({
+      ...prevValue,
+      [category]: { ...prevValue[category], [name]: svgHTML },
+    }));
   };
 
   // LIFECYCLE HOOKS
   useEffect(() => {
     setIcon();
+  }, [category, name]); // eslint-disable-line
 
+  useEffect(() => {
     // Unmount
     return () => {
-      setMounted(false);
+      if (controller) controller.abort();
     };
-  }, [setIcon]); // eslint-disable-line
+  }, []); // eslint-disable-line
 
   return (
     <div
@@ -67,7 +57,7 @@ const Icon: FunctionComponent<Props> = props => {
       data-category={category}
       data-name={name}
       style={style}
-      dangerouslySetInnerHTML={{ __html: svgs[name] }}
+      dangerouslySetInnerHTML={{ __html: icons[category]?.[name] }}
       {...otherProps}
     />
   );
