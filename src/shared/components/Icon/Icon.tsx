@@ -25,31 +25,29 @@ const Icon: FunctionComponent<Props> = props => {
 
   const style = { '--size': size, '--color': color, ...propStyle };
 
-  let controller: null | AbortController = null;
-
-  const setIcon = async () => {
-    if (icons[category]?.[name]) return;
-
-    controller = new AbortController();
-    const response = await fetch(`/icons/${category}/${name}.svg`, { signal: controller.signal });
-    const svgHTML = await response.text();
-    setIcons((prevValue: ObjectType) => ({
-      ...prevValue,
-      [category]: { ...prevValue[category], [name]: svgHTML },
-    }));
-  };
-
   // LIFECYCLE HOOKS
   useEffect(() => {
-    setIcon();
-  }, [category, name]); // eslint-disable-line
+    let controller: null | AbortController = null;
 
-  useEffect(() => {
+    const setIcon = async () => {
+      if (icons[category]?.[name]) return;
+
+      controller = new AbortController();
+      const response = await fetch(`/icons/${category}/${name}.svg`);
+      const svgHTML = await response.text();
+      setIcons((prevValue: ObjectType) => ({
+        ...prevValue,
+        [category]: { ...prevValue[category], [name]: svgHTML },
+      }));
+    };
+
+    setIcon();
+
     // Unmount
     return () => {
       if (controller) controller.abort();
     };
-  }, []); // eslint-disable-line
+  }, [name]); // eslint-disable-line
 
   return (
     <div
