@@ -24,12 +24,12 @@
     "@types/react-router-dom": "5.3.3",
     "@vitejs/plugin-react-swc": "4.3.3",
     "npm-check-updates": "latest",
-    "oxfmt": "0.63.0",
-    "oxlint": "1.78.0",
+    "oxfmt": "0.64.0",
+    "oxlint": "1.79.0",
     "sass-embedded": "1.102.0",
     "serve": "latest",
     "typescript": "7.0.2",
-    "vite": "8.2.1",
+    "vite": "8.2.2",
     "vite-plugin-checker": "0.14.5",
     "vite-plugin-oxlint": "2.1.2"
   }
