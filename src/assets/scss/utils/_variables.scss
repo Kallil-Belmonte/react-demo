@@ -4,10 +4,10 @@
   // Colors
   --primary: #61dafb;
   --primary-light: #{color.adjust(#61dafb, $lightness: 5%)};
-  --primary-darker: #{color.adjust(#61dafb, $lightness: -5%)};
+  --primary-dark: #{color.adjust(#61dafb, $lightness: -5%)};
   --secondary: #628ee5;
   --secondary-light: #{color.adjust(#628ee5, $lightness: 5%)};
-  --secondary-darker: #{color.adjust(#628ee5, $lightness: -5%)};
+  --secondary-dark: #{color.adjust(#628ee5, $lightness: -5%)};
   --info: #14d5f3;
   --success: #37c991;
   --warning: #ffb23e;
