@@ -1,13 +1,13 @@
-# Vite + Deno + React + TypeScript
+# Vite + Bun + React + TypeScript
 
 ## Running
 
-You need to have Deno v2.0.0 or later installed to run this repo.
+You need to have Bun installed to run this repo.
 
 Start the server:
 
 ```
-$ deno task dev
+$ bun dev
 ```
 
 ## Deploy
@@ -15,5 +15,5 @@ $ deno task dev
 Build production assets:
 
 ```
-$ deno task build
+$ bun run build
 ```
