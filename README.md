@@ -7,7 +7,7 @@ You need to have Bun installed to run this repo.
 Start the server:
 
 ```
-$ bun dev
+$ bun run dev
 ```
 
 ## Deploy
